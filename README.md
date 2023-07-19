@@ -2,8 +2,8 @@
 Mini project for semester 4 at TARUMT
 
 USEFUL LINK
-  https://github.com/bradtraversy/php-crash/tree/main
-  https://stackedit.io/app#
+  -https://github.com/bradtraversy/php-crash/tree/main
+  -https://stackedit.io/app#
 <details>
   <summary>database.php or config.php</summary>
 
