@@ -28,27 +28,10 @@ if($conn->connect_error){ //if not conencted
 
 ```
 
-  ### Some Code
-  ```js
-  function logSomething(something) {
-    console.log('Something', something);
-  }
-  ```
-</details>
-<details>
-  <summary>database.php or config.php</summary>
-
+  ### put in page like index.php or home.php
   ```php
-//TO bring header.php to other file
+  //TO bring header.php to other file
 //<?php  include 'header.php'?>
 //or use require or require_once
-```
-
-  ### Some Code
-  ```js
-  function logSomething(something) {
-    console.log('Something', something);
-  }
   ```
 </details>
-
