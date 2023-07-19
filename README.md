@@ -30,5 +30,18 @@ if($conn->connect_error){ //if not conencted
 //TO bring header.php to other file
 <?php  include 'header.php'?>
 //or use require or require_once
+
+//To Query
+  $sql = 'SELECT * FROM tableSource';
+  $result = mysqli_query($conn,$sql);
+  $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+  foreach($data as $item): // in 2:59:45 of the video
+    echo $item['name'];
+    echo $item['price']; //use div and classes
+
+//Setting to default
+$name = $email = $body = ''; //all will be ''
+
 ```
 </details>
