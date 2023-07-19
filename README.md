@@ -3,15 +3,12 @@ Mini project for semester 4 at TARUMT
 
 USEFUL LINK
   https://github.com/bradtraversy/php-crash/tree/main
+  https://stackedit.io/app#
 <details>
   <summary>database.php or config.php</summary>
 
   ```php
 //database.php or config.php
-//TO bring header.php to other file
-//<?php  include 'header.php'?>
-//or use require or require_once
-
 //Connecting Database
 define('DB_HOST','localhost');
 define('DB_USER','');
@@ -29,9 +26,9 @@ if($conn->connect_error){ //if not conencted
 ```
 
   ### put in page like index.php or home.php
-  ```php
-  //TO bring header.php to other file
-//<?php  include 'header.php'?>
+```php
+//TO bring header.php to other file
+<?php  include 'header.php'?>
 //or use require or require_once
-  ```
+```
 </details>
