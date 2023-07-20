@@ -16,7 +16,7 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="adminPos.php">Shoney's Staff Panel</a>
+            <a class="navbar-brand ps-3" href="pos-panel.php">Shoney's Staff Panel</a>
             
         </nav>
         <div id="layoutSidenav">
@@ -25,33 +25,33 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Main</div>
-                            <a class="nav-link" href="adminPos.php">
+                            <a class="nav-link" href="pos-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
                                 POS
                             </a>
-                            <a class="nav-link" href="menu.php">
+                            <a class="nav-link" href="menu-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-utensils"></i></div>
                                 Menu
                             </a>
-                            <a class="nav-link" href="reservations.php">
+                            <a class="nav-link" href="reservation-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Reservations
                             </a>
-                            <a class="nav-link" href="staffCRUD.php">
+                            <a class="nav-link" href="staff-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
                                 Staff
                             </a>
                             <div class="sb-sidenav-menu-heading">Reports</div>
-                            <a class="nav-link" href="sales.php">
+                            <a class="nav-link" href="sales-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Sales
                             </a>
-                            <a class="nav-link" href="popularItem.php">
+                            <a class="nav-link" href="statistics-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fire"></i></div>
-                                Most Popular Item
+                                Statistics
                             </a>
                             
-                            <a class="nav-link" href="profile.php">
+                            <a class="nav-link" href="profile-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Profile
                             </a>
