@@ -30,7 +30,6 @@ CREATE TABLE Items (
   item_description VARCHAR(255)
 );
 
-
 CREATE TABLE Reservations (
   reservation_id INT PRIMARY KEY,
   table_id INT,
@@ -55,11 +54,12 @@ CREATE TABLE Bills (
 
 CREATE TABLE Bill_Items (
   bill_id INT,
-  item_id INT,
+  item_id VARCHAR(6),
   quantity INT,
   FOREIGN KEY (bill_id) REFERENCES Bills(bill_id),
   FOREIGN KEY (item_id) REFERENCES Items(item_id)
 );
+
 CREATE TABLE Table_Reservations (
   table_reservation_id INT PRIMARY KEY AUTO_INCREMENT,
   table_id INT,
