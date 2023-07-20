@@ -66,7 +66,3 @@ CREATE TABLE Table_Reservations (
   reservation_time DATETIME,
   FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
 );
-
-INSERT INTO Items (item_id, item_name, item_type, item_category, item_description, item_price)
-VALUES
-  (1, 'Prime Rib Steak', 'Steak & Ribs', 'Main Dishes', 'Delicious prime rib steak', 96);
