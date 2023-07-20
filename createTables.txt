@@ -22,7 +22,7 @@ CREATE TABLE Staffs (
 );
 
 CREATE TABLE Items (
-  item_id INT VARCHAR(6) PRIMARY KEY,
+  item_id VARCHAR(6) PRIMARY KEY,
   item_name VARCHAR(255),
   item_type VARCHAR(255),
   item_category VARCHAR(255),
