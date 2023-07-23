@@ -36,9 +36,10 @@
                                         echo "<td>" . $row['item_price'] . "</td>";
                                         echo "<td>" . $row['item_description'] . "</td>";
                                         echo "<td>";
+                                        $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
                                             echo '<a href="read.php?id='. $row['item_id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="update.php?id='. $row['item_id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                            echo '<a href="delete.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="menuCrud/deleteItem.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this item?\')"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
