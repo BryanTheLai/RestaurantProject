@@ -32,12 +32,12 @@ CREATE TABLE Items (
 
 CREATE TABLE Reservations (
   reservation_id INT PRIMARY KEY,
-  table_id INT,
+  bill_id INT,
   customer_name VARCHAR(255),
   reservation_time DATETIME,
   turnout INT,
   special_request VARCHAR(255),
-  FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
+  FOREIGN KEY (bill_id) REFERENCES Bills(bill_id)
 );
 
 CREATE TABLE Bills (
