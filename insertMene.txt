@@ -197,3 +197,10 @@ VALUES
 ('M6', 'Incredible Green', 'Mocktails', 'Drinks', 16, 'Green apple, lemon, lime, soda'),
 ('M7', 'Charlie & The Chocolate Factory', 'Mocktails', 'Drinks', 18, 'Chocolate, cookies, peppermint'),
 ('M8', 'Blue Graciea', 'Mocktails', 'Drinks', 16, 'Passion fruit, blue lagoon');
+
+
+INSERT INTO Reservations (reservation_id, bill_id, customer_name, reservation_time, turnout, special_request)
+VALUES 
+(1, NULL, 'John Doe', '2023-07-16 15:30:00', 4, 'No preferences'),
+(2, NULL, 'John Hoe', '2023-07-16 16:30:00', 5, 'Ready Water'),
+(3, NULL, 'John Moe', '2023-07-16 17:30:00', 6, '');
