@@ -22,13 +22,15 @@ CREATE TABLE Staffs (
 );
 
 CREATE TABLE Items (
-  item_id VARCHAR(6) PRIMARY KEY,
+  item_id  VARCHAR(6) PRIMARY KEY,
   item_name VARCHAR(255),
   item_type VARCHAR(255),
   item_category VARCHAR(255),
   item_price DECIMAL(10, 2),
   item_description VARCHAR(255)
+ 
 );
+
 
 
 
