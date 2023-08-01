@@ -1,26 +1,63 @@
 <?php
-// Include config file
-require_once "../config.php";
+// Assuming you have already established a database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "restaurantdb";
 
-// Check if the item_id parameter is set in the URL
-if (isset($_GET['id'])) {
-    // Get the item_id from the URL and sanitize it
-    $item_id = intval($_GET['id']);
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Construct the DELETE query
-    $deleteSQL = "DELETE FROM staffs WHERE staff_id = '" . $_GET['id'] . "';";
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    // Execute the DELETE query
-    if (mysqli_query($link, $deleteSQL)) {
-        // Item successfully deleted, redirect back to the main page
-        header("location: ../panel/staff-panel.php");
-        exit();
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the values from the form
+    $item_id = $_POST["item_id"];
+    $item_name = $_POST["item_name"];
+    $item_type = $_POST["item_type"];
+    $item_category = $_POST["item_category"];
+    $item_price = $_POST["item_price"];
+    $item_description = $_POST["item_description"];
+
+    // Prepare the SQL query to check if the item_id already exists
+    $check_query = "SELECT item_id FROM Items WHERE item_id = ?";
+    $check_stmt = $conn->prepare($check_query);
+    $check_stmt->bind_param("s", $item_id);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
+
+    // Check if the item_id already exists
+    if ($check_result->num_rows > 0) {
+        echo "Error: The item_id is already in use. Please choose a different item_id.";
+        echo "\nClick here to ";
+        echo '<a href="createStaff.php">Add item again.</a>';
     } else {
-        // Error occurred during execution, display an error message
-        echo "Error: " . mysqli_error($link);
+        // Prepare the SQL query for insertion
+        $insert_query = "INSERT INTO Items (item_id, item_name, item_type, item_category, item_price, item_description) 
+                        VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($insert_query);
+
+        // Bind the parameters
+        $stmt->bind_param("ssssds", $item_id, $item_name, $item_type, $item_category, $item_price, $item_description);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            echo "Item created successfully! ";
+            echo '<a href="createStaff.php">Add another item</a>';
+        } else {
+            echo "Error: " . $insert_query . "<br>" . $conn->error;
+        }
+
+        // Close the prepared statement
+        $stmt->close();
     }
 
-    // Close the connection
-    mysqli_close($link);
+    // Close the check statement and the connection
+    $check_stmt->close();
+    $conn->close();
 }
 ?>

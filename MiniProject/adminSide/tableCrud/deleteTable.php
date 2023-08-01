@@ -8,12 +8,13 @@ if (isset($_GET['id'])) {
     $item_id = intval($_GET['id']);
 
     // Construct the DELETE query
-    $deleteSQL = "DELETE FROM Restaurant_Tables WHERE table_id = '" . $_GET['id'] . "';";
+    $deleteSQL = "DELETE FROM items WHERE item_id = '" . $_GET['id'] . "';";
 
     // Execute the DELETE query
     if (mysqli_query($link, $deleteSQL)) {
         // Item successfully deleted, redirect back to the main page
         header("location: ../panel/table-panel.php");
+        
         exit();
     } else {
         // Error occurred during execution, display an error message

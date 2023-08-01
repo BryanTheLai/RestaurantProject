@@ -1,4 +1,4 @@
-<?php  include 'menuHeader.php'?>
+<?php  include '../inc/dashHeader.php'?>
 <?php
 // Include config file
 require_once "../config.php";
@@ -31,11 +31,11 @@ if(isset($_POST['submit'])){
 </head>
 
  <div class="wrapper" >
-    <h1>Shoney's Dining & Bar</h1>
+    <h1>Johnny's Dining & Bar</h1>
     <h3>Create New Item</h1>
     <p>Please fill Items Information Properly </p>
     
-<form method="POST" action="success_create.php" class="ht-600 w-50">
+<form method="POST" action="succ_create_table.php" class="ht-600 w-50">
     
         <div class="form-group">
             <label for="item_id" class="form-label">Item ID :</label>
@@ -83,5 +83,4 @@ if(isset($_POST['submit'])){
     
  </form>
  </div>
-    
-<?php  include 'menuFooter.php'?>
+ 

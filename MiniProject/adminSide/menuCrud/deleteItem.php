@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
     if (mysqli_query($link, $deleteSQL)) {
         // Item successfully deleted, redirect back to the main page
         header("location: ../panel/menu-panel.php");
+        
         exit();
     } else {
         // Error occurred during execution, display an error message

@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createItem.php"; // Replace with your desired URL
+                window.location.href = "createReservation.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 

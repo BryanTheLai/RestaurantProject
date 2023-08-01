@@ -16,7 +16,7 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="./pos-panel.php">Shoney's Staff Panel</a>
+            <a class="navbar-brand ps-3" href="../panel/pos-panel.php">Johnny's Staff Panel</a>
             
         </nav>
         <div id="layoutSidenav">
@@ -25,41 +25,41 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Main</div>
-                            <a class="nav-link" href="./pos-panel.php">
+                            <a class="nav-link" href="../panel/pos-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
                                 Point of Sale 
                             </a>
-                            <a class="nav-link" href="./table-panel.php">
+                            <a class="nav-link" href="../panel/table-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table-cells"></i></div>
                                 Table
                             </a>
-                            <a class="nav-link" href="./menu-panel.php">
+                            <a class="nav-link" href="../panel/menu-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-utensils"></i></div>
                                 Menu
                             </a>
-                            <a class="nav-link" href="./reservation-panel.php">
+                            <a class="nav-link" href="../panel/reservation-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Reservations
                             </a>
-                            <a class="nav-link" href="./customer-panel.php">
+                            <a class="nav-link" href="../panel/customer-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
                                 Customer
                             </a>
-                            <a class="nav-link" href="./staff-panel.php">
+                            <a class="nav-link" href="../panel/staff-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
                                 Staff
                             </a>
                             <div class="sb-sidenav-menu-heading">Reports</div>
-                            <a class="nav-link" href="./sales-panel.php">
+                            <a class="nav-link" href="../panel/sales-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Sales
                             </a>
-                            <a class="nav-link" href="./statistics-panel.php">
+                            <a class="nav-link" href="../panel/statistics-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fire"></i></div>
                                 Statistics
                             </a>
                             
-                            <a class="nav-link" href="./profile-panel.php">
+                            <a class="nav-link" href="../panel/profile-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Profile
                             </a>
@@ -73,6 +73,6 @@
                 </nav>
             </div>
         </<div>
-        <div id="content-for-template">Content</div>
-        <script src="../js/scripts.js"></script> 
-    
+            <div id="content-for-template">Content</div> 
+        
+        <script src="../js/scripts.js" type="text/javascript"></script>
