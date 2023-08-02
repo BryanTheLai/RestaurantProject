@@ -5,7 +5,7 @@
                 <div class="m-50">
                     <div class="mt-5 mb-3">
                         <h2 class="pull-left">Staff Details</h2>
-                        <a href="./tableCrud/createTable.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Table</a>
+                        <a href="../tableCrud/createTable.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Table</a>
                     </div>
                     <?php
                     // Include config file

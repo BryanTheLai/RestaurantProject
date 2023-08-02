@@ -5,7 +5,7 @@
                 <div class="m-50">
                     <div class="mt-5 mb-3">
                         <h2 class="pull-left">Items Details</h2>
-                        <a href="./menuCrud/createItem.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Item</a>
+                        <a href="../menuCrud/createItem.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Item</a>
                     </div>
                     <?php
                     // Include config file
@@ -38,7 +38,7 @@
                                         echo "<td>";
                                         $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
                                             echo '<a href="update.php?id='. $row['item_id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil  text-black"></span></a>';
-                                            echo '<a href="menuCrud/deleteItem.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this item?\')"><span class="fa fa-trash text-black"></span></a>';
+                                            echo '<a href="../menuCrud/deleteItem.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this item?\')"><span class="fa fa-trash text-black"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
