@@ -225,386 +225,59 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
         <h1 class="section-title">Me<span>n</span>u</h1>
       </div>
      
-        <div class="all-projects">
-          
-         <div class="project-item">
-          <div class="project-info">
-            <h1> <strong> JOHNNY'S PLATTER</strong></h1>
-            <h2>﻿RM188</h2>
-            <p>Serves 4-6 persons Generous serving of grilled Jumbo Shrimps, Fried Calamari, Chicken & Vegetable Skewers, Southern Fried Chicken, Lamb Chops, Beef Sausage, our famous BBQ Ribs accompanied with Vegetables of the day, Buttered Corn & Cajun Potato Cubes.</p>
-          </div>
-             <div class="project-img">
-                <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-             </div>
-        </div>
-          
-          
-        <div class="project-item">
-          <div class="project-info">
-            <h1>BAR BITES</h1>
-               <?php foreach ($Bites as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-            <div class="project-img">
-                <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-            </div>
-        </div>
-          
-          
-        <div class="project-item">
-          <div class="project-info">
-              <h1>SALAD</h1>
-                <?php foreach ($Salad as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-              
-              <h1>SOUP </h1>
-                 <?php foreach ($Soup as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-             <div class="project-img">
-                <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-            </div>
-        </div>
-          
-          
-        <div class="project-item">
-          <div class="project-info">
-            <h1>STEAK & RIB</h1>
-                <?php foreach ($Steak as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-              <div class="project-img">
-                 <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-            </div>
-        </div>
-          
-          
-        <div class="project-item">
-          <div class="project-info">
-            <h1>CHICKEN</h1>
-           
-                <?php foreach ($Chicken as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-             <div class="project-img">
-               <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-              </div>
-        </div>
-          
-            
-        <div class="project-item">
-          <div class="project-info">
-            <h1>LAMB</h1>  
-              <?php foreach ($Lamb as $item): ?>
-              <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-              <?php endforeach; ?>
-  
-          </div>
-             <div class="project-img">
-                <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-             </div>
-        </div>
-          
-            
-            <div class="project-item">
-          <div class="project-info">
-            <h1>SEAFOOD</h1>
-            
-               <?php foreach ($Seafood as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          
-          
-            <div class="project-item">
-          <div class="project-info">
-            <h1>BURGERS & SANDWICHES</h1>
-             <?php foreach ($Burgers as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
+      <select>
+      <option>Choose Menu Category</option>
+      <option value="yellow">MAIN DISHES</option>
+      <option value="red">SIDE DISHES</option>
+      <option value="green">DRINKS</option>
+       <option value="blue">ALL CATEGORY</option>
+    </select>
+    <div class="yellow msg"> 
+      <h1>MAIN DISHES</h1>
+       <p>&nbsp;&nbsp;&nbsp;</p> 
+      <?php foreach ($mainDishes as $item): ?>
+        <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?></p>
+      <?php endforeach; ?>
+      </div>
+      
+      
+    <div class="red msg">
+      <h1>SIDE DISHES</h1>
+       <p>&nbsp;&nbsp;&nbsp;</p> 
+      <?php foreach ($sides as $item): ?>
+        <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?></p>
+      <?php endforeach; ?>
+    </div>
+      
+      
+    <div class="green msg">
+      <h1>DRINKS</h1>
+       <p>&nbsp;&nbsp;&nbsp;</p> 
+      <?php foreach ($drinks as $item): ?>
+        <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?></p>
+      <?php endforeach; ?>
+    </div>
+      
+      
+       <div class="blue msg">
+           <h1>MAIN DISHES</h1>
+            <p>&nbsp;&nbsp;&nbsp;</p> 
+           <?php foreach ($mainDishes as $item): ?>
+        <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?></p>
+      <?php endforeach; ?>
 
-
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          
-            <div class="project-item">
-          <div class="project-info">
-            <h1>PASTA</h1>
-            <?php foreach ($Pasta as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          
-            <div class="project-item">
-          <div class="project-info">
-            <h1>SIDE DISHES</h1>
-            <?php foreach ($Sides as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          <div class="project-item">
-          <div class="project-info">
-            <h1>HOUSE DESERT</h1>
-            <?php foreach ($Desert as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          <div class="project-item">
-          <div class="project-info">
-            <h1>JOHNNY'S KIDS</h1>
-            <?php foreach ($Kids as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          <h1 class="section-title">Drinks</h1>
-          
-            <div class="project-item">
-          <div class="project-info">
-            <h1>CHILLED JUICE</h1>
-            <?php foreach ($Juice as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-            </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>CANNED SODA</h1>
-            <?php foreach ($Soda as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>Cold Pressed Juice</h1>
-            <?php foreach ($ColdPressedJuice as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-                <h4><strong><em>*Additional RM2 for Fruits/Milk </em></strong></h4>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Fruity Ice Blended</h1>
-            <?php foreach ($IceBlended as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Coffee & Chocolate</h1>
-            <?php foreach ($Coffee as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>TEA</h1>
-            <?php foreach ($Tea as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Flower Tea</h1>
-            <?php foreach ($FlowerTea as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Flavored Ice Tea</h1>
-            <?php foreach ($FlavoredIceTea as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Frozen Fruit Yogurt</h1>
-            <?php foreach ($FrozenFruitYogurt as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Milkshakes</h1>
-            <?php foreach ($Milkshakes as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-                     <div class="project-item">
-          <div class="project-info">
-            <h1>Mocktails</h1>
-            <?php foreach ($Mocktails as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          <div class="project-item">
-          <div class="project-info">
-            <h1>HOUSE WINES</h1>
-            <?php foreach ($HouseWines as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>HOUSE POUR</h1>
-            <?php foreach ($HousePour as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>BEER</h1>
-            <?php foreach ($Beer as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>LIQUOR</h1>
-            <?php foreach ($Liquor as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>CLASSIC COCKTAILS</h1>
-            <?php foreach ($ClassicCocktails as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-           <div class="project-item">
-          <div class="project-info">
-            <h1>HOUSE COCKTAILS</h1>
-            <?php foreach ($HouseCocktails as $item): ?>
-                <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?><p>
-                <?php endforeach; ?>
-          </div>
-          <div class="project-img">
-             <img src="../image/344398852_973575807343422_1569924326631336402_n.jpg" alt="img">
-          </div>
-        </div>
-          
-          
-          
-          
-          
-          
-          
-          
+           <h1>SIDE DISHES</h1>
+            <p>&nbsp;&nbsp;&nbsp;</p> 
+      <?php foreach ($sides as $item): ?>
+        <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?></p>
+      <?php endforeach; ?>
+        
+      <h1>DRINKS</h1>
+       <p>&nbsp;&nbsp;&nbsp;</p> 
+      <?php foreach ($drinks as $item): ?>
+        <p><?php echo $item['item_name']; ?> RM<?php echo $item['item_price']; ?></p>
+      <?php endforeach; ?>
+    </div>
           
       </div>
     </div>
@@ -708,6 +381,76 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
   </section>
   <!-- End Footer -->
   <script src="../js/app.js"></script>
+   <style type="text/css">
+      .msg {
+        margin-top: 25px;
+        padding: 25px;
+        display: none;
+        color: black;
+      }
+      .yellow {
+        background: #fff;
+      }
+      .green {
+        background: #fff;
+      }
+      .red {
+        background: #fff;
+      }
+
+      /* Styling the select button */
+      select {
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #ff0000; /* Red border */
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        color: #000; /* Black text */
+        background-color: #fff; /* White background */
+        border-radius: 0; /* No border radius (sharp corners) */
+      }
+
+      /* Style the option text in the select dropdown */
+      option {
+        font-size: 16px;
+      }
+
+      /* Hover effect */
+      select:hover {
+        background-color: #ff0000; /* Red background on hover */
+        color: black; /* black text on hover */
+      }
+
+      /* Use CSS Grid to create three columns */
+      .msg {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+        grid-gap: 20px; /* Adjust the gap between items */
+      }
+
+      /* Style the menu item content */
+      .msg p {
+        margin: 5px 0;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("select").change(function(){
+            $(this).find("option:selected").each(function(){
+                var val = $(this).attr("value");
+                if(val){
+                    $(".msg").not("." + val).hide();
+                    $("." + val).show();
+                } else{
+                    $(".msg").hide();
+                }
+            });
+        }).change();
+    });
+    </script>
+
 </body>
 
 </html>
