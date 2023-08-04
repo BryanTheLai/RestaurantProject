@@ -32,10 +32,10 @@ if(isset($_POST['submit'])){
 
  <div class="wrapper" >
     <h1>Johnny's Dining & Bar</h1>
-    <h3>Create New Item</h1>
-    <p>Please fill Items Information Properly </p>
+    <h3>Create New Staff</h1>
+    <p>Please fill in Staff Information Properly </p>
     
-    <form method="POST" action="succ_create_staff.php" class="ht-600 w-50">
+<form method="POST" action="succ_create_staff.php" class="ht-600 w-50">
     
         <div class="form-group">
             <label for="item_id" class="form-label">Item ID :</label>

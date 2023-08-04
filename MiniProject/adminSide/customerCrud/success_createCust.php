@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 countdownElement.textContent = i;
                 if (i <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "createStaff.php";
+                    window.location.href = "createCust.php";
                 }
             }, 1000); // 1000 milliseconds = 1 second
         }
@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createStaff.php"; // Replace with your desired URL
+                window.location.href = "createCust.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 

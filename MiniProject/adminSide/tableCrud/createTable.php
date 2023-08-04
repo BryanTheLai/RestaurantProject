@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 ?>
 <head>
     <meta charset="UTF-8">
-    <title>Create New Item</title>
+    <title>Create New Table</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -32,8 +32,8 @@ if(isset($_POST['submit'])){
 
  <div class="wrapper" >
     <h1>Johnny's Dining & Bar</h1>
-    <h3>Create New Item</h1>
-    <p>Please fill Items Information Properly </p>
+    <h3>Create New Table</h1>
+    <p>Please fill in Table Information Properly </p>
     
 <form method="POST" action="succ_create_table.php" class="ht-600 w-50">
     
