@@ -40,7 +40,7 @@
                                         echo "<td>";
                                         $deleteSQL = "DELETE FROM Reservations WHERE reservation_id = '" . $row['staff_id'] . "';";
                                             echo '<a href="../staffCrud/updateStaff.php?id='. $row['staff_id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil  text-black"></span></a>';
-                                            echo '<a href="../staffCrud/deleteStaff.php?id='. $row['staff_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this staff?\')"><span class="fa fa-trash text-black"></span></a>';
+                                            echo '<a href="../staffCrud/delete_staff.php?id='. $row['staff_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this staff?\')"><span class="fa fa-trash text-black"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }

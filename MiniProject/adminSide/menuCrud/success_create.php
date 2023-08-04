@@ -126,6 +126,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 100px;
             line-height: 200px;
         }
+            .alert-box {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .alert-icon {
+            padding-bottom: 20px;
+        }
+    
     </style>
 </head>
 <body>
@@ -141,14 +150,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p><?php echo $message; ?></p>
     </div>
 
+    <div style="text-align: center; margin-top: 20px;">Redirecting back in <span id="countdown">3</span></div>
+
     <script>
-        // Function to show the message card as a pop-up
+        // Function to show the message card as a pop-up and start the countdown
         function showPopup() {
             var messageCard = document.querySelector(".card");
             messageCard.style.display = "block";
+
+            var i = 3;
+            var countdownElement = document.getElementById("countdown");
+            var countdownInterval = setInterval(function() {
+                i--;
+                countdownElement.textContent = i;
+                if (i <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "createItem.php";
+                }
+            }, 1000); // 1000 milliseconds = 1 second
         }
 
-        // Show the message card when the page is loaded
+        // Show the message card and start the countdown when the page is loaded
         window.onload = showPopup;
 
         // Function to hide the message card after a delay
