@@ -3,17 +3,17 @@
 // Include config file
 require_once "../config.php";
  
-$input_item_id = $item_id_err = $item_id = "";
+$input_table_id = $table_id_err = $table_id = "";
  
 // Processing form data when form is submitted
 if(isset($_POST['submit'])){
-    if (empty($_POST['item_id'])) {
-    $item_idErr = 'ID is required';
+    if (empty($_POST['table_id'])) {
+    $$table_id = 'ID is required';
   } else {
-    // $item_id = filter_var($_POST['item_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $item_id = filter_input(
+    // $table_id = filter_var($_POST['table_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $table_id = filter_input(
       INPUT_POST,
-      'item_id',
+      'table_id',
       FILTER_SANITIZE_FULL_SPECIAL_CHARS
     );
   }
@@ -38,46 +38,24 @@ if(isset($_POST['submit'])){
 <form method="POST" action="succ_create_table.php" class="ht-600 w-50">
     
         <div class="form-group">
-            <label for="item_id" class="form-label">Item ID :</label>
-            <input type="text" name="item_id" class="form-control <?php echo !$item_idErr ?:
-                'is-invalid'; ?>" id="item_id" required item_id="item_id" placeholder="ABC88" value="<?php echo $item_id; ?>"><br>
+            <label for="table_id" class="form-label">Table ID :</label>
+            <input type="number" name="table_id" class="form-control <?php echo !$$table_id ?:
+                'is-invalid'; ?>" id="table_id" required table_id="table_id" placeholder="ABC88" value="<?php echo $table_id; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
-            Please provide a valid item_id.
+            Please provide a valid table id.
             </div>
         </div>
     
         <div class="form-group"> 
-            <label for="item_name">Item Name :</label>
-            <input type="text" name="item_name" id="item_name" required class="form-control <?php echo (!empty($itemname_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <label for="capacity">Capacity :</label>
+            <input type="number" name="capacity" id="capacity" required class="form-control <?php echo (!empty($capacity)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
+
+        
         
         <div class="form-group">
-            <label for="item_type">Item Type :</label>
-            <input type="text" name="item_type" id="item_type" required class="form-control <?php echo (!empty($itemtype_err)) ? 'is-invalid' : ''; ?>" ><br>
-            <span class="invalid-feedback"></span>
-        </div>
-        
-        <div class="form-group">
-            <label for="item_category">Item Category :</label>
-            <input type="text" name="item_category" id="item_category" required class="form-control <?php echo (!empty($itemcategory_err)) ? 'is-invalid' : ''; ?>" ><br>
-            <span class="invalid-feedback"></span>
-        </div>
-        
-        <div class="form-group">
-            <label for="item_price">Item Price :</label>
-            <input type="number" name="item_price" id="item_price" step="0.01" required class="form-control <?php echo (!empty($itemprice_err)) ? 'is-invalid' : ''; ?>" ><br>
-            <span class="invalid-feedback"></span>
-        </div>
-        
-        <div class="form-group">
-            <label for="item_description">Item Description :</label>
-            <textarea name="item_description" id="item_description" rows="4" required class="form-control <?php echo (!empty($itemdescription_err)) ? 'is-invalid' : ''; ?>" ></textarea><br>
-            <span class="invalid-feedback"></span>
-        </div>
-        
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Create Item">
+            <input type="submit" class="btn btn-primary" value="Create table">
         </div>    
         
     
