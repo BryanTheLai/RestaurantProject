@@ -2,26 +2,34 @@
 // Include config file
 require_once "../config.php";
 
-// Check if the item_id parameter is set in the URL
+// Check if the staff_id parameter is set in the URL
 if (isset($_GET['id'])) {
-    // Get the item_id from the URL and sanitize it
-    $item_id = intval($_GET['id']);
+    // Get the staff_id from the URL and sanitize it
+    $staff_id = intval($_GET['id']);
 
     // Construct the DELETE query
-    $deleteSQL = "DELETE FROM items WHERE item_id = '" . $_GET['id'] . "';";
+    $deleteSQL = "DELETE FROM Staffs WHERE staff_id = ?";
+
+    // Prepare the DELETE query
+    $stmt = $link->prepare($deleteSQL);
+    
+    // Bind the parameter
+    $stmt->bind_param("i", $staff_id);
 
     // Execute the DELETE query
-    if (mysqli_query($link, $deleteSQL)) {
-        // Item successfully deleted, redirect back to the main page
-        header("location: ../panel/menu-panel.php");
-        
+    if ($stmt->execute()) {
+        // Staff member successfully deleted, redirect back to the main page
+        header("location: ../panel/staff-panel.php");
         exit();
     } else {
         // Error occurred during execution, display an error message
-        echo "Error: " . mysqli_error($link);
+        echo "Error: " . $stmt->error;
     }
 
+    // Close the statement
+    $stmt->close();
+
     // Close the connection
-    mysqli_close($link);
+    $link->close();
 }
 ?>
