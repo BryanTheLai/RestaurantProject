@@ -16,38 +16,45 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form
-    $item_id = $_POST["item_id"];
-    $item_name = $_POST["item_name"];
-    $item_type = $_POST["item_type"];
-    $item_category = $_POST["item_category"];
-    $item_price = $_POST["item_price"];
-    $item_description = $_POST["item_description"];
+    $table_id = $_POST["table_id"];
+    $capacity = $_POST["capacity"];
+    //$is_available = TRUE;
+    
 
-    // Prepare the SQL query to check if the item_id already exists
-    $check_query = "SELECT item_id FROM Items WHERE item_id = ?";
+    // Prepare the SQL query to check if the table_id already exists
+    $check_query = "SELECT table_id FROM Restaurant_Tables  WHERE table_id = ?";
     $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bind_param("s", $item_id);
+    $check_stmt->bind_param("s", $table_id);
     $check_stmt->execute();
     $check_result = $check_stmt->get_result();
 
-    // Check if the item_id already exists
+    // Check if the table_id already exists
     if ($check_result->num_rows > 0) {
-        $message = "The item_id is already in use.<br>Please try again to choose a different item_id.";
+        $message = "The table_id is already in use.<br>Please try again to choose a different table_id.";
         $iconClass = "fa-times-circle";
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
         // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Items (item_id, item_name, item_type, item_category, item_price, item_description) 
-                        VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
+        // ... (previous code)
 
-        // Bind the parameters
-        $stmt->bind_param("ssssds", $item_id, $item_name, $item_type, $item_category, $item_price, $item_description);
+// Prepare the SQL query for insertion
+$insert_query = "INSERT INTO Restaurant_Tables (table_id, capacity, is_available) 
+                VALUES (?, ?, ?)";
+$stmt = $conn->prepare($insert_query);
+
+// Define $is_available as TRUE (1)
+$is_available = 1;
+
+// Bind the parameters
+$stmt->bind_param("ssd", $table_id, $capacity, $is_available);
+
+// ... (rest of the code)
+
 
         // Execute the query
         if ($stmt->execute()) {
-            $message = "Item created successfully.";
+            $message = "Table created successfully.";
             $iconClass = "fa-check-circle";
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD"; // Custom background color for success
