@@ -49,6 +49,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
                                 Staff
                             </a>
+                            <a class="nav-link" href="../panel/account-panel.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
+                                Online Accounts
+                            </a>
                             <div class="sb-sidenav-menu-heading">Reports</div>
                             <a class="nav-link" href="../panel/sales-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
