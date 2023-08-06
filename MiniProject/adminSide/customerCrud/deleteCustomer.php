@@ -2,17 +2,17 @@
 // Include config file
 require_once "../config.php";
 
-// Check if the item_id parameter is set in the URL
+// Check if the member_id parameter is set in the URL
 if (isset($_GET['id'])) {
-    // Get the item_id from the URL and sanitize it
-    $item_id = intval($_GET['id']);
+    // Get the member_id from the URL and sanitize it
+    $member_id = intval($_GET['id']);
 
     // Construct the DELETE query
-    $deleteSQL = "DELETE FROM Customer WHERE customer_name = '" . $_GET['id'] . "';";
+    $deleteSQL = "DELETE FROM Memberships WHERE member_id = $member_id";
 
     // Execute the DELETE query
     if (mysqli_query($link, $deleteSQL)) {
-        // Item successfully deleted, redirect back to the main page
+        // Membership successfully deleted, redirect back to the main page
         header("location: ../panel/customer-panel.php");
         exit();
     } else {
