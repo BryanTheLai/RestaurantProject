@@ -45,6 +45,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
                                 Members
                             </a>
+                            
                             <a class="nav-link" href="../panel/staff-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
                                 Staff
