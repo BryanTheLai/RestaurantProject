@@ -12,7 +12,7 @@
                     require_once "../config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT * FROM items ORDER BY item_id;";
+                    $sql = "SELECT * FROM Menu ORDER BY item_id;";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo '<table class="table table-bordered table-striped">';
