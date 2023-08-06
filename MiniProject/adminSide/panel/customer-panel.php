@@ -19,6 +19,7 @@
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
                         echo "<tr>";
+                        echo "<th>Member Id</th>";
                         echo "<th>Member Name</th>";
                         echo "<th>Points</th>";
                         echo "<th>Delete</th>";
@@ -27,6 +28,7 @@
                         echo "<tbody>";
                         while ($row = mysqli_fetch_array($result)) {
                             echo "<tr>";
+                            echo "<td>" . $row['member_id'] . "</td>";
                             echo "<td>" . $row['member_name'] . "</td>";
                             echo "<td>" . $row['points'] . "</td>";
                             echo "<td>";
