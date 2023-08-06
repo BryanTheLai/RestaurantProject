@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     $item_id = intval($_GET['id']);
 
     // Construct the DELETE query
-    $deleteSQL = "DELETE FROM items WHERE item_id = '" . $_GET['id'] . "';";
+    $deleteSQL = "DELETE FROM Menu WHERE item_id = '" . $_GET['id'] . "';";
 
     // Execute the DELETE query
     if (mysqli_query($link, $deleteSQL)) {
