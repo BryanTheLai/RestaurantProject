@@ -171,7 +171,10 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
             <li><a href="#projects" data-after="Projects">Menu</a></li>
             <li><a href="#about" data-after="About">About</a></li>
             <li><a href="#contact" data-after="Contact">Contact</a></li>
-            <li><a href="../signup/signup.php" data-after="SignUp">Sign Up</a></li>
+            <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
+            <li><a href="../customerLogin/login.ph" data-after="LogIn">Log In</a></li>
+            <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
+         
             
           </ul>
         </div>
