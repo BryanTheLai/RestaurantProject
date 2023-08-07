@@ -140,7 +140,50 @@ $sqlHouseCocktails = "SELECT * FROM Menu WHERE item_type = 'House Cocktails' ORD
 $resultHouseCocktails  = mysqli_query($link, $sqlHouseCocktails);
 $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 
+
+
+// Get the current date.
+$date = date("Y-m-d");
+
+// Get the selected time.
+$time = isset($_POST["reservation_time"]) ? $_POST["reservation_time"] : "";
+
+// Check if the time is reserved.
+$isReserved = isReservedTime($time, $date);
+
+// If the time is reserved, disable the input field.
+if ($isReserved) {
+  echo "<script>document.getElementById('reservation-time').disabled = true;</script>";
+}
+
+function isReservedTime($time, $date) {
+  // Connect to the database.
+  $db = new PDO("mysql:host=localhost;dbname=restaurantDB", "root", "");
+
+  // Check if the time is reserved.
+  $query = "SELECT * FROM Reservations WHERE reservation_time = :time AND reservation_date = :date";
+  $statement = $db->prepare($query);
+  $statement->bindValue(":time", $time);
+  $statement->bindValue(":date", $date);
+  $statement->execute();
+
+  // Get the results from the query.
+  $results = $statement->fetchAll();
+
+  // Return true if the time is reserved, false otherwise.
+  if (count($results) > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,6 +192,7 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
   <title>Home</title>
+  
 </head>
 
 <body>
@@ -200,22 +244,46 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
   <section id="services">
     <div class="services container">
       <div class="service-top">
-        <h1 class="section-title">Reser<span>v</span>ation</h1>
+        <h1 class="section-title">Reservation</h1>
         <p></p>
       </div>
-      <div class="service-bottom">
-        <div class="service-item">
-          <div class="icon"><img src="../image/https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>name</h2>
-          <p>-------ruybffffffffdisfyudsbigfusdfvdioffidufhsdhuifdvfhudusfhsodviiiiiiiiiiiihuf-------------------------------------</p>
+        <div class="service-bottom" style="">
+          <form action="home_reservation.php" method="POST">
+              <div class="elem-group">
+                <label for="reservation_name">Name</label>
+                <input type="text" id="reservation_name" name="reservation_name" placeholder="Imap Ussay" pattern="[A-Z\sa-z]{3,20}" required value="<?php echo htmlspecialchars($_POST['reservation_name'] ?? '', ENT_QUOTES); ?>">
+              </div>
+              <div class="elem-group inlined">
+                <label for="capacity">Number of Heads</label>
+                <input type="number" id="capacity" name="capacity" placeholder="3" min="1" required>
+              </div>
+              <div class="elem-group inlined">
+                <label for="reservation-date">Reservation Date</label>
+                <input type="date" id="reservation-date" name="reservation_date" required>
+              </div>
+                <div class="elem-group inlined">
+                  <label for="reservation-time">Reservation Time</label>
+                  <select class="form-select" id="time-options">
+                    <option value="11:00:00">11:00 AM</option>
+                    <option value="12:00:00">12:00 PM</option>
+                    <option value="12:30:00">12:30 PM</option>
+                    <option value="13:00:00">01:00 PM</option>
+                    <option value="13:30:00">01:30 PM</option>
+                    <option value="14:00:00">02:00 PM</option>
+                  </select>
+                </div>
+
+              <div class="elem-group">
+                <label for="special_request">Any special request?</label>
+                <textarea id="message" name="special_request" placeholder="Tell us anything else that might be important."></textarea>
+              </div>
+              <button type="submit">Make Reservation</button>
+          </form>
+
+
+
         </div>
-        <div class="service-item">
-          <div class="icon"><img src="../image/https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>phone num</h2>
-          <p>-----------fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff----------d</p>
-        </div>
-       
-        
+      
     </div>
   </section>
   <!-- End Service Section -->
