@@ -39,6 +39,7 @@ CREATE TABLE Reservations (
   reservation_time TIME,
   reservation_date DATE,
   head_count INT,
+  special_request VARCHAR(255),
   FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
 );
 
