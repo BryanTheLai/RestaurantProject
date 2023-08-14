@@ -1,10 +1,9 @@
 <?php include '../inc/dashHeader.php'; ?>
 <?php
-
-
 // Include config file
 require_once "../config.php";
 
+ob_start();
 $input_email = $email_err = $email = "";
 $input_register_date = $register_date_err = $register_date = "";
 $input_phone_number = $phone_number_err = $phone_number = "";
@@ -74,7 +73,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 
         if ($stmt->execute()) {
             // Success, redirect to success page or do something else
-            header("location: success_create_staff_account.php");
+            header("location: success_create_member_account.php");
             exit();
         } else {
             echo "Error: " . $insert_query . "<br>" . $conn->error;
@@ -87,7 +86,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 ?>
 <head>
     <meta charset="UTF-8">
-    <title>Create New Account</title>
+    <title>Create New Staff Account</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -97,10 +96,10 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 
 <div class="wrapper">
     <h1>Johnny's Dining & Bar</h1>
-    <h3>Create New Account</h3>
+    <h3>Create New Staff Account</h3>
     <p>Please fill in Account Information Properly</p>
 
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="ht-600 w-50">
+    <form method="POST" action="success_create_staff_account.php" class="ht-600 w-50">
         <div class="form-group">
             <label for="email" class="form-label">Email :</label>
             <input type="text" name="email" class="form-control <?php echo $email_err ? 'is-invalid' : ''; ?>" id="email" required placeholder="john@example.com" value="<?php echo $email; ?>"><br>
@@ -134,8 +133,8 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
         </div>
    
         <div class="form-group">
-            <label for="staff_id">Staff ID:</label>
-            <input type="number" name="staff_id" id="staff_id" class="form-control" value="<?php echo $staff_id; ?>">
+            <label for="member_id">Member ID:</label>
+            <input type="number" name="member_id" id="member_id" class="form-control" value="<?php echo $member_id; ?>">
         </div>
 
         <div class="form-group">

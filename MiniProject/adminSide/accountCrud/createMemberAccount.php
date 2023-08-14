@@ -73,7 +73,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 
         if ($stmt->execute()) {
             // Success, redirect to success page or do something else
-            header("location: success_create_staff_account.php");
+            header("location: success_create_member_account.php");
             exit();
         } else {
             echo "Error: " . $insert_query . "<br>" . $conn->error;
@@ -86,7 +86,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 ?>
 <head>
     <meta charset="UTF-8">
-    <title>Create New Account</title>
+    <title>Create New Member Account</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -96,15 +96,16 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 
 <div class="wrapper">
     <h1>Johnny's Dining & Bar</h1>
-    <h3>Create New Account</h3>
+    <h3>Create New Member Account</h3>
     <p>Please fill in Account Information Properly</p>
 
-    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="ht-600 w-50">
+    <form method="POST" action="success_create_member_account.php" class="ht-600 w-50">
         <div class="form-group">
             <label for="email" class="form-label">Email :</label>
-            <input type="text" name="email" class="form-control <?php echo $email_err ? 'is-invalid' : ''; ?>" id="email" required placeholder="john@example.com" value="<?php echo $email; ?>"><br>
-            <div class="invalid-feedback">
-                <?php echo $email_err; ?>
+            <input type="text" name="email" class="form-control <?php echo !$email_Err ?:
+                'is-invalid'; ?>" id="email" required email="email" placeholder="johnny12@dining.bar.com" value="<?php echo $email; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+            Please provide a valid email.
             </div>
         </div>
 

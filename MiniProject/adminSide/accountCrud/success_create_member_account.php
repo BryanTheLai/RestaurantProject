@@ -22,34 +22,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $membership_id = isset($_POST["membership_id"]) ? $_POST["membership_id"] : null;
     $staff_id = isset($_POST["staff_id"]) ? $_POST["staff_id"] : null;
 
-    // Prepare the SQL query for insertion
-    $insert_query = "INSERT INTO Accounts (email, register_date, phone_number, password, membership_id, staff_id) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($insert_query);
-
-    // Current date for register_date
-    $register_date = date("Y-m-d");
-
-    // Bind the parameters
-    $stmt->bind_param("ssssii", $email, $register_date, $phone_number, $password, $membership_id, $staff_id);
-
-    // Execute the query
-    if ($stmt->execute()) {
-        $message = "Account created successfully.";
-        $iconClass = "fa-check-circle";
-        $cardClass = "alert-success";
-        $bgColor = "#D4F4DD"; // Custom background color for success
-    } else {
-        $message = "Error: " . $insert_query . "<br>" . $conn->error;
+    // Prepare the SQL query to check if the item_id already exists
+    $check_query = "SELECT email FROM Accounts WHERE email = ?";
+    $check_stmt = $conn->prepare($check_query);
+    $check_stmt->bind_param("s", $email);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();    
+    
+    // Check if the email already exists
+    if ($check_result->num_rows > 0) {
+        $message = "The email is already in use.<br>Please try again to choose a different email.";
         $iconClass = "fa-times-circle";
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
+    } else {
+            // Prepare the SQL query for insertion
+                $insert_query = "INSERT INTO Accounts (email, register_date, phone_number, password, membership_id, staff_id) 
+                    VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($insert_query);
+
+                // Current date for register_date
+                $register_date = date("Y-m-d");
+
+                // Bind the parameters
+                $stmt->bind_param("ssssii", $email, $register_date, $phone_number, $password, $membership_id, $staff_id);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            $message = "Account created successfully.";
+            $iconClass = "fa-check-circle";
+            $cardClass = "alert-success";
+            $bgColor = "#D4F4DD"; // Custom background color for success
+        } else {
+            $message = "Error: " . $insert_query . "<br>" . $conn->error;
+            $iconClass = "fa-times-circle";
+            $cardClass = "alert-danger";
+            $bgColor = "#FFA7A7"; // Custom background color for error
+        }
+
+        // Close the prepared statement
+        $stmt->close();
     }
 
-    // Close the prepared statement
-    $stmt->close();
-
-    // Close the connection
+    // Close the check statement and the connection
+    $check_stmt->close();
     $conn->close();
 }
 ?>
@@ -151,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 countdownElement.textContent = i;
                 if (i <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "createCust.php";
+                    window.location.href = "createMemberAccount.php";
                 }
             }, 1000); // 1000 milliseconds = 1 second
         }
@@ -165,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createCust.php"; // Replace with your desired URL
+                window.location.href = "createMemberAccount.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 
