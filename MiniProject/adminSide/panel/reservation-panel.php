@@ -5,7 +5,7 @@
                 <div class="m-50">
                     <div class="mt-5 mb-3">
                         <h2 class="pull-left">Reservation Details</h2>
-                        <a href="../menuCrud/createItem.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Reservation</a>
+                        <a href="../menuCrud/createReservation.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Reservation</a>
                     </div>
                     <?php
                     // Include config file
