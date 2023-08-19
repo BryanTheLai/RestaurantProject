@@ -16,43 +16,58 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form
-    $item_id = $_POST["item_id"];
-    $item_name = $_POST["item_name"];
-    $item_type = $_POST["item_type"];
-    $item_category = $_POST["item_category"];
-    $item_price = $_POST["item_price"];
-    $item_description = $_POST["item_description"];
+    $customer_name = $_POST["customer_name"];
+    $table_id = $_POST["table_id"];
+    $reservation_date = $_POST["reservation_date"];
+    $reservation_time = $_POST["reservation_time"];
+    $head_count = $_POST["head_count"];
+    $special_request = $_POST["special_request"];
 
-    // Prepare the SQL query to check if the item_id already exists
-    $check_query = "SELECT item_id FROM Items WHERE item_id = ?";
-    $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bind_param("s", $item_id);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
+    // Prepare the SQL query to check if the provided table_id exists
+    $table_check_query = "SELECT table_id FROM Restaurant_Tables WHERE table_id = ?";
+    $table_check_stmt = $conn->prepare($table_check_query);
+    $table_check_stmt->bind_param("i", $table_id);
+    $table_check_stmt->execute();
+    $table_check_result = $table_check_stmt->get_result();
 
-    // Check if the item_id already exists
-    if ($check_result->num_rows > 0) {
-        $message = "The item_id is already in use.<br>Please try again to choose a different item_id.";
+    // Check if the table_id exists
+    if ($table_check_result->num_rows === 0) {
+        $message = "The specified table does not exist.<br>Please choose a valid table.";
         $iconClass = "fa-times-circle";
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
+        // Prepare the SQL query to check if the customer_name already exists
+        $check_query = "SELECT customer_name FROM Reservations WHERE customer_name = ?";
+        $check_stmt = $conn->prepare($check_query);
+        $check_stmt->bind_param("s", $customer_name);
+        $check_stmt->execute();
+        $check_result = $check_stmt->get_result();
+
+        // Check if the customer_name already exists
+        if ($check_result->num_rows > 0) {
+            $message = "The customer_name is already in use.<br>Please try again to choose a different customer_name.";
+            $iconClass = "fa-times-circle";
+            $cardClass = "alert-danger";
+            $bgColor = "#FFA7A7"; // Custom background color for error
+
+    } else {
         // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Items (item_id, item_name, item_type, item_category, item_price, item_description) 
+        $insert_query = "INSERT INTO Reservations (customer_name, table_id, reservation_date, reservation_time, head_count, special_request) 
                         VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_query);
 
         // Bind the parameters
-        $stmt->bind_param("ssssds", $item_id, $item_name, $item_type, $item_category, $item_price, $item_description);
+        $stmt->bind_param("sisiss", $customer_name, $table_id, $reservation_date, $reservation_time, $head_count, $special_request);
 
         // Execute the query
         if ($stmt->execute()) {
-            $message = "Item created successfully.";
+            $message = "Reservation created successfully.";
             $iconClass = "fa-check-circle";
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD"; // Custom background color for success
         } else {
-            $message = "Error: " . $insert_query . "<br>" . $conn->error;
+             $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
             $iconClass = "fa-times-circle";
             $cardClass = "alert-danger";
             $bgColor = "#FFA7A7"; // Custom background color for error
@@ -65,7 +80,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close the check statement and the connection
     $check_stmt->close();
     $conn->close();
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -141,14 +158,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p><?php echo $message; ?></p>
     </div>
 
+    <div style="text-align: center; margin-top: 20px;">Redirecting back in <span id="countdown">3</span></div>
+
     <script>
-        // Function to show the message card as a pop-up
+        // Function to show the message card as a pop-up and start the countdown
         function showPopup() {
             var messageCard = document.querySelector(".card");
             messageCard.style.display = "block";
+
+            var i = 3;
+            var countdownElement = document.getElementById("countdown");
+            var countdownInterval = setInterval(function() {
+                i--;
+                countdownElement.textContent = i;
+                if (i <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "createReservation.php";
+                }
+            }, 1000); // 1000 milliseconds = 1 second
         }
 
-        // Show the message card when the page is loaded
+        // Show the message card and start the countdown when the page is loaded
         window.onload = showPopup;
 
         // Function to hide the message card after a delay
