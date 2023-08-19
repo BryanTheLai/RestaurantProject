@@ -4,8 +4,8 @@ require_once "../config.php";
 
 // Check if the item_id parameter is set in the URL
 if (isset($_GET['id'])) {
-    // Get the item_id from the URL and sanitize it
-    $item_id = intval($_GET['id']);
+    // Get the table_id from the URL and sanitize it
+    $table_id = intval($_GET['id']);
 
     // Construct the DELETE query
     $deleteSQL = "DELETE FROM reservations WHERE reservation_id = '" . $_GET['id'] . "';";
