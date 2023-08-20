@@ -2,7 +2,7 @@
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','restaurantDB');
+define('DB_NAME','restaurantdb');
 
 //Create Connection
 $link = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
@@ -12,131 +12,131 @@ if($link->connect_error){ //if not Connection
 die('Connection Failed'.$link->connect_error);//kills the Connection OR terminate execution
 }
 
-$sqlmainDishes = "SELECT * FROM items WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
+$sqlmainDishes = "SELECT * FROM menu WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
 $resultmainDishes = mysqli_query($link, $sqlmainDishes);
 $mainDishes = mysqli_fetch_all($resultmainDishes, MYSQLI_ASSOC);
 
-$sqldrinks = "SELECT * FROM items WHERE item_category = 'Drinks' ORDER BY item_type; ";
+$sqldrinks = "SELECT * FROM menu WHERE item_category = 'Drinks' ORDER BY item_type; ";
 $resultdrinks = mysqli_query($link, $sqldrinks);
 $drinks = mysqli_fetch_all($resultdrinks, MYSQLI_ASSOC);
 
-$sqlsides = "SELECT * FROM items WHERE item_category = 'Side Snacks' ORDER BY item_type; ";
+$sqlsides = "SELECT * FROM menu WHERE item_category = 'Side Snacks' ORDER BY item_type; ";
 $resultsides = mysqli_query($link, $sqlsides);
 $sides = mysqli_fetch_all($resultsides, MYSQLI_ASSOC);
 
-$sqlPasta = "SELECT * FROM items WHERE item_type = 'Pasta' ORDER BY item_type; ";
+$sqlPasta = "SELECT * FROM menu WHERE item_type = 'Pasta' ORDER BY item_type; ";
 $resultPasta = mysqli_query($link, $sqlPasta);
 $Pasta = mysqli_fetch_all($resultPasta, MYSQLI_ASSOC);
 
-$sqlBurgers = "SELECT * FROM items WHERE item_type = 'Burgers & Sandwiches' ORDER BY item_type; ";
+$sqlBurgers = "SELECT * FROM menu WHERE item_type = 'Burgers & Sandwiches' ORDER BY item_type; ";
 $resultBurgers = mysqli_query($link, $sqlBurgers);
 $Burgers = mysqli_fetch_all($resultBurgers , MYSQLI_ASSOC);
 
-$sqlLamb = "SELECT * FROM items WHERE item_type = 'Lamb' ORDER BY item_type; ";
+$sqlLamb = "SELECT * FROM menu WHERE item_type = 'Lamb' ORDER BY item_type; ";
 $resultLamb = mysqli_query($link, $sqlLamb);
 $Lamb = mysqli_fetch_all($resultLamb , MYSQLI_ASSOC);
 
-$sqlSeafood = "SELECT * FROM items WHERE item_type = 'Seafood' ORDER BY item_type; ";
+$sqlSeafood = "SELECT * FROM menu WHERE item_type = 'Seafood' ORDER BY item_type; ";
 $resultSeafood = mysqli_query($link, $sqlSeafood);
 $Seafood = mysqli_fetch_all($resultSeafood , MYSQLI_ASSOC);
 
-$sqlChicken = "SELECT * FROM items WHERE item_type = 'Chicken' ORDER BY item_type; ";
+$sqlChicken = "SELECT * FROM menu WHERE item_type = 'Chicken' ORDER BY item_type; ";
 $resultChicken = mysqli_query($link, $sqlChicken);
 $Chicken= mysqli_fetch_all($resultChicken , MYSQLI_ASSOC);
 
-$sqlSoup = "SELECT * FROM items WHERE item_type = 'Soup' ORDER BY item_type; ";
+$sqlSoup = "SELECT * FROM menu WHERE item_type = 'Soup' ORDER BY item_type; ";
 $resultSoup = mysqli_query($link, $sqlSoup);
 $Soup= mysqli_fetch_all($resultSoup , MYSQLI_ASSOC);
 
-$sqlSalad = "SELECT * FROM items WHERE item_type = 'Salad ' ORDER BY item_type; ";
+$sqlSalad = "SELECT * FROM menu WHERE item_type = 'Salad ' ORDER BY item_type; ";
 $resultSalad  = mysqli_query($link, $sqlSalad );
 $Salad = mysqli_fetch_all($resultSalad  , MYSQLI_ASSOC);
 
-$sqlBites = "SELECT * FROM items WHERE item_type = 'Bar Bites' ORDER BY item_type; ";
+$sqlBites = "SELECT * FROM menu WHERE item_type = 'Bar Bites' ORDER BY item_type; ";
 $resultBites  = mysqli_query($link, $sqlBites );
 $Bites = mysqli_fetch_all($resultBites  , MYSQLI_ASSOC);
 
-$sqlSteak = "SELECT * FROM items WHERE item_type = 'Steak & Ribs' ORDER BY item_type; ";
+$sqlSteak = "SELECT * FROM menu WHERE item_type = 'Steak & Ribs' ORDER BY item_type; ";
 $resultSteak  = mysqli_query($link, $sqlSteak );
 $Steak = mysqli_fetch_all($resultSteak  , MYSQLI_ASSOC);
 
-$sqlSides = "SELECT * FROM items WHERE item_type = 'Side Dishes' ORDER BY item_type; ";
+$sqlSides = "SELECT * FROM menu WHERE item_type = 'Side Dishes' ORDER BY item_type; ";
 $resultSides  = mysqli_query($link, $sqlSides);
 $Sides = mysqli_fetch_all($resultSides , MYSQLI_ASSOC);
 
-$sqlDesert = "SELECT * FROM items WHERE item_type = 'House Dessert' ORDER BY item_type; ";
+$sqlDesert = "SELECT * FROM menu WHERE item_type = 'House Dessert' ORDER BY item_type; ";
 $resultDesert  = mysqli_query($link, $sqlDesert);
 $Desert = mysqli_fetch_all($resultDesert , MYSQLI_ASSOC);
 
-$sqlKids = "SELECT * FROM items WHERE item_type = 'Shoney Kid' ORDER BY item_type; ";
+$sqlKids = "SELECT * FROM menu WHERE item_type = 'Shoney Kid' ORDER BY item_type; ";
 $resultKids  = mysqli_query($link, $sqlKids);
 $Kids = mysqli_fetch_all($resultKids , MYSQLI_ASSOC);
 
-$sqlJuice = "SELECT * FROM items WHERE item_type = 'Chilled Juice' ORDER BY item_type; ";
+$sqlJuice = "SELECT * FROM menu WHERE item_type = 'Chilled Juice' ORDER BY item_type; ";
 $resultJuice  = mysqli_query($link, $sqlJuice);
 $Juice= mysqli_fetch_all($resultJuice , MYSQLI_ASSOC);
 
-$sqlSoda = "SELECT * FROM items WHERE item_type = 'Canned Soda' ORDER BY item_type; ";
+$sqlSoda = "SELECT * FROM menu WHERE item_type = 'Canned Soda' ORDER BY item_type; ";
 $resultSoda  = mysqli_query($link, $sqlSoda);
 $Soda= mysqli_fetch_all($resultSoda , MYSQLI_ASSOC);
 
-$sqlColdPressedJuice = "SELECT * FROM items WHERE item_type = 'Cold Pressed Juice' ORDER BY item_type; ";
+$sqlColdPressedJuice = "SELECT * FROM menu WHERE item_type = 'Cold Pressed Juice' ORDER BY item_type; ";
 $resultColdPressedJuice  = mysqli_query($link, $sqlColdPressedJuice );
 $ColdPressedJuice = mysqli_fetch_all($resultColdPressedJuice  , MYSQLI_ASSOC);
 
-$sqlIceBlended = "SELECT * FROM items WHERE item_type = 'Fruity Ice Blended' ORDER BY item_type; ";
+$sqlIceBlended = "SELECT * FROM menu WHERE item_type = 'Fruity Ice Blended' ORDER BY item_type; ";
 $resultIceBlended  = mysqli_query($link, $sqlIceBlended);
 $IceBlended= mysqli_fetch_all($resultIceBlended , MYSQLI_ASSOC);
 
-$sqlCoffee = "SELECT * FROM items WHERE item_type = 'Coffee & Chocolate' ORDER BY item_type; ";
+$sqlCoffee = "SELECT * FROM menu WHERE item_type = 'Coffee & Chocolate' ORDER BY item_type; ";
 $resultCoffee  = mysqli_query($link, $sqlCoffee);
 $Coffee= mysqli_fetch_all($resultCoffee , MYSQLI_ASSOC);
 
-$sqlTea = "SELECT * FROM items WHERE item_type = 'Tea' ORDER BY item_type; ";
+$sqlTea = "SELECT * FROM menu WHERE item_type = 'Tea' ORDER BY item_type; ";
 $resultTea  = mysqli_query($link, $sqlTea);
 $Tea= mysqli_fetch_all($resultTea , MYSQLI_ASSOC);
 
-$sqlFlowerTea = "SELECT * FROM items WHERE item_type = 'Flower Tea' ORDER BY item_type; ";
+$sqlFlowerTea = "SELECT * FROM menu WHERE item_type = 'Flower Tea' ORDER BY item_type; ";
 $resultFlowerTea  = mysqli_query($link, $sqlFlowerTea);
 $FlowerTea= mysqli_fetch_all($resultFlowerTea , MYSQLI_ASSOC);
 
-$sqlFlavoredIceTea = "SELECT * FROM items WHERE item_type = 'Flavored Ice Tea' ORDER BY item_type; ";
+$sqlFlavoredIceTea = "SELECT * FROM menu WHERE item_type = 'Flavored Ice Tea' ORDER BY item_type; ";
 $resultFlavoredIceTea  = mysqli_query($link, $sqlFlavoredIceTea);
 $FlavoredIceTea= mysqli_fetch_all($resultFlavoredIceTea , MYSQLI_ASSOC);
 
-$sqlFrozenFruitYogurt = "SELECT * FROM items WHERE item_type = 'Frozen Fruit Yogurt' ORDER BY item_type; ";
+$sqlFrozenFruitYogurt = "SELECT * FROM menu WHERE item_type = 'Frozen Fruit Yogurt' ORDER BY item_type; ";
 $resultFrozenFruitYogurt  = mysqli_query($link, $sqlFrozenFruitYogurt);
 $FrozenFruitYogurt= mysqli_fetch_all($resultFrozenFruitYogurt , MYSQLI_ASSOC);
 
-$sqlMilkshakes = "SELECT * FROM items WHERE item_type = 'Milkshakes' ORDER BY item_type; ";
+$sqlMilkshakes = "SELECT * FROM menu WHERE item_type = 'Milkshakes' ORDER BY item_type; ";
 $resultMilkshakes  = mysqli_query($link, $sqlMilkshakes);
 $Milkshakes= mysqli_fetch_all($resultMilkshakes , MYSQLI_ASSOC);
 
-$sqlMocktails = "SELECT * FROM items WHERE item_type = 'Mocktails' ORDER BY item_type; ";
+$sqlMocktails = "SELECT * FROM menu WHERE item_type = 'Mocktails' ORDER BY item_type; ";
 $resultMocktails  = mysqli_query($link, $sqlMocktails);
 $Mocktails= mysqli_fetch_all($resultMocktails , MYSQLI_ASSOC);
 
-$sqlHouseWines = "SELECT * FROM items WHERE item_type = 'House Wines' ORDER BY item_type; ";
+$sqlHouseWines = "SELECT * FROM menu WHERE item_type = 'House Wines' ORDER BY item_type; ";
 $resultHouseWines = mysqli_query($link, $sqlHouseWines);
 $HouseWines= mysqli_fetch_all($resultHouseWines, MYSQLI_ASSOC);
 
-$sqlHousePour = "SELECT * FROM items WHERE item_type = 'House Pour' ORDER BY item_type; ";
+$sqlHousePour = "SELECT * FROM menu WHERE item_type = 'House Pour' ORDER BY item_type; ";
 $resultHousePour  = mysqli_query($link, $sqlHousePour);
 $HousePour= mysqli_fetch_all($resultHousePour , MYSQLI_ASSOC);
 
-$sqlBeer = "SELECT * FROM items WHERE item_type = 'Beer' ORDER BY item_type; ";
+$sqlBeer = "SELECT * FROM menu WHERE item_type = 'Beer' ORDER BY item_type; ";
 $resultBeer  = mysqli_query($link, $sqlBeer);
 $Beer= mysqli_fetch_all($resultBeer , MYSQLI_ASSOC);
 
-$sqlLiquor= "SELECT * FROM items WHERE item_type = 'Liquor' ORDER BY item_type; ";
+$sqlLiquor= "SELECT * FROM menu WHERE item_type = 'Liquor' ORDER BY item_type; ";
 $resultLiquor  = mysqli_query($link, $sqlLiquor);
 $Liquor= mysqli_fetch_all($resultLiquor , MYSQLI_ASSOC);
 
-$sqlClassicCocktails = "SELECT * FROM items WHERE item_type = 'Classic Cocktails' ORDER BY item_type; ";
+$sqlClassicCocktails = "SELECT * FROM menu WHERE item_type = 'Classic Cocktails' ORDER BY item_type; ";
 $resultClassicCocktails  = mysqli_query($link, $sqlClassicCocktails);
 $ClassicCocktails= mysqli_fetch_all($resultClassicCocktails , MYSQLI_ASSOC);
 
-$sqlHouseCocktails = "SELECT * FROM items WHERE item_type = 'House Cocktails' ORDER BY item_type; ";
+$sqlHouseCocktails = "SELECT * FROM menu WHERE item_type = 'House Cocktails' ORDER BY item_type; ";
 $resultHouseCocktails  = mysqli_query($link, $sqlHouseCocktails);
 $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 
