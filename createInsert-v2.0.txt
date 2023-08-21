@@ -33,14 +33,16 @@ CREATE TABLE Table_Availability (
 );
 
 CREATE TABLE Reservations (
-  reservation_id INT PRIMARY KEY AUTO_INCREMENT,
-  customer_name VARCHAR(255),
-  table_id INT,
-  reservation_time TIME,
-  reservation_date DATE,
-  head_count INT,
-  special_request VARCHAR(255),
-  FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
+    reservation_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    table_id INT NOT NULL,
+    reservation_date DATE NOT NULL,
+    reservation_time TIME NOT NULL,
+    head_count INT NOT NULL,
+    special_request VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
 );
 
 CREATE TABLE Accounts (
