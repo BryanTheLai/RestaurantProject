@@ -51,38 +51,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $cardClass = "alert-danger";
             $bgColor = "#FFA7A7"; // Custom background color for error
 
-    } else {
-        // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Reservations (customer_name, table_id, reservation_date, reservation_time, head_count, special_request) 
-                        VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-
-        // Bind the parameters
-        $stmt->bind_param("sisiss", $customer_name, $table_id, $reservation_date, $reservation_time, $head_count, $special_request);
-
-        // Execute the query
-        if ($stmt->execute()) {
-            $message = "Reservation created successfully.";
-            $iconClass = "fa-check-circle";
-            $cardClass = "alert-success";
-            $bgColor = "#D4F4DD"; // Custom background color for success
         } else {
-             $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-            $iconClass = "fa-times-circle";
-            $cardClass = "alert-danger";
-            $bgColor = "#FFA7A7"; // Custom background color for error
+            // Prepare the SQL query for insertion
+            $insert_query = "INSERT INTO Reservations (customer_name, table_id, reservation_date, reservation_time, head_count, special_request) 
+                            VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($insert_query);
+
+            // Bind the parameters
+            $stmt->bind_param("sisssi", $customer_name, $table_id, $reservation_date, $reservation_time, $head_count, $special_request);
+
+            // Execute the query
+            if ($stmt->execute()) {
+                $message = "Reservation created successfully.";
+                $iconClass = "fa-check-circle";
+                $cardClass = "alert-success";
+                $bgColor = "#D4F4DD"; // Custom background color for success
+            } else {
+                $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
+                $iconClass = "fa-times-circle";
+                $cardClass = "alert-danger";
+                $bgColor = "#FFA7A7"; // Custom background color for error
+            }
+
+            // Close the prepared statement
+            $stmt->close();
         }
 
-        // Close the prepared statement
-        $stmt->close();
-    }
-
-    // Close the check statement and the connection
-    $check_stmt->close();
-    $conn->close();
+        // Close the check statement and the connection
+        $check_stmt->close();
+        $conn->close();
     }
 }
-
 ?>
 
 <!DOCTYPE html>

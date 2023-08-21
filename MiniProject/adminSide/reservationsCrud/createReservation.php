@@ -52,7 +52,19 @@ if(isset($_POST['submit'])){
 
         <div class="form-group">
             <label for="reservation_time">Reservation Time:</label>
-            <input type="time" name="reservation_time" id="reservation_time" required class="form-control">
+                <select name="reservation_time" id="reservation_time" class="form-control" required>
+                    <?php
+                    $start_hour = 14; // 2:00 PM in 24-hour format
+                    $end_hour = 21;   // 9:00 PM in 24-hour format
+
+                    for ($hour = $start_hour; $hour <= $end_hour; $hour++) {
+                        for ($minute = 0; $minute <= 30; $minute += 30) { // Change this line to increase by 60 (1 hour)
+                            $time_slot = sprintf('%02d:%02d', $hour, $minute);
+                            echo '<option value="' . $time_slot . '">' . $time_slot . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
         </div>
 
         <div class="form-group">
@@ -73,3 +85,4 @@ if(isset($_POST['submit'])){
 
 <!-- Include footer -->
 <!-- ... -->
+
