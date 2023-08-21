@@ -29,7 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if the staff_id already exists
     if ($check_result->num_rows > 0) {
-        // ... (error handling)
+        $message = "Staff ID already exists. Please choose another staff ID.";
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
         // Prepare the SQL query for insertion
         $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role) VALUES (?, ?, ?)";
@@ -41,15 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Execute the query
         if ($stmt->execute()) {
-            $message = "Item created successfully.";
+            $message = "Staff created successfully.Welcome to Join Us";
             $iconClass = "fa-check-circle";
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD"; // Custom background color for success
         } else {
-            $message = "Error: " . $insert_query . "<br>" . $conn->error;
-            $iconClass = "fa-times-circle";
-            $cardClass = "alert-danger";
-            $bgColor = "#FFA7A7"; // Custom background color for error
+                $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
+                $iconClass = "fa-times-circle";
+                $cardClass = "alert-danger";
+                $bgColor = "#FFA7A7"; // Custom background color for error
         }
 
         // Close the prepared statement
