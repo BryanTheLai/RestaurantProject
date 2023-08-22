@@ -22,6 +22,8 @@
                         echo "<th>ID</th>";
                         echo "<th>Staff Name</th>";
                         echo "<th>Role</th>";
+                        echo "<th>Contact Info</th>";
+                        echo "<th>Password</th>";
                         echo "<th>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
@@ -31,6 +33,8 @@
                             echo "<td>" . $row['staff_id'] . "</td>";
                             echo "<td>" . $row['staff_name'] . "</td>";
                             echo "<td>" . $row['role'] . "</td>";
+                            echo "<td>" . $row['contact_info'] . "</td>";
+                            echo "<td>" . $row['password'] . "</td>";
                             echo "<td>";
                             echo '<a href="../staffCrud/delete_staff.php?id=' . $row['staff_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this staff?\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
