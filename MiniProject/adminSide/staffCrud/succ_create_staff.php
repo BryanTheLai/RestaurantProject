@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $staff_id = $_POST["staff_id"];
     $staff_name = $_POST["staff_name"];
     $role = $_POST["role"];
+    $contact_info = $_POST["contact_info"];
+    $password = $_POST["password"];
 
     // Prepare the SQL query to check if the staff_id already exists
     $check_query = "SELECT staff_id FROM Staffs WHERE staff_id = ?";
@@ -35,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
         // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role) VALUES (?, ?, ?)";
+        $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role, contact_info, password) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_query);
 
         // Bind the parameters
-        $stmt->bind_param("iss", $staff_id, $staff_name, $role); // Corrected parameter types
+        $stmt->bind_param("issss", $staff_id, $staff_name, $role, $contact_info, $password); // Corrected parameter types
 
 
         // Execute the query

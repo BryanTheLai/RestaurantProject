@@ -54,6 +54,18 @@ if (isset($_POST['submit'])) {
             <input type="text" name="role" id="role" required class="form-control <?php echo (!empty($role_err)) ? 'is-invalid' : ''; ?>"><br>
             <span class="invalid-feedback"></span>
         </div>
+        
+        <div class="form-group">
+            <label for="role">Contact Info:</label>
+            <input type="text" name="contact_info" id="contact_info" required class="form-control <?php echo (!empty($contact_info_err)) ? 'is-invalid' : ''; ?>"><br>
+            <span class="invalid-feedback"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="role">Password:</label>
+            <input type="text" name="password" id="password" required class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"><br>
+            <span class="invalid-feedback"></span>
+        </div>
 
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Create Staff">
