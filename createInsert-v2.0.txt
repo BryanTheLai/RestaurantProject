@@ -80,6 +80,21 @@ CREATE TABLE Bill_Items (
 
 
 
+
+INSERT INTO Restaurant_Tables (table_id, capacity, is_available)
+VALUES 
+  ('1', '4', 1),
+  ('2', '4', 1),
+  ('3', '4', 1),
+  ('4', '6', 1), 
+  ('5', '6', 1),
+  ('6', '6', 1),
+  ('8', '8', 1), 
+  ('9', '8', 1),
+  ('10', '8', 1);
+
+
+
 INSERT INTO Menu (item_id, item_name, item_type, item_category, item_price, item_description)
 VALUES
   ('MD1', 'Prime Rib Steak', 'Steak & Ribs', 'Main Dishes', 96,'Delicious prime rib steak 300g'),
