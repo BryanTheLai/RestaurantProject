@@ -5,7 +5,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form
     $customer_name = $_POST["customer_name"];
-    $table_id = 1; // You might need to replace this with actual logic
+    $table_id = intval($_POST["table_id"]);
     $reservation_time = $_POST["reservation_time"];
     $reservation_date = $_POST["reservation_date"];
     $head_count = $_POST["head_count"];
