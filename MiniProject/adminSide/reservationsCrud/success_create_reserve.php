@@ -37,48 +37,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
-        // Prepare the SQL query to check if the customer_name already exists
-        $check_query = "SELECT customer_name FROM Reservations WHERE customer_name = ?";
-        $check_stmt = $conn->prepare($check_query);
-        $check_stmt->bind_param("s", $customer_name);
-        $check_stmt->execute();
-        $check_result = $check_stmt->get_result();
+        // Prepare the SQL query for insertion
+        $insert_query = "INSERT INTO Reservations (customer_name, table_id, reservation_date, reservation_time, head_count, special_request) 
+                        VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($insert_query);
 
-        // Check if the customer_name already exists
-        if ($check_result->num_rows > 0) {
-            $message = "The customer_name is already in use.<br>Please try again to choose a different customer_name.";
+        // Bind the parameters
+        $stmt->bind_param("sisssi", $customer_name, $table_id, $reservation_date, $reservation_time, $head_count, $special_request);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            $message = "Reservation created successfully.";
+            $iconClass = "fa-check-circle";
+            $cardClass = "alert-success";
+            $bgColor = "#D4F4DD"; // Custom background color for success
+        } else {
+            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
             $iconClass = "fa-times-circle";
             $cardClass = "alert-danger";
             $bgColor = "#FFA7A7"; // Custom background color for error
-
-        } else {
-            // Prepare the SQL query for insertion
-            $insert_query = "INSERT INTO Reservations (customer_name, table_id, reservation_date, reservation_time, head_count, special_request) 
-                            VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($insert_query);
-
-            // Bind the parameters
-            $stmt->bind_param("sisssi", $customer_name, $table_id, $reservation_date, $reservation_time, $head_count, $special_request);
-
-            // Execute the query
-            if ($stmt->execute()) {
-                $message = "Reservation created successfully.";
-                $iconClass = "fa-check-circle";
-                $cardClass = "alert-success";
-                $bgColor = "#D4F4DD"; // Custom background color for success
-            } else {
-                $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-                $iconClass = "fa-times-circle";
-                $cardClass = "alert-danger";
-                $bgColor = "#FFA7A7"; // Custom background color for error
-            }
-
-            // Close the prepared statement
-            $stmt->close();
         }
 
-        // Close the check statement and the connection
-        $check_stmt->close();
+        // Close the prepared statement
+        $stmt->close();
         $conn->close();
     }
 }
