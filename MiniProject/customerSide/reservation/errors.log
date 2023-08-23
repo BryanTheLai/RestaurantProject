@@ -1,1 +1,0 @@
-Cannot add or update a child row: a foreign key constraint fails (`restaurantdb`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`table_id`) REFERENCES `restaurant_tables` (`table_id`))
