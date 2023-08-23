@@ -1,4 +1,5 @@
-<?php  include '../inc/dashHeader.php'?>
+<?php include '../inc/dashHeader.php'; ?>
+
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">
@@ -7,13 +8,41 @@
                     <h2 class="pull-left">Reservation Details</h2>
                     <a href="../reservationsCrud/createReservation.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Reservation</a>
                 </div>
+                <div class="mb-3">
+                    <h2 class="pull-left">Search Reservations</h2>
+                    <form method="POST" action="#">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Reservation ID">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-light">Search</button>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="reservation-panel.php" class="btn btn-info">Show All</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
                 <?php
                 // Include config file
                 require_once "../config.php";
 
-                // Attempt select query execution
-                $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
-                if ($result = mysqli_query($link, $sql)) {
+                if (isset($_POST['search'])) {
+                    if (!empty($_POST['search'])) {
+                        $search = $_POST['search'];
+
+                        $query = "SELECT * FROM reservations WHERE reservation_id LIKE '%$search%'";
+                        $result = mysqli_query($link, $query);
+                    }
+                } else {
+                    // Default query to fetch all reservations
+                    $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
+                    $result = mysqli_query($link, $sql);
+                }
+                
+                if ($result) {
                     if (mysqli_num_rows($result) > 0) {
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
@@ -37,16 +66,10 @@
                             echo "<td>" . $row['reservation_date'] . "</td>";
                             echo "<td>" . $row['head_count'] . "</td>";
                             echo "<td>" . $row['special_request'] . "</td>";
-                            echo "<td>";
-                            echo '<a href="../reservationsCrud/updateReservation.php?id=' . $row['reservation_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil text-black"></span></a>';
-                            echo '<a href="../reservationsCrud/deleteReservation.php?id=' . $row['reservation_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this item?\')"><span class="fa fa-trash text-black"></span></a>';
-                            echo "</td>";
                             echo "</tr>";
                         }
                         echo "</tbody>";
                         echo "</table>";
-                        // Free result set
-                        mysqli_free_result($result);
                     } else {
                         echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
                     }
