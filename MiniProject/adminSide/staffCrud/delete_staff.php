@@ -23,10 +23,11 @@ if (isset($_GET['id'])) {
         exit();
     } else {
         // Error occurred during execution, display an error message
+        echo "Have to delete account who using this staff_id in Account first!";
         echo "Error: " . $stmt->error;
     }
 
-    // Close the statement
+    // Close the statements
     $stmt->close();
 
     // Close the connection
