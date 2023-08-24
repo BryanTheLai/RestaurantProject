@@ -1,15 +1,20 @@
 <?php include '../inc/dashHeader.php'; ?>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 1300px; padding-left: 200px  }
+    </style>
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">
             <div class="m-50">
                 <div class="mt-5 mb-3">
-                    <h2 class="pull-left">Reservation Details</h2>
+                    <h1 class="pull-left">Johnny's Dining & Bar</h1>
+                    <h3 class="pull-left">Reservation</h3>
                     <a href="../reservationsCrud/createReservation.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Reservation</a>
                 </div>
                 <div class="mb-3">
-                    <h2 class="pull-left">Search Reservations</h2>
+                    <h3 class="pull-left">Search Reservations</h3>
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
@@ -24,7 +29,9 @@
                         </div>
                     </form>
                 </div>
-                
+                <div class="mt-5 mb-3">
+                    <h3 class="pull-left">Reservation Details
+                </div>
                 <?php
                 // Include config file
                 require_once "../config.php";
@@ -47,13 +54,14 @@
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
                         echo "<tr>";
-                        echo "<th>ID</th>";
+                        echo "<th>Reeservation ID</th>";
                         echo "<th>Customer Name</th>";
                         echo "<th>Table ID</th>";
                         echo "<th>Reservation Time</th>";
                         echo "<th>Reservation Date</th>";
                         echo "<th>Head Count</th>";
                         echo "<th>Special Request</th>";
+                        echo "<th>Delete</th>"; 
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -66,6 +74,7 @@
                             echo "<td>" . $row['reservation_date'] . "</td>";
                             echo "<td>" . $row['head_count'] . "</td>";
                             echo "<td>" . $row['special_request'] . "</td>";
+                            echo "<td>" . '<a href="../reservationsCrud/deleteReservation.php?id=' . $row['reservation_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this item?\')"><span class="fa fa-trash text-black"></span></a>'. "</td>";
                             echo "</tr>";
                         }
                         echo "</tbody>";
