@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 80px  }
+        .wrapper{ width: 1300px; padding-left: 200px  }
     </style>
 </head>
 
@@ -55,18 +55,6 @@ if (isset($_POST['submit'])) {
             <span class="invalid-feedback"></span>
         </div>
         
-        <div class="form-group">
-            <label for="role">Contact Info:</label>
-            <input type="text" name="contact_info" id="contact_info" required class="form-control <?php echo (!empty($contact_info_err)) ? 'is-invalid' : ''; ?>"><br>
-            <span class="invalid-feedback"></span>
-        </div>
-        
-        <div class="form-group">
-            <label for="role">Password:</label>
-            <input type="text" name="password" id="password" required class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"><br>
-            <span class="invalid-feedback"></span>
-        </div>
-
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Create Staff">
         </div>

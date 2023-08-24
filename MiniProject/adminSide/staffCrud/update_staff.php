@@ -1,68 +1,78 @@
 <?php
-// Assuming you have already established a database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "restaurantdb";
 
-// Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the values from the form
-    $staff_id = $_POST["staff_id"];
-    $staff_name = $_POST["staff_name"];
-    $role = $_POST["role"];
+$iconClass = 'fa-check-circle'; // This value indicates success; you can adjust it as needed
+$cardClass = 'alert-success';   // This value indicates a success message card; adjust as needed
+$bgColor = "#D4F4DD";
 
-    // Prepare the SQL query to check if the staff_id already exists
-    $check_query = "SELECT staff_id FROM Staffs WHERE staff_id = ?";
-    $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bind_param("i", $staff_id);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $account_id = $_POST['account_id'];
+    $staff_id = $_POST['staff_id'];
 
-    // Check if the staff_id already exists
-    if ($check_result->num_rows > 0) {
-        $message = "Staff ID already exists. Please choose another staff ID.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
+    // Validate and sanitize inputs
+    $account_id = intval($account_id);
+    $staff_id = intval($staff_id);
+
+    $checkAccountQuery = "SELECT * FROM Accounts WHERE account_id = ?";
+    $checkStaffQuery = "SELECT * FROM staffs WHERE staff_id = ?";
+
+    // Use prepared statements
+    $accountStmt = $conn->prepare($checkAccountQuery);
+    $accountStmt->bind_param("i", $account_id);
+    $accountStmt->execute();
+    $accountResult = $accountStmt->get_result();
+
+    $staffStmt = $conn->prepare($checkStaffQuery);
+    $staffStmt->bind_param("i", $staff_id);
+    $staffStmt->execute();
+    $staffResult = $staffStmt->get_result();
+
+    if ($accountResult->num_rows === 0) {
+        echo "Invalid account ID. No matching account found.";
+    } elseif ($staffResult->num_rows === 0) {
+        echo "Invalid staff ID. No matching staff found.";
     } else {
-        // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
+        // Check if the account already has a staff assigned
+        $existingStaffQuery = "SELECT staff_id FROM Accounts WHERE account_id = ?";
+        $existingStaffStmt = $conn->prepare($existingStaffQuery);
+        $existingStaffStmt->bind_param("i", $account_id);
+        $existingStaffStmt->execute();
+        $existingStaffResult = $existingStaffStmt->get_result();
+        $row = $existingStaffResult->fetch_assoc();
+        $existingStaffId = $row['staff_id'];
 
-        // Bind the parameters
-        $stmt->bind_param("iss", $staff_id, $staff_name, $role); // Corrected parameter types
-
-
-        // Execute the query
-        if ($stmt->execute()) {
-            $message = "Staff created successfully.Welcome to Join Us";
-            $iconClass = "fa-check-circle";
-            $cardClass = "alert-success";
-            $bgColor = "#D4F4DD"; // Custom background color for success
+        if ($existingStaffId !== null) {
+            echo "Account already has a staff assigned.";
         } else {
-                $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-                $iconClass = "fa-times-circle";
-                $cardClass = "alert-danger";
-                $bgColor = "#FFA7A7"; // Custom background color for error
-        }
+            $updateQuery = "UPDATE Accounts SET staff_id = ? WHERE account_id = ?";
+            $updateStmt = $conn->prepare($updateQuery);
+            $updateStmt->bind_param("ii", $staff_id, $account_id);
 
-        // Close the prepared statement
-        $stmt->close();
+            if ($updateStmt->execute()) {
+                $message = "Account assigned to staff successfully.";
+            } else {
+                $message = "Error updating staff.";
+            }
+        }
     }
 
-    // Close the check statement and the connection
-    $check_stmt->close();
-    $conn->close();
+    // Close all prepared statements
+    $accountStmt->close();
+    $staffStmt->close();
+    $existingStaffStmt->close();
+    $updateStmt->close();
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -123,15 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 100px;
             line-height: 200px;
         }
-            .alert-box {
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .alert-icon {
-            padding-bottom: 20px;
-        }
-    
     </style>
 </head>
 <body>
@@ -162,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 countdownElement.textContent = i;
                 if (i <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "createStaff.php";
+                    window.location.href = "../panel/staff-panel.php";
                 }
             }, 1000); // 1000 milliseconds = 1 second
         }
@@ -176,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createStaff.php"; // Replace with your desired URL
+                window.location.href = "../panel/staff-panel.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 
