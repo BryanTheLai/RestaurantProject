@@ -1,70 +1,11 @@
 <?php
-// Assuming you have already established a database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "restaurantdb";
+// Define the variables
+$iconClass = 'fa-check-circle'; // This value indicates success; you can adjust it as needed
+$cardClass = 'alert-success';   // This value indicates a success message card; adjust as needed
+$bgColor = "#D4F4DD";
+// Rest of your PHP code ...
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the values from the form
-    $customer_name = $_POST["customer_name"];
-    $table_id = $_POST["table_id"];
-    $reservation_date = $_POST["reservation_date"];
-    $reservation_time = $_POST["reservation_time"];
-    $head_count = $_POST["head_count"];
-    $special_request = $_POST["special_request"];
-
-    // Prepare the SQL query to check if the provided table_id exists
-    $table_check_query = "SELECT table_id FROM Restaurant_Tables WHERE table_id = ?";
-    $table_check_stmt = $conn->prepare($table_check_query);
-    $table_check_stmt->bind_param("i", $table_id);
-    $table_check_stmt->execute();
-    $table_check_result = $table_check_stmt->get_result();
-
-    // Check if the table_id exists
-    if ($table_check_result->num_rows === 0) {
-        $message = "The specified table does not exist.<br>Please choose a valid table.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } else {
-        // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Reservations (customer_name, table_id, reservation_date, reservation_time, head_count, special_request) 
-                        VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-
-        // Bind the parameters
-        $stmt->bind_param("sisssi", $customer_name, $table_id, $reservation_date, $reservation_time, $head_count, $special_request);
-
-        // Execute the query
-        if ($stmt->execute()) {
-            $message = "Reservation created successfully.";
-            $iconClass = "fa-check-circle";
-            $cardClass = "alert-success";
-            $bgColor = "#D4F4DD"; // Custom background color for success
-        } else {
-            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-            $iconClass = "fa-times-circle";
-            $cardClass = "alert-danger";
-            $bgColor = "#FFA7A7"; // Custom background color for error
-        }
-
-        // Close the prepared statement
-        $stmt->close();
-        $conn->close();
-    }
-}
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
         </div>
         <h1><?php echo ($cardClass === 'alert-success') ? 'Success' : 'Error'; ?></h1>
-        <p><?php echo $message; ?></p>
+        <p>Reservation Created Successfully!</p>
     </div>
 
     <div style="text-align: center; margin-top: 20px;">Redirecting back in <span id="countdown">3</span></div>
@@ -153,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 countdownElement.textContent = i;
                 if (i <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "createReservation.php";
+                    window.location.href = "../panel/reservation-panel.php";
                 }
             }, 1000); // 1000 milliseconds = 1 second
         }
@@ -167,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createReservation.php"; // Replace with your desired URL
+                window.location.href = "../panel/reservation-panel.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 
