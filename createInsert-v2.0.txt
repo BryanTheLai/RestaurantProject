@@ -23,6 +23,14 @@ CREATE TABLE Restaurant_Tables (
   capacity INT,
   is_available BOOLEAN
 );
+
+/* TEst First
+CREATE TABLE Current_Table_Bill (
+table_id INT,
+current_bill INT
+);
+*/
+
 CREATE TABLE Table_Availability (
   availability_id INT PRIMARY KEY AUTO_INCREMENT,
   table_id INT,
