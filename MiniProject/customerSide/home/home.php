@@ -140,6 +140,17 @@ $sqlHouseCocktails = "SELECT * FROM menu WHERE item_type = 'House Cocktails' ORD
 $resultHouseCocktails  = mysqli_query($link, $sqlHouseCocktails);
 $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 
+
+// Check if the user is logged in
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    echo '<div class="user-profile">';
+    echo 'Welcome, ' . $_SESSION["username"] . '!';
+    echo '<a href="../customerProfile/profile.php">Profile</a>';
+    echo '</div>';
+    
+}
+
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,37 +163,49 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 </head>
 
 <body>
-  <!-- Header -->
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:whitesmoke;"> JOHNNY'S</h1><span class="sr-only"></span></a>
+ <!-- Header -->
+<section id="header">
+  <div class="header container">
+    <div class="nav-bar">
+      <div class="brand">
+        <a href="#hero">
+          <a class="nav-link" href="../home/home.php#hero">
+            <h1 class="text-center" style="font-family:Copperplate; color:whitesmoke;"> JOHNNY'S</h1><span class="sr-only"></span>
           </a>
+        </a>
+      </div>
+      <div class="nav-list">
+        <div class="hamburger">
+          <div class="bar"></div>
         </div>
-        <div class="nav-list">
-          <div class="hamburger">
-            <div class="bar"></div>
-          </div>
-          <ul>
-            <li><a href="#hero" data-after="Home">Home</a></li>
-            <li><a href="#services" data-after="Service">Reservation</a></li>
-            <li><a href="#projects" data-after="Projects">Menu</a></li>
-            <li><a href="#about" data-after="About">About</a></li>
-            <li><a href="#contact" data-after="Contact">Contact</a></li>
-            <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
-            <li><a href="../customerLogin/login.php" data-after="LogIn">Log In</a></li>
-            <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
-         
-            
-          </ul>
-        </div>
+        <ul>
+          <li><a href="#hero" data-after="Home">Home</a></li>
+          <li><a href="#services" data-after="Service">Reservation</a></li>
+          <li><a href="#projects" data-after="Projects">Menu</a></li>
+          <li><a href="#about" data-after="About">About</a></li>
+          <li><a href="#contact" data-after="Contact">Contact</a></li>
+        
+        <!-- Check if the user is logged in -->
+<?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
+   <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
+   <li>
+    <a href="../customerProfile/profile.php" class="profile-link">
+      <?php echo $_SESSION["username"] . ' - 1000 Points'; ?>
+    </a>
+  </li>
+
+<?php else: ?>
+  <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
+  <li><a href="../customerLogin/login.php" data-after="LogIn">Log In</a></li>
+<?php endif; ?>
+
+          
+        </ul>
       </div>
     </div>
-  </section>
-  <!-- End Header -->
-
+  </div>
+</section>
+<!-- End Header -->
 
   <!-- Hero Section  -->
   <section id="hero" style='background-color: black;'>
@@ -196,29 +219,29 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
   </section>
   <!-- End Hero Section  -->
 
-  <!-- Service Section -->
+  <!-- reserve Section -->
   <section id="services">
     <div class="services container">
+       
       <div class="service-top">
         <h1 class="section-title">Reser<span>v</span>ation</h1>
         <p></p>
       </div>
-      <div class="service-bottom">
-        <div class="service-item">
-          <div class="icon"><img src="../image/https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>name</h2>
-          <p>-------ruybffffffffdisfyudsbigfusdfvdioffidufhsdhuifdvfhudusfhsodviiiiiiiiiiiihuf-------------------------------------</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="../image/https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>phone num</h2>
-          <p>-----------fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff----------d</p>
-        </div>
-       
-        
-    </div>
+    
+   <?php include '../reservation/reserve.php'; ?>
+ 
+  
   </section>
-  <!-- End Service Section -->
+  <!-- End reserve Section -->
+ 
+  
+  <div class="search-form">
+  <input type="text" id="search-input" placeholder="Search menu items...">
+  <button id="search-button">Search</button>
+</div>
+
+  
+  
   
   <!-- menu Section -->
   <section id="projects">
@@ -319,7 +342,7 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
       </div>
     </div>
   </section>
-  <!-- End Projects Section -->
+  <!-- End menu Section -->
 
   <!-- About Section -->
   <section id="about">
@@ -340,7 +363,7 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
  </p>
  <p>Johnny's Dining & Bar has an inviting outdoor bar that is open seven days a week from 11:00 AM to 10:00 PM in addition to the indoor dining area.This outdoor space provides a relaxed setting for patrons to unwind and socialise while sipping on their favourite drinks and nibbling on bar bites. The bar serves a wide range of beverages, including cocktails, wines, beers and non-alcoholic options.
  </p>
-     <a href="#" class="cta">Download Resume</a>
+    
       </div>
     </div>
   </section>
@@ -440,7 +463,7 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
       select {
         font-size: 24px;
         padding: 10px;
-        border: 2px solid crimson; /* Red border */
+        border: 2px solid black; /* Red border */
         outline: none;
         cursor: pointer;
         transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
@@ -456,8 +479,8 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 
       /* Hover effect */
       select:hover {
-        background-color: crimson; /* Red background on hover */
-        color: black; /* black text on hover */
+        background-color: black; /* Red background on hover */
+        color: white; /* black text on hover */
       }
 
       /* Use CSS Grid to create three columns */
@@ -484,6 +507,85 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
   float: right;
 }
 
+.user-profile {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-right: 20px;
+}
+
+.user-profile a {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Style for the profile link */
+.profile-link {
+  border: 1px solid #fff; /* Smaller border style and color */
+  padding: 3px 8px; /* Smaller padding inside the border */
+  border-radius: 3px; /* Rounded corners for the border */
+  text-decoration: none; /* Remove the default underline */
+  color: #fff; /* Text color */
+  margin-left: auto; /* Automatically push the link to the right */
+  margin-right: 10px; /* Add a small right margin for spacing */
+}
+s
+
+/* Style for the search form */
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+/* Style for the search results */
+#search-results h2 {
+  margin-top: 20px;
+}
+
+#search-results .msg {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin-top: 10px;
+}
+/* Center the search form */
+.search-form {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-top: 20px; /* Add margin to separate the search bar from the menu items */
+}
+
+/* Style for the search input */
+#search-input {
+  margin-right: 10px; /* Add a little spacing between the input and the button */
+}
+
+/* Style for the search button */
+#search-button {
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Rest of your existing CSS rules */
 
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -501,6 +603,40 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
             });
         }).change();
     });
+    
+    
+    
+    
+    
+    
+
+  $(document).ready(function(){
+    // Function to filter menu items based on search input
+    function filterMenuItems(searchTerm) {
+      $(".item-name").each(function() {
+        var itemName = $(this).text().toLowerCase();
+        if (itemName.includes(searchTerm)) {
+          $(this).closest(".msg").show();
+        } else {
+          $(this).closest(".msg").hide();
+        }
+      });
+    }
+    
+    // Search button click event
+    $("#search-button").click(function() {
+      var searchTerm = $("#search-input").val().toLowerCase();
+      filterMenuItems(searchTerm);
+    });
+    
+    // Search input keyup event
+    $("#search-input").keyup(function() {
+      var searchTerm = $(this).val().toLowerCase();
+      filterMenuItems(searchTerm);
+    });
+  });
+
+
     </script>
 
 </body>
