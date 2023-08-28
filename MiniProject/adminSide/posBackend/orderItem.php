@@ -1,13 +1,8 @@
 <?php
 require_once '../config.php';
-
-$table_id = $_GET['table_id'];
-$cartQuery = "SELECT bi.item_id, m.item_name, m.item_price, bi.quantity FROM Bill_Items bi INNER JOIN Menu m ON bi.bill_id = m.bill_id WHERE bi.table_id = $table_id";
-$cartResult = mysqli_query($link, $cartQuery);
-
-
+include '../inc/dashHeader.php'; 
+$bill_id = $_GET['bill_id'];
 ?>
-<?php include '../inc/dashHeader.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +15,7 @@ $cartResult = mysqli_query($link, $cartQuery);
                 <div class="container-fluid pt-5 pl-600 row" style=" margin-left: 15rem;max-width: 40rem;">
                     <div class="mt-5 mb-2">
                         <h2 class="pull-left">Food & Drinks</h2>
-                        <form method="POST">
-                            <input type="text" name="bill_id" placeholder="Enter bill_id">
-                            <input type="submit" name="submit" value="Submit">
-                            <input type="submit" name="random" value="Create Random Bill ID">
-                        </form>
+                        
                     </div>
                     <div class="mb-3">
                         <form method="POST" action="#">
@@ -36,7 +27,7 @@ $cartResult = mysqli_query($link, $cartQuery);
                                     <button type="submit" class="btn btn-light">Search</button>
                                 </div>
                                 <div class="col-md-3">
-                                    <a href="orderItems.php?table_id=<?php echo $table_id; ?>" class="btn btn-dark">Show All</a>
+                                    <a href="orderItem.php?bill_id=<?php echo $bill_id; ?>" class="btn btn-dark">Show All</a>
                                 </div>
                             </div>
                         </form>
@@ -44,6 +35,7 @@ $cartResult = mysqli_query($link, $cartQuery);
                     <div style="max-height: 40rem;overflow-y: auto;">
                         <?php
                         // Include config file
+                        
                         require_once "../config.php";
                         if (isset($_POST['search'])) {
                             if (!empty($_POST['search'])) {
@@ -61,7 +53,7 @@ $cartResult = mysqli_query($link, $cartQuery);
                             $sql = "SELECT * FROM Menu ORDER BY item_id;";
                             $result = mysqli_query($link, $sql);
                         }
-
+                        $bill_id = $_GET['bill_id'];
                         if ($result) {
                             if (mysqli_num_rows($result) > 0) {
                                 echo '<table class="table table-bordered table-striped">';
@@ -81,8 +73,13 @@ $cartResult = mysqli_query($link, $cartQuery);
                                     echo "<td>" . $row['item_name'] . "</td>";
                                     echo "<td>" . $row['item_category'] . "</td>";
                                     echo "<td>" . $row['item_price'] . "</td>";
-                                    echo '<td>' . '<form method="post"><input type="text" value=' . $row['item_id'] . ' hidden><input type="submit" name="btn-atc" value="Add to Cart">' . '</form> </td>';
-                                    echo "</tr>";
+                                    echo '<td><form method="get" action="addItem.php">'
+                                            . '<input type="text" name= "item_id" value=' . $row['item_id'] . ' hidden>'
+                                            . '<input type="number" name= "bill_id" value=' . $bill_id . ' hidden>'
+                                            . '<input type="number" name="quantity" placeholder="Enter Quantity" required max="100">'
+                                            . '<input type="hidden" name="addToCart" value="1">'
+                                            . '<button type="submit" class="btn btn-primary">Add to Cart</button>';
+                                    echo "</form> </td></tr>";
                                 }
                                 echo "</tbody>";
                                 echo "</table>";
@@ -93,18 +90,6 @@ $cartResult = mysqli_query($link, $cartQuery);
                             echo "Oops! Something went wrong. Please try again later.";
                         }
                         // Close connection
-                        mysqli_close($link);
-                        ?>
-                        <?php
-                            if(isset($_POST['btn-atc'])){
-                                $bill_id = $_GET['bill_id'];
-                                $item_id = $_GET['item_id'];
-                                $SQL_quantity = "SELECT quantity FROM Bill_Items WHERE bill_id = '$bill_id' AND item_id = '$item_id';";
-                                //if not found create one and add 1 to quantity
-                                //else quantity _1
-                                
-                                
-                            }
                         
                         ?>
                      </div>
@@ -112,55 +97,61 @@ $cartResult = mysqli_query($link, $cartQuery);
                 </div>
             </div>
             <div class="col-md-6 order-md-2" id="cart-section">
-                <div class="container-fluid pt-5 pl-600 row">
+                <div class="container-fluid pt-5 pl-600 pr-5 row">
                     <div class="cart-section">
-                    <h3>Cart</h3>
-                    <table>
-                        <tr>
-                            <th>Item ID</th>
-                            <th>Item Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                        <?php 
-                        
-                        $subtotal = 0.0;
-                        $taxRate = 0.1;
-                        
-                        
-                        while ($row = mysqli_fetch_assoc($cartResult)): ?>
-                            <?php
-                                $item_id = $row['item_id'];
-                                $item_name = $row['item_name'];
-                                $item_price = $row['item_price'];
-                                $quantity = $row['quantity'];
-                                $total = $item_price * $quantity;
-                                $subtotal += $total;
-                            ?>
+                        <h3>Cart</h3>
+                        <table>
                             <tr>
-                                <td><?= $item_id ?></td>
-                                <td><?= $item_name ?></td>
-                                <td><?= $item_price ?></td>
-                                <td><?= $quantity ?></td>
-                                <td><?= $total ?></td>
-                                <td>
-                                    <form method="post">
-                                        <input type="hidden" name="item_id" value="<?= $item_id ?>">
-                                        <button type="submit" name="remove_item">Remove</button>
-                                    </form>
-                                </td>
+                                <th>Item ID</th>
+                                <th>Item Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Action</th>
                             </tr>
-                        <?php endwhile; ?>
-                    </table>
-                    <div>
-                        <p>Subtotal: <?= $subtotal ?></p>
-                        <p>Tax: <?= $subtotal * $taxRate ?></p>
-                        <p>Grand Total: <?= $subtotal + ($subtotal * $taxRate) ?></p>
+                            <div style="max-height: 40rem;overflow-y: auto;">
+                                <?php
+                                // Query to fetch cart items for the given bill_id
+                                $cart_query = "SELECT bi.*, m.item_name, m.item_price FROM bill_items bi
+                                               JOIN Menu m ON bi.item_id = m.item_id
+                                               WHERE bi.bill_id = '$bill_id'";
+                                $cart_result = mysqli_query($link, $cart_query);
+                                $cart_total = 0;//cart total
+                                $tax = 0.1; // 10% tax rate
+
+                                if ($cart_result && mysqli_num_rows($cart_result) > 0) {
+                                    while ($cart_row = mysqli_fetch_assoc($cart_result)) {
+                                        $item_id = $cart_row['item_id'];
+                                        $item_name = $cart_row['item_name'];
+                                        $item_price = $cart_row['item_price'];
+                                        $quantity = $cart_row['quantity'];
+                                        $total = $item_price * $quantity;
+                                        $bill_item_id = $cart_row['bill_item_id'];
+                                        $cart_total += $total;
+                                        echo '<tr>';
+                                        echo '<td>' . $item_id . '</td>';
+                                        echo '<td>' . $item_name . '</td>';
+                                        echo '<td>RM ' . $item_price . '</td>';
+                                        echo '<td>' . $quantity . '</td>';
+                                        echo '<td>RM ' . $total . '</td>';
+                                        echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
+                                        echo '</tr>';
+                                    }
+                                } else {
+                                    echo '<tr><td colspan="6">No Items in Cart.</td></tr>';
+                                }
+                                ?>
+                            </div>
+                        </table>
+                        <hr>
+                        <?php 
+                        echo "Cart Total: RM " . $cart_total;
+                        echo "<br>Cart Taxed: RM " . $cart_total * $tax;
+                        echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
+                        ?>
                     </div>
                 </div>
-                </div>
+
             </div>
         </div>
     </div>

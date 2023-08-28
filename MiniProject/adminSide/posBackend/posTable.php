@@ -19,7 +19,7 @@ require_once '../config.php'; // Include your database configuration
                     // Fetch all tables from the database
                     $query = "SELECT * FROM Restaurant_Tables ORDER BY table_id;";
                     $result = mysqli_query($link, $query);
-
+                    $table = array("", "", "");
                     if ($result) {
                         $table_count = 0;
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -31,8 +31,21 @@ require_once '../config.php'; // Include your database configuration
                             $is_available = $row['is_available'];
                             $box_color = $is_available ? 'green' : 'red';
                             echo '<div class="col-md-4 mb-4">';
-                            echo '<a href="orderItem.php?table_id=' . $table_id . '" class="btn btn-primary btn-block btn-lg" style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Capacity: ' . $capacity . '</a>';
-                            echo '</div>';
+                            
+                            $sqlBill = "SELECT bill_id FROM Bills WHERE table_id = $table_id ORDER BY bill_time DESC LIMIT 1";
+                            $result1 = $link->query($sqlBill);
+                            if ($result1->num_rows > 0) {
+                                // Output data of the latest bill for the specified table ID
+                                $row = $result1->fetch_assoc(); // Use $result1 instead of $result
+                                $latestBillID = $row["bill_id"];
+                                $table[$table_id] = $latestBillID; // Use $table_id instead of $row['table_id']
+                                //echo "Latest bill ID for table $table_id: $latestBillID bill id";
+                            } else {
+                                //echo "No bills found for table $table_id";
+                            }
+                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '"class="btn btn-primary btn-block btn-lg" style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Capacity: ' . $capacity; 
+                            
+                            echo '</a></div>';
                             $table_count++;
                         }
                     } else {
