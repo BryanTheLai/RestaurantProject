@@ -77,6 +77,13 @@ CREATE TABLE Bills (
   FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
 );
 
+INSERT INTO Bills (table_id, bill_time)
+VALUES 
+(1, '2023-08-27 15:30:00'),
+(2, '2023-08-27 15:30:00'),
+(3, '2023-08-27 15:30:00'),
+(4, '2023-08-27 15:30:00');
+
 CREATE TABLE Bill_Items (
   bill_item_id INT PRIMARY KEY AUTO_INCREMENT,
   bill_id INT,
