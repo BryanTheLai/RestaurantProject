@@ -63,19 +63,6 @@ CREATE TABLE Accounts (
   FOREIGN KEY (staff_id) REFERENCES Staffs(staff_id)
 );
 
-CREATE TABLE Bills (
-  bill_id INT PRIMARY KEY AUTO_INCREMENT,
-  staff_id INT,
-  member_id INT,
-  reservation_id INT,
-  table_id INT,
-  payment_method VARCHAR(255),
-  bill_time DATETIME,
-  FOREIGN KEY (staff_id) REFERENCES Staffs(staff_id),
-  FOREIGN KEY (member_id) REFERENCES Memberships(member_id),
-  FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id),
-  FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
-);
 
 CREATE TABLE card_payments (
     card_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,6 +71,23 @@ CREATE TABLE card_payments (
     expiry_date VARCHAR(7) NOT NULL,
     security_code VARCHAR(3) NOT NULL
 );
+
+CREATE TABLE Bills (
+  bill_id INT PRIMARY KEY AUTO_INCREMENT,
+  staff_id INT,
+  member_id INT,
+  reservation_id INT,
+  table_id INT,
+  card_id INT,
+  payment_method VARCHAR(255),
+  bill_time DATETIME,
+  FOREIGN KEY (staff_id) REFERENCES Staffs(staff_id),
+  FOREIGN KEY (member_id) REFERENCES Memberships(member_id),
+  FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id),
+  FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id),
+  FOREIGN KEY (card_id) REFERENCES card_payments(card_id)
+);
+
 
 
 INSERT INTO Bills (table_id, bill_time)
