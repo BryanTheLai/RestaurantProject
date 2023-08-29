@@ -43,7 +43,7 @@ require_once '../config.php'; // Include your database configuration
                             } else {
                                 //echo "No bills found for table $table_id";
                             }
-                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '"class="btn btn-primary btn-block btn-lg" style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Capacity: ' . $capacity; 
+                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Capacity: ' . $capacity; 
                             
                             echo '</a></div>';
                             $table_count++;

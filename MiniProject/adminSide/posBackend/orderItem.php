@@ -2,6 +2,8 @@
 require_once '../config.php';
 include '../inc/dashHeader.php'; 
 $bill_id = $_GET['bill_id'];
+$table_id = $_GET['table_id'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -148,6 +150,8 @@ $bill_id = $_GET['bill_id'];
                         echo "Cart Total: RM " . $cart_total;
                         echo "<br>Cart Taxed: RM " . $cart_total * $tax;
                         echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
+                        echo '<br><a href="posCashPayment.php?bill_id=' . $bill_id . '" class="btn btn-primary">Cash</a>';
+                        echo '<br><a href="posCardPayment.php?bill_id=' . $bill_id . '" class="btn btn-primary">Credit Card</a>';
                         ?>
                     </div>
                 </div>
