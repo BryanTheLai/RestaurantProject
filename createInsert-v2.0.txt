@@ -77,6 +77,15 @@ CREATE TABLE Bills (
   FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
 );
 
+CREATE TABLE card_payments (
+    card_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_holder_name VARCHAR(255) NOT NULL,
+    card_number VARCHAR(16) NOT NULL,
+    expiry_date VARCHAR(7) NOT NULL,
+    security_code VARCHAR(3) NOT NULL
+);
+
+
 INSERT INTO Bills (table_id, bill_time)
 VALUES 
 (1, '2023-08-27 15:30:00'),
