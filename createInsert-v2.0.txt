@@ -319,12 +319,31 @@ VALUES
 ('M8', 'Blue Graciea', 'Mocktails', 'Drinks', 16, 'Passion fruit, blue lagoon');
 
 
-INSERT INTO Bills (table_id, bill_time)
+INSERT INTO Bills (bill_id, staff_id, member_id, reservation_id, table_id, payment_method, bill_time)
 VALUES 
-(1, '2023-08-27 15:30:00'),
-(2, '2023-08-27 15:30:00'),
-(3, '2023-08-27 15:30:00'),
-(4, '2023-08-27 15:30:00');
+       (1, NULL, NULL, NULL, 2, NULL, '2023-08-27 15:30:00'),
+		(2, NULL, NULL, NULL, 3, NULL, '2023-08-27 15:30:00'),
+		(3, NULL, NULL, NULL, 4, NULL, '2023-08-27 15:30:00'),
+		(4,NULL, NULL, NULL, 6, NULL, '2023-08-27 15:30:00'),
+       (5, NULL, NULL, NULL, 6, NULL, '2023-08-27 15:30:00'),
+       (6, NULL, NULL, NULL, 6, NULL, '2023-08-27 15:30:00'),
+       (8, NULL, NULL, NULL, 2, NULL, '2023-08-27 15:30:00'),
+       (9, NULL, NULL, NULL, 3, NULL, '2023-08-27 15:30:00'),
+       (10, NULL, NULL, NULL, 4, NULL, '2023-08-27 15:30:00'),
+       (11, NULL, NULL, NULL, 7, NULL, '2023-08-27 15:30:00'),
+       (12, NULL, NULL, NULL, 6, NULL, '2023-08-27 15:30:00'),
+       (13, NULL, NULL, NULL, 5, NULL, '2023-08-27 16:30:00'),
+       (14, NULL, NULL, NULL, 4, NULL, '2023-08-27 17:30:00'),
+       (15, NULL, NULL, NULL, 3, NULL, '2023-08-27 15:30:00'),
+       (16, NULL, NULL, NULL, 2, NULL, '2023-08-27 15:30:00'),
+       (17, NULL, NULL, NULL, 1, NULL, '2023-08-27 18:30:00');
+
+INSERT INTO Bill_Items (bill_id, item_id, quantity)
+VALUES (17, 'B1', 9),
+       (14, 'C4', 5),
+       (16, 'C1', 4),
+       (17, 'HD1', 5),
+       (15, 'SK4', 4);
 
 
 -- Staffs table
