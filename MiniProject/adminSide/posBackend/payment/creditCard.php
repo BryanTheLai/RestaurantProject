@@ -11,25 +11,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $security_code = $_POST['securityCode'];
     $bill_id = $_GET['bill_id'];
 
-    // Prepare and execute the SQL query to insert into card_payments table
-    $insert_card_sql = "INSERT INTO card_payments (account_holder_name, card_number, expiry_date, security_code) 
-                       VALUES ('$account_holder_name', '$card_number', '$expiry_date', '$security_code')";
-    
-    if ($link->query($insert_card_sql) === TRUE) {
-        // Retrieve the generated card_id
-        $card_id = $link->insert_id;
+    // Check if the bill has already been paid for
+    $check_payment_sql = "SELECT card_id FROM Bills WHERE bill_id = '$bill_id'";
+    $check_payment_result = $link->query($check_payment_sql);
 
-        // Prepare and execute the SQL query to insert into Bills table
-        $insert_bill_sql = "INSERT INTO Bills (bill_id, card_id,payment_method) 
-                            VALUES ('$bill_id', '$card_id','card')";
+    if ($check_payment_result) {
+        $row = $check_payment_result->fetch_assoc();
+        if ($row['card_id'] !== null) {
+            echo "Bill has already been paid for.";
+            echo '<br><a href="../posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
 
-        if ($link->query($insert_bill_sql) === TRUE) {
-            echo "Data inserted into both tables successfully!";
         } else {
-            echo "Error inserting data into Bills table: " . $insert_bill_sql . "<br>" . $link->error;
+            // Prepare and execute the SQL query to insert into card_payments table
+            $insert_card_sql = "INSERT INTO card_payments (account_holder_name, card_number, expiry_date, security_code) 
+                                VALUES (?, ?, ?, ?)";
+            
+            $stmt = $link->prepare($insert_card_sql);
+            $stmt->bind_param("ssss", $account_holder_name, $card_number, $expiry_date, $security_code);
+
+            if ($stmt->execute()) {
+                // Retrieve the generated card_id
+                $card_id = $stmt->insert_id;
+
+                // Prepare and execute the SQL query to update Bills table with payment details
+                $update_bill_sql = "UPDATE Bills SET card_id = ?, payment_method = ? WHERE bill_id = ?";
+                
+                $stmt = $link->prepare($update_bill_sql);
+                $payment_method = "card";
+                $stmt->bind_param("isi", $card_id, $payment_method, $bill_id);
+
+                if ($stmt->execute()) {
+                    echo "Payment successful!";
+                    echo '<br><a href="../posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
+                } else {
+                    echo "Error updating Bills table: " . $stmt->error;
+                }
+            } else {
+                echo "Error inserting data into card_payments table: " . $stmt->error;
+            }
         }
     } else {
-        echo "Error inserting data into card_payments table: " . $insert_card_sql . "<br>" . $link->error;
+        echo "Error checking payment status: " . $link->error;
     }
 }
 ?>
