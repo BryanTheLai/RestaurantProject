@@ -10,10 +10,10 @@
         <input type="text" id="staffId" name="staffId" required>
         <br>
         <label for="memberId">Member ID:</label>
-        <input type="text" id="memberId" name="memberId" required>
+        <input type="text" id="memberId" name="memberId" >
         <br>
         <label for="reservationId">Reservation ID:</label>
-        <input type="text" id="reservationId" name="reservationId" required>
+        <input type="text" id="reservationId" name="reservationId" >
         <br>
         <button type="submit">Check Validity</button>
     </form>
@@ -27,8 +27,8 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $staffId = $_POST['staffId'];
-        $memberId = $_POST['memberId'];
-        $reservationId = $_POST['reservationId'];
+        $memberId = !empty($_POST['memberId']) ? $_POST['memberId'] : 1;
+        $reservationId = !empty($_POST['reservationId']) ? $_POST['reservationId'] : 1;
         $bill_id = $_GET['bill_id'];
 
         // Check if the staff ID exists in the database

@@ -75,7 +75,8 @@ $table_id = $_GET['table_id'];
                                     echo "<td>" . $row['item_name'] . "</td>";
                                     echo "<td>" . $row['item_category'] . "</td>";
                                     echo "<td>" . $row['item_price'] . "</td>";
-                                    echo '<td><form method="get" action="addItem.php">'
+                                    echo '<td><form method="get" action="addItem.php?">'
+                                            . '<input type="text" hidden name= "table_id" value="' . $table_id . '">'
                                             . '<input type="text" name= "item_id" value=' . $row['item_id'] . ' hidden>'
                                             . '<input type="number" name= "bill_id" value=' . $bill_id . ' hidden>'
                                             . '<input type="number" name="quantity" placeholder="Enter Quantity" required max="100">'
@@ -136,7 +137,7 @@ $table_id = $_GET['table_id'];
                                         echo '<td>RM ' . $item_price . '</td>';
                                         echo '<td>' . $quantity . '</td>';
                                         echo '<td>RM ' . $total . '</td>';
-                                        echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
+                                        echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
                                         echo '</tr>';
                                     }
                                 } else {
@@ -150,8 +151,8 @@ $table_id = $_GET['table_id'];
                         echo "Cart Total: RM " . $cart_total;
                         echo "<br>Cart Taxed: RM " . $cart_total * $tax;
                         echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
-                        echo '<br><a href="posCashPayment.php?bill_id=' . $bill_id . '" class="btn btn-primary">Cash</a>';
-                        echo '<br><a href="posCardPayment.php?bill_id=' . $bill_id . '" class="btn btn-primary">Credit Card</a>';
+                        echo '<br><a href="payment/idValidity.php?bill_id=' . $bill_id . '" class="btn btn-primary">Pay</a>';
+                        
                         ?>
                     </div>
                 </div>
