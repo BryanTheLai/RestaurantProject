@@ -1,8 +1,23 @@
 <?php
 require_once '../config.php';
 include '../inc/dashHeader.php'; 
+
 $bill_id = $_GET['bill_id'];
 $table_id = $_GET['table_id'];
+
+function createNewBillRecord($table_id) {
+    global $link; // Assuming $link is your database connection
+    
+    $bill_time = date('Y-m-d H:i:s');
+    
+    $insert_query = "INSERT INTO Bills (table_id, bill_time) VALUES ('$table_id', '$bill_time')";
+    if ($link->query($insert_query) === TRUE) {
+        return $link->insert_id; // Return the newly inserted bill_id
+    } else {
+        return false;
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +44,7 @@ $table_id = $_GET['table_id'];
                                     <button type="submit" class="btn btn-light">Search</button>
                                 </div>
                                 <div class="col-md-3">
-                                    <a href="orderItem.php?bill_id=<?php echo $bill_id; ?>" class="btn btn-dark">Show All</a>
+                                    <a href="orderItem.php?bill_id=<?php echo $bill_id; ?>&table_id=<?php echo $table_id; ?>" class="btn btn-dark">Show All</a>
                                 </div>
                             </div>
                         </form>
@@ -69,21 +84,46 @@ $table_id = $_GET['table_id'];
                                 echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
+                                // ...
+
                                 while ($row = mysqli_fetch_array($result)) {
                                     echo "<tr>";
                                     echo "<td>" . $row['item_id'] . "</td>";
                                     echo "<td>" . $row['item_name'] . "</td>";
                                     echo "<td>" . $row['item_category'] . "</td>";
                                     echo "<td>" . $row['item_price'] . "</td>";
-                                    echo '<td><form method="get" action="addItem.php?">'
+
+                                    // Check if the bill has been paid
+                                    $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
+                                    $payment_time_result = mysqli_query($link, $payment_time_query);
+                                    $has_payment_time = false;
+
+                                    if ($payment_time_result && mysqli_num_rows($payment_time_result) > 0) {
+                                        $payment_time_row = mysqli_fetch_assoc($payment_time_result);
+                                        if (!empty($payment_time_row['payment_time'])) {
+                                            $has_payment_time = true;
+                                        }
+                                    }
+
+                                    // Display the "Add to Cart" button if the bill hasn't been paid
+                                    if (!$has_payment_time) {
+                                        echo '<td><form method="get" action="addItem.php">'
                                             . '<input type="text" hidden name= "table_id" value="' . $table_id . '">'
                                             . '<input type="text" name= "item_id" value=' . $row['item_id'] . ' hidden>'
                                             . '<input type="number" name= "bill_id" value=' . $bill_id . ' hidden>'
                                             . '<input type="number" name="quantity" placeholder="Enter Quantity" required max="100">'
                                             . '<input type="hidden" name="addToCart" value="1">'
                                             . '<button type="submit" class="btn btn-primary">Add to Cart</button>';
-                                    echo "</form> </td></tr>";
+                                        echo "</form></td>";
+                                    } else {
+                                        echo '<td>Bill Paid</td>';
+                                    }
+
+                                    echo "</tr>";
                                 }
+
+                                // ...
+
                                 echo "</tbody>";
                                 echo "</table>";
                             } else {
@@ -137,7 +177,24 @@ $table_id = $_GET['table_id'];
                                         echo '<td>RM ' . $item_price . '</td>';
                                         echo '<td>' . $quantity . '</td>';
                                         echo '<td>RM ' . $total . '</td>';
-                                        echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
+                                        // Check if the bill has been paid
+                                        $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
+                                        $payment_time_result = mysqli_query($link, $payment_time_query);
+                                        $has_payment_time = false;
+
+                                        if ($payment_time_result && mysqli_num_rows($payment_time_result) > 0) {
+                                            $payment_time_row = mysqli_fetch_assoc($payment_time_result);
+                                            if (!empty($payment_time_row['payment_time'])) {
+                                                $has_payment_time = true;
+                                            }
+                                        }
+
+                                        // Display the "Delete" button if the bill hasn't been paid
+                                        if (!$has_payment_time) {
+                                            echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
+                                        } else {
+                                            echo '<td>Bill Paid</td>';
+                                        }
                                         echo '</tr>';
                                     }
                                 } else {
@@ -148,13 +205,54 @@ $table_id = $_GET['table_id'];
                         </table>
                         <hr>
                         <?php 
+                        
                         echo "Cart Total: RM " . $cart_total;
                         echo "<br>Cart Taxed: RM " . $cart_total * $tax;
                         echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
-                        echo '<br><a href="payment/idValidity.php?bill_id=' . $bill_id . '" class="btn btn-primary">Pay</a>';
+                      
+                        // Check if the payment time record exists for the bill
+                        $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
+                        $payment_time_result = mysqli_query($link, $payment_time_query);
+                        $has_payment_time = false;
+
+                        if ($payment_time_result && mysqli_num_rows($payment_time_result) > 0) {
+                            $payment_time_row = mysqli_fetch_assoc($payment_time_result);
+                            if (!empty($payment_time_row['payment_time'])) {
+                                $has_payment_time = true;
+                            }
+                        }
+
+                        // If payment time record exists, show the "Print Receipt" button
+                        if ($has_payment_time) {
+                            echo '<div>';
+                            echo '<div class="alert alert-success" role="alert">
+                                    Bill has already been paid.
+                                  </div>';
+                            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-info">Print Receipt</a></div>';
+                            
+
+                            
+                        } elseif(($tax * $cart_total + $cart_total) > 0) {
+                            echo '<br><a href="idValidity.php?bill_id=' . $bill_id . '" class="btn btn-primary">Pay</a>';
+                        } else {
+                            echo '<br><h3>Add Item To Cart to Proceed</h3>';
+                        }
+
+                        
                         
                         ?>
                     </div>
+                    <?php 
+                       echo '<form action="newCustomer.php" method="get">'; // Add this form element
+                        echo '<input type="hidden" name="table_id" value="' . $table_id . '">';
+                        echo '<button type="submit" name="new_customer" value="true" class="btn btn-primary">Proceed as New Customer</button>';
+                        echo '</form>';
+
+            
+
+
+
+                    ?>
                 </div>
 
             </div>

@@ -2,6 +2,9 @@
 require_once '../config.php';
 include '../inc/dashHeader.php'; 
 $bill_id = $_GET['bill_id'];
+$staff_id = $_GET['staff_id'];
+$member_id = $_GET['member_id'];
+$reservation_id = $_GET['reservation_id'];
 ?>
 
 <div class="cart-section" style="margin-top: 15rem; margin-left: 15rem;max-width: 40rem;">
@@ -43,7 +46,6 @@ $bill_id = $_GET['bill_id'];
                     echo '<td>RM ' . $item_price . '</td>';
                     echo '<td>' . $quantity . '</td>';
                     echo '<td>RM ' . $total . '</td>';
-                    echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
                     echo '</tr>';
                 }
             } else {
@@ -64,7 +66,7 @@ $bill_id = $_GET['bill_id'];
         
 
         <h1>Fill in your card details</h1>
-            <form action="payment/creditCard.php?bill_id=<?php echo $bill_id; ?>" method="post">
+            <form action="creditCard.php?bill_id=<?php echo $bill_id; ?>" method="post">
             <div class="form-group">
                 <label for="cardNameField">Account Holder Name</label>
                 <input type="text" id="cardNameField" name="cardName" class="form-control" required>
@@ -83,6 +85,11 @@ $bill_id = $_GET['bill_id'];
                 <input type="text" id="securityCode" name="securityCode" maxlength="3" class="form-control" placeholder="CCV" pattern="[0-9]{3}" required>
                 <small class="form-text text-muted">Please enter a 3-digit security code.</small>
             </div><br>
+             <!-- Add hidden input fields for bill_id, staff_id, member_id, and reservation_id -->
+                <input type="hidden" name="bill_id" value="<?php echo $bill_id; ?>">
+                <input type="hidden" name="staff_id" value="<?php echo $staff_id; ?>">
+                <input type="hidden" name="member_id" value="<?php echo $member_id; ?>">
+                <input type="hidden" name="reservation_id" value="<?php echo $reservation_id; ?>">
             
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="privacyCheckbox" required>
