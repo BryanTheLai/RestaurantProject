@@ -81,6 +81,7 @@ CREATE TABLE Bills (
   card_id INT,
   payment_method VARCHAR(255),
   bill_time DATETIME,
+  payment_time DATETIME,
   FOREIGN KEY (staff_id) REFERENCES Staffs(staff_id),
   FOREIGN KEY (member_id) REFERENCES Memberships(member_id),
   FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id),
