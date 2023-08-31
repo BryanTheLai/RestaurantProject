@@ -372,7 +372,13 @@ VALUES (0, 'Default Member Name', 100000);
 INSERT INTO Reservations (reservation_id, customer_name, table_id, reservation_time, reservation_date, head_count, special_request)
 VALUES (0, 'Default Customer Name', 1, '22:00:34', '2023-08-29', 1, 'Default Special Request');
 
-
+-- Kitchen table
+INSERT INTO Kitchen (table_id, item_id, quantity, time_submitted, time_ended)
+VALUES (1, 'MD4', 2, '2023-08-31 14:00:00', NULL);
+INSERT INTO Kitchen (table_id, item_id, quantity, time_submitted, time_ended)
+VALUES (2, 'S10', 1, '2023-08-31 14:30:00', NULL);
+INSERT INTO Kitchen (table_id, item_id, quantity, time_submitted, time_ended)
+VALUES (3, 'HW4', 3, '2023-08-31 15:00:00', '2023-08-31 15:15:00');
 
 
 
