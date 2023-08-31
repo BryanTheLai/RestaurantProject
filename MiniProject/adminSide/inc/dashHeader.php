@@ -53,6 +53,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
                                 Online Accounts
                             </a>
+                            <a class="nav-link" href="../panel/kitchen-panel.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-kitchen-set"></i></div>
+                                Kitchen
+                            </a>
                             <div class="sb-sidenav-menu-heading">Reports</div>
                             <a class="nav-link" href="../panel/sales-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
