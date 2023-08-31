@@ -70,6 +70,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Revenue Statistics
                             </a>
+                            <a class="nav-link" href="../panel/profiles-panel.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Member Profiles
+                            </a>
                             
                             
                             
