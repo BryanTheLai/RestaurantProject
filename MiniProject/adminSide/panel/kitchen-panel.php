@@ -9,7 +9,7 @@ $result = mysqli_query($link, $query);
 <html>
 <head>
     <link href="../css/pos.css" rel="stylesheet" />
-        <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="5">
 </head>
 <body>
     <div class="container">
@@ -53,7 +53,7 @@ $result = mysqli_query($link, $query);
                         echo '<td>' . ($time_ended ?: 'Not Ended') . '</td>';
                         echo '<td>';
                         if (!$time_ended) {
-                            echo '<a href="../posBackend/kitchenBackend/kitchen-panel-back.php?action=set_time_ended&kitchen_id=' . $kitchen_id . '" class="btn btn-danger">Set Time Ended</a>';
+                            echo '<a href="../posBackend/kitchenBackend/kitchen-panel-back.php?action=set_time_ended&kitchen_id=' . $kitchen_id . '" class="btn btn-danger">Cooked</a>';
                         }
                         
                         echo '</td>';
