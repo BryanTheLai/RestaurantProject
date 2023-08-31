@@ -92,15 +92,15 @@ $after_tax = $before_tax + $tax_amount;
 
 // Totals
 $pdf->Cell(120, 10, 'Before Tax', 1);
-$pdf->Cell(40, 10, 'RM ' . $before_tax, 1);
+$pdf->Cell(70, 10, 'RM ' . $before_tax, 1);
 $pdf->Ln();
 
 $pdf->Cell(120, 10, 'Tax (' . ($tax_rate * 100) . '%)', 1);
-$pdf->Cell(40, 10, 'RM ' . $tax_amount, 1);
+$pdf->Cell(70, 10, 'RM ' . $tax_amount, 1);
 $pdf->Ln();
 
 $pdf->Cell(120, 10, 'After Tax', 1);
-$pdf->Cell(40, 10, 'RM ' . $after_tax, 1);
+$pdf->Cell(70, 10, 'RM ' . $after_tax, 1);
 $pdf->Ln();
 
 $pdf->Output();
