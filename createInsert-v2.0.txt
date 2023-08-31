@@ -102,6 +102,18 @@ CREATE TABLE Bill_Items (
 );
 
 
+CREATE TABLE IF NOT EXISTS Kitchen (
+    kitchen_id INT AUTO_INCREMENT PRIMARY KEY,
+    table_id INT,
+    item_id VARCHAR(6),
+    quantity INT,
+    time_submitted DATETIME,
+    time_ended DATETIME,
+    FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id),
+    FOREIGN KEY (item_id) REFERENCES Menu(item_id)
+);
+
+
 
 
 INSERT INTO Restaurant_Tables (table_id, capacity, is_available)
