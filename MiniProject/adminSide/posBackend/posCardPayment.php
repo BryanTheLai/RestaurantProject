@@ -90,6 +90,7 @@ $reservation_id = $_GET['reservation_id'];
                 <input type="hidden" name="staff_id" value="<?php echo $staff_id; ?>">
                 <input type="hidden" name="member_id" value="<?php echo $member_id; ?>">
                 <input type="hidden" name="reservation_id" value="<?php echo $reservation_id; ?>">
+                <input type="hidden" name="GRANDTOTAL" value="<?php echo $tax * $cart_total + $cart_total; ?>">
             
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="privacyCheckbox" required>
