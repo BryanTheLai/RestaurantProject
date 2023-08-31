@@ -3,7 +3,7 @@ require_once '../config.php';
 include '../inc/dashHeader.php'; 
 $bill_id = $_GET['bill_id'];
 $staff_id = $_GET['staff_id'];
-$member_id = $_GET['member_id'];
+$member_id = intval($_GET['member_id']);
 $reservation_id = $_GET['reservation_id'];
 ?>
 
@@ -77,6 +77,8 @@ $reservation_id = $_GET['reservation_id'];
                 <input type="hidden" name="staff_id" value="<?php echo $staff_id; ?>">
                 <input type="hidden" name="member_id" value="<?php echo $member_id; ?>">
                 <input type="hidden" name="reservation_id" value="<?php echo $reservation_id; ?>">
+                <input type="hidden" name="GRANDTOTAL" value="<?php echo $tax * $cart_total + $cart_total; ?>">
+
 
                 <button type="submit" id="cardSubmit" class="btn btn-dark">Submit</button>
             </form>
@@ -84,6 +86,8 @@ $reservation_id = $_GET['reservation_id'];
         function calculateChange(float $paymentAmount, float $GrandTotal) {
             return $paymentAmount - $GrandTotal;
         }
+        
+        
 
         if (isset($_GET['payment_amount'])) {
             $payment_amount = isset($_GET['payment_amount']) ? floatval($_GET['payment_amount']) : 0.0;
@@ -116,9 +120,15 @@ $reservation_id = $_GET['reservation_id'];
                 $currentTime = date('Y-m-d H:i:s');
                 $updateQuery = "UPDATE Bills SET payment_method = 'cash', payment_time = '$currentTime',
                                 staff_id = $staff_id, member_id = $member_id, reservation_id = $reservation_id
-                                WHERE bill_id = $bill_id";
+                                WHERE bill_id = $bill_id;";
+                
+                // Update member points if member_id is not empty
 
+   
+                $points = intval($GRANDTOTAL);
                 if ($link->query($updateQuery) === TRUE) {
+                    $update_points_sql = "UPDATE Memberships SET points = points + $points WHERE member_id = $member_id;";
+                    $link->query($update_points_sql);
                     echo '<div class="alert alert-success" role="alert">
                             Bill successfully Paid!
                           </div>';

@@ -191,7 +191,7 @@ function createNewBillRecord($table_id) {
 
                                         // Display the "Delete" button if the bill hasn't been paid
                                         if (!$has_payment_time) {
-                                            echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '">Delete</a></td>';
+                                            echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '&item_id=' . $item_id .'">Delete</a></td>';
                                         } else {
                                             echo '<td>Bill Paid</td>';
                                         }
