@@ -64,11 +64,11 @@
                             <div class="sb-sidenav-menu-heading">Report & Analytics</div>
                             <a class="nav-link" href="../panel/sales-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-fire"></i></div>
-                                Items
+                                Items Sales
                             </a>
                             <a class="nav-link" href="../panel/statistics-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Revenue
+                                Revenue Statistics
                             </a>
                             
                             
