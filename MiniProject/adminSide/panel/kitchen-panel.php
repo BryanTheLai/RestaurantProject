@@ -9,6 +9,7 @@ $result = mysqli_query($link, $query);
 <html>
 <head>
     <link href="../css/pos.css" rel="stylesheet" />
+        <meta http-equiv="refresh" content="5">
 </head>
 <body>
     <div class="container">
