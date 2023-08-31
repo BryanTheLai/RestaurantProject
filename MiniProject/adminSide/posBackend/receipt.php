@@ -62,7 +62,7 @@ $pdf->Ln();
 
 // Items
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(40, 10, 'Item', 1);
+$pdf->Cell(70, 10, 'Item', 1);
 $pdf->Cell(40, 10, 'Price', 1);
 $pdf->Cell(40, 10, 'Quantity', 1);
 $pdf->Cell(40, 10, 'Total', 1);
@@ -77,7 +77,7 @@ while ($item_row = mysqli_fetch_assoc($items_result)) {
     $total = $item_price * $quantity;
     $cart_total += $total;
 
-    $pdf->Cell(40, 10, $item_name, 1);
+    $pdf->Cell(70, 10, $item_name, 1);
     $pdf->Cell(40, 10, 'RM ' . $item_price, 1);
     $pdf->Cell(40, 10, $quantity, 1);
     $pdf->Cell(40, 10, 'RM ' . $total, 1);
