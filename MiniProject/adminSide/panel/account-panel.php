@@ -9,17 +9,46 @@
                     <a href="../accountCrud/createStaffAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Staff Account</a>
                     <a href="../accountCrud/createMemberAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Member Account</a>
                 </div>
+                <div class="mb-3">
+                    <h2 class="pull-left">Search Accounts</h2>
+                    <form method="POST" action="#">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Email or Account ID">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-light">Search</button>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="account-panel.php" class="btn btn-info">Show All</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <?php
                 // Include config file
                 require_once "../config.php";
 
-                // Attempt select query execution
-                $sql = "SELECT *, 
-                               IF(Accounts.staff_id IS NOT NULL, 'staff', 'member') AS account_type
-                        FROM Accounts
-                        LEFT JOIN Memberships ON Accounts.membership_id = Memberships.member_id
-                        LEFT JOIN Staffs ON Accounts.staff_id = Staffs.staff_id
-                        ORDER BY account_id;";
+                if (isset($_POST['search'])) {
+                    if (!empty($_POST['search'])) {
+                        $search = $_POST['search'];
+
+                        $sql = "SELECT *
+                                FROM Accounts
+                                WHERE email LIKE '%$search%' OR account_id LIKE '%$search%'
+                                ORDER BY account_id;";
+                    } else {
+                        // Default query to fetch all accounts
+                        $sql = "SELECT *
+                                FROM Accounts
+                                ORDER BY account_id;";
+                    }
+                } else {
+                    // Default query to fetch all accounts
+                    $sql = "SELECT *
+                            FROM Accounts
+                            ORDER BY account_id;";
+                }
 
                 if ($result = mysqli_query($link, $sql)) {
                     if (mysqli_num_rows($result) > 0) {
@@ -30,7 +59,7 @@
                         echo "<th>Email</th>";
                         echo "<th>Register Date</th>";
                         echo "<th>Phone Number</th>";
-                        echo "<th>Account Type</th>"; // Display account type
+                        //echo "<th>Account Type</th>"; // Display account type
                         echo "<th>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
@@ -41,7 +70,7 @@
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>" . $row['register_date'] . "</td>";
                             echo "<td>" . $row['phone_number'] . "</td>";
-                            echo "<td>" . ucfirst($row['account_type']) . "</td>"; // Display account type
+                            //echo "<td>" . ucfirst($row['account_type']) . "</td>"; // Display account type
                             echo "<td>";
                             $deleteSQL = "DELETE FROM Accounts WHERE account_id = '" . $row['account_id'] . "';";
                             echo '<a href="../accountCrud/deleteAccount.php?id=' . $row['account_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this account?\')"><span class="fa fa-trash text-black"></span></a>';

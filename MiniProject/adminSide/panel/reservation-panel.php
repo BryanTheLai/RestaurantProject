@@ -28,21 +28,22 @@
                 <?php
                 // Include config file
                 require_once "../config.php";
+                $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
 
                 if (isset($_POST['search'])) {
                     if (!empty($_POST['search'])) {
                         $search = $_POST['search'];
 
-                        $query = "SELECT * FROM reservations WHERE reservation_id LIKE '%$search%'";
-                        $result = mysqli_query($link, $query);
+                        $sql = "SELECT * FROM reservations WHERE reservation_id LIKE '%$search%' OR customer_name LIKE '%$search%'";
+                    } else {
+                        // Default query to fetch all reservations
+                        $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
                     }
-                } else {
-                    // Default query to fetch all reservations
+                } else{
                     $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
-                    $result = mysqli_query($link, $sql);
                 }
                 
-                if ($result) {
+                if ($result = mysqli_query($link, $sql)) {
                     if (mysqli_num_rows($result) > 0) {
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
