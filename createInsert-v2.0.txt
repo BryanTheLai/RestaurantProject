@@ -417,5 +417,6 @@ VALUES ('Member 1', 100,11),
 
 -- Reservations table
 INSERT INTO Reservations (reservation_id, customer_name, table_id, reservation_time, reservation_date, head_count, special_request)
-VALUES (0, 'Default Customer Name', 1, '22:00:34', '2023-08-29', 1, 'Default Special Request');
+VALUES (0, 'Default Customer Name', 1, '22:00:34', '2023-08-29', 1, 'Default Special Request'),
+(1, 'Default Customer Name', 2, '22:00:34', '2023-08-29', 1, 'Default Special Request');
   
