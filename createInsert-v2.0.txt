@@ -6,16 +6,29 @@ CREATE TABLE Menu (
   item_price DECIMAL(10, 2),
   item_description VARCHAR(255)
 );
+
+CREATE TABLE Accounts (
+  account_id INT PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255),
+  register_date DATE,
+  phone_number VARCHAR(255),
+  password VARCHAR(255)
+);
+
 CREATE TABLE Staffs (
   staff_id INT PRIMARY KEY AUTO_INCREMENT,
   staff_name VARCHAR(255),
-  role VARCHAR(255)
+  role VARCHAR(255),
+  account_id INT,
+  FOREIGN KEY (account_id ) REFERENCES Accounts(account_id )
 );
 
 CREATE TABLE Memberships (
   member_id INT PRIMARY KEY AUTO_INCREMENT,
   member_name VARCHAR(255),
-  points INT
+  points INT,
+  account_id INT,
+  FOREIGN KEY (account_id ) REFERENCES Accounts(account_id )
 );
 
 CREATE TABLE Restaurant_Tables (
@@ -51,17 +64,7 @@ CREATE TABLE Reservations (
   FOREIGN KEY (table_id) REFERENCES Restaurant_Tables(table_id)
 );
 
-CREATE TABLE Accounts (
-  account_id INT PRIMARY KEY AUTO_INCREMENT,
-  email VARCHAR(255),
-  register_date DATE,
-  phone_number VARCHAR(255),
-  password VARCHAR(255),
-  membership_id INT,
-  staff_id INT,
-  FOREIGN KEY (membership_id) REFERENCES Memberships(member_id),
-  FOREIGN KEY (staff_id) REFERENCES Staffs(staff_id)
-);
+
 
 
 CREATE TABLE card_payments (
@@ -358,22 +361,61 @@ VALUES (17, 'B1', 9),
        (17, 'HD1', 5),
        (15, 'SK4', 4);
 
+-- Accounts table
+INSERT INTO Accounts (email, register_date, phone_number, password)
+VALUES ('john@example.com', '2023-08-31', '+1234567890', 'password123'),
+       ('susan@example.com', '2023-08-30', '+1987654321', 'susanpassword'),
+       ('james@example.com', '2023-08-29', '+18887776666', 'jamespass'),
+       ('alice@example.com', '2023-08-28', '+15555555555', 'alicepassword'),
+       ('mike@example.com', '2023-08-27', '+14444444444', 'mikepass'),
+       ('lisa@example.com', '2023-08-26', '+13333333333', 'lisapassword'),
+       ('robert@example.com', '2023-08-25', '+12222222222', 'robertpass'),
+       ('emily@example.com', '2023-08-24', '+16666666666', 'emilypassword'),
+       ('david@example.com', '2023-08-23', '+1993219999', 'davidp321ass'),
+       ('ddwd@example.com', '2023-08-23', '+1999999329999', 'davidpa2ss'),
+       ('dadsvawvid@example.com', '2023-08-23', '+12234132199', 'david4pass'),
+       ('davdavid@example.com', '2023-08-23', '+123239999', 'davidp13ass'),
+       ('davvdasid@example.com', '2023-08-23', '+1995324319999', 'david2pass'),
+       ('321david@example.com', '2023-08-23', '+1942199999', 'davidpa52ss'),
+('32avid@example.com', '2023-08-23', '+1942193429999', 'da2332ss'),
+('321da543vid@example.com', '2023-08-23', '+1942132199999', 'dav43a52ss'),
+('3211234avid@example.com', '2023-08-23', '+194213599999', '32533pa52ss'),
+('321543avid@example.com', '2023-08-23', '+1942154399999', '754dpa52ss'),
+('rbsjsd@example.com', '2023-08-23', '+131351241239', '41f2s'),
+       ('ol435143ivia@example.com', '2023-08-22', '+18888888888', 'oliviapass4215word');
+
 
 -- Staffs table
-INSERT INTO Staffs (staff_id, staff_name, role)
-VALUES (0, 'Default Staff Name', 'Default Staff Role');
+INSERT INTO Staffs (staff_name, role, account_id)
+VALUES ('John Smith', 'Manager', 1),
+       ('Susan Johnson', 'Waiter', 2),
+       ('James Brown', 'Chef', 3),
+       ('Alice Davis', 'Waiter', 4),
+       ('Mike Wilson', 'Waiter', 5),
+       ('Lisa Martinez', 'Chef', 6),
+       ('Robert Miller', 'Waiter', 7),
+       ('Emily Moore', 'Manager', 8),
+       ('David Taylor', 'Waiter', 9),
+       ('Olivia Anderson', 'Chef', 10);
+
+
 
 -- Memberships table
-INSERT INTO Memberships (member_id, member_name, points)
-VALUES (0, 'Default Member Name', 100000);
+INSERT INTO Memberships (member_name, points,account_id)
+VALUES ('Member 1', 100,11),
+       ('Member 2', 200,12),
+       ('Member 3', 300,13),
+       ('Member 4', 400,14),
+       ('Member 5', 500,15),
+       ('Member 6', 600,16),
+       ('Member 7', 700,17),
+       ('Member 8', 800,18),
+       ('Member 9', 900,19),
+       ('Member 10', 1000,20);
+
 
 
 -- Reservations table
 INSERT INTO Reservations (reservation_id, customer_name, table_id, reservation_time, reservation_date, head_count, special_request)
 VALUES (0, 'Default Customer Name', 1, '22:00:34', '2023-08-29', 1, 'Default Special Request');
-
-
-
-
-
-
+  
