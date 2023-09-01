@@ -55,6 +55,7 @@
                         echo "<th>Reservation Date</th>";
                         echo "<th>Head Count</th>";
                         echo "<th>Special Request</th>";
+                        echo "<th>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -67,6 +68,9 @@
                             echo "<td>" . $row['reservation_date'] . "</td>";
                             echo "<td>" . $row['head_count'] . "</td>";
                             echo "<td>" . $row['special_request'] . "</td>";
+                            echo "<td>";
+                            echo '<a href="../reservationsCrud/deleteReservation.php?id='. $row['reservation_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this reservation?\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo "</td>";
                             echo "</tr>";
                         }
                         echo "</tbody>";
