@@ -29,7 +29,7 @@
                     if (!empty($_POST['search'])) {
                         $search = $_POST['search'];
                         
-                        $sql = "SELECT * FROM Bills WHERE bill_id LIKE '%$search%' OR customer_name LIKE '%$search%'";
+                        $sql = "SELECT * FROM Bills WHERE bill_id LIKE '%$search%' OR card_id LIKE '%$search%'";
                     } else {
                         // Default query to fetch all bills
                         $sql = "SELECT * FROM Bills ORDER BY bill_id;";
