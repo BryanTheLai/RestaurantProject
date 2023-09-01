@@ -33,6 +33,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
                                 Point of Sale 
                             </a>
+                            <a class="nav-link" href="../panel/bill-panel.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-receipt"></i></div>
+                                Bills
+                            </a>
                             <a class="nav-link" href="../panel/table-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table-cells"></i></div>
                                 Table
