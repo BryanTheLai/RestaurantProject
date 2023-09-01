@@ -28,7 +28,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $staffId = $_POST['staffId'];
         $memberId = !empty($_POST['memberId']) ? $_POST['memberId'] : 1;
-        $reservationId = !empty($_POST['reservationId']) ? $_POST['reservationId'] : 0;
+        $reservationId = !empty($_POST['reservationId']) ? $_POST['reservationId'] : 1;
         $bill_id = $_GET['bill_id'];
 
         // Check if the staff ID exists in the database
