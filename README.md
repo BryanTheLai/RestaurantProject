@@ -1,5 +1,7 @@
 # RestaurantProjectPHP
-Mini project for semester 4 at TARUMT
+- Website
+- POS
+- View User Preferences
 
 ## USEFUL LINK
   > PHP Crash Course by Brad Traversy: https://github.com/bradtraversy/php-crash/tree/main
