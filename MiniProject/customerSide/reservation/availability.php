@@ -31,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (count($availableTimes) > 0) {
             $availableTimesQueryParam = implode(",", $availableTimes);
-            header("Location: reserve.php?head_count=" . $head_count . "&reservation_date=" . urlencode($selectedDate) . "&available_times=" . urlencode($availableTimesQueryParam));
+            header("Location: ../home/home.php?head_count=" . $head_count . "&reservation_date=" . urlencode($selectedDate) . "&available_times=" . urlencode($availableTimesQueryParam));
             exit();
         } else {
             $message = "No available reservation times on '$selectedDate'.";
-            header("Location: reserve.php?head_count=" . $head_count . "&message=" . urlencode($message));
+            header("Location: ../home/home.php?head_count=" . $head_count . "&message=" . urlencode($message));
             exit();
         }
     }
