@@ -1,6 +1,6 @@
 <?php
-require_once 'config.php';
-session_start();
+
+
 
 $reservationStatus = $_GET['reservation'] ?? null;
 $message = '';
@@ -29,7 +29,7 @@ $resultCheckTables = mysqli_num_rows($result_tables);
 </head>
 <body>
     <h1>Search Available Time Slot</h1>
-    <form id="reservation-form" method="POST" action="availability.php">
+    <form id="reservation-form" method="POST" action="../reservation/availability.php">
         <label for="reservation_date">Select Date:</label>
         <input type="date" id="reservation_date" name="reservation_date" required>
         <label for="head_count">Number of People:</label>
@@ -38,7 +38,7 @@ $resultCheckTables = mysqli_num_rows($result_tables);
     </form>
 
     <h1>Make a Reservation</h1>
-    <form id="reservation-form" method="POST" action="reservation.php">
+    <form id="reservation-form" method="POST" action="../reservation/reservation.php">
         <label for="customer_name">Customer Name:</label>
         <input type="text" id="customer_name" name="customer_name" required>
         

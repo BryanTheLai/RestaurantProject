@@ -21,6 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($link, $insert_query2);
     
     $_SESSION['customer_name'] = $customer_name;
-    header("Location: reserve.php?reservation=success");
+    header("Location: ../home/home.php?reservation=success");
 }
 ?>
