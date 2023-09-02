@@ -116,9 +116,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
          body {
-            font-family: 'Montserrat', sans-serif;
+             font-family: 'Times New Roman', serif;
             color: white;
             background-color: black;
             display: flex;
@@ -133,46 +135,57 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         h2{
             text-align: center;
+              font-family: 'Times New Roman', serif;
         }
-      
+        
+        p{
+              font-family: 'Times New Roman', serif;
+        }
+        ::placeholder {
+        font-size: 12px; /* Adjust the font size as needed */
+    }
     </style>
 </head>
 <body>
    
- <p>&nbsp;&nbsp;&nbsp;</p> 
+
     <section id="signup">
         <div class="container my-6 ">
 	<a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        <p>&nbsp;&nbsp;&nbsp;</p>
+    
 
     <div class="wrapper">
         <h2>Sign Up</h2>
         
-        <p>Please fill this form to create an account.</p>
+        <p style="text-align: center;">Please fill this form to create an account.</p>
+
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <label>Username <i class="fa fa-user"></i></label>
+                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" placeholder="Enter Username">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
+            </div>
+            
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                <label>Password <i class="fa fa-key"></i></label>
+                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>"placeholder="Enter Password">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
+            
+            
             <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                <label>Confirm Password <i class="fa fa-key"></i></label>
+                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>"placeholder="Enter Comfirm Password">
                 <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
             </div>
             <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                <label>Email <i class="fa fa-envelope"></i></label>
+                <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>"placeholder="Enter email">
                 <span class="invalid-feedback"><?php echo $email_err; ?></span>
             </div>
             <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" name="phone_number" class="form-control <?php echo (!empty($phone_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phone_number; ?>">
+                <label>Phone Number <i class="fa fa-phone"></i></label>
+                <input type="tel" name="phone_number" class="form-control <?php echo (!empty($phone_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phone_number; ?>"placeholder="Enter Phone Number">
                 <span class="invalid-feedback"><?php echo $phone_number_err; ?></span>
             </div>
             <div class="form-group">
