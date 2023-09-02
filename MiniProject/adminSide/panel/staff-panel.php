@@ -1,5 +1,9 @@
 <?php include '../inc/dashHeader.php'; ?>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+    </style>
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">
@@ -7,6 +11,7 @@
                 <div class="mt-5 mb-3">
                     <h2 class="pull-left">Staff Details</h2>
                     <a href="../staffCrud/createStaff.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Staff</a>
+                    <a href="../staffCrud/linkStaff.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Assign Staff to an Account</a>
                 </div>
                 <div class="mb-3">
                     <h2 class="pull-left">Search Staff</h2>
@@ -32,41 +37,16 @@
                     if (!empty($_POST['search'])) {
                         $search = $_POST['search'];
 
-                        // Modified query to search staff members by staff_name or staff_id
-                        /*
-                        $sql = "SELECT *
-                                FROM Staffs stf
-                                INNER JOIN Accounts acc ON stf.account_id = acc.account_id
-                                WHERE stf.staff_name LIKE '%$search%' OR stf.staff_id = '$search'
-                                ORDER BY stf.staff_id";
-                         * 
-                         */
-                        $sql = "SELECT * FROM Staffs WHERE staff_name LIKE '%$search%' OR staff_id = '$search' ORDER BY account_id";
-                    } else {
-                        // Default query to fetch all staff members
-                        /*
-                        $sql = "SELECT *
-                                FROM Staffs stf
-                                INNER JOIN Accounts acc ON stf.account_id = acc.account_id
-                                ORDER BY stf.staff_id";
-                         * 
-                         */
-                        $sql = "SELECT * FROM Staffs ORDER BY account_id";
+                        $query = "SELECT * FROM Staffs WHERE staff_id LIKE '%$search%'";
+                        $result = mysqli_query($link, $query);
                     }
                 } else {
-                    // Default query to fetch all staff members
-                    /*
-                    $sql = "SELECT *
-                            FROM Staffs stf
-                            INNER JOIN Accounts acc ON stf.account_id = acc.account_id
-                            ORDER BY stf.staff_id";
-                     * 
-                     */
-                    $sql = "SELECT * FROM Staffs ORDER BY account_id";
-                }
+                    // Default query to fetch all reservations
+                    $sql = "SELECT * FROM Staffs ORDER BY staff_id;";
+                    $result = mysqli_query($link, $sql);
+                }               
 
-
-                if ($result = mysqli_query($link, $sql)) {
+                if ($result) {
                     if (mysqli_num_rows($result) > 0) {
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
