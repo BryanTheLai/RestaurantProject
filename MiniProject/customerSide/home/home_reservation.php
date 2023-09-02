@@ -1,5 +1,5 @@
 <?php
-require_once "../customerLogin/config.php";
+require_once "../reservation/config.php";
 $reservation_name = $reservation_nameErr = "";
 if(isset($_POST['submit'])){
     if (empty($_POST['reservation_name'])) {
