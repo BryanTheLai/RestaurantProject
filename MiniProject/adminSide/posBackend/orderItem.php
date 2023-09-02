@@ -143,7 +143,8 @@ function createNewBillRecord($table_id) {
                 <div class="container-fluid pt-5 pl-600 pr-5 row">
                     <div class="cart-section">
                         <h3>Cart</h3>
-                        <table>
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
                                 <th>Item ID</th>
                                 <th>Item Name</th>
@@ -152,7 +153,10 @@ function createNewBillRecord($table_id) {
                                 <th>Total</th>
                                 <th>Action</th>
                             </tr>
+                            </thead>
+                            
                             <div style="max-height: 40rem;overflow-y: auto;">
+                                <tbody>
                                 <?php
                                 // Query to fetch cart items for the given bill_id
                                 $cart_query = "SELECT bi.*, m.item_name, m.item_price FROM bill_items bi
@@ -201,14 +205,34 @@ function createNewBillRecord($table_id) {
                                     echo '<tr><td colspan="6">No Items in Cart.</td></tr>';
                                 }
                                 ?>
+                                </tbody>
                             </div>
                         </table>
                         <hr>
+                        <div class="table-responsive">
+    <table class="table table-bordered ">
+        <tbody>
+            <tr>
+                <td><strong>Cart Total</strong></td>
+                <td>RM <?php echo $cart_total; ?></td>
+            </tr>
+            <tr>
+                <td><strong>Cart Taxed</strong></td>
+                <td>RM <?php echo $cart_total * $tax; ?></td>
+            </tr>
+            <tr>
+                <td><strong>Grand Total</strong></td>
+                <td>RM <?php echo $tax * $cart_total + $cart_total; ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
                         <?php 
                         
-                        echo "Cart Total: RM " . $cart_total;
-                        echo "<br>Cart Taxed: RM " . $cart_total * $tax;
-                        echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
+                        //echo "Cart Total: RM " . $cart_total;
+                        //echo "<br>Cart Taxed: RM " . $cart_total * $tax;
+                        //echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
                       
                         // Check if the payment time record exists for the bill
                         $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
@@ -228,12 +252,12 @@ function createNewBillRecord($table_id) {
                             echo '<div class="alert alert-success" role="alert">
                                     Bill has already been paid.
                                   </div>';
-                            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-info">Print Receipt</a></div>';
+                            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a></div>';
                             
 
                             
                         } elseif(($tax * $cart_total + $cart_total) > 0) {
-                            echo '<br><a href="idValidity.php?bill_id=' . $bill_id . '" class="btn btn-primary">Pay</a>';
+                            echo '<br><a href="idValidity.php?bill_id=' . $bill_id . '" class="btn btn-success">Pay</a>';
                         } else {
                             echo '<br><h3>Add Item To Cart to Proceed</h3>';
                         }
@@ -245,7 +269,7 @@ function createNewBillRecord($table_id) {
                     <?php 
                        echo '<form action="newCustomer.php" method="get">'; // Add this form element
                         echo '<input type="hidden" name="table_id" value="' . $table_id . '">';
-                        echo '<button type="submit" name="new_customer" value="true" class="btn btn-primary">Proceed as New Customer</button>';
+                        echo '<button type="submit" name="new_customer" value="true" class="btn btn-warning">Proceed as New Customer</button>';
                         echo '</form>';
 
             

@@ -1,9 +1,83 @@
 <?php
-// payment/creditCardProcessing.php
-// Include your database connection configuration
-require_once('../config.php');
+require_once '../config.php';
+include '../inc/dashHeader.php';
+$bill_id = $_GET['bill_id'];
+?>
+
+<div class="container" style="margin-top: 15rem; margin-left: 4rem;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bill (Credit Card Payment)</h3>
+                </div>
+                <div class="card-body">
+                    <h5>Bill ID: <?php echo $bill_id; ?></h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Item ID</th>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            <?php
+            // Query to fetch cart items for the given bill_id
+            $cart_query = "SELECT bi.*, m.item_name, m.item_price FROM bill_items bi
+                           JOIN Menu m ON bi.item_id = m.item_id
+                           WHERE bi.bill_id = '$bill_id'";
+            $cart_result = mysqli_query($link, $cart_query);
+            $cart_total = 0;//cart total
+            $tax = 0.1; // 10% tax rate
+
+            if ($cart_result && mysqli_num_rows($cart_result) > 0) {
+                while ($cart_row = mysqli_fetch_assoc($cart_result)) {
+                    $item_id = $cart_row['item_id'];
+                    $item_name = $cart_row['item_name'];
+                    $item_price = $cart_row['item_price'];
+                    $quantity = $cart_row['quantity'];
+                    $total = $item_price * $quantity;
+                    $bill_item_id = $cart_row['bill_item_id'];
+                    $cart_total += $total;
+                    echo '<tr>';
+                    echo '<td>' . $item_id . '</td>';
+                    echo '<td>' . $item_name . '</td>';
+                    echo '<td>RM ' . $item_price . '</td>';
+                    echo '<td>' . $quantity . '</td>';
+                    echo '<td>RM ' . $total . '</td>';
+                    echo '</tr>';
+                }
+            } else {
+                echo '<tr><td colspan="6">No Items in Cart.</td></tr>';
+            }
+            ?>
+        </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <?php 
+                        echo "Cart Total: RM " . $cart_total;
+                        echo "<br>Cart Taxed: RM " . $cart_total * $tax;
+                        echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+
+<div id="card-payment" class="col-md-6 order-md-2" style="margin-top: 10rem; margin-right: 5rem;max-width: 40rem;">
+    <div class="container-fluid pt-5 pl-3 pr-3">
+
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve data from the form
     $account_holder_name = $_POST['cardName'];
@@ -16,21 +90,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reservation_id = $_POST['reservation_id'];
     $GRANDTOTAL = $_POST['GRANDTOTAL'];
     $points = intval($GRANDTOTAL);
+
     // Check if the bill has already been paid for
     $check_payment_sql = "SELECT card_id FROM Bills WHERE bill_id = '$bill_id'";
     $check_payment_result = $link->query($check_payment_sql);
-    $points = intval($GRANDTOTAL);
-    var_dump($points); // Add this line to check the value of $points
-    echo var_dump($points);
-    
 
     if ($check_payment_result) {
         $row = $check_payment_result->fetch_assoc();
-        if ($row['card_id'] !== null) {
-            echo "Bill has already been paid for.";
-            echo '<br><a href="posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
-            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-info">Print Receipt</a>';
 
+        if ($row['card_id'] !== null) {
+            echo '<div class="alert alert-warning" role="alert">';
+            echo "Bill has already been paid for.</div>";
+            
+            echo '<br><a href="posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
+            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-info"><span class="fa fa-receipt text-black"></span></a>';
         } else {
             $currentTime = date('Y-m-d H:i:s'); // Current time
 
@@ -57,9 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
 
-
-
-
                 // Prepare and execute the SQL query to update Bills table with payment details
                 $update_bill_sql = "UPDATE Bills SET card_id = ?, payment_method = ?, payment_time = ?,
                                     staff_id = ?, member_id = ?, reservation_id = ? WHERE bill_id = ?";
@@ -69,9 +139,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("issiiii", $card_id, $payment_method, $currentTime, $staff_id, $member_id, $reservation_id, $bill_id);
 
                 if ($stmt->execute()) {
-                    echo "Payment successful!";
+                    echo '<div class="alert alert-success" role="alert">
+                    Payment successful!</div>';
                     echo '<br><a href="posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
-                    echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-info">Print Receipt</a>';
+                    echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
                 } else {
                     echo "Error updating Bills table: " . $stmt->error;
                 }
@@ -82,8 +153,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error checking payment status: " . $link->error;
     }
-
 }
-
- 
 ?>
+    </div>
+    </div><!-- comment -->
+
+
+<?php include '../inc/dashFooter.php'; ?>

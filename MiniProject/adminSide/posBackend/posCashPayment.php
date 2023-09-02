@@ -7,21 +7,27 @@ $member_id = intval($_GET['member_id']);
 $reservation_id = $_GET['reservation_id'];
 ?>
 
-<div class="cart-section" style="margin-top: 15rem; margin-left: 15rem;max-width: 40rem;">
-    <h3>Bill (Cash Payment)</h3>
-    <?php
-    echo '<h5>Bill ID : ' . $bill_id . '</h5>';
-    ?>
-    <table>
-        <tr>
-            <th>Item ID</th>
-            <th>Item Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Action</th>
-        </tr>
-        <div style="max-height: 40rem;overflow-y: auto;">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bill (Cash Payment)</h3>
+                </div>
+                <div class="card-body">
+                    <h5>Bill ID: <?php echo $bill_id; ?></h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Item ID</th>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
             <?php
             // Query to fetch cart items for the given bill_id
             $cart_query = "SELECT bi.*, m.item_name, m.item_price FROM bill_items bi
@@ -52,25 +58,32 @@ $reservation_id = $_GET['reservation_id'];
                 echo '<tr><td colspan="6">No Items in Cart.</td></tr>';
             }
             ?>
-        </div>
-    </table>
-    <hr>
-    <?php 
-    echo "Cart Total: RM " . $cart_total;
-    echo "<br>Cart Taxed: RM " . $cart_total * $tax;
-    $GRANDTOTAL = $tax * $cart_total + $cart_total;
-    echo "<br>Grand Total: RM " . $GRANDTOTAL;
-    ?>
-</div>
+        </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <?php 
+                        echo "Cart Total: RM " . $cart_total;
+                        echo "<br>Cart Taxed: RM " . $cart_total * $tax;
+                        $GRANDTOTAL = $tax * $cart_total + $cart_total;
+                        echo "<br>Grand Total: RM " . $GRANDTOTAL;
+                        ?>
+                    </div>
+                </div>
+            </div>
+            
+            
 
-<div id="cash-payment">
-    <div class="container-fluid pt-5 pl-600 pr-5 row">
-        <h1>Cash Payment</h1>
+<div id="cash-payment" class="container-fluid mt-5 pt-5 pl-5 pr-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Cash Payment</h1>
             <form action="" method="get">
                 <div class="form-group">
                     <label for="payment_amount">Payment Amount</label>
                     <input type="number" id="payment_amount" name="payment_amount" class="form-control" required>
-                </div><br>
+                </div>
 
                 <!-- Add hidden input fields for bill_id, staff_id, member_id, and reservation_id -->
                 <input type="hidden" name="bill_id" value="<?php echo $bill_id; ?>">
@@ -79,9 +92,10 @@ $reservation_id = $_GET['reservation_id'];
                 <input type="hidden" name="reservation_id" value="<?php echo $reservation_id; ?>">
                 <input type="hidden" name="GRANDTOTAL" value="<?php echo $tax * $cart_total + $cart_total; ?>">
 
-
-                <button type="submit" id="cardSubmit" class="btn btn-dark">Submit</button>
+                <button type="submit" id="cardSubmit" class="btn btn-primary">Submit</button>
             </form>
+        </div>
+        <div class="col-md-6">
         <?php
         function calculateChange(float $paymentAmount, float $GrandTotal) {
             return $paymentAmount - $GrandTotal;
@@ -147,4 +161,7 @@ $reservation_id = $_GET['reservation_id'];
         ?>
 
     </div>
+    </div>
 </div>
+
+<?php include '../inc/dashFooter.php'; ?>
