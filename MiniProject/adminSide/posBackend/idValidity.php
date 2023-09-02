@@ -2,25 +2,30 @@
 <html>
 <head>
     <title>Check Staff Member Reservation Validity</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Check Staff Member Reservation Validity</h2>
-    <form action="" method="post">
-        <label for="staffId">Staff ID:</label>
-        <input type="text" id="staffId" name="staffId" required>
-        <br>
-        <label for="memberId">Member ID:</label>
-        <input type="text" id="memberId" name="memberId" >
-        <br>
-        <label for="reservationId">Reservation ID:</label>
-        <input type="text" id="reservationId" name="reservationId" >
-        <br>
-        <button type="submit">Check Validity</button>
-    </form>
-</body>
-</html>
+    <div class="container mt-5">
+        <h2 class="text-center">Check Staff Member Reservation Validity</h2>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="staffId">Staff ID:</label>
+                <input type="text" id="staffId" name="staffId" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="memberId">Member ID:</label>
+                <input type="text" id="memberId" name="memberId" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="reservationId">Reservation ID:</label>
+                <input type="text" id="reservationId" name="reservationId" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Check Validity</button>
+        </form>
+    </div>
 
-<div>
+<div class="container mt-3">
     <?php
     // Include your database connection configuration
     require_once('../config.php');
@@ -63,9 +68,13 @@
             }
 
             if ($staffExists && $memberExists && $reservationExists) {
+                echo '<div class="alert alert-success" role="alert">';
                 echo "Staff, member, and reservation are valid.";
-                echo '<br><a href="posCashPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-primary">Cash</a>';
-                echo '<br><a href="posCardPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-primary">Credit Card</a>';
+                echo '</div>';
+                echo '<div class="mt-3">';
+                echo '<a href="posCashPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-primary">Cash</a>';
+                echo '<a href="posCardPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-primary ml-2">Credit Card</a>';
+                echo '</div>';
             } else {
                 echo "Invalid staff, member, or reservation.";
             }
@@ -73,3 +82,9 @@
     }
     ?>
 </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
