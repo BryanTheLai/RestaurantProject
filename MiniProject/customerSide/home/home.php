@@ -266,8 +266,11 @@ session_start();
            <h1 style="text-align:center">MAIN DISHES</h1>
           <?php foreach ($mainDishes as $item): ?>
       <p>
-        <span class="item-name"><?php echo $item['item_name']; ?></span>
-        <span class="item-price">RM<?php echo $item['item_price']; ?></span>
+        <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
+        <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
+        <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <hr>
+        
       </p>
     <?php endforeach; ?>
       </div>
@@ -280,8 +283,10 @@ session_start();
            <h1 style="text-align:center">SIDE DISHES</h1>
           <?php foreach ($sides as $item): ?>
       <p>
-        <span class="item-name"><?php echo $item['item_name']; ?></span>
-        <span class="item-price">RM<?php echo $item['item_price']; ?></span>
+        <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
+        <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
+        <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <hr>
       </p>
     <?php endforeach; ?>
       </div>
@@ -295,8 +300,10 @@ session_start();
            <h1 style="text-align:center">DRINKS</h1>
           <?php foreach ($drinks as $item): ?>
       <p>
-        <span class="item-name"><?php echo $item['item_name']; ?></span>
-        <span class="item-price">RM<?php echo $item['item_price']; ?></span>
+        <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
+        <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
+        <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <hr>
       </p>
     <?php endforeach; ?>
       </div>
@@ -310,8 +317,10 @@ session_start();
            <h1 style="text-align:center">MAIN DISHES</h1>
           <?php foreach ($mainDishes as $item): ?>
       <p>
-        <span class="item-name"><?php echo $item['item_name']; ?></span>
-        <span class="item-price">RM<?php echo $item['item_price']; ?></span>
+        <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
+        <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
+        <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <hr>
       </p>
     <?php endforeach; ?>
       </div>
@@ -322,8 +331,10 @@ session_start();
            <h1 style="text-align:center">SIDE DISHES</h1>
           <?php foreach ($sides as $item): ?>
       <p>
-        <span class="item-name"><?php echo $item['item_name']; ?></span>
-        <span class="item-price">RM<?php echo $item['item_price']; ?></span>
+        <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
+        <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
+        <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <hr>
       </p>
     <?php endforeach; ?>
       </div>
@@ -333,8 +344,10 @@ session_start();
            <h1 style="text-align:center">DRINKS</h1>
           <?php foreach ($drinks as $item): ?>
       <p>
-        <span class="item-name"><?php echo $item['item_name']; ?></span>
-        <span class="item-price">RM<?php echo $item['item_price']; ?></span>
+        <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
+        <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
+        <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <hr>
       </p>
     <?php endforeach; ?>
       </div>
@@ -497,7 +510,7 @@ session_start();
       
     .item-name {
   display: inline-block; /* Ensure items are displayed on separate lines */
-  width: 60%; /* Adjust the width as needed */
+  width: 100%; /* Adjust the width as needed */
   float: left;
 }
 
