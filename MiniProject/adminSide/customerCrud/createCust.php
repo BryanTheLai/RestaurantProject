@@ -45,9 +45,18 @@ if(isset($_POST['submit'])){
     <p>Please fill in Membership Information Properly</p>
 
     <form method="POST" action="success_createMembership.php" class="ht-600 w-50">
+        
+        <div class="form-group">
+            <label for="member_id" class="form-label">Member ID:</label>
+            <input type="number" name="member_id" class="form-control <?php echo !$member_idErr ?: 'is-invalid'; ?>" id="member_id" required value="<?php echo $member_id; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid member_id.
+            </div>
+        </div>
+        
         <div class="form-group">
             <label for="member_name" class="form-label">Member Name :</label>
-            <input type="text" name="member_name" class="form-control <?php echo !$member_name_err ? 'is-invalid' : ''; ?>" id="member_name" required placeholder="John Doe" value="<?php echo $member_name; ?>"><br>
+            <input type="text" name="member_name" class="form-control <?php echo !$member_name_err ? 'is-invalid' : ''; ?>" id="member_name" required value="<?php echo $member_name; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
                 Please provide a valid member name.
             </div>
@@ -61,6 +70,14 @@ if(isset($_POST['submit'])){
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="account_id" class="form-label">Account ID:</label>
+            <input type="number" name="account_id" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $account_id; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid account_id.
+            </div>
+        </div>
+        
         <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Create Membership">
         </div>

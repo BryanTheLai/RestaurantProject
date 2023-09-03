@@ -16,30 +16,56 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form
+    $member_id = $_POST["member_id"];
     $member_name = $_POST["member_name"];
     $points = $_POST["points"];
+    $account_id = $_POST["account_id"];
+    
+    // Prepare the SQL query to check if the member_id already exists
+    $check_member_query = "SELECT member_id FROM Memberships WHERE member_id = ?";
+    $check_member_stmt = $conn->prepare($check_member_query);
+    $check_member_stmt->bind_param("i", $member_id);
+    $check_member_stmt->execute();
+    $check_member_result = $check_member_stmt->get_result();
 
-    // Prepare the SQL query to check if the member_name already exists
-    $check_query = "SELECT member_name FROM Memberships WHERE member_name = ?";
-    $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bind_param("s", $member_name);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
+    // Prepare the SQL query to check if the account_id already exists
+    $check_accountid_query = "SELECT account_id FROM Staffs WHERE account_id = ? UNION SELECT account_id FROM Memberships WHERE account_id = ?";
+    $check_accountid_stmt = $conn->prepare($check_accountid_query);
+    $check_accountid_stmt->bind_param("ii", $account_id, $account_id);
+    $check_accountid_stmt->execute();
+    $check_accountid_result = $check_accountid_stmt->get_result();
 
-    // Check if the member_name already exists
-    if ($check_result->num_rows > 0) {
-        $message = "The member name is already in use.<br>Please try again to choose a different member name.";
+    // Prepare the SQL query to check if the account_id not exists in Accounts
+    $check_account_query = "SELECT account_id FROM Accounts WHERE account_id = ?";
+    $check_account_stmt = $conn->prepare($check_account_query);
+    $check_account_stmt->bind_param("i", $account_id);
+    $check_account_stmt->execute();
+    $check_account_result = $check_account_stmt->get_result();
+
+    // Check if the member_id already exists or if account_id doesn't exist
+    if ($check_member_result->num_rows > 0) {
+        $message = "Member ID already exists. Please choose another Member ID.";
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
+    } elseif ($check_accountid_result->num_rows > 0) {
+        $message = "Account ID already exists for another staff member or membership. Please choose another account ID.";
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
+    } elseif ($check_account_result->num_rows == 0) {
+        // Account ID doesn't exist in Accounts table
+        $message = "Account ID doesn't exist in the Accounts table. Please choose an existing account ID that not own by anyone.";
         $iconClass = "fa-times-circle";
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
         // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Memberships (member_name, points) 
-                        VALUES (?, ?)";
+        $insert_query = "INSERT INTO Memberships (member_id, member_name, points, account_id) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_query);
 
         // Bind the parameters
-        $stmt->bind_param("si", $member_name, $points);
+        $stmt->bind_param("isii", $member_id, $member_name, $points, $account_id);
 
         // Execute the query
         if ($stmt->execute()) {
@@ -48,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD"; // Custom background color for success
         } else {
-            $message = "Error: " . $insert_query . "<br>" . $conn->error;
+            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
             $iconClass = "fa-times-circle";
             $cardClass = "alert-danger";
             $bgColor = "#FFA7A7"; // Custom background color for error
@@ -58,8 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
     }
 
-    // Close the check statement and the connection
-    $check_stmt->close();
+    // Close the check statements and the connection
+    $check_member_stmt->close();
+    $check_account_stmt->close();
     $conn->close();
 }
 ?>
