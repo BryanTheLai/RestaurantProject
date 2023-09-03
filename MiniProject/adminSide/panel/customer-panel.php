@@ -1,5 +1,9 @@
 <?php include '../inc/dashHeader.php'; ?>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+    </style>
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">

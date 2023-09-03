@@ -1,5 +1,9 @@
 <?php include '../inc/dashHeader.php'; ?>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+    </style>
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">
@@ -31,40 +35,14 @@
                 if (isset($_POST['search'])) {
                     if (!empty($_POST['search'])) {
                         $search = $_POST['search'];
-
-                        // Modified query to search staff members by staff_name or staff_id
-                        /*
-                        $sql = "SELECT *
-                                FROM Staffs stf
-                                INNER JOIN Accounts acc ON stf.account_id = acc.account_id
-                                WHERE stf.staff_name LIKE '%$search%' OR stf.staff_id = '$search'
-                                ORDER BY stf.staff_id";
-                         * 
-                         */
-                        $sql = "SELECT * FROM Staffs WHERE staff_name LIKE '%$search%' OR staff_id = '$search' ORDER BY account_id";
+                        $sql = "SELECT * FROM Staffs WHERE staff_name LIKE '%$search%' OR staff_id = '$search'ORDER BY staff_id";
                     } else {
-                        // Default query to fetch all staff members
-                        /*
-                        $sql = "SELECT *
-                                FROM Staffs stf
-                                INNER JOIN Accounts acc ON stf.account_id = acc.account_id
-                                ORDER BY stf.staff_id";
-                         * 
-                         */
-                        $sql = "SELECT * FROM Staffs ORDER BY account_id";
+                        $sql = "SELECT * FROM Staffs ORDER BY staff_id";
                     }
                 } else {
-                    // Default query to fetch all staff members
-                    /*
-                    $sql = "SELECT *
-                            FROM Staffs stf
-                            INNER JOIN Accounts acc ON stf.account_id = acc.account_id
-                            ORDER BY stf.staff_id";
-                     * 
-                     */
-                    $sql = "SELECT * FROM Staffs ORDER BY account_id";
-                }
-
+                    // Default query to fetch all reservations
+                    $sql = "SELECT * FROM Staffs ORDER BY staff_id;";
+                }               
 
                 if ($result = mysqli_query($link, $sql)) {
                     if (mysqli_num_rows($result) > 0) {
@@ -74,7 +52,7 @@
                         echo "<th>ID</th>";
                         echo "<th>Staff Name</th>";
                         echo "<th>Role</th>";
-                        //echo "<th>Email</th>";
+                        echo "<th>Account ID</th>";
                         //echo "<th>Phone Number</th>";
                         echo "<th>Delete</th>";
                         echo "</tr>";
@@ -85,7 +63,7 @@
                             echo "<td>" . $row['staff_id'] . "</td>";
                             echo "<td>" . $row['staff_name'] . "</td>";
                             echo "<td>" . $row['role'] . "</td>";
-                            //echo "<td>" . $row['email'] . "</td>";
+                            echo "<td>" . $row['account_id'] . "</td>";
                             //echo "<td>" . $row['phone_number'] . "</td>";
                             echo "<td>";
                             echo '<a href="../staffCrud/delete_staff.php?id=' . $row['staff_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this staff?\')"><span class="fa fa-trash text-black"></span></a>';
