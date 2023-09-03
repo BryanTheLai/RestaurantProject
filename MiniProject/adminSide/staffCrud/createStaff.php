@@ -56,6 +56,14 @@ if (isset($_POST['submit'])) {
         </div>
         
         <div class="form-group">
+            <label for="account_id" class="form-label">Account ID:</label>
+            <input type="number" name="account_id" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $account_id; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid account_id.
+            </div>
+        </div>
+        
+        <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Create Staff">
         </div>
 
