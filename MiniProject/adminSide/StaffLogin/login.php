@@ -45,9 +45,9 @@
 
     <form action="login_process.php" method="post">
         <div class="form-group">
-            <label for="staff_id">Staff ID:</label>
-            <input type="number" id="staff_id" name="staff_id" required class="form-control <?php echo (!empty($staff_id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $staff_id; ?>">
-            <span class="invalid-feedback"><?php echo $staff_id_err; ?></span>
+            <label for="account_id">Account ID:</label>
+            <input type="number" id="account_id" name="account_id" required class="form-control <?php echo (!empty($account_id)) ? 'is-invalid' : ''; ?>" value="<?php echo $account_id; ?>">
+            <span class="invalid-feedback"><?php echo $account_id; ?></span>
         </div>
         
         <div class="form-group">

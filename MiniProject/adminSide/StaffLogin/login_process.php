@@ -18,28 +18,42 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // User-provided input
-    $provided_staff_id = $_POST['staff_id'];
+    $provided_account_id = $_POST['account_id'];
     $provided_password = $_POST['password'];
 
-    // Query to fetch staff record based on provided staff_id
-    $query = "SELECT * FROM Accounts WHERE staff_id = '$provided_staff_id'";
+    // Query to fetch staff record based on provided account_id
+    $query = "SELECT * FROM Accounts WHERE account_id = '$provided_account_id'";
     $result = $conn->query($query);
 
     if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
         $stored_password = $row['password'];
 
-        // Verify the provided password (for demonstration purposes only)
         if ($provided_password === $stored_password) {
-            // Password matches, login successful
-            $message = "Login successful.<br> Welcome to Shonny's Staff Panel.";
+        // Password matches, login successful
+
+        // Check if the account_id exists in the Staffs table
+        $staff_query = "SELECT * FROM Staffs WHERE account_id = '$provided_account_id'";
+        $staff_result = $conn->query($staff_query);
+
+        if ($staff_result->num_rows === 1) {
+            $message = "Login successful.<br> Welcome to Johnny's Staff Panel.";
             $iconClass = "fa-check-circle";
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD";
-            $direction = "../panel/pos-panel.php"; //success go staff panel
+            $direction = "../panel/pos-panel.php"; // Success, go to staff panel
             
             // After successful login
-            $_SESSION['logged_staff_id'] = $provided_staff_id;
+            $_SESSION['logged_account_id'] = $provided_account_id;
+        } else {
+            // Staff ID not found in Staffs table
+            $message = "Staff ID not found.<br>Please try again to choose a correct Staff ID.";
+            $iconClass = "fa-times-circle";
+            $cardClass = "alert-danger";
+            $bgColor = "#FFA7A7"; // Custom background color for error
+            $direction = "login.php"; // Fail, go back to login
+            }      
+            
         } else {
             $message = "Incorrect password.<br>Please try again to type your password.";
             $iconClass = "fa-times-circle";
