@@ -31,7 +31,7 @@ require_once '../config.php'; // Include your database configuration
                 </div>
             </div>
 
-            <div class="col-md-12" style="margin-top: 0rem;max-height: 600px; overflow-y: auto;">
+            <div class="col-md-12" style="margin-left: 17rem; margin-top: 0rem;max-height: 700px; overflow-y: auto;">
                 <div class="row justify-content-center">
                     
                     
