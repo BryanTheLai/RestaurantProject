@@ -19,48 +19,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $staff_id = $_POST["staff_id"];
     $staff_name = $_POST["staff_name"];
     $role = $_POST["role"];
-
+    $account_id = $_POST["account_id"];
+    
     // Prepare the SQL query to check if the staff_id already exists
-    $check_query = "SELECT staff_id FROM Staffs WHERE staff_id = ?";
-    $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bind_param("i", $staff_id);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
+    $check_staff_query = "SELECT staff_id FROM Staffs WHERE staff_id = ?";
+    $check_staff_stmt = $conn->prepare($check_staff_query);
+    $check_staff_stmt->bind_param("i", $staff_id);
+    $check_staff_stmt->execute();
+    $check_staff_result = $check_staff_stmt->get_result();
 
-    // Check if the staff_id already exists
-    if ($check_result->num_rows > 0) {
+    // Prepare the SQL query to check if the account_id already exists
+    $check_accountid_query = "SELECT account_id FROM Staffs WHERE account_id = ? UNION SELECT account_id FROM Memberships WHERE account_id = ?";
+    $check_accountid_stmt = $conn->prepare($check_accountid_query);
+    $check_accountid_stmt->bind_param("ii", $account_id, $account_id);
+    $check_accountid_stmt->execute();
+    $check_accountid_result = $check_accountid_stmt->get_result();
+
+    // Prepare the SQL query to check if the account_id not exists in Accounts
+    $check_account_query = "SELECT account_id FROM Accounts WHERE account_id = ?";
+    $check_account_stmt = $conn->prepare($check_account_query);
+    $check_account_stmt->bind_param("i", $account_id);
+    $check_account_stmt->execute();
+    $check_account_result = $check_account_stmt->get_result();
+   
+    // Check if the staff_id or account_id already exists
+    if ($check_staff_result->num_rows > 0) {
         $message = "Staff ID already exists. Please choose another staff ID.";
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
+    } elseif ($check_accountid_result->num_rows > 0) {
+        $message = "Account ID already exists for another staff member or membership. Please choose another account ID.";
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
+    } elseif ($check_account_result->num_rows == 0) {
+        // Account ID doesn't exist in Accounts table
+        $message = "Account ID doesn't exist in the Accounts table. Please choose an existing account ID that not own by anyone.";
         $iconClass = "fa-times-circle";
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
     } else {
         // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role) VALUES (?, ?, ?)";
+        $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role, account_id) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_query);
 
         // Bind the parameters
-        $stmt->bind_param("iss", $staff_id, $staff_name, $role); // Corrected parameter types
-
+        $stmt->bind_param("isss", $staff_id, $staff_name, $role, $account_id); // Corrected parameter types
 
         // Execute the query
         if ($stmt->execute()) {
-            $message = "Staff created successfully.Welcome to Join Us";
+            $message = "Staff created successfully. Welcome to Join Us.";
             $iconClass = "fa-check-circle";
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD"; // Custom background color for success
         } else {
-                $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-                $iconClass = "fa-times-circle";
-                $cardClass = "alert-danger";
-                $bgColor = "#FFA7A7"; // Custom background color for error
+            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
+            $iconClass = "fa-times-circle";
+            $cardClass = "alert-danger";
+            $bgColor = "#FFA7A7"; // Custom background color for error
         }
 
         // Close the prepared statement
         $stmt->close();
     }
 
-    // Close the check statement and the connection
-    $check_stmt->close();
+    // Close the check statements and the connection
+    $check_staff_stmt->close();
+    $check_account_stmt->close();
     $conn->close();
 }
 ?>

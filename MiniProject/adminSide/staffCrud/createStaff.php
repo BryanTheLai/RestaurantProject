@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 
         <div class="form-group">
             <label for="staff_id" class="form-label">Staff ID:</label>
-            <input type="number" name="staff_id" class="form-control <?php echo !$staff_idErr ?: 'is-invalid'; ?>" id="staff_id" required value="<?php echo $staff_id; ?>"><br>
+            <input type="number" name="staff_id" placeholder="21" class="form-control <?php echo !$staff_idErr ?: 'is-invalid'; ?>" id="staff_id" required value="<?php echo $staff_id; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
                 Please provide a valid staff_id.
             </div>
@@ -45,14 +45,22 @@ if (isset($_POST['submit'])) {
 
         <div class="form-group">
             <label for="staff_name">Staff Name:</label>
-            <input type="text" name="staff_name" id="staff_name" required class="form-control <?php echo (!empty($staff_name_err)) ? 'is-invalid' : ''; ?>"><br>
+            <input type="text" name="staff_name" placeholder="Johnny" id="staff_name" required class="form-control <?php echo (!empty($staff_name_err)) ? 'is-invalid' : ''; ?>"><br>
             <span class="invalid-feedback"></span>
         </div>
 
         <div class="form-group">
             <label for="role">Role:</label>
-            <input type="text" name="role" id="role" required class="form-control <?php echo (!empty($role_err)) ? 'is-invalid' : ''; ?>"><br>
+            <input type="text" name="role" id="role" placeholder="Waiter" required class="form-control <?php echo (!empty($role_err)) ? 'is-invalid' : ''; ?>"><br>
             <span class="invalid-feedback"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="account_id" class="form-label">Account ID:</label>
+            <input type="number" name="account_id" placeholder="21" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $account_id; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid account_id.
+            </div>
         </div>
         
         <div class="form-group">
