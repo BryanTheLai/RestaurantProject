@@ -1,5 +1,7 @@
 <?php include '../inc/dashHeader.php'; ?>
-
+    <style>
+        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+    </style>
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">
@@ -9,7 +11,6 @@
                     <a href="../reservationsCrud/createReservation.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Reservation</a>
                 </div>
                 <div class="mb-3">
-                    <h2 class="pull-left">Search Reservations</h2>
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">

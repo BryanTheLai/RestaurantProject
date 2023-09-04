@@ -5,16 +5,15 @@ $query = "SELECT * FROM Kitchen WHERE time_ended IS NULL";
 $result = mysqli_query($link, $query);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
+
+
     <link href="../css/pos.css" rel="stylesheet" />
     <meta http-equiv="refresh" content="5">
-</head>
-<body>
-    <div class="container">
+
+<div class="wrapper" style="width: 1300px; padding-left: 200px; padding-top: 20px">
+    <div class="container-fluid pt-5 pl-600 mt-5">
         <h2>Kitchen Panel</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered ">
             <thead>
                 <a href="../posBackend/kitchenBackend/undo.php?UndoUnshow=true" class="btn btn-warning">Undo</a>
                 <tr>
@@ -66,5 +65,6 @@ $result = mysqli_query($link, $query);
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</div>
+
+

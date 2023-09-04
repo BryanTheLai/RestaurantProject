@@ -1,7 +1,5 @@
 <?php  include '../inc/dashHeader.php'?>   
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body{ font: 14px sans-serif; }
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
     </style>
 <div class="wrapper">
@@ -13,7 +11,6 @@
                         <a href="../tableCrud/createTable.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Table</a>
                     </div>
                     <div class="mb-3">
-                    <h2 class="pull-left">Search Table</h2>
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">

@@ -34,6 +34,8 @@ $totalRevenueThisMonthRow = mysqli_fetch_assoc($totalRevenueThisMonthResult);
 $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
 ?>
 
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 15rem;">
