@@ -5,10 +5,13 @@
         <div class="row">
             <div class="m-50">
                 <div class="mt-5 mb-3">
-                    <h2 class="pull-left">Members and Staff Account Details</h2>
-                    <a href="../accountCrud/createStaffAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Staff Account</a>
+                    <h2 class="pull-left">Account Details</h2>
+                    <a href="../accountCrud/createStaffAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Account</a>
+                    <!--
                     <a href="../accountCrud/createMemberAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Member Account</a>
+                    -->
                 </div>
+                
                 <div class="mb-3">
                     <h2 class="pull-left">Search Accounts</h2>
                     <form method="POST" action="#">
@@ -25,6 +28,7 @@
                         </div>
                     </form>
                 </div>
+                
                 <?php
                 // Include config file
                 require_once "../config.php";
