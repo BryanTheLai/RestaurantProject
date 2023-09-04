@@ -40,6 +40,8 @@ $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
     <div class="row">
         <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 15rem;">
             <div class="container pt-5 pl-600 row">
+                <a href="../report/generate_report.php" class="btn btn-primary">Print Report</a>
+
                 <?php
                 require_once '../config.php';
 
