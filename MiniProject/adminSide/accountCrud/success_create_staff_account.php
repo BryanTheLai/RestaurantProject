@@ -16,36 +16,44 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form
+    $account_id = $_POST["account_id"];
     $email = $_POST["email"];
+    $register_date = $_POST["register_date"];
     $phone_number = $_POST["phone_number"];
     $password = $_POST["password"];
-    $membership_id = isset($_POST["membership_id"]) ? $_POST["membership_id"] : null;
-    $staff_id = isset($_POST["staff_id"]) ? $_POST["staff_id"] : null;
-
-    // Prepare the SQL query to check if the item_id already exists
-    $check_query = "SELECT email FROM Accounts WHERE email = ?";
-    $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bind_param("s", $email);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();    
     
-    // Check if the email already exists
-    if ($check_result->num_rows > 0) {
-        $message = "The email is already in use.<br>Please try again to choose a different email.";
+    // Prepare the SQL query to check if the account_id already exists
+    $check_account_query = "SELECT account_id FROM Accounts WHERE account_id = ?";
+    $check_account_stmt = $conn->prepare($check_account_query);
+    $check_account_stmt->bind_param("i", $account_id);
+    $check_account_stmt->execute();
+    $check_account_result = $check_account_stmt->get_result();
+    
+    // Prepare the SQL query to check if the email already exists
+    $check_email_query = "SELECT email FROM Accounts WHERE email = ?";
+    $check_email_stmt = $conn->prepare($check_email_query);
+    $check_email_stmt->bind_param("s", $email);
+    $check_email_stmt->execute();
+    $check_email_result = $check_email_stmt->get_result();
+
+    // Check if the account_id already exists
+    if ($check_account_result->num_rows > 0) {
+        $message = "Account ID already exists. Please choose another Account ID.";
         $iconClass = "fa-times-circle";
         $cardClass = "alert-danger";
         $bgColor = "#FFA7A7"; // Custom background color for error
+    } elseif ($check_email_result->num_rows > 0) {
+        $message = "Email already exist for another an account. Please choose another email.";
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error   
     } else {
-            // Prepare the SQL query for insertion
-                $insert_query = "INSERT INTO Accounts (email, register_date, phone_number, password, membership_id, staff_id) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-                $stmt = $conn->prepare($insert_query);
+        // Prepare the SQL query for insertion
+        $insert_query = "INSERT INTO Accounts (account_id, email, register_date, phone_number, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($insert_query);
 
-                // Current date for register_date
-                $register_date = date("Y-m-d");
-
-                // Bind the parameters
-                $stmt->bind_param("ssssii", $email, $register_date, $phone_number, $password, $membership_id, $staff_id);
+        // Bind the parameters
+        $stmt->bind_param("issss", $account_id, $email, $register_date, $phone_number, $password);
 
         // Execute the query
         if ($stmt->execute()) {
@@ -54,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $cardClass = "alert-success";
             $bgColor = "#D4F4DD"; // Custom background color for success
         } else {
-            $message = "Error: " . $insert_query . "<br>" . $conn->error;
+            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
             $iconClass = "fa-times-circle";
             $cardClass = "alert-danger";
             $bgColor = "#FFA7A7"; // Custom background color for error
@@ -65,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Close the check statement and the connection
-    $check_stmt->close();
+    $check_account_stmt->close();
     $conn->close();
 }
 ?>
