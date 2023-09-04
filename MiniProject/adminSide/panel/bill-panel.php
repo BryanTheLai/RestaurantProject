@@ -1,10 +1,13 @@
 <?php include '../inc/dashHeader.php'; ?>
+    <style>
+        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+    </style>
 
 <div class="wrapper">
     <div class="container-fluid pt-5 pl-600">
         <div class="row">
             <div class="m-50">
-                <div class="mb-3">
+                <div class="mt-5 mb-3">
                     <h2 class="pull-left">Search Bills Details</h2>
                     <form method="POST" action="#">
                         <div class="row">

@@ -6,6 +6,7 @@ include '../inc/dashHeader.php';
 <html>
 <head>
     <link href="../css/pos.css" rel="stylesheet" />
+    
 </head>
 <body>
 <div class="container">
