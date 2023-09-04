@@ -56,11 +56,38 @@ if (isset($_POST['submit'])) {
         </div>
         
         <div class="form-group">
-            <label for="account_id" class="form-label">Account ID:</label>
-            <input type="number" name="account_id" placeholder="21" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $account_id; ?>"><br>
-            <div id="validationServerFeedback" class="invalid-feedback">
-                Please provide a valid account_id.
-            </div>
+        <label for="account_id" class="form-label">Account ID:</label>
+        <select id="account_id" name="account_id" required>
+            <option value="">Select an account</option>
+            <?php
+            // Assuming you have a database connection established
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "restaurantdb";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Query to retrieve accounts that don't exist in Staffs and Memberships tables
+            $query = "SELECT A.account_id
+                      FROM Accounts A
+                      LEFT JOIN Staffs S ON A.account_id = S.account_id
+                      LEFT JOIN Memberships M ON A.account_id = M.account_id
+                      WHERE S.account_id IS NULL AND M.account_id IS NULL";
+
+            $result = $conn->query($query);
+
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row['account_id'] . "'>" . $row['account_id'] . "</option>";
+            }
+
+            $conn->close();
+            ?>
+        </select>
         </div>
         
         <div class="form-group">
