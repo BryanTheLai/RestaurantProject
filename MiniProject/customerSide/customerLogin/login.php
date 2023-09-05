@@ -1,156 +1,158 @@
 <?php
-// Initialize the session
+// Include your database connection code here
+require_once "config.php"; // Make sure to replace "config.php" with your actual database connection file.
 session_start();
- 
-// Check if the user is already logged in, if yes then redirect him to the welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../home/home.php");
-    exit;
-}
- 
-// Include config file
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
-    } else{
-        $username = trim($_POST["username"]);
+
+// Define variables for email and password
+$email = $password = "";
+$email_err = $password_err = "";
+
+// Check if the form was submitted.
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate email
+    if (empty(trim($_POST["email"]))) {
+        $email_err = "Please enter your email.";
+    } else {
+        $email = trim($_POST["email"]);
     }
-    
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
+
+    // Validate password
+    if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter your password.";
-    } else{
+    } else {
         $password = trim($_POST["password"]);
     }
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+
+    // Check input errors before checking authentication
+    if (empty($email_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT account_id, username, password FROM Accounts WHERE username = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
+        $sql = "SELECT * FROM Accounts WHERE email = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
+
             // Set parameters
-            $param_username = $username;
-            
+            $param_email = $email;
+
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Store result
-                mysqli_stmt_store_result($stmt);
-                
-                // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $account_id, $username, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["account_id"] = $account_id;
-                            $_SESSION["username"] = $username;                            
-                            
-                            // Redirect user to welcome page
-                            header("location: ../home/home.php");
-                        } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
-                        }
+            if (mysqli_stmt_execute($stmt)) {
+                // Get the result
+                $result = mysqli_stmt_get_result($stmt);
+
+                // Check if a matching record was found.
+                if (mysqli_num_rows($result) == 1) {
+                    // Fetch the result row
+                    $row = mysqli_fetch_assoc($result);
+
+                    // Verify the password
+                    if (password_verify($password, $row["password"])) {
+                        // Password is correct, start a new session and redirect the user to a dashboard or home page.
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["email"] = $email;
+                        header("location: ../home/home.php"); // Redirect to the home page
+                        exit;
+                    } else {
+                        // Password is incorrect
+                        $password_err = "Invalid password. Please try again.";
                     }
-                } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
+                } else {
+                    // No matching records found
+                    $email_err = "No account found with this email.";
                 }
-            } else{
+            } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
+            // Close the statement
             mysqli_stmt_close($stmt);
         }
     }
-    
-    // Close connection
-    mysqli_close($link);
 }
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-         body {
+        
+
+
+/* Style for the container within login.php */
+.login-container {
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background */
+  padding: 50px; /* Adjust the padding as needed */
+  border-radius: 10px; /* Add rounded corners */
+  margin: 100px auto; /* Center the container horizontally */
+  max-width: 500px; /* Set a maximum width for the container */
+}
+
+
+
+        body {
             font-family: 'Times New Roman', serif;
-            color: white;
-            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0; /* Remove default margin */
+            background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
         }
 
-        .wrapper {
-            width: 560px;
+        .login_wrapper {
+            width: 400px; /* Adjust the container width as needed */
             padding: 20px;
         }
-        h2{
+
+        h2 {
             text-align: center;
+            font-family: 'Times New Roman', serif;
         }
-        
+
+        p {
+            font-family: 'Times New Roman', serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Add space between form elements */
+        }
+
         ::placeholder {
-        font-size: 12px; /* Adjust the font size as needed */
-    }
+            font-size: 12px; /* Adjust the font size as needed */
+        }
     </style>
 </head>
 <body>
-    <br>
-    <section id="signup">
-        <div class="container my-6 ">
+    <div class="login-container">
+    <div class="login_wrapper">
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        <br>
-    <div class="wrapper">
         <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-
-        <?php 
-        if(!empty($login_err)){
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
-        }        
-        ?>
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <p>Please enter your email and password to log in.</p>
+        <form action="login.php" method="post">
             <div class="form-group">
-                <label>Username <i class="fa fa-user"></i></label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>"placeholder="Enter Username">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <label>Password <i class="fa fa-key"></i></label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>"placeholder="Enter Password">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                <label>Email <i class="fa fa-envelope "></i> :</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
+
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <label>Password <i class="fa fa-key "></i> :</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+
+            <input type="submit" class="btn btn-primary" value="Login">
         </form>
+
+        <p>Don't have an account? <a href="register.php">Register here</a></p>
+    </div>
     </div>
 </body>
 </html>
