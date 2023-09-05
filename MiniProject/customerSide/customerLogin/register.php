@@ -1,199 +1,216 @@
 <?php
-// Include config file
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$username = $password = $confirm_password = $email = $phone_number = "";
-$username_err = $password_err = $confirm_password_err = $email_err = $phone_number_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Validate username
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
-        $username_err = "Username can only contain letters, numbers, and underscores.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT account_id FROM Accounts WHERE username = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
-            // Set parameters
-            $param_username = trim($_POST["username"]);
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-                
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "This username is already taken.";
-                } else{
-                    $username = trim($_POST["username"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+// Include your database connection code here (not shown in this example).
+require_once "config.php"; // Make sure to replace "config.php" with your actual database connection file.
+session_start();
 
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
-    
-    // Validate password
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";     
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have at least 6 characters.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";     
-    } else{
-        $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
-        }
-    }
-    
+// Define variables and initialize them to empty values
+$email = $member_name = $password = $phone_number = "";
+$email_err = $member_name_err = $password_err = $phone_number_err = "";
+
+// Check if the form was submitted.
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate email
-    if(empty(trim($_POST["email"]))){
+    if (empty(trim($_POST["email"]))) {
         $email_err = "Please enter your email.";
     } else {
         $email = trim($_POST["email"]);
     }
-    
+
+    // Validate member name
+    if (empty(trim($_POST["member_name"]))) {
+        $member_name_err = "Please enter your member name.";
+    } else {
+        $member_name = trim($_POST["member_name"]);
+    }
+
+    // Validate password
+    if (empty(trim($_POST["password"]))) {
+        $password_err = "Please enter a password.";
+    } elseif (strlen(trim($_POST["password"])) < 6) {
+        $password_err = "Password must have at least 6 characters.";
+    } else {
+        $password = trim($_POST["password"]);
+    }
+
     // Validate phone number
-    if(empty(trim($_POST["phone_number"]))){
+    if (empty(trim($_POST["phone_number"]))) {
         $phone_number_err = "Please enter your phone number.";
     } else {
         $phone_number = trim($_POST["phone_number"]);
     }
-    
-    // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($phone_number_err)){
-        // Prepare an insert statement
-        $sql = "INSERT INTO Accounts (username, password, email, phone_number) VALUES (?, ?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
+
+    // Check input errors before inserting into the database
+    if (empty($email_err) && empty($member_name_err) && empty($password_err) && empty($phone_number_err)) {
+        // Start a transaction
+        mysqli_begin_transaction($link);
+
+        // Prepare an insert statement for Accounts table
+        $sql_accounts = "INSERT INTO Accounts (email, password, phone_number, register_date) VALUES (?, ?, ?, NOW())";
+        if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_password, $param_email, $param_phone_number);
-            
+            mysqli_stmt_bind_param($stmt_accounts, "sss", $param_email, $param_password, $param_phone_number);
+
             // Set parameters
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT);
             $param_email = $email;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
             $param_phone_number = $phone_number;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: login.php");
-            } else{
+
+            // Attempt to execute the prepared statement for Accounts table
+            if (mysqli_stmt_execute($stmt_accounts)) {
+                // Get the last inserted account_id
+                $last_account_id = mysqli_insert_id($link);
+
+                // Prepare an insert statement for Memberships table
+                $sql_memberships = "INSERT INTO Memberships (member_name, points, account_id) VALUES (?, ?, ?)";
+                if ($stmt_memberships = mysqli_prepare($link, $sql_memberships)) {
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt_memberships, "sii", $param_member_name, $param_points, $last_account_id);
+
+                    // Set parameters for Memberships table
+                    $param_member_name = $member_name;
+                    $param_points = 0; // You can set an initial value for points
+
+                    // Attempt to execute the prepared statement for Memberships table
+                    if (mysqli_stmt_execute($stmt_memberships)) {
+                        // Commit the transaction
+                        mysqli_commit($link);
+
+                        // Registration successful, redirect to the login page
+                        header("location: login.php");
+                        exit;
+                    } else {
+                        // Rollback the transaction if there was an error
+                        mysqli_rollback($link);
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+
+                    // Close the statement for Memberships table
+                    mysqli_stmt_close($stmt_memberships);
+                }
+            } else {
+                // Rollback the transaction if there was an error
+                mysqli_rollback($link);
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
+            // Close the statement for Accounts table
+            mysqli_stmt_close($stmt_accounts);
         }
     }
-    
-    // Close connection
-    mysqli_close($link);
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Registration Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-         body {
-             font-family: 'Times New Roman', serif;
-            color: white;
-            background-color: black;
+        body {
+            font-family: 'Times New Roman', serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
+            margin: 0; /* Remove default margin */    
+            background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white; /* Set text color to white */
+            }
 
-        .wrapper {
-            width: 560px;
+
+        
+/* Style for the container within login.php */
+.register-container {
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background */
+  padding: 50px; /* Adjust the padding as needed */
+  border-radius: 10px; /* Add rounded corners */
+  margin: 100px auto; /* Center the container horizontally */
+  max-width: 500px; /* Set a maximum width for the container */
+}
+        .register_wrapper {
+            width: 400px; /* Increase the container width */
             padding: 20px;
         }
-        h2{
+
+        h2 {
             text-align: center;
-              font-family: 'Times New Roman', serif;
+            font-family: 'Times New Roman', serif;
         }
-        
-        p{
-              font-family: 'Times New Roman', serif;
+
+        p {
+            font-family: 'Times New Roman', serif;
         }
+
+        .form-group {
+            margin-bottom: 15px; /* Add space between form elements */
+        }
+
         ::placeholder {
-        font-size: 12px; /* Adjust the font size as needed */
-    }
+            font-size: 12px; /* Adjust the font size as needed */
+        }
+
+        /* Add flip animation class to all Font Awesome icons */
+        .fa-flip {
+            animation: fa-flip 3s infinite;
+        }
+
+        /* Keyframes for the flip animation */
+        @keyframes fa-flip {
+            0% {
+                transform: scale(1) rotateY(0);
+            }
+            50% {
+                transform: scale(1.2) rotateY(180deg);
+            }
+            100% {
+                transform: scale(1) rotateY(360deg);
+            }
+        }
     </style>
 </head>
 <body>
-   
+    <div class="register-container">
+    <div class="register_wrapper"> <!-- Updated class name -->
+        <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
+        <h2>Registration Form</h2>
+        <p>Please fill this form to create an account.</p>
+        <form action="register.php" method="post">
+            <div class="form-group">
+                <label>Email <i class="fa fa-envelope "></i> :</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+            </div>
 
-    <section id="signup">
-        <div class="container my-6 ">
-	<a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-    
+            <div class="form-group">
+                <label>Member Name <i class="fa fa-user "></i> :</label>
+                <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" required>
+            </div>
 
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        
-        <p style="text-align: center;">Please fill this form to create an account.</p>
+            <div class="form-group">
+                <label>Password <i class="fa fa-key "></i> :</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+            </div>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>Username <i class="fa fa-user"></i></label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" placeholder="Enter Username">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                <label>Phone Number <i class="fa fa-phone "></i> :</label>
+                <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
             </div>
-            
-            <div class="form-group">
-                <label>Password <i class="fa fa-key"></i></label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>"placeholder="Enter Password">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            
-            
-            <div class="form-group">
-                <label>Confirm Password <i class="fa fa-key"></i></label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>"placeholder="Enter Comfirm Password">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Email <i class="fa fa-envelope"></i></label>
-                <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>"placeholder="Enter email">
-                <span class="invalid-feedback"><?php echo $email_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Phone Number <i class="fa fa-phone"></i></label>
-                <input type="tel" name="phone_number" class="form-control <?php echo (!empty($phone_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $phone_number; ?>"placeholder="Enter Phone Number">
-                <span class="invalid-feedback"><?php echo $phone_number_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+
+            <input type="submit" class="btn btn-primary" value="Register">
+            <input type="reset" class="btn btn-secondary" value="Reset">
         </form>
+
+        <p>Already have an account? <a href="../customerLogin/login.php">Proceed to login page</a></p>
+    </div>
     </div>
 </body>
 </html>
+
+
+
