@@ -144,7 +144,7 @@ $HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 // Check if the user is logged in
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     echo '<div class="user-profile">';
-    echo 'Welcome, ' . $_SESSION["username"] . '!';
+    echo 'Welcome, ' . $_SESSION["member_name"] . '!';
     echo '<a href="../customerProfile/profile.php">Profile</a>';
     echo '</div>';
     
@@ -181,24 +181,20 @@ session_start();
         </div>
         <ul>
           <li><a href="#hero" data-after="Home">Home</a></li>
-          <li><a href="../reservation/reserve.php" data-after="Service">Reservation</a></li>
+          <li><a href="../CustomerReservation/reservePage.php" data-after="Service">Reservation</a></li>
           <li><a href="#projects" data-after="Projects">Menu</a></li>
           <li><a href="#about" data-after="About">About</a></li>
           <li><a href="#contact" data-after="Contact">Contact</a></li>
         
     <!-- Check if the user is logged in -->
 <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-
-  
-  <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
-  <li>
+   <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
+   <li>
     <a href="../customerProfile/profile.php" class="profile-link">
-      <?php echo $_SESSION["member_name"] . ' - ' . $_SESSION["points"] . ' Points'; ?>
-      <?php if ($_SESSION["points"] > 1000): ?>
-        <img src="../image/vip-card.png" alt="VIP" width="24" height="24">
-      <?php endif; ?>
+      <?php echo $_SESSION["member_name"] . ' - 1000 Points'; ?>
     </a>
   </li>
+
 <?php else: ?>
   <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
   <li><a href="../customerLogin/login.php" data-after="LogIn">Log In</a></li>
