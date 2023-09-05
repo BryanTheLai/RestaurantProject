@@ -111,7 +111,7 @@ function createNewBillRecord($table_id) {
                                             . '<input type="text" hidden name= "table_id" value="' . $table_id . '">'
                                             . '<input type="text" name= "item_id" value=' . $row['item_id'] . ' hidden>'
                                             . '<input type="number" name= "bill_id" value=' . $bill_id . ' hidden>'
-                                            . '<input type="number" name="quantity" placeholder="Enter Quantity" required max="100">'
+                                            . '<input type="number" name="quantity" placeholder="Enter Quantity" required min="1" max="100">'
                                             . '<input type="hidden" name="addToCart" value="1">'
                                             . '<button type="submit" class="btn btn-primary">Add to Cart</button>';
                                         echo "</form></td>";
