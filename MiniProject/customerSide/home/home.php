@@ -164,6 +164,7 @@ session_start();
 
 <body>
  <!-- Header -->
+ 
 <section id="header">
   <div class="header container">
     <div class="nav-bar">
@@ -180,66 +181,50 @@ session_start();
         </div>
         <ul>
           <li><a href="#hero" data-after="Home">Home</a></li>
-          <li><a href="#services" data-after="Service">Reservation</a></li>
+          <li><a href="../reservation/reserve.php" data-after="Service">Reservation</a></li>
           <li><a href="#projects" data-after="Projects">Menu</a></li>
           <li><a href="#about" data-after="About">About</a></li>
           <li><a href="#contact" data-after="Contact">Contact</a></li>
         
-        <!-- Check if the user is logged in -->
+    <!-- Check if the user is logged in -->
 <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-   <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
-   <li>
+
+  
+  <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
+  <li>
     <a href="../customerProfile/profile.php" class="profile-link">
-      <?php echo $_SESSION["username"] . ' - 1000 Points'; ?>
+      <?php echo $_SESSION["member_name"] . ' - ' . $_SESSION["points"] . ' Points'; ?>
+      <?php if ($_SESSION["points"] > 1000): ?>
+        <img src="../image/vip-card.png" alt="VIP" width="24" height="24">
+      <?php endif; ?>
     </a>
   </li>
-
 <?php else: ?>
   <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
   <li><a href="../customerLogin/login.php" data-after="LogIn">Log In</a></li>
 <?php endif; ?>
 
-          
         </ul>
       </div>
     </div>
   </div>
 </section>
 <!-- End Header -->
-
-  <!-- Hero Section  -->
-  <section id="hero" style='background-color: black;'>
-    <div class="hero container">
-      <div>
-          <h1><strong><h1 class="text-center" style="font-family:Copperplate; color:whitesmoke;"> JOHNNY'S</h1><span></span></strong></h1>
-          <h1><strong style="color:white;">DINING & BAR<span></span></strong></h1>
-        <a href="#projects" type="button" class="cta">MENU</a>
-      </div>
+<!-- Hero Section with Video Background and Text Overlay -->
+<section id="hero" style="position: relative;">
+    <video autoplay loop muted playsinline poster="your-poster-image.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        <source src="../image/video (2160p).mp4" type="video/mp4">
+        <!-- Add additional source elements for other video formats if needed -->
+    </video>
+    <div class="hero container" style="position: relative; z-index: 1;">
+        <div>
+            <h1><strong><h1 class="text-center" style="font-family:Copperplate; color:whitesmoke;"> JOHNNY'S</h1><span></span></strong></h1>
+            <h1><strong style="color:white;">DINING & BAR<span></span></strong></h1>
+            <a href="#projects" type="button" class="cta">MENU</a>
+        </div>
     </div>
-  </section>
-  <!-- End Hero Section  -->
-
-  <!-- reserve Section -->
-  <section id="services">
-    <div class="services container">
-       
-      <div class="service-top">
-        <h1 class="section-title">Reser<span>v</span>ation</h1>
-        <p></p>
-      </div>
-    
-   <?php include '../reservation/reserve.php'; ?>
- 
-  
-  </section>
-  <!-- End reserve Section -->
- 
-  
-  <div class="search-form">
-  <input type="text" id="search-input" placeholder="Search menu items...">
-  <button id="search-button">Search</button>
-</div>
-
+</section>
+<!-- End Hero Section -->
   
   
   
@@ -251,7 +236,7 @@ session_start();
       </div>
      
         
-       <select>
+       <select id="menu-category" class="menu-category">
       <option>CHOOSE MENU CATEGORY</option>
       <option value="yellow">MAIN DISHES</option>
       <option value="red">SIDE DISHES</option>
@@ -303,6 +288,7 @@ session_start();
         <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
         <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
         <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
+        <span class="item_type"><i><img src="<?php echo $item['item_img']; ?>" alt=""></i></span>
         <hr>
       </p>
     <?php endforeach; ?>
@@ -357,16 +343,13 @@ session_start();
   </section>
   <!-- End menu Section -->
 
+
+  
   <!-- About Section -->
-  <section id="about">
-    <div class="about container">
-      <div class="col-left">
-        <div class="about-img">
-         <img src="../image/Johnny's logo.png" alt=""/>
-        </div>
-      </div>
-      <div class="col-right">
-        <h1 class="section-title">About <span>Us</span></h1>
+<section id="about" style="background-image: url('../image/aboutusBackground.jpg'); background-size: cover; background-position: center;">
+  <div class="about container">
+    <div class="col-right">
+        <h1 class="section-title" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">About <span>Us</span></h1>
         <h2>Johnny's DINING & BAR Company History:</h2>
  <p>Johnny's Dining & Bar is a well-established Western food establishment in the city's heart. Johnny's Dining & Bar has become a popular choice for customers looking to celebrate special occasions or simply enjoy a relaxing meal, with a focus on providing delicious meals and a friendly dining experience.
  </p>
@@ -386,49 +369,45 @@ session_start();
   
   
   
-  
-  
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="contact container">
-      <div>
-        <h1 class="section-title">Contact <span>info</span></h1>
-      </div>
-      <div class="contact-items">
-        <div class="contact-item">
+ <!-- Contact Section -->
+<section id="contact" style="background-image: url('../image/aboutusBackground.jpg'); background-size: cover; background-position: center;">
+  <div class="contact container">
+    <div>
+      <h1 class="section-title">Contact <span>info</span></h1>
+    </div>
+    <div class="contact-items">
+      <div class="contact-item contact-item-bg">
+        <i class="fa-sharp fa-solid fa-phone fa-beat"></i>
+        <div class="contact-info">
           <i class="fa-sharp fa-solid fa-phone fa-beat"></i>
-          <div class="contact-info">
-              <i class="fa-sharp fa-solid fa-phone fa-beat"></i>
-              <div class='icon'><img src="../image/icons8-phone-100.png" alt=""/></div>
-            <h1>Phone</h1>
-            <h2>+60 886 8786</h2>
-          </div>
+          <div class='icon'><img src="../image/icons8-phone-100.png" alt=""/></div>
+          <h1>Phone</h1>
+          <h2>+60 886 8786</h2>
         </div>
-          
-          
-          
-        <div class="contact-item"> 
-          <div class="contact-info">
-              <div class='icon'><img src="../image/icons8-email-100.png" alt=""/></div>
-            <h1>Email</h1>
-            <h2>johnny's_Bar&Grill@gmail.com</h2> 
-          </div>
+      </div>
+      
+      <div class="contact-item contact-item-bg"> 
+        <div class="contact-info">
+          <div class='icon'><img src="../image/icons8-email-100.png" alt=""/></div>
+          <h1>Email</h1>
+          <h2>johnny's_Bar&Grill@gmail.com</h2> 
         </div>
-          
-          
-        <div class="contact-item">
-            <div class="contact-info">
-                <div class='icon'> <img src="../image/icons8-home-address-100.png" alt=""/></div>
-                
-               
-            <h1>Address</h1>
-            <h2>Lot 52, Ground Floor, Jalan Gaya, No.1, Lorong Ewan, Kota Kinabalu, Malaysia, 88000</h2>
-          </div>
+      </div>
+      
+      <div class="contact-item contact-item-bg">
+        <div class="contact-info">
+          <div class='icon'> <img src="../image/icons8-home-address-100.png" alt=""/></div>
+          <h1>Address</h1>
+          <h2>Lot 52, Ground Floor, Jalan Gaya, No.1, Lorong Ewan, Kota Kinabalu, Malaysia, 88000</h2>
         </div>
       </div>
     </div>
-  </section>
-  <!-- End Contact Section -->
+  </div>
+</section>
+<!-- End Contact Section -->
+
+
+  
 
   
   
@@ -473,28 +452,28 @@ session_start();
       }
 
       /* Styling the select button */
-      select {
-        font-size: 24px;
-        padding: 10px;
-        border: 2px solid black; /* Red border */
-        outline: none;
-        cursor: pointer;
-        transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-        color: #000; /* Black text */
-        background-color: #fff; /* White background */
-        border-radius: 0; /* No border radius (sharp corners) */
-      }
+   .menu-category {
+  font-size: 24px;
+  padding: 10px;
+  border: 2px solid black; /* Red border */
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  color: #000; /* Black text */
+  background-color: #fff; /* White background */
+  border-radius: 0; /* No border radius (sharp corners) */
+}
 
-      /* Style the option text in the select dropdown */
-      option {
-        font-size: 20px;
-      }
+/* Style the option text in the select dropdown */
+.menu-category option {
+  font-size: 20px;
+}
 
-      /* Hover effect */
-      select:hover {
-        background-color: black; /* Red background on hover */
-        color: white; /* black text on hover */
-      }
+/* Hover effect */
+.menu-category:hover {
+  background-color: black; /* Red background on hover */
+  color: white; /* Black text on hover */
+}
 
       /* Use CSS Grid to create three columns */
       .msg {
@@ -543,62 +522,114 @@ session_start();
   margin-left: auto; /* Automatically push the link to the right */
   margin-right: 10px; /* Add a small right margin for spacing */
 }
-s
 
-/* Style for the search form */
-.search-form {
-  display: flex;
-  align-items: center;
-}
-
-.search-form input[type="text"] {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.search-form button {
-  padding: 5px 10px;
-  background-color: #ccc;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+/* Style for the "About Us" section content */
+/* Style for the "About Us" section content */
+#about {
+  padding: 100px 0; /* Adjust the padding as needed */
+  background-image: url('../image/aboutusBackground.jpg');
+  background-size: 150%; /* Cover the entire section with the background image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Fixed background to stay in place */
+  color: white; /* Set text color to white */
+  text-align: center; /* Center the text */
+  position: relative; /* Set the position to relative for centering */
+  height: 150%; /* Set the section height to the viewport height */
+  overflow: hidden; /* Hide any overflowing content */
 }
 
 
-/* Style for the search results */
-#search-results h2 {
-  margin-top: 20px;
+#about .section-title {
+  font-size: 36px; /* Adjust the font size */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-#search-results .msg {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  margin-top: 10px;
-}
-/* Center the search form */
-.search-form {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  margin-top: 20px; /* Add margin to separate the search bar from the menu items */
+#about .col-left {
+  /* Styles for the left column (if needed) */
 }
 
-/* Style for the search input */
-#search-input {
-  margin-right: 10px; /* Add a little spacing between the input and the button */
+#about .col-right {
+  background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent black background */
+  padding: 20px;
+  border-radius: 5px;
+  /* Other styles for the right column */
 }
 
-/* Style for the search button */
-#search-button {
-  padding: 5px 10px;
-  background-color: #ccc;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+#about .col-right h2 {
+  font-size: 24px; /* Adjust the font size */
+  color: white; /* Text color for the right column */
 }
 
-/* Rest of your existing CSS rules */
+#about .col-right p {
+  font-size: 18px; /* Adjust the font size */
+  color: white; /* Text color for the right column */
+}
+
+
+/* Style for the "Contact" section */
+#contact {
+  background-image: url('../image/aboutusBackground.jpg');
+  background-size: 150%; /* Increase the size of the background image (e.g., 150%) */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Fixed background to stay in place */
+  color: white; /* Set text color to white */
+  text-align: center; /* Center the text */
+  position: relative; /* Set the position to relative for centering */
+  height: 100vh; /* Set the section height to the viewport height */
+  overflow: hidden;
+  padding: 100px 0; /* Adjust the padding as needed */
+}
+
+
+#contact .section-title {
+  color: white;
+}
+
+
+#contact .col-right {
+  background-color: rgba(0, 0, 255, 0.5); /* Semi-transparent blue background */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+
+#contact .col-right h2 {
+  font-size: 24px; /* Adjust the font size */
+  color: white; /* Text color for the right column */
+}
+
+#contact .col-right p {
+  font-size: 18px; /* Adjust the font size */
+  color: white; /* Text color for the right column */
+}
+
+/* Style for the contact-item containers */
+.contact-item-bg {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Add margin between contact items */
+}
+
+.contact-item-bg h1,
+.contact-item-bg h2 {
+  color: white; /* Text color for the contact items */
+}
+
+.contact-item-bg i {
+  color: #fff; /* Icon color */
+}
+
+.contact-item-bg .icon img {
+  width: 80px; /* Adjust the width of the icon images */
+  height: 80px; /* Adjust the height of the icon images */
+}
+
+/* Add other styles for the contact items as needed */
+
 
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
