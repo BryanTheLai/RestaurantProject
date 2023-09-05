@@ -185,6 +185,7 @@ session_start();
           <li><a href="#projects" data-after="Projects">Menu</a></li>
           <li><a href="#about" data-after="About">About</a></li>
           <li><a href="#contact" data-after="Contact">Contact</a></li>
+          
         
     <!-- Check if the user is logged in -->
 <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
@@ -199,7 +200,7 @@ session_start();
   <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
   <li><a href="../customerLogin/login.php" data-after="LogIn">Log In</a></li>
 <?php endif; ?>
-
+<li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
         </ul>
       </div>
     </div>
