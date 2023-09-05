@@ -2,43 +2,61 @@
 // availability.php
 require_once 'config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $selectedDate = $_POST["reservation_date"];
-    $head_count = $_POST["head_count"];
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $selectedDate = $_GET["reservation_date"]; // Selected Date
+    $head_count = $_GET["head_count"];  // Number of people
+    $selectedTime = date("H:i:s", strtotime($_GET["reservation_time"]));
 
-    // Query to get the count of reservations for each reservation time on the selected date
-    $countQuery = "SELECT reservation_time, COUNT(*) as count FROM reservations WHERE reservation_date = '$selectedDate' GROUP BY reservation_time";
-    $countResult = mysqli_query($link, $countQuery);
+    // Query to get all reservations for the selected date and time
+    $reservedQuery = "SELECT * FROM reservations WHERE reservation_date = '$selectedDate' AND reservation_time = '$selectedTime'";
+    $reservedResult = mysqli_query($link, $reservedQuery);
 
-    if ($countResult) {
-        $reservedTimesExceedingLimit = array();
-        while ($row = mysqli_fetch_assoc($countResult)) {
-            if ($row['count'] >= 3) {
-                $reservedTimesExceedingLimit[] = $row['reservation_time'];
-            }
+    // Initialize an array to store reserved table IDs
+    $reservedTableIDs = array();
+
+    // Collect reserved table IDs
+    if ($reservedResult) {
+        while ($row = mysqli_fetch_assoc($reservedResult)) {
+            $reservedTableIDs[] = $row["table_id"];
+            // Print each row of data
+            echo "Reservation Time: " . $row["reservation_time"] . "<br>";
+            echo "Reservation ID: " . $row["reservation_id"] . "<br>";
+            echo "Table ID: " . $row["table_id"] . "<br>";
+            echo "Reservation Date: " . $row["reservation_date"] . "<br>";
+            echo "Head Count: " . $row["head_count"] . "<br>";
+            echo "<br>"; // Add spacing between rows
         }
+    } else {
+        echo "Query failed: " . mysqli_error($link);
+    }
 
-        // Generate all possible reservation times from 10:00 to 20:00
-        $availableTimes = array();
-        for ($hour = 10; $hour <= 20; $hour++) {
-            for ($minute = 0; $minute < 60; $minute += 60) {
-                $time = sprintf('%02d:%02d:00', $hour, $minute);
-                if (!in_array($time, $reservedTimesExceedingLimit)) {
-                    $availableTimes[] = $time;
-                }
+    // Check available tables
+    if (!empty($reservedTableIDs)) {
+        $reservedTableIDsString = implode(",", $reservedTableIDs);
+        $availableTables = "SELECT table_id, capacity FROM restaurant_tables WHERE capacity >= '$head_count' AND table_id NOT IN ($reservedTableIDsString)";
+        $availableResult = mysqli_query($link, $availableTables);
+
+        if ($availableResult) {
+            while ($row = mysqli_fetch_assoc($availableResult)) {
+                echo "Available Table ID: " . $row["table_id"] . "<br>";
+                echo "Capacity: " . $row["capacity"] . "<br>";
+                
             }
-        }
+            // Construct the reservation link with all table IDs
+            $reservedTableIDsString = implode(",", $reservedTableIDs);
+            $reservationLink = "reservePage.php?reservation_date=$selectedDate&head_count=$head_count&reservation_time=$selectedTime&reserved_table_id=$reservedTableIDsString";
 
-        if (count($availableTimes) > 0) {
-            $availableTimesQueryParam = implode(",", $availableTimes);
-            header("Location: ../home/home.php?head_count=" . $head_count . "&reservation_date=" . urlencode($selectedDate) . "&available_times=" . urlencode($availableTimesQueryParam));
+            // Add header link to reservationPage.php with parameters
+            header("Location: $reservationLink");
             exit();
         } else {
-            $message = "No available reservation times on '$selectedDate'.";
-            header("Location: ../home/home.php?head_count=" . $head_count . "&message=" . urlencode($message));
-            exit();
+            echo "Available tables query failed: " . mysqli_error($link);
         }
+    } else {
+        $reservationLink = "reservePage.php?reservation_date=$selectedDate&head_count=$head_count&reservation_time=$selectedTime&reserved_table_id=0";
+        header("Location: $reservationLink");
     }
-}
+    
 
+}
 ?>
