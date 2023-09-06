@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -78,15 +79,30 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Member Profiles
                             </a>
+                            <a class="nav-link" href="../StaffLogin/logout.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-key"></i></div>
+                                Log out
+                            </a>
                             
                             
                             
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Put Staff Id and name
-                    </div>
+                        <div class="sb-sidenav-footer">
+                            <div class="small">Logged in as:</div>
+                                <?php
+                                // Check if the session variables are set
+                                if (isset($_SESSION['logged_account_id']) && isset($_SESSION['logged_staff_name'])) {
+                                    // Display the logged-in staff ID and name
+                                    echo "Staff ID: " . $_SESSION['logged_account_id'] . "<br>";
+                                    echo "Staff Name: " . $_SESSION['logged_staff_name'];
+                                    
+                                } else {
+                                    // If session variables are not set, display a default message or handle as needed
+                                    echo "Not logged in";
+                                }
+                                ?>
+                        </div>
                 </nav>
             </div>
         </<div>
