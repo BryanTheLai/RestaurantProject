@@ -1,3 +1,6 @@
+<?php
+session_start(); // Ensure session is started
+?>
 <?php  include '../inc/dashHeader.php'?>   
     <style>
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
