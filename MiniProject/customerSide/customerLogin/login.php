@@ -79,80 +79,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        
-
-
-/* Style for the container within login.php */
-.login-container {
-  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background */
-  padding: 50px; /* Adjust the padding as needed */
-  border-radius: 10px; /* Add rounded corners */
-  margin: 100px auto; /* Center the container horizontally */
-  max-width: 500px; /* Set a maximum width for the container */
-}
-
-
-
-        body {
-            font-family: 'Times New Roman', serif;
+         body {
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0; /* Remove default margin */
-            background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
         }
 
-        .login_wrapper {
-            width: 400px; /* Adjust the container width as needed */
+        .wrapper {
+            width: 360px;
             padding: 20px;
         }
-
-        h2 {
+        h2{
             text-align: center;
-            font-family: 'Times New Roman', serif;
+        }
+        
+        .button-55 {
+          box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+          color: #41403e;
+          cursor: pointer;
+          display: inline-block;
+          font-family: Neucha, sans-serif;
+          touch-action: manipulation;
         }
 
-        p {
-            font-family: 'Times New Roman', serif;
+        .button-55:hover {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+          transform: translate3d(0, 2px, 0);
         }
 
-        .form-group {
-            margin-bottom: 15px; /* Add space between form elements */
+        .button-55:focus {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
         }
-
-        ::placeholder {
-            font-size: 12px; /* Adjust the font size as needed */
-        }
+        
     </style>
 </head>
 <body>
-    <div class="login-container">
     <div class="login_wrapper">
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        <h2>Login</h2>
-        <p>Please enter your email and password to log in.</p>
-        <form action="login.php" method="post">
+        <h2 class="text-center" style="font-family: serif; color:white;">Login</h2>
+        <p class="text-center" style="font-family: serif; color:white;">Please enter your email and password to log in.</p>
+        
+        <form action="login.php" method="post" style=" font-family: serif;">
             <div class="form-group">
-                <label>Email <i class="fa fa-envelope "></i> :</label>
+                <label>Email :</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
 
             <div class="form-group">
-                <label>Password <i class="fa fa-key "></i> :</label>
+                <label>Password :</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
+            
+            <div class="button-55">
+            <input type="submit" class="btn btn-primary" style=" font-family: serif;border-color: #41403e;background-color: #727272;" value="Login">
+            </div>
+            </form>
 
-            <input type="submit" class="btn btn-primary" value="Login">
-        </form>
+        <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="color: #A5A5A5">Register here</a></p>
+    </div>
 
-        <p>Don't have an account? <a href="register.php">Register here</a></p>
-    </div>
-    </div>
 </body>
 </html>
+

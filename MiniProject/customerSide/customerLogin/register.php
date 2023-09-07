@@ -109,104 +109,86 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        body {
-            font-family: 'Times New Roman', serif;
+         body {
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0; /* Remove default margin */    
-            background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white; /* Set text color to white */
-            }
+        }
 
-
-        
-/* Style for the container within login.php */
-.register-container {
-  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background */
-  padding: 50px; /* Adjust the padding as needed */
-  border-radius: 10px; /* Add rounded corners */
-  margin: 100px auto; /* Center the container horizontally */
-  max-width: 500px; /* Set a maximum width for the container */
-}
-        .register_wrapper {
-            width: 400px; /* Increase the container width */
+        .wrapper {
+            width: 360px;
             padding: 20px;
         }
-
-        h2 {
+        h2{
             text-align: center;
-            font-family: 'Times New Roman', serif;
+        }
+        
+        .button-55 {
+          box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+          color: #41403e;
+          cursor: pointer;
+          display: inline-block;
+          font-family: Neucha, sans-serif;
+          touch-action: manipulation;
         }
 
-        p {
-            font-family: 'Times New Roman', serif;
+        .button-55:hover {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+          transform: translate3d(0, 2px, 0);
+          background: #8D8D8D;
         }
 
-        .form-group {
-            margin-bottom: 15px; /* Add space between form elements */
+        .button-55:focus {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
         }
+        
+        
 
-        ::placeholder {
-            font-size: 12px; /* Adjust the font size as needed */
-        }
-
-        /* Add flip animation class to all Font Awesome icons */
-        .fa-flip {
-            animation: fa-flip 3s infinite;
-        }
-
-        /* Keyframes for the flip animation */
-        @keyframes fa-flip {
-            0% {
-                transform: scale(1) rotateY(0);
-            }
-            50% {
-                transform: scale(1.2) rotateY(180deg);
-            }
-            100% {
-                transform: scale(1) rotateY(360deg);
-            }
-        }
     </style>
 </head>
 <body>
     <div class="register-container">
     <div class="register_wrapper"> <!-- Updated class name -->
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        <h2>Registration Form</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="register.php" method="post">
+        <h2 class="text-center" style="font-family: serif; color:white;">Registration Form</h2>
+        <p class="text-center" style="font-family: serif; color:white;">Please fill this form to create an account.</p>
+        
+        <form action="register.php" method="post" style=" font-family: serif;">
             <div class="form-group">
-                <label>Email <i class="fa fa-envelope "></i> :</label>
+                <label>Email :</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
 
             <div class="form-group">
-                <label>Member Name <i class="fa fa-user "></i> :</label>
+                <label>Member Name :</label>
                 <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" required>
             </div>
 
             <div class="form-group">
-                <label>Password <i class="fa fa-key "></i> :</label>
+                <label>Password :</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
 
             <div class="form-group">
-                <label>Phone Number <i class="fa fa-phone "></i> :</label>
+                <label>Phone Number :</label>
                 <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
             </div>
+            
+            <div class="button-55">
+            <input type="submit" class="btn btn-primary" style=" font-family: serif;border-color: #41403e;background-color: #8D8B8B;" value="Register">
+            </div>
+            
+            <div class="button-55">
+            <input type="reset" class="btn btn-secondary" style=" font-family: serif;" value="Reset">
+            </div>
+            
+            </form>
 
-            <input type="submit" class="btn btn-primary" value="Register">
-            <input type="reset" class="btn btn-secondary" value="Reset">
-        </form>
-
-        <p>Already have an account? <a href="../customerLogin/login.php">Proceed to login page</a></p>
+        <p style="font-family: serif; color:white;">Already have an account? <a href="../customerLogin/login.php" style="color: #A5A5A5">Proceed to login page</a></p>
     </div>
     </div>
 </body>
