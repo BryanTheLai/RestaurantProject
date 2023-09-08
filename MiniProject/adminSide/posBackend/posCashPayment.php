@@ -51,7 +51,7 @@ $reservation_id = $_GET['reservation_id'];
                     echo '<td>' . $item_name . '</td>';
                     echo '<td>RM ' . $item_price . '</td>';
                     echo '<td>' . $quantity . '</td>';
-                    echo '<td>RM ' . $total . '</td>';
+                    echo '<td>RM ' . number_format($total,2) . '</td>';
                     echo '</tr>';
                 }
             } else {
@@ -64,12 +64,13 @@ $reservation_id = $_GET['reservation_id'];
                     <hr>
                     <div class="text-right">
                         <?php 
-                        echo "Cart Total: RM " . $cart_total;
-                        echo "<br>Cart Taxed: RM " . $cart_total * $tax;
+                        echo "<strong>Cart Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
+                        echo "<strong>Cart Taxed:</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
                         $GRANDTOTAL = $tax * $cart_total + $cart_total;
-                        echo "<br>Grand Total: RM " . $GRANDTOTAL;
+                        echo "<strong>Grand Total:</strong> RM " . number_format($GRANDTOTAL, 2);
                         ?>
                     </div>
+
                 </div>
             </div>
             
@@ -127,7 +128,7 @@ $reservation_id = $_GET['reservation_id'];
 
             if ($payment_amount >= $GRANDTOTAL) {
                 echo '<div class="alert alert-dark" role="alert">';
-                echo "Change is RM" . calculateChange($payment_amount, $GRANDTOTAL);
+                echo "Change is RM" . number_format(calculateChange($payment_amount, $GRANDTOTAL),2);
                 echo '</div>';
 
                 // Update the payment method, bill time, and other details in the Bills table
