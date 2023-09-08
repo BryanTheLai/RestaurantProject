@@ -46,9 +46,9 @@ $bill_id = $_GET['bill_id'];
                     echo '<tr>';
                     echo '<td>' . $item_id . '</td>';
                     echo '<td>' . $item_name . '</td>';
-                    echo '<td>RM ' . $item_price . '</td>';
+                    echo '<td>RM ' . number_format($item_price,2) . '</td>';
                     echo '<td>' . $quantity . '</td>';
-                    echo '<td>RM ' . $total . '</td>';
+                    echo '<td>RM ' . number_format($total,2) . '</td>';
                     echo '</tr>';
                 }
             } else {
@@ -61,9 +61,10 @@ $bill_id = $_GET['bill_id'];
                     <hr>
                     <div class="text-right">
                         <?php 
-                        echo "Cart Total: RM " . $cart_total;
-                        echo "<br>Cart Taxed: RM " . $cart_total * $tax;
-                        echo "<br>Grand Total: RM " . $tax * $cart_total + $cart_total;
+                        echo "<strong>Cart Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
+                        echo "<strong>Cart Taxed:</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
+                        $GRANDTOTAL = $tax * $cart_total + $cart_total;
+                        echo "<strong>Grand Total:</strong> RM " . number_format($GRANDTOTAL, 2);
                         ?>
                     </div>
                 </div>

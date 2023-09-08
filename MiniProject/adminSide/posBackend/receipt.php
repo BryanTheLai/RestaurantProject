@@ -78,9 +78,9 @@ while ($item_row = mysqli_fetch_assoc($items_result)) {
     $cart_total += $total;
 
     $pdf->Cell(70, 10, $item_name, 1);
-    $pdf->Cell(40, 10, 'RM ' . $item_price, 1);
+    $pdf->Cell(40, 10, 'RM ' . number_format($item_price,2), 1);
     $pdf->Cell(40, 10, $quantity, 1);
-    $pdf->Cell(40, 10, 'RM ' . $total, 1);
+    $pdf->Cell(40, 10, 'RM ' . number_format($total,2), 1);
     $pdf->Ln();
 }
 
@@ -91,16 +91,18 @@ $tax_amount = $before_tax * $tax_rate;
 $after_tax = $before_tax + $tax_amount;
 
 // Totals
+$pdf->Cell(150, 10, 'Summary:', 0);
+$pdf->Ln();
 $pdf->Cell(150, 10, 'Before Tax', 1);
-$pdf->Cell(40, 10, 'RM ' . $before_tax, 1);
+$pdf->Cell(40, 10, 'RM ' . number_format($before_tax,2), 1);
 $pdf->Ln();
 
 $pdf->Cell(150, 10, 'Tax (' . ($tax_rate * 100) . '%)', 1);
-$pdf->Cell(40, 10, 'RM ' . $tax_amount, 1);
+$pdf->Cell(40, 10, 'RM ' . number_format($tax_amount,2), 1);
 $pdf->Ln();
 
 $pdf->Cell(150, 10, 'After Tax', 1);
-$pdf->Cell(40, 10, 'RM ' . $after_tax, 1);
+$pdf->Cell(40, 10, 'RM ' . number_format($after_tax,2), 1);
 $pdf->Ln();
 
 $pdf->Output();
