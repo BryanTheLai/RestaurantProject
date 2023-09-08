@@ -127,23 +127,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: center;
         }
         
-        .button-55 {
-          box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-          color: #41403e;
-          cursor: pointer;
-          display: inline-block;
-          font-family: Neucha, sans-serif;
-          touch-action: manipulation;
+        
+        .button {
+            color:white; border-color: white;background-color: black;
         }
-
-        .button-55:hover {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-          transform: translate3d(0, 2px, 0);
-          background: #8D8D8D;
-        }
-
-        .button-55:focus {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        
+        .button:hover {
+            color:black; border-color: black;background-color: white;
         }
         
         
@@ -178,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             
             <div class="button-55">
-            <input type="submit" class="btn btn-primary" style="color:white; border-color: white;background-color: black;" value="Register">
+            <input type="submit" class="btn button" value="Register">
             </div>
             
           
