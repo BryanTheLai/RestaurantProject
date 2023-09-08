@@ -21,7 +21,7 @@ require_once '../config.php';
             <form method="get" action="#">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" id="member_id" name="member_id" class="form-control" placeholder="Member ID">
+                        <input type="text" id="member_id" name="member_id" class="form-control" placeholder="Enter Member ID">
                     </div>
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-light">Search</button>

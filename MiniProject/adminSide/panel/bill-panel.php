@@ -15,7 +15,7 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Bill ID">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Bill ID, Table ID, Card ID, Payment Method">
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-light">Search</button>

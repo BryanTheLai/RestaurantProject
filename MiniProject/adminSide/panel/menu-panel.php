@@ -18,7 +18,7 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Item Name or Item ID">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Item ID, Name, Type, Category">
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-light">Search</button>
@@ -37,7 +37,7 @@ session_start(); // Ensure session is started
                     if (!empty($_POST['search'])) {
                         $search = $_POST['search'];
 
-                        $sql = "SELECT * FROM Menu WHERE item_name LIKE '%$search%' OR item_id LIKE '%$search%' ORDER BY item_id;";
+                        $sql = "SELECT * FROM Menu WHERE item_type LIKE '%$search%' OR item_category LIKE '%$search%' OR item_name LIKE '%$search%' OR item_id LIKE '%$search%' ORDER BY item_id;";
                     } else {
                         // Default query to fetch all items
                         $sql = "SELECT * FROM Menu ORDER BY item_id;";
