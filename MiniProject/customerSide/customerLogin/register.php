@@ -154,41 +154,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="register-container">
     <div class="register_wrapper"> <!-- Updated class name -->
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        <h2 class="text-center" style="font-family: serif; color:white;">Registration Form</h2>
-        <p class="text-center" style="font-family: serif; color:white;">Please fill this form to create an account.</p>
+      
         
-        <form action="register.php" method="post" style=" font-family: serif;">
+        <form action="register.php" method="post" ">
             <div class="form-group">
-                <label>Email :</label>
-                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                <label>Email </label>
+                <input type="email" name="email" class="form-control" placeholder="JohnDoe@gmail.com" required>
             </div>
 
             <div class="form-group">
-                <label>Member Name :</label>
-                <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" required>
+                <label>Member Name </label>
+                <input type="text" name="member_name" class="form-control" placeholder="John Doe" required>
             </div>
 
             <div class="form-group">
-                <label>Password :</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                <label>Password </label>
+                <input type="password" name="password" class="form-control" placeholder="JohnDoe123" required>
             </div>
 
             <div class="form-group">
-                <label>Phone Number :</label>
-                <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
+                <label>Phone Number </label>
+                <input type="text" name="phone_number" class="form-control" placeholder="0123456789" required>
             </div>
             
             <div class="button-55">
-            <input type="submit" class="btn btn-primary" style=" font-family: serif;border-color: #41403e;background-color: #8D8B8B;" value="Register">
+            <input type="submit" class="btn btn-primary" style="color:white; border-color: white;background-color: black;" value="Register">
             </div>
             
-            <div class="button-55">
-            <input type="reset" class="btn btn-secondary" style=" font-family: serif;" value="Reset">
-            </div>
+          
             
             </form>
 
-        <p style="font-family: serif; color:white;">Already have an account? <a href="../customerLogin/login.php" style="color: #A5A5A5">Proceed to login page</a></p>
+        <p>Already have an account? <a href="../customerLogin/login.php">Proceed to login page</a></p>
     </div>
     </div>
 </body>
