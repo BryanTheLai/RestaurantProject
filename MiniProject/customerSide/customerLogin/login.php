@@ -109,6 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .button-55:hover {
           box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
           transform: translate3d(0, 2px, 0);
+          background: #8D8D8D;
         }
 
         .button-55:focus {
@@ -125,12 +126,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="login.php" method="post">
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                <input type="email" name="email" class="form-control" placeholder="JohnDoe@gmail.com" required>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                <input type="password" name="password" class="form-control" placeholder="JohnDoe123" required>
             </div>
             
             <div class="form-group">
