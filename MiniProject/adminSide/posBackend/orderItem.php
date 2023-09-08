@@ -58,17 +58,17 @@ function createNewBillRecord($table_id) {
                             if (!empty($_POST['search'])) {
                                 $search = $_POST['search'];
 
-                                $query = "SELECT * FROM Menu WHERE item_name LIKE '%$search%' OR item_category LIKE '%$search%' OR item_id LIKE '%$search%'";
+                                $query = "SELECT * FROM Menu WHERE item_type LIKE '%$search%' OR item_category LIKE '%$search%' OR item_name LIKE '%$search%' OR item_id LIKE '%$search%' ORDER BY item_id;";
                                 $result = mysqli_query($link, $query);
                             }else{
                                 // Default query to fetch all menu items
-                                $sql = "SELECT * FROM Menu ORDER BY item_id;";
-                                $result = mysqli_query($link, $sql);
+                                $query = "SELECT * FROM Menu ORDER BY item_id;";
+                                $result = mysqli_query($link, $query);
                             }
                         } else {
                             // Default query to fetch all menu items
-                            $sql = "SELECT * FROM Menu ORDER BY item_id;";
-                            $result = mysqli_query($link, $sql);
+                            $query = "SELECT * FROM Menu ORDER BY item_id;";
+                            $result = mysqli_query($link, $query);
                         }
                         $bill_id = $_GET['bill_id'];
                         if ($result) {
