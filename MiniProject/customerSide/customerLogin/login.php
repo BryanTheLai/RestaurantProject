@@ -120,26 +120,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="login_wrapper">
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        <h2 class="text-center" style="font-family: serif; color:white;">Login</h2>
-        <p class="text-center" style="font-family: serif; color:white;">Please enter your email and password to log in.</p>
         
-        <form action="login.php" method="post" style=" font-family: serif;">
+        
+        <form action="login.php" method="post">
             <div class="form-group">
-                <label>Email :</label>
+                <label>Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
 
             <div class="form-group">
-                <label>Password :</label>
+                <label>Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
             
-            <div class="button-55">
-            <input type="submit" class="btn btn-primary" style=" font-family: serif;border-color: #41403e;background-color: #727272;" value="Login">
+            <div class="form-group">
+            <input type="submit" class="btn btn-primary " style="border-color: white;background-color: black;color:white;" value="Login">
             </div>
             </form>
 
-        <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="color: #A5A5A5">Register here</a></p>
+        <p >Don't have an account? <a href="register.php">Register here</a></p>
     </div>
 
 </body>
