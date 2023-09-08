@@ -22,7 +22,7 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Email or Account ID">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Account ID, Email">
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-light">Search</button>

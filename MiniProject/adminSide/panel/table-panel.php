@@ -17,7 +17,7 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Capacity">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Table ID, Capacity">
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-light">Search</button>
@@ -38,7 +38,7 @@ session_start(); // Ensure session is started
 
                         $sql = "SELECT *
                                 FROM Restaurant_Tables
-                                WHERE capacity LIKE '%$search%' 
+                                WHERE table_id LIKE '%$search%' OR capacity LIKE '%$search%' 
                                 ORDER BY table_id;";
                     } else {
                         // Default query to fetch all Restaurant_tables
