@@ -106,14 +106,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           touch-action: manipulation;
         }
 
-        .button-55:hover {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-          transform: translate3d(0, 2px, 0);
-          background: #8D8D8D;
+        .button {
+            color:white; border-color: white;background-color: black;
         }
-
-        .button-55:focus {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        
+        .button:hover {
+            color:black; border-color: black;background-color: white;
         }
         
     </style>
@@ -135,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             
             <div class="form-group">
-            <input type="submit" class="btn btn-primary " style="border-color: white;background-color: black;color:white;" value="Login">
+            <input type="submit" class="btn button" value="Login">
             </div>
             </form>
 
