@@ -91,7 +91,7 @@ function createNewBillRecord($table_id) {
                                     echo "<td>" . $row['item_id'] . "</td>";
                                     echo "<td>" . $row['item_name'] . "</td>";
                                     echo "<td>" . $row['item_category'] . "</td>";
-                                    echo "<td>" . $row['item_price'] . "</td>";
+                                    echo "<td>" . number_format($row['item_price'],2) . "</td>";
 
                                     // Check if the bill has been paid
                                     $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
@@ -178,9 +178,9 @@ function createNewBillRecord($table_id) {
                                         echo '<tr>';
                                         echo '<td>' . $item_id . '</td>';
                                         echo '<td>' . $item_name . '</td>';
-                                        echo '<td>RM ' . $item_price . '</td>';
+                                        echo '<td>RM ' . number_format($item_price,2) . '</td>';
                                         echo '<td>' . $quantity . '</td>';
-                                        echo '<td>RM ' . $total . '</td>';
+                                        echo '<td>RM ' . number_format($total,2) . '</td>';
                                         // Check if the bill has been paid
                                         $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
                                         $payment_time_result = mysqli_query($link, $payment_time_query);
@@ -212,19 +212,20 @@ function createNewBillRecord($table_id) {
                         <div class="table-responsive">
     <table class="table table-bordered ">
         <tbody>
-            <tr>
-                <td><strong>Cart Total</strong></td>
-                <td>RM <?php echo $cart_total; ?></td>
-            </tr>
-            <tr>
-                <td><strong>Cart Taxed</strong></td>
-                <td>RM <?php echo $cart_total * $tax; ?></td>
-            </tr>
-            <tr>
-                <td><strong>Grand Total</strong></td>
-                <td>RM <?php echo $tax * $cart_total + $cart_total; ?></td>
-            </tr>
-        </tbody>
+    <tr>
+        <td><strong>Cart Total</strong></td>
+        <td>RM <?php echo number_format($cart_total, 2); ?></td>
+    </tr>
+    <tr>
+        <td><strong>Cart Taxed</strong></td>
+        <td>RM <?php echo number_format($cart_total * $tax, 2); ?></td>
+    </tr>
+    <tr>
+        <td><strong>Grand Total</strong></td>
+        <td>RM <?php echo number_format(($tax * $cart_total) + $cart_total, 2); ?></td>
+    </tr>
+</tbody>
+
     </table>
 </div>
 
