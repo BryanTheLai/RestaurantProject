@@ -26,21 +26,33 @@
             text-align: center;
         }
         
-        .button-55 {
-          box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-          color: #41403e;
-          cursor: pointer;
-          display: inline-block;
-          font-family: Neucha, sans-serif;
-          touch-action: manipulation;
+        button, select {
+            background-color: #5A5A5A;
+            color: white;
+            border: 2px solid black;
+            padding: 3px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            touch-action: manipulation;
+            font-family: serif;
+            border-color: #41403e;
+            height:40px;
+            width:66px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
         }
 
-        .button-55:hover {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-          transform: translate3d(0, 2px, 0);
+        /* Style buttons and selects on hover */
+        button:hover, select:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
         }
-
-        .button-55:focus {
+        
+        .button:focus {
           box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
         }
         
@@ -74,13 +86,10 @@
             <input type="password" id="password" name="password" placeholder="Enter Password" required class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
         </div>
             
-        <div class="button-55">
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" style=" font-family: serif;border-color: #41403e;background-color: #727272;" value="Login">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                <button type="submit" name="submit" value="Login">Login</button>
             </div>
-        </div>
     </form>
-
+    </div>
 </body>
 </html>
