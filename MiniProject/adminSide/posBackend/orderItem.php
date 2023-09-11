@@ -29,7 +29,7 @@ function createNewBillRecord($table_id) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 order-md-1" id="item-select-section ">
-                <div class="container-fluid pt-5 pl-600 row" style=" margin-left: 15rem;max-width: 40rem;">
+                <div class="container-fluid pt-4 pl-500 row" style=" margin-left: 10rem;max-width: 40rem;">
                     <div class="mt-5 mb-2">
                         <h2 class="pull-left">Food & Drinks</h2>
                         
@@ -58,17 +58,17 @@ function createNewBillRecord($table_id) {
                             if (!empty($_POST['search'])) {
                                 $search = $_POST['search'];
 
-                                $query = "SELECT * FROM Menu WHERE item_type LIKE '%$search%' OR item_category LIKE '%$search%' OR item_name LIKE '%$search%' OR item_id LIKE '%$search%' ORDER BY item_id;";
+                                $query = "SELECT * FROM Menu WHERE item_name LIKE '%$search%' OR item_category LIKE '%$search%' OR item_id LIKE '%$search%'";
                                 $result = mysqli_query($link, $query);
                             }else{
                                 // Default query to fetch all menu items
-                                $query = "SELECT * FROM Menu ORDER BY item_id;";
-                                $result = mysqli_query($link, $query);
+                                $sql = "SELECT * FROM Menu ORDER BY item_id;";
+                                $result = mysqli_query($link, $sql);
                             }
                         } else {
                             // Default query to fetch all menu items
-                            $query = "SELECT * FROM Menu ORDER BY item_id;";
-                            $result = mysqli_query($link, $query);
+                            $sql = "SELECT * FROM Menu ORDER BY item_id;";
+                            $result = mysqli_query($link, $sql);
                         }
                         $bill_id = $_GET['bill_id'];
                         if ($result) {
@@ -91,7 +91,7 @@ function createNewBillRecord($table_id) {
                                     echo "<td>" . $row['item_id'] . "</td>";
                                     echo "<td>" . $row['item_name'] . "</td>";
                                     echo "<td>" . $row['item_category'] . "</td>";
-                                    echo "<td>" . number_format($row['item_price'],2) . "</td>";
+                                    echo "<td>" . $row['item_price'] . "</td>";
 
                                     // Check if the bill has been paid
                                     $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
@@ -111,7 +111,7 @@ function createNewBillRecord($table_id) {
                                             . '<input type="text" hidden name= "table_id" value="' . $table_id . '">'
                                             . '<input type="text" name= "item_id" value=' . $row['item_id'] . ' hidden>'
                                             . '<input type="number" name= "bill_id" value=' . $bill_id . ' hidden>'
-                                            . '<input type="number" name="quantity" placeholder="Enter Quantity" required min="1" max="100">'
+                                            . '<input type="number" name="quantity" style="width:120px" placeholder="Enter Quantity" required min="1" max="100">'
                                             . '<input type="hidden" name="addToCart" value="1">'
                                             . '<button type="submit" class="btn btn-primary">Add to Cart</button>';
                                         echo "</form></td>";
@@ -139,8 +139,8 @@ function createNewBillRecord($table_id) {
 
                 </div>
             </div>
-            <div class="col-md-6 order-md-2" id="cart-section">
-                <div class="container-fluid pt-5 pl-600 pr-5 row">
+            <div class="col-md-4 order-md-2" id="cart-section">
+                <div class="container-fluid pt-5 pl-600 pr-6 row" style="margin-left: 10rem;max-width:40rem;width:540px;">
                     <div class="cart-section">
                         <h3>Cart</h3>
                         <table class="table table-bordered">
@@ -178,9 +178,9 @@ function createNewBillRecord($table_id) {
                                         echo '<tr>';
                                         echo '<td>' . $item_id . '</td>';
                                         echo '<td>' . $item_name . '</td>';
-                                        echo '<td>RM ' . number_format($item_price,2) . '</td>';
+                                        echo '<td>RM ' . $item_price . '</td>';
                                         echo '<td>' . $quantity . '</td>';
-                                        echo '<td>RM ' . number_format($total,2) . '</td>';
+                                        echo '<td>RM ' . $total . '</td>';
                                         // Check if the bill has been paid
                                         $payment_time_query = "SELECT payment_time FROM Bills WHERE bill_id = '$bill_id'";
                                         $payment_time_result = mysqli_query($link, $payment_time_query);
@@ -212,20 +212,19 @@ function createNewBillRecord($table_id) {
                         <div class="table-responsive">
     <table class="table table-bordered ">
         <tbody>
-    <tr>
-        <td><strong>Cart Total</strong></td>
-        <td>RM <?php echo number_format($cart_total, 2); ?></td>
-    </tr>
-    <tr>
-        <td><strong>Cart Taxed</strong></td>
-        <td>RM <?php echo number_format($cart_total * $tax, 2); ?></td>
-    </tr>
-    <tr>
-        <td><strong>Grand Total</strong></td>
-        <td>RM <?php echo number_format(($tax * $cart_total) + $cart_total, 2); ?></td>
-    </tr>
-</tbody>
-
+            <tr>
+                <td><strong>Cart Total</strong></td>
+                <td>RM <?php echo $cart_total; ?></td>
+            </tr>
+            <tr>
+                <td><strong>Cart Taxed</strong></td>
+                <td>RM <?php echo $cart_total * $tax; ?></td>
+            </tr>
+            <tr>
+                <td><strong>Grand Total</strong></td>
+                <td>RM <?php echo $tax * $cart_total + $cart_total; ?></td>
+            </tr>
+        </tbody>
     </table>
 </div>
 
