@@ -79,67 +79,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-         body {
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            background-color: black;
+        
+
+
+/* Style for the container within login.php */
+.login-container {
+  padding: 50px; /* Adjust the padding as needed */
+  border-radius: 10px; /* Add rounded corners */
+  margin: 100px auto; /* Center the container horizontally */
+  max-width: 500px; /* Set a maximum width for the container */
+}
+
+
+
+        body {
+            font-family:'Georgia', serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0; /* Remove default margin */
+            background-color:black;
+             background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
         }
 
-        .wrapper {
-            width: 360px;
+        .login_wrapper {
+            width: 400px; /* Adjust the container width as needed */
             padding: 20px;
         }
-        h2{
+
+        h2 {
             text-align: center;
-        }
-        
-        .button-55 {
-          box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-          color: #41403e;
-          cursor: pointer;
-          display: inline-block;
-          font-family: Neucha, sans-serif;
-          touch-action: manipulation;
+            font-family: 'Georgia', serif;
         }
 
-        .button {
-            color:white; border-color: white;background-color: black;
+        p {
+            font-family: 'Georgia', serif;
         }
-        
-        .button:hover {
-            color:black; border-color: black;background-color: white;
+
+        .form-group {
+            margin-bottom: 15px; /* Add space between form elements */
         }
-        
+
+        ::placeholder {
+            font-size: 12px; /* Adjust the font size as needed */
+        }
     </style>
 </head>
 <body>
+    <div class="login-container">
     <div class="login_wrapper">
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-        
-        
+    
         <form action="login.php" method="post">
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" placeholder="JohnDoe@gmail.com" required>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="JohnDoe123" required>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
-            
-            <div class="form-group">
-            <input type="submit" class="btn button" value="Login">
-            </div>
-            </form>
 
-        <p >Don't have an account? <a href="register.php">Register here</a></p>
+            <input type="submit" class="btn btn-primary" value="Login" style="background-color: black; border: 1px solid white; color: white;">
+
+        </form>
+
+        <p>Don't have an account? <a href="register.php">Register here</a></p>
     </div>
-
+    </div>
 </body>
 </html>
-
