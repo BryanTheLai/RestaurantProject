@@ -129,6 +129,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ::placeholder {
             font-size: 12px; /* Adjust the font size as needed */
         }
+        
+        button, select {
+            background-color: #5A5A5A;
+            color: white;
+            border: 2px solid black;
+            padding: 3px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            touch-action: manipulation;
+            font-family: serif;
+            border-color: #41403e;
+            height:40px;
+            width:66px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+        }
+
+        /* Style buttons and selects on hover */
+        button:hover, select:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
+        
+        .button:focus {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }
+        
     </style>
 </head>
 <body>
@@ -136,6 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="login_wrapper">
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
     
+        <div class="wrapper">
+            <h2 class="text-center" style="font-family: serif; color:white;">Login</h2>
+            <p class="text-center" style="font-family: serif; color:white;">Please fill in your credentials to login.</p>
+
         <form action="login.php" method="post">
             <div class="form-group">
                 <label>Email</label>
@@ -146,12 +181,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
-
-            <input type="submit" class="btn btn-primary" value="Login" style="background-color: black; border: 1px solid white; color: white;">
-
+            
+            <button type="submit" name="submit" value="Login">Login</button>
+            
         </form>
 
-        <p>Don't have an account? <a href="register.php">Register here</a></p>
+            <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="color: #A5A5A5">Register here</a></p>
+        </div>
     </div>
     </div>
 </body>
