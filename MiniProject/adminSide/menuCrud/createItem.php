@@ -1,3 +1,6 @@
+<?php
+session_start(); // Ensure session is started
+?>
 <?php  include '../inc/dashHeader.php'?>
 <?php
 // Include config file
@@ -25,7 +28,6 @@ if(isset($_POST['submit'])){
     <title>Create New Item</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body{ font: 14px sans-serif; }
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 80px  }
     </style>
 </head>
