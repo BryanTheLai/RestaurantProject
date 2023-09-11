@@ -109,71 +109,101 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-         body {
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            background-color: black;
+        body {
+            font-family: 'Georgia', serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
+            margin: 0; /* Remove default margin */    
+            background-color: black;
+             background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white; /* Set text color to white */
+            }
 
-        .wrapper {
-            width: 360px;
+
+        
+/* Style for the container within login.php */
+.register-container {
+  padding: 50px; /* Adjust the padding as needed */
+  border-radius: 10px; /* Add rounded corners */
+  margin: 100px auto; /* Center the container horizontally */
+  max-width: 500px; /* Set a maximum width for the container */
+}
+        .register_wrapper {
+            width: 400px; /* Increase the container width */
             padding: 20px;
         }
-        h2{
-            text-align: center;
-        }
-        
-        
-        .button {
-            color:white; border-color: white;background-color: black;
-        }
-        
-        .button:hover {
-            color:black; border-color: black;background-color: white;
-        }
-        
-        
 
+        h2 {
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+
+        p {
+            font-family: 'Georgia', serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Add space between form elements */
+        }
+
+        ::placeholder {
+            font-size: 12px; /* Adjust the font size as needed */
+        }
+
+        /* Add flip animation class to all Font Awesome icons */
+        .fa-flip {
+            animation: fa-flip 3s infinite;
+        }
+
+        /* Keyframes for the flip animation */
+        @keyframes fa-flip {
+            0% {
+                transform: scale(1) rotateY(0);
+            }
+            50% {
+                transform: scale(1.2) rotateY(180deg);
+            }
+            100% {
+                transform: scale(1) rotateY(360deg);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="register-container">
     <div class="register_wrapper"> <!-- Updated class name -->
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-      
-        
-        <form action="register.php" method="post" ">
+       
+        <form action="register.php" method="post">
             <div class="form-group">
-                <label>Email </label>
-                <input type="email" name="email" class="form-control" placeholder="JohnDoe@gmail.com" required>
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
             </div>
 
             <div class="form-group">
-                <label>Member Name </label>
-                <input type="text" name="member_name" class="form-control" placeholder="John Doe" required>
+                <label>Member Name</label>
+                <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" required>
             </div>
 
             <div class="form-group">
-                <label>Password </label>
-                <input type="password" name="password" class="form-control" placeholder="JohnDoe123" required>
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
             </div>
 
             <div class="form-group">
-                <label>Phone Number </label>
-                <input type="text" name="phone_number" class="form-control" placeholder="0123456789" required>
+                <label>Phone Number</label>
+                <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
             </div>
-            
-            <div class="button-55">
-            <input type="submit" class="btn button" value="Register">
-            </div>
-            
-          
-            
-            </form>
+
+            <input type="submit" class="btn btn-primary" value="Register" style="background-color: black; border: 1px solid white; color: white;" >
+           
+        </form>
 
         <p>Already have an account? <a href="../customerLogin/login.php">Proceed to login page</a></p>
     </div>
