@@ -159,6 +159,11 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <title>Home</title>
 </head>
 
@@ -179,34 +184,89 @@ session_start();
         <div class="hamburger">
           <div class="bar"></div>
         </div>
+          <div class="navbar-container">
+            
+              <div class="navbar">
         <ul>
           <li><a href="#hero" data-after="Home">Home</a></li>
           <li><a href="../CustomerReservation/reservePage.php" data-after="Service">Reservation</a></li>
           <li><a href="#projects" data-after="Projects">Menu</a></li>
           <li><a href="#about" data-after="About">About</a></li>
           <li><a href="#contact" data-after="Contact">Contact</a></li>
+          <li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
           
-        
-    <!-- Check if the user is logged in -->
-<?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-   <li><a href="../customerLogin/logout.php" data-after="LogOut">Log Out</a></li>
-   <li>
-    <a href="../customerProfile/profile.php" class="profile-link">
-      <?php echo $_SESSION["member_name"] . ' - 1000 Points'; ?>
-    </a>
-  </li>
+   
 
-<?php else: ?>
-  <li><a href="../customerLogin/register.php" data-after="SignUp">Sign Up</a></li>
-  <li><a href="../customerLogin/login.php" data-after="LogIn">Log In</a></li>
-<?php endif; ?>
-<li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
+ <div class="dropdown">
+ <button class="dropbtn">ACCOUNT <i class="fa fa-caret-down" aria-hidden="true"></i> </button>
+
+    <div class="dropdown-content">
+        
+     <?php
+ 
+// Get the member_id from the query parameters
+$member_id = $_GET['member_id'] ?? 1; // Change this to the way you obtain the member ID
+
+// Create a query to retrieve the member's information
+$query = "SELECT member_name, points FROM memberships WHERE member_id = $member_id";
+
+// Execute the query
+$result = mysqli_query($link, $query);
+
+
+    // Check if the user is logged in
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+      // If logged in, show "Logout" link
+        // Check if the query was successful
+if ($result) {
+    // Fetch the member's information
+    $row = mysqli_fetch_assoc($result);
+    
+    if ($row) {
+        $member_name = $row['member_name'];
+        $points = $row['points'];
+        
+        // Calculate VIP status
+        $vip_status = ($points >= 1000) ? 'VIP' : 'Regular';
+        
+        // Output the member's information
+       
+        echo "<p>Member Name: $member_name</p>";
+        echo "<p>Points: $points</p>";
+        echo "<p>Status: $vip_status</p>";
+    } else {
+        echo "Member not found.";
+    }
+} else {
+    echo "Error: " . mysqli_error($link);
+}
+
+      echo '<a class="logout-link" style="color: black;" href="../customerLogin/logout.php">Logout</a>';
+    } else {
+      // If not logged in, show "Login" link
+        echo '<a class=signin-link" style="color: black;" href="../customerLogin/register.php">Sign Up </a> ';
+      echo '<a class="login-link" style="color: black;" href="../customerLogin/login.php">Log In</a>';
+    }
+    
+// Close the database connection
+mysqli_close($link);
+?>
+     
+    </div>
+  </div> 
         </ul>
+          </div>
+          </div>
       </div>
     </div>
   </div>
 </section>
 <!-- End Header -->
+
+
+
+
+
 <!-- Hero Section with Video Background and Text Overlay -->
 <section id="hero" style="position: relative;">
     <video autoplay loop muted playsinline poster="your-poster-image.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
@@ -229,7 +289,7 @@ session_start();
   <section id="projects">
     <div class="projects container">
       <div class="projects-header">
-        <h1 class="section-title">Me<span>n</span>u</h1>
+        <h1 class="section-title"   >Me<span>n</span>u</h1>
       </div>
      
         
@@ -285,7 +345,6 @@ session_start();
         <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
         <span class="item-price">RM<?php echo $item['item_price']; ?></span><br>
         <span class="item_type"><i><?php echo $item['item_type']; ?></i></span>
-        <span class="item_type"><i><img src="<?php echo $item['item_img']; ?>" alt=""></i></span>
         <hr>
       </p>
     <?php endforeach; ?>
@@ -294,8 +353,7 @@ session_start();
       
       
        <div class="blue msg">
-           
-           
+          
       <div class="mainDish">
            <h1 style="text-align:center">MAIN DISHES</h1>
           <?php foreach ($mainDishes as $item): ?>
@@ -343,10 +401,10 @@ session_start();
 
   
   <!-- About Section -->
-<section id="about" style="background-image: url('../image/aboutusBackground.jpg'); background-size: cover; background-position: center;">
+<section id="about" ">
   <div class="about container">
     <div class="col-right">
-        <h1 class="section-title" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">About <span>Us</span></h1>
+        <h1 class="section-title" >About <span>Us</span></h1>
         <h2>Johnny's DINING & BAR Company History:</h2>
  <p>Johnny's Dining & Bar is a well-established Western food establishment in the city's heart. Johnny's Dining & Bar has become a popular choice for customers looking to celebrate special occasions or simply enjoy a relaxing meal, with a focus on providing delicious meals and a friendly dining experience.
  </p>
@@ -367,16 +425,14 @@ session_start();
   
   
  <!-- Contact Section -->
-<section id="contact" style="background-image: url('../image/aboutusBackground.jpg'); background-size: cover; background-position: center;">
+<section id="contact" ">
   <div class="contact container">
     <div>
       <h1 class="section-title">Contact <span>info</span></h1>
     </div>
     <div class="contact-items">
       <div class="contact-item contact-item-bg">
-        <i class="fa-sharp fa-solid fa-phone fa-beat"></i>
         <div class="contact-info">
-          <i class="fa-sharp fa-solid fa-phone fa-beat"></i>
           <div class='icon'><img src="../image/icons8-phone-100.png" alt=""/></div>
           <h1>Phone</h1>
           <h2>+60 886 8786</h2>
@@ -431,6 +487,12 @@ session_start();
   <!-- End Footer -->
   <script src="../js/app.js"></script>
    <style type="text/css">
+       
+       .navbar-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
       .msg {
         font-family: 'Montserrat', sans-serif;
         margin-top: 25px;
@@ -520,78 +582,6 @@ session_start();
   margin-right: 10px; /* Add a small right margin for spacing */
 }
 
-/* Style for the "About Us" section content */
-/* Style for the "About Us" section content */
-#about {
-  padding: 100px 0; /* Adjust the padding as needed */
-  background-image: url('../image/aboutusBackground.jpg');
-  background-size: 150%; /* Cover the entire section with the background image */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Fixed background to stay in place */
-  color: white; /* Set text color to white */
-  text-align: center; /* Center the text */
-  position: relative; /* Set the position to relative for centering */
-  height: 150%; /* Set the section height to the viewport height */
-  overflow: hidden; /* Hide any overflowing content */
-}
-
-
-#about .section-title {
-  font-size: 36px; /* Adjust the font size */
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#about .col-left {
-  /* Styles for the left column (if needed) */
-}
-
-#about .col-right {
-  background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent black background */
-  padding: 20px;
-  border-radius: 5px;
-  /* Other styles for the right column */
-}
-
-#about .col-right h2 {
-  font-size: 24px; /* Adjust the font size */
-  color: white; /* Text color for the right column */
-}
-
-#about .col-right p {
-  font-size: 18px; /* Adjust the font size */
-  color: white; /* Text color for the right column */
-}
-
-
-/* Style for the "Contact" section */
-#contact {
-  background-image: url('../image/aboutusBackground.jpg');
-  background-size: 150%; /* Increase the size of the background image (e.g., 150%) */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Fixed background to stay in place */
-  color: white; /* Set text color to white */
-  text-align: center; /* Center the text */
-  position: relative; /* Set the position to relative for centering */
-  height: 100vh; /* Set the section height to the viewport height */
-  overflow: hidden;
-  padding: 100px 0; /* Adjust the padding as needed */
-}
-
-
-#contact .section-title {
-  color: white;
-}
-
-
-#contact .col-right {
-  background-color: rgba(0, 0, 255, 0.5); /* Semi-transparent blue background */
-  padding: 20px;
-  border-radius: 5px;
-}
-
 
 #contact .col-right h2 {
   font-size: 24px; /* Adjust the font size */
@@ -625,8 +615,85 @@ session_start();
   height: 80px; /* Adjust the height of the icon images */
 }
 
-/* Add other styles for the contact items as needed */
 
+
+.navbar {
+  overflow: hidden;
+  
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 18px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  margin-top: 5px;
+}
+
+ .dropdown:hover .dropbtn {
+  color: crimson;
+  
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  color: black;
+}
+
+.dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+/* Style for the dropdown content text */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Hover effect for dropdown content text */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black; /* Set the text color to black on hover if needed */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -677,8 +744,16 @@ session_start();
     });
   });
 
+$(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+});
 
     </script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS (including Popper.js) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
