@@ -231,9 +231,9 @@ if ($result) {
         
         // Output the member's information
        
-        echo "<p>Member Name: $member_name</p>";
-        echo "<p>Points: $points</p>";
-        echo "<p>Status: $vip_status</p>";
+        echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; font-weight: 900;'>$member_name</p>";
+        echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; font-weight: 900;'>$points Points </p>";
+        echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; font-weight: 900;'>$vip_status</p>";
     } else {
         echo "Member not found.";
     }
@@ -241,11 +241,11 @@ if ($result) {
     echo "Error: " . mysqli_error($link);
 }
 
-      echo '<a class="logout-link" style="color: black;" href="../customerLogin/logout.php">Logout</a>';
+      echo '<a class="logout-link" style="color: white; font-size:1.3em;" href="../customerLogin/logout.php">Logout</a>';
     } else {
       // If not logged in, show "Login" link
-        echo '<a class=signin-link" style="color: black;" href="../customerLogin/register.php">Sign Up </a> ';
-      echo '<a class="login-link" style="color: black;" href="../customerLogin/login.php">Log In</a>';
+        echo '<a class=signin-link" style="color: white; font-size:15px;" href="../customerLogin/register.php">Sign Up </a> ';
+      echo '<a class="login-link" style="color: white; font-size:15px; " href="../customerLogin/login.php">Log In</a>';
     }
     
 // Close the database connection
@@ -637,7 +637,7 @@ mysqli_close($link);
 }
 
 .dropdown .dropbtn {
-  font-size: 18px;  
+  font-size: 1.75em;  
   border: none;
   outline: none;
   color: white;
@@ -645,7 +645,7 @@ mysqli_close($link);
   background-color: inherit;
   font-family: inherit;
   margin: 0;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
  .dropdown:hover .dropbtn {
@@ -656,7 +656,7 @@ mysqli_close($link);
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
+    background-color: rgba(0, 0, 0, 0.5);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -758,3 +758,4 @@ $(document).ready(function() {
 </body>
 
 </html>
+
