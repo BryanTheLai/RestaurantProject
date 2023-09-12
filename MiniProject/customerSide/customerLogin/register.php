@@ -173,13 +173,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 transform: scale(1) rotateY(360deg);
             }
         }
+        
+                button, select {
+            background-color: #5A5A5A;
+            color: white;
+            border: 2px solid black;
+            padding: 3px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            touch-action: manipulation;
+            font-family: serif;
+            height:40px;
+            border-color: #41403e;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+        }
+
+        /* Style buttons and selects on hover */
+        button:hover, select:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
+        
+        .button:focus {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }
     </style>
 </head>
 <body>
     <div class="register-container">
     <div class="register_wrapper"> <!-- Updated class name -->
-        <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-       
+        <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a><br>
+        <h2 class="text-center" style="font-family: serif; color:white;">Registration Form</h2>
+        <p class="text-center" style="font-family: serif; color:white;">Please fill this form to create an account.</p>
+     
         <form action="register.php" method="post">
             <div class="form-group">
                 <label>Email</label>
@@ -201,11 +232,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
             </div>
 
-            <input type="submit" class="btn btn-primary" value="Register" style="background-color: black; border: 1px solid white; color: white;" >
+            <button type="submit" name="register" value="Register">Register</button>
            
         </form>
 
-        <p>Already have an account? <a href="../customerLogin/login.php">Proceed to login page</a></p>
+        <p style="font-family: serif; color:white;">Already have an account? <a href="../customerLogin/login.php" style="color: #A5A5A5">Proceed to login page</a></p>
     </div>
     </div>
 </body>
