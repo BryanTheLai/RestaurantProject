@@ -1,3 +1,6 @@
+<?php
+session_start(); // Ensure session is started
+?>
 <!DOCTYPE html>
 <html>
 <head>
