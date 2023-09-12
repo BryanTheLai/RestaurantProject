@@ -1,3 +1,6 @@
+<?php
+session_start(); // Ensure session is started
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +13,12 @@
         <h2 class="text-center">Check Staff Member Reservation Validity</h2>
         <form action="" method="post">
             <div class="form-group">
+                <?php
+                    $currentStaffId = $_SESSION['logged_account_id'] ?? ""; 
+                ?>
                 <label for="staffId">Staff ID:</label>
-                <input type="text" id="staffId" name="staffId" class="form-control" required>
+                <input type="text" id="staffId" name="staffId" class="form-control" 
+                       value="<?= $currentStaffId ?>" readonly required>
             </div>
             <div class="form-group">
                 <label for="memberId">Member ID:</label>
