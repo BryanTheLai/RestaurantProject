@@ -1,4 +1,7 @@
 <?php
+session_start(); // Ensure session is started
+?>
+<?php
 require_once '../config.php';
 include '../inc/dashHeader.php';
 $bill_id = $_GET['bill_id'];

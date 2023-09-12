@@ -1,4 +1,7 @@
 <?php
+session_start(); // Ensure session is started
+?>
+<?php
 require('fpdf186/fpdf.php');
 require_once '../config.php';
 
