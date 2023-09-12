@@ -51,12 +51,18 @@ $head_count = $_GET['head_count'] ?? 1;
 
         /* Style all buttons with the color #007bff */
         button, select {
-            background-color: #007bff;
+            background-color: #5A5A5A;
             color: white;
             border: 2px solid black;
             padding: 3px 10px;
             border-radius: 5px;
             cursor: pointer;
+            display: inline-block;
+            touch-action: manipulation;
+            font-family: serif;
+            border-color: #41403e;
+            height:40px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
             transition: background-color 0.3s, color 0.3s, border 0.3s;
         }
 
@@ -65,6 +71,12 @@ $head_count = $_GET['head_count'] ?? 1;
             background-color: white;
             color: black;
             border: 2px solid black;
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
+        
+        .button:focus {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
         }
 
         .reserve-container h2 {
@@ -103,11 +115,11 @@ $head_count = $_GET['head_count'] ?? 1;
         <div class="row">
             <div class="column left-column">
                 <div id="Search Table">
-                    <h2>Time Slot</h2>
-                    <form id="reservation-form" method="GET" action="availability.php">
-                        <label for="reservation_date">Select Date:</label><br>
-                        <input type="date" id="reservation_date" name="reservation_date" required>
-                        <br><label for="reservation_time">Available Reservation Times:</label>
+                    <h2 style="font-family: serif; color:white;">Time Slot</h2>
+                    <form id="reservation-form" method="GET" action="availability.php"><br>
+                        <label for="reservation_date" style=" font-family: serif;">Select Date:</label><br>
+                        <input type="date" id="reservation_date" name="reservation_date" required><br>
+                        <br><label for="reservation_time" style=" font-family: serif;">Available Reservation Times:</label>
                         <div id="availability-table">
                             <?php
                             $availableTimes = array();
@@ -131,18 +143,18 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         <br>
                         <input type="number" id="head_count" name="head_count" value=1 hidden required>
-                        <button type="submit" name="submit">Search</button>
+                        <button type="submit" name="submit" style=" font-family: serif;">Search</button>
                     </form>
                 </div>
             </div>
 
             <div class="column right-column">
                 <div id="insert-reservation-into-table">
-                    <h2>Make a Reservation</h2>
+                    <h2 style="font-family: serif; color:white;">Make a Reservation</h2>
                     <form id="reservation-form" method="POST" action="insertReservation.php">
                         <br>
                         <div class="form-group">
-                            <label for="customer_name">Customer Name:</label>
+                            <label for="customer_name" style=" font-family: serif;">Customer Name:</label><br>
                             <input type="text" id="customer_name" name="customer_name" required>
                         </div>
                         <?php
@@ -151,7 +163,7 @@ $head_count = $_GET['head_count'] ?? 1;
                         ?>
                         <br>
                         <div class="form-group">
-                            <label for="reservation_date">Reservation Date:</label>
+                            <label for="reservation_date" style=" font-family: serif;">Reservation Date:</label><br>
                             <input type="date" id="reservation_date" name="reservation_date"
                                    value="<?= $defaultReservationDate ?>" readonly required>
                             <input type="time" id="reservation_time" name="reservation_time"
@@ -159,7 +171,7 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="table_id_reserve">Pick a Table:</label>
+                            <label for="table_id_reserve" style=" font-family: serif;">Pick a Table:</label>
                             <select class="form-control" name="table_id" id="table_id_reserve" required>
                                 <option value="" selected disabled>Select a table</option>
                                 <?php
@@ -187,8 +199,8 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         <br>
                         <div class="form-group mb-3">
-                            <label for="special_request">Special request:</label>
-                            <input type="text" id="special_request" name="special_request">
+                            <label for="special_request">Special request:</label><br>
+                            <input type="text" id="special_request" name="special_request"><br><br>
                             <button type="submit" name="submit">Make Reservation</button>
                         </div>
                     </form>
@@ -208,4 +220,3 @@ $head_count = $_GET['head_count'] ?? 1;
 </body>
 
 </html>
-
