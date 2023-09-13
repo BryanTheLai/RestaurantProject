@@ -41,7 +41,7 @@ $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 15rem;">
+        <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 13rem;">
             <div class="container pt-5 pl-600 row">
                 <a href="../report/generate_report.php" class="btn btn-primary">Print Report</a>
 
@@ -86,11 +86,11 @@ $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
                 <div class="container pt-5 pl-600 row">
                     <div class="container pt-5 pl-600 ">
                         <!-- Bar Chart Payment Method -->
-                        <div id="paymentMethodChart" style="width: 120%; max-width: 1400px; height: 500px;"></div>
+                        <div id="paymentMethodChart" style="width: 100%; max-width: 1200px; height: 500px;"></div>
                     </div>
                     <div class="container pt-5 pl-600 ">
                         <!-- Donut Chart Payment Method -->
-                        <div id="paymentMethodDonutChart" style="width: 120%; max-width: 1400px; height: 500px;"></div>
+                        <div id="paymentMethodDonutChart" style="width: 100%; max-width: 1200px; height: 500px;"></div>
                     </div>
                 </div>         
             </div>

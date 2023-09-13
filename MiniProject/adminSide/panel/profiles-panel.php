@@ -16,18 +16,18 @@ require_once '../config.php';
     
     <div class="row">
         
-        <div class="col-md-4 order-md-1  " style="margin-top: 6rem; margin-left: 15rem;">
+        <div class="col-md-6 order-md-1  " style="margin-top: 6rem; margin-left: 15rem;">
             <h2 class="pull-left">Search Member</h2>
             <form method="get" action="#">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" id="member_id" name="member_id" class="form-control" placeholder="Enter Member ID">
+                        <input type="text" id="member_id" style="width:150px" name="member_id" class="form-control" placeholder="Enter Member ID">
                     </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-light">Search</button>
+                    <div class="col-md-6">
+                        <button type="submit" style=": 200px" class="btn btn-light">Search</button>
                     </div> 
                 </div>
-            </form>
+            </form><br>
             
             <?php
             require_once '../config.php';
