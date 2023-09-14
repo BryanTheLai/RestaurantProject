@@ -8,7 +8,7 @@ require_once '../config.php';
 ?>
 
 <div class="row">
-        <div class="col-md-10 order-md-2" style="margin-top: 3rem; margin-left: 20rem;">
+        <div class="col-md-10 order-md-2" style="margin-top: 3rem; margin-left: 14rem;">
             <div class="container-fluid pt-5  row">
             <h3>List of Most Purchased Items</h3>
 
@@ -60,22 +60,22 @@ require_once '../config.php';
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 15rem;">
+        <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 5rem;">
             <div class="container pt-3 row">
                 <!-- Add a div for Google Charts -->
-                <div id="mostPurchased" style="width: 120%; max-width: 1000px; height: 500px;"></div>
+                <div id="mostPurchased" style="width: 113%; max-width: 1000px; height: 500px;"></div>
             </div>
             <div class="container pt-3 row">
                 <!-- Add a div for Google Charts -->
-                <div id="mostPurchasedMain" style="width: 120%; max-width: 1000px; height: 500px;"></div>
+                <div id="mostPurchasedMain" style="width: 113%; max-width: 1000px; height: 500px;"></div>
             </div>
             <div class="container pt-3 row">
                 <!-- Add a div for Google Charts -->
-                <div id="mostPurchasedDrinks" style="width: 120%; max-width: 1000px; height: 500px;"></div>
+                <div id="mostPurchasedDrinks" style="width: 113%; max-width: 1000px; height: 500px;"></div>
             </div>
             <div class="container pt-3 row">
                 <!-- Add a div for Google Charts -->
-                <div id="mostPurchasedSide" style="width: 120%; max-width: 1000px; height: 500px;"></div>
+                <div id="mostPurchasedSide" style="width: 113%; max-width: 1000px; height: 500px;"></div>
             </div>
         </div>
     </div>
