@@ -3,7 +3,7 @@ session_start(); // Ensure session is started
 ?>
 <?php include '../inc/dashHeader.php'; ?>
     <style>
-        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+        .wrapper{ width: 50%; padding-left: 200px; padding-top: 20px  }
     </style>
 
 <div class="wrapper">
@@ -76,12 +76,12 @@ session_start(); // Ensure session is started
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
                         echo "<tr>";
-                        echo "<th>Member Id</th>";
+                        echo "<th style='width:7em;'>Member Id</th>";
                         echo "<th>Member Name</th>";
-                        echo "<th>Points</th>";
+                        echo "<th style='width:7em;'>Points</th>";
                         //echo "<th>Email</th>";
                         //echo "<th>Phone Number</th>";
-                        echo "<th>Delete</th>";
+                        echo "<th style='width:5em;'>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";

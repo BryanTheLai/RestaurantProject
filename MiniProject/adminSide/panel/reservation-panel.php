@@ -52,7 +52,7 @@ session_start(); // Ensure session is started
                         echo '<table class="table table-bordered table-striped">';
                         echo "<thead>";
                         echo "<tr>";
-                        echo "<th>ID</th>";
+                        echo "<th>Reservation ID</th>";
                         echo "<th>Customer Name</th>";
                         echo "<th>Table ID</th>";
                         echo "<th>Reservation Time</th>";

@@ -14,8 +14,8 @@ include '../inc/dashHeader.php';
 <body>
 <div class="container">
     <div id="POS-Content" class="row center-middle">
-            <a href="reservation-panel.php" class="btn btn-dark btn-lg" title="View Details">Reservation</a>
-            <a href="../posBackend/posTable.php" class="btn btn-dark btn-lg" title="View Details">Order</a>
+            <a href="reservation-panel.php" style="width:20em;" class="btn btn-dark btn-lg m-5" title="View Details">Reservation</a>
+            <a href="../posBackend/posTable.php" style="width:20em;" class="btn btn-dark btn-lg m-5" title="View Details">Order</a>
     </div>
 </div>
 

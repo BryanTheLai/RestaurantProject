@@ -3,7 +3,7 @@ session_start(); // Ensure session is started
 ?>
 <?php include '../inc/dashHeader.php'; ?>
     <style>
-        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+        .wrapper{ width: 85%; padding-left: 200px; padding-top: 20px  }
     </style>
 
 <div class="wrapper">
@@ -46,18 +46,18 @@ session_start(); // Ensure session is started
                 
                 if ($result = mysqli_query($link, $sql)) {
                     if (mysqli_num_rows($result) > 0) {
-                        echo '<table class="table table-bordered table-striped">';
+                        echo '<table class="table table-bordered table-striped" >';
                         echo "<thead>";
                         echo "<tr>";
-                        echo "<th>ID</th>";
+                        echo "<th>Bill ID</th>";
                         echo "<th>Staff ID</th>";
                         echo "<th>Member ID</th>";
                         echo "<th>Reservation ID</th>";
                         echo "<th>Table ID</th>";
                         echo "<th>Card ID</th>";
                         echo "<th>Payment Method</th>";
-                        echo "<th>Bill Time</th>";
-                        echo "<th>Payment Time</th>";
+                        echo "<th style='width:13em'>Bill Time</th>";
+                        echo "<th style='width:13em'>Payment Time</th>";
                         echo "<th>Delete</th>";
                         echo "<th>Receipt</th>";
                         echo "</tr>";
