@@ -104,7 +104,7 @@ $pdf->Cell(150, 10, 'Tax (' . ($tax_rate * 100) . '%)', 1);
 $pdf->Cell(40, 10, 'RM ' . number_format($tax_amount,2), 1);
 $pdf->Ln();
 
-$pdf->Cell(150, 10, 'After Tax', 1);
+$pdf->Cell(150, 10, 'Grand Total', 1);
 $pdf->Cell(40, 10, 'RM ' . number_format($after_tax,2), 1);
 $pdf->Ln();
 
