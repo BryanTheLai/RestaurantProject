@@ -16,15 +16,15 @@ require_once '../config.php'; // Include your database configuration
 <div class="container">
     <div id="POS-Content" class="row">
         <div class="row center-middle">
-            <p  style="margin-top: 3rem;">Table Status</p>
+            <h2  style="margin-top: 3rem;">TABLE STATUS</h2>
             <div class="row d-flex justify-content-around" >
                 <div class="col-md-3">
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Free">
                         Available
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Used">
                         Unavailable
                     </div>
                 </div>
@@ -36,7 +36,7 @@ require_once '../config.php'; // Include your database configuration
                 </div>
                 -->
                 <div class="col-md-3">
-                    <div class="alert alert-warning" style="color:black;" role="alert">
+                    <div class="alert alert-warning" style="color:black;" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Reserved">
                         Reserved
                     </div>
                 </div>
