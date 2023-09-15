@@ -60,7 +60,7 @@
                             </a>
                             <a class="nav-link" href="../panel/account-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
-                                Online Accounts
+                                View All Accounts
                             </a>
                             <a class="nav-link" href="../panel/kitchen-panel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-kitchen-set"></i></div>
