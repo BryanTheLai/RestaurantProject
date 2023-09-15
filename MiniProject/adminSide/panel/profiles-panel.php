@@ -24,7 +24,7 @@ require_once '../config.php';
                         <input type="text" id="member_id" style="width:150px" name="member_id" class="form-control" placeholder="Enter Member ID">
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" style="width: 200px" class="btn btn-light">Search</button>
+                        <button type="submit"  class="btn btn-light">Search</button>
                     </div> 
                 </div>
             </form><br>
@@ -33,7 +33,6 @@ require_once '../config.php';
             require_once '../config.php';
 
             $memberId = isset($_GET['member_id']) ? $_GET['member_id'] : 1;
-
             // Get member's most ordered items
             $mostOrderedItemsQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS order_count
                                       FROM Bill_Items
