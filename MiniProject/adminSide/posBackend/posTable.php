@@ -16,22 +16,25 @@ require_once '../config.php'; // Include your database configuration
 <div class="container">
     <div id="POS-Content" class="row">
         <div class="row center-middle">
-            <div class="row d-flex justify-content-around" style="margin-top: 3rem;">
+            <p  style="margin-top: 3rem;">Table Status</p>
+            <div class="row d-flex justify-content-around" >
                 <div class="col-md-3">
                     <div class="alert alert-success" role="alert">
-                        Free
+                        Available
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="alert alert-danger" role="alert">
-                        Ordered
+                        Unavailable
                     </div>
                 </div>
+                <!--
                 <div class="col-md-3">
                     <div class="alert alert-dark" role="alert">
                         No Bill Id
                     </div>
                 </div>
+                -->
                 <div class="col-md-3">
                     <div class="alert alert-warning" style="color:black;" role="alert">
                         Reserved
