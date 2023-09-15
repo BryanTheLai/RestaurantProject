@@ -3,7 +3,7 @@ session_start(); // Ensure session is started
 ?>
 <?php  include '../inc/dashHeader.php'?>   
     <style>
-        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
+        .wrapper{ width: 40%; padding-left: 200px; padding-top: 20px  }
     </style>
 <div class="wrapper">
         <div class="container-fluid pt-5 pl-600">
