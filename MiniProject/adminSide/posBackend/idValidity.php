@@ -14,7 +14,8 @@ session_start(); // Ensure session is started
         <form action="" method="post">
             <div class="form-group">
                 <?php
-                    $currentStaffId = $_SESSION['logged_account_id'] ?? ""; 
+                    $currentStaffId = $_SESSION['logged_account_id'] ?? "Please Login"; 
+                    
                 ?>
                 <label for="staffId">Staff ID:</label>
                 <input type="text" id="staffId" name="staffId" class="form-control" 
