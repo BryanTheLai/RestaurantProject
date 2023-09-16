@@ -34,7 +34,7 @@ function createNewBillRecord($table_id) {
             <div class="col-md-6 order-md-1" id="item-select-section ">
                 <div class="container-fluid pt-4 pl-500 row" style=" margin-left: 10rem;max-width: 40rem;">
                     <div class="mt-5 mb-2">
-                        <h2 class="pull-left">Food & Drinks</h2>
+                        <h3 class="pull-left">Food & Drinks</h3>
                         
                     </div>
                     <div class="mb-3">
@@ -142,9 +142,9 @@ function createNewBillRecord($table_id) {
 
                 </div>
             </div>
-            <div class="col-md-4 order-md-2" id="cart-section">
-                <div class="container-fluid pt-5 pl-600 pr-6 row" style="margin-left: 10rem;max-width:40rem;width:540px;">
-                    <div class="cart-section">
+            <div class="col-md-4 order-md-2" id="cart-section" >
+                <div class="container-fluid pt-5 pl-600 pr-6 row mt-4" style="width:50rem;">
+                    <div class="cart-section" >
                         <h3>Cart</h3>
                         <table class="table table-bordered">
                             <thead>
