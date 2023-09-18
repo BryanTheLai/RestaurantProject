@@ -1,4 +1,4 @@
-?php
+<?php
 // Define the variables
 $iconClass = 'fa-check-circle'; // This value indicates success; you can adjust it as needed
 $cardClass = 'alert-success';   // This value indicates a success message card; adjust as needed
