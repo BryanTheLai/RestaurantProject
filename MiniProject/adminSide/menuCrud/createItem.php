@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
         <div class="form-group">
             <label for="item_id" class="form-label">Item ID :</label>
             <input type="text" name="item_id" class="form-control <?php echo !$item_idErr ?:
-                'is-invalid'; ?>" id="item_id" required item_id="item_id" placeholder="ABC88" value="<?php echo $item_id; ?>"><br>
+                'is-invalid'; ?>" id="item_id" required item_id="item_id" placeholder="H88" value="<?php echo $item_id; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
             Please provide a valid item_id.
             </div>
@@ -50,31 +50,31 @@ if(isset($_POST['submit'])){
     
         <div class="form-group"> 
             <label for="item_name">Item Name :</label>
-            <input type="text" name="item_name" id="item_name" required class="form-control <?php echo (!empty($itemname_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <input type="text" name="item_name" id="item_name" placeholder="Spaghetti" required class="form-control <?php echo (!empty($itemname_err)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
         
         <div class="form-group">
             <label for="item_type">Item Type :</label>
-            <input type="text" name="item_type" id="item_type" required class="form-control <?php echo (!empty($itemtype_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <input type="text" name="item_type" id="item_type" placeholder="Beer, Cocktail, etc .." required class="form-control <?php echo (!empty($itemtype_err)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
         
         <div class="form-group">
             <label for="item_category">Item Category :</label>
-            <input type="text" name="item_category" id="item_category" required class="form-control <?php echo (!empty($itemcategory_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <input type="text" name="item_category" id="item_category" placeholder="Main Dish/ Side Dish/ Drinks" required class="form-control <?php echo (!empty($itemcategory_err)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
         
         <div class="form-group">
             <label for="item_price">Item Price :</label>
-            <input min='0.01' type="number" name="item_price" id="item_price" step="0.01" required class="form-control <?php echo (!empty($itemprice_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <input min='0.01' type="number" name="item_price" id="item_price" placeholder="12.34" step="0.01" required class="form-control <?php echo (!empty($itemprice_err)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
         
         <div class="form-group">
             <label for="item_description">Item Description :</label>
-            <textarea name="item_description" id="item_description" rows="4" required class="form-control <?php echo (!empty($itemdescription_err)) ? 'is-invalid' : ''; ?>" ></textarea><br>
+            <textarea name="item_description" id="item_description" rows="4" placeholder="The dish...." required class="form-control <?php echo (!empty($itemdescription_err)) ? 'is-invalid' : ''; ?>" ></textarea><br>
             <span class="invalid-feedback"></span>
         </div>
         
