@@ -135,7 +135,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
    
         <div class="form-group">
             <label for="member_id">Member ID:</label>
-            <input type="number" name="member_id" id="member_id" class="form-control" value="<?php echo $member_id; ?>">
+            <input min=1 type="number" name="member_id" id="member_id" class="form-control" value="<?php echo $member_id; ?>">
         </div>
 
         <div class="form-group">
