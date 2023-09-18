@@ -68,7 +68,7 @@ if(isset($_POST['submit'])){
         
         <div class="form-group">
             <label for="item_price">Item Price :</label>
-            <input type="number" name="item_price" id="item_price" step="0.01" required class="form-control <?php echo (!empty($itemprice_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <input min='0.01' type="number" name="item_price" id="item_price" step="0.01" required class="form-control <?php echo (!empty($itemprice_err)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
         
