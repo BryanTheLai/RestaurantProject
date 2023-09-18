@@ -21,7 +21,7 @@ require_once '../config.php';
             <form method="get" action="#">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" id="member_id" style="width:150px" name="member_id" class="form-control" placeholder="Enter Member ID">
+                        <input required type="text" id="member_id" style="width:150px" name="member_id" class="form-control" placeholder="Enter Member ID">
                     </div>
                     <div class="col-md-6">
                         <button type="submit"  class="btn btn-light">Search</button>
@@ -42,6 +42,11 @@ require_once '../config.php';
                                       GROUP BY Bill_Items.item_id
                                       ORDER BY order_count DESC";
             $mostOrderedItemsResult = mysqli_query($link, $mostOrderedItemsQuery);
+            // Check if any results were returned
+            if(mysqli_num_rows($mostOrderedItemsResult) == 0) {
+                echo "Member ID not found.";
+            }
+            else {
             ?>          
             <h3>Most Ordered Items List</h3>
             <table class="table ">
@@ -60,6 +65,7 @@ require_once '../config.php';
                     <?php endwhile; ?>
                 </tbody>
             </table>
+            <?php } ?>
         </div>
     </div>
 </div>
