@@ -111,6 +111,10 @@ require_once '../config.php';
         ]);
 
         const options = {
+            titleTextStyle: {
+                fontSize: 20, // 12, 18 whatever you want (don't specify px)
+                bold: true    // true or false
+            },
             title: 'Top 10 Most Purchased Items',
             is3D: true
         };
@@ -138,6 +142,10 @@ require_once '../config.php';
         ]);
 
         const options = {
+            titleTextStyle: {
+                fontSize: 20, // 12, 18 whatever you want (don't specify px)
+                bold: true    // true or false
+            },
             title: 'Top 10 Most Purchased Drinks',
             is3D: true
         };
@@ -165,6 +173,10 @@ require_once '../config.php';
         ]);
 
         const options = {
+            titleTextStyle: {
+                fontSize: 20, // 12, 18 whatever you want (don't specify px)
+                bold: true    // true or false
+            },
             title: 'Top 10 Most Purchased Main Dishes',
             is3D: true
         };
@@ -192,6 +204,10 @@ require_once '../config.php';
         ]);
 
         const options = {
+            titleTextStyle: {
+                fontSize: 20, // 12, 18 whatever you want (don't specify px)
+                bold: true    // true or false
+            },
             title: 'Top 10 Most Purchased Side Snacks',
             is3D: true
         };
