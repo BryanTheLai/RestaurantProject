@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         mysqli_commit($link);
 
                         // Registration successful, redirect to the login page
-                        header("location: login.php");
+                        header("location: register_process.php");
                         exit;
                     } else {
                         // Rollback the transaction if there was an error
