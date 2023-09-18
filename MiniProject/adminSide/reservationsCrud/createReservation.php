@@ -80,7 +80,7 @@ $head_count = $_GET['head_count'] ?? 1;
                         
                         <div class="form-group">
                             <label for="customer_name">Customer Name:</label><br>
-                            <input type="text" id="customer_name" name="customer_name" class="form-control" required placeholder="Johnny"><br>
+                            <input type="text" id="customer_name" name="customer_name" class="form-control" required placeholder="Johnny Hatsoff"><br>
                         </div>
                         <?php
                         $defaultReservationDate = $_GET['reservation_date'] ?? date("Y-m-d");
