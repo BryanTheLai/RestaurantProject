@@ -15,7 +15,6 @@ $input_password = $password_err = $password = "";
     <title>Create New Account</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body{ font: 14px sans-serif; }
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 80px; }
     </style>
 </head>
