@@ -57,7 +57,7 @@ $member_id_err = $member_name_err = $points_err = "";
         
         <div class="form-group">
             <label for="member_id" class="form-label">Member ID:</label>
-            <input type="number" name="member_id" placeholder="99" class="form-control <?php echo $member_id_err ? 'is-invalid' : ''; ?>" id="member_id" required value="<?php echo $member_id; ?>"><br>
+            <input min=1 type="number" name="member_id" placeholder="99" class="form-control <?php echo $member_id_err ? 'is-invalid' : ''; ?>" id="member_id" required value="<?php echo $member_id; ?>"><br>
             <div class="invalid-feedback">
                 Please provide a valid member_id.
             </div>
