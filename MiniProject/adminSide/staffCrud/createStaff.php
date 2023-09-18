@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
 
         <div class="form-group">
             <label for="staff_id" class="form-label">Staff ID:</label>
-            <input type="number" name="staff_id" placeholder="21" class="form-control <?php echo !$staff_idErr ?: 'is-invalid'; ?>" id="staff_id" required value="<?php echo $staff_id; ?>"><br>
+            <input min=1 type="number" name="staff_id" placeholder="21" class="form-control <?php echo !$staff_idErr ?: 'is-invalid'; ?>" id="staff_id" required value="<?php echo $staff_id; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
                 Please provide a valid staff_id.
             </div>
