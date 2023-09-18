@@ -28,7 +28,7 @@ $input_password = $password_err = $password = "";
         
         <div class="form-group">
             <label for="account_id" class="form-label">Account ID:</label>
-            <input type="number" name="account_id" placeholder="99" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $account_id; ?>"><br>
+            <input min=1 type="number" name="account_id" placeholder="99" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $account_id; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
                 Please provide a valid account_id.
             </div>
