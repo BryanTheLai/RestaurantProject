@@ -57,7 +57,7 @@ $member_id_err = $member_name_err = $points_err = "";
         
         <div class="form-group">
             <label for="member_id" class="form-label">Member ID:</label>
-            <input min=1 type="number" name="member_id" placeholder="99" class="form-control <?php echo $member_id_err ? 'is-invalid' : ''; ?>" id="member_id" required value="<?php echo $member_id; ?>"><br>
+            <input min=1 type="number" name="member_id" placeholder="1" class="form-control <?php echo $member_id_err ? 'is-invalid' : ''; ?>" id="member_id" required value="<?php echo $member_id; ?>"><br>
             <div class="invalid-feedback">
                 Please provide a valid member_id.
             </div>
@@ -65,7 +65,7 @@ $member_id_err = $member_name_err = $points_err = "";
         
         <div class="form-group">
             <label for="member_name" class="form-label">Member Name :</label>
-            <input type="text" name="member_name" placeholder="Johnny" class="form-control <?php echo $member_name_err ? 'is-invalid' : ''; ?>" id="member_name" required value="<?php echo $member_name; ?>"><br>
+            <input type="text" name="member_name" placeholder="Johnny Hatsoff" class="form-control <?php echo $member_name_err ? 'is-invalid' : ''; ?>" id="member_name" required value="<?php echo $member_name; ?>"><br>
             <div class="invalid-feedback">
                 Please provide a valid member name.
             </div>
@@ -73,7 +73,7 @@ $member_id_err = $member_name_err = $points_err = "";
 
         <div class="form-group">
             <label for="points">Points :</label>
-            <input type="number" name="points" id="points" required class="form-control <?php echo $points_err ? 'is-invalid' : ''; ?>" value="<?php echo $points; ?>"><br>
+            <input type="number" name="points" id="points" placeholder="1234" required class="form-control <?php echo $points_err ? 'is-invalid' : ''; ?>" value="<?php echo $points; ?>"><br>
             <div class="invalid-feedback">
                 Please provide valid points.
             </div>
