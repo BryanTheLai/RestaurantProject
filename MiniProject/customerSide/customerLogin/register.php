@@ -110,19 +110,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <style>
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0; /* Remove default margin */    
-            background-color: black;
+            margin: 0; /* Remove default margin */
+            background-color:black;
              background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color: white; /* Set text color to white */
+            color: white;
             }
 
 
@@ -174,8 +174,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         
-                button, select {
-            background-color: #5A5A5A;
+        button, select {
+            background-color: black;
             color: white;
             border: 2px solid black;
             padding: 3px 10px;
@@ -208,9 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="register-container">
     <div class="register_wrapper"> <!-- Updated class name -->
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a><br>
-        <h2 class="text-center" style="font-family: serif; color:white;">Registration Form</h2>
-        <p class="text-center" style="font-family: serif; color:white;">Please fill this form to create an account.</p>
-     
+       
         <form action="register.php" method="post">
             <div class="form-group">
                 <label>Email</label>
@@ -236,7 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            
         </form>
 
-        <p style="font-family: serif; color:white;">Already have an account? <a href="../customerLogin/login.php" style="color: #A5A5A5">Proceed to login page</a></p>
+        <p style="font-family: serif; color:white;">Already have an account? <a href="../customerLogin/login.php" >Proceed to login page</a></p>
     </div>
     </div>
 </body>

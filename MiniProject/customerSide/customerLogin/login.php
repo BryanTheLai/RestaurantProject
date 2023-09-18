@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         body {
-            font-family:'Georgia', serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         button, select {
-            background-color: #5A5A5A;
+            background-color: black;
             color: white;
             border: 2px solid black;
             padding: 3px 10px;
@@ -168,25 +168,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="nav-link" href="../home/home.php#hero"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
     
         <div class="wrapper">
-            <h2 class="text-center" style="font-family: serif; color:white;">Login</h2>
-            <p class="text-center" style="font-family: serif; color:white;">Please fill in your credentials to login.</p>
-
+           
         <form action="login.php" method="post">
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                <input type="email" name="email" class="form-control" placeholder="Enter User Email" required>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                <input type="password" name="password" class="form-control" placeholder="Enter User Password" required>
             </div>
             
             <button type="submit" name="submit" value="Login">Login</button>
             
         </form>
 
-            <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="color: #A5A5A5">Register here</a></p>
+            <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="">Register here</a></p>
         </div>
     </div>
     </div>
