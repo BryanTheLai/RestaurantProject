@@ -103,7 +103,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
         <div class="form-group">
             <label for="email" class="form-label">Email :</label>
             <input type="text" name="email" class="form-control <?php echo !$email_Err ?:
-                'is-invalid'; ?>" id="email" required email="email" placeholder="johnny12@dining.bar.com" value="<?php echo $email; ?>"><br>
+                'is-invalid'; ?>" id="email" required email="email" placeholder="johnny@dining.bar.com" value="<?php echo $email; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
             Please provide a valid email.
             </div>
@@ -119,7 +119,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 
         <div class="form-group">
             <label for="phone_number">Phone Number :</label>
-            <input type="text" name="phone_number" id="phone_number" required class="form-control <?php echo $phone_number_err ? 'is-invalid' : ''; ?>" value="<?php echo $phone_number; ?>"><br>
+            <input placeholder="+013 985 3921" type="text" name="phone_number" id="phone_number" required class="form-control <?php echo $phone_number_err ? 'is-invalid' : ''; ?>" value="<?php echo $phone_number; ?>"><br>
             <div class="invalid-feedback">
                 <?php echo $phone_number_err; ?>
             </div>
@@ -127,7 +127,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
 
         <div class="form-group">
             <label for="password">Password :</label>
-            <input type="password" name="password" id="password" required class="form-control <?php echo $password_err ? 'is-invalid' : ''; ?>"><br>
+            <input placeholder="Cov42nkndca" type="password" name="password" id="password" required class="form-control <?php echo $password_err ? 'is-invalid' : ''; ?>"><br>
             <div class="invalid-feedback">
                 <?php echo $password_err; ?>
             </div>
@@ -135,7 +135,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
    
         <div class="form-group">
             <label for="member_id">Member ID:</label>
-            <input min=1 type="number" name="member_id" id="member_id" class="form-control" value="<?php echo $member_id; ?>">
+            <input placeholder="1" min=1 type="number" name="member_id" id="member_id" class="form-control" value="<?php echo $member_id; ?>">
         </div>
 
         <div class="form-group">
