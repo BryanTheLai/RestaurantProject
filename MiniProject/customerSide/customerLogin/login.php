@@ -1,75 +1,3 @@
-<?php
-// Include your database connection code here
-require_once "config.php"; // Make sure to replace "config.php" with your actual database connection file.
-session_start();
-
-// Define variables for email and password
-$email = $password = "";
-$email_err = $password_err = "";
-
-// Check if the form was submitted.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate email
-    if (empty(trim($_POST["email"]))) {
-        $email_err = "Please enter your email.";
-    } else {
-        $email = trim($_POST["email"]);
-    }
-
-    // Validate password
-    if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter your password.";
-    } else {
-        $password = trim($_POST["password"]);
-    }
-
-    // Check input errors before checking authentication
-    if (empty($email_err) && empty($password_err)) {
-        // Prepare a select statement
-        $sql = "SELECT * FROM Accounts WHERE email = ?";
-
-        if ($stmt = mysqli_prepare($link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
-
-            // Set parameters
-            $param_email = $email;
-
-            // Attempt to execute the prepared statement
-            if (mysqli_stmt_execute($stmt)) {
-                // Get the result
-                $result = mysqli_stmt_get_result($stmt);
-
-                // Check if a matching record was found.
-                if (mysqli_num_rows($result) == 1) {
-                    // Fetch the result row
-                    $row = mysqli_fetch_assoc($result);
-
-                    // Verify the password
-                    if (password_verify($password, $row["password"])) {
-                        // Password is correct, start a new session and redirect the user to a dashboard or home page.
-                        $_SESSION["loggedin"] = true;
-                        $_SESSION["email"] = $email;
-                        header("location: ../home/home.php"); // Redirect to the home page
-                        exit;
-                    } else {
-                        // Password is incorrect
-                        $password_err = "Invalid password. Please try again.";
-                    }
-                } else {
-                    // No matching records found
-                    $email_err = "No account found with this email.";
-                }
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-
-            // Close the statement
-            mysqli_stmt_close($stmt);
-        }
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -171,24 +99,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2 class="text-center" style="font-family: serif; color:white;">Login</h2>
             <p class="text-center" style="font-family: serif; color:white;">Please fill in your credentials to login.</p>
 
-        <form action="login.php" method="post">
-            <div class="form-group">
-                <label>Email</label>
+        <?php 
+        if(!empty($login_err)){
+            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+        }        
+        ?>
+
+    <form action="login_process.php" method="post" style=" font-family: serif;">
+        <div class="form-group">
+                <label>Email :</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
-            </div>
-            
-            <button type="submit" name="submit" value="Login">Login</button>
-            
-        </form>
-
-            <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="color: #A5A5A5">Register here</a></p>
         </div>
-    </div>
+        
+        <div class="form-group">
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+        </div>
+            
+            <div class="form-group">
+                <button type="submit" name="submit" value="Login">Login</button>
+            </div>
+    </form>
+                <p style="font-family: serif; color:white;">Don't have an account? <a href="register.php" style="color: #A5A5A5">Register here</a></p>
+
     </div>
 </body>
 </html>
