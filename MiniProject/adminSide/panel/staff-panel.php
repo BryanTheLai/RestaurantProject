@@ -79,6 +79,7 @@ session_start(); // Ensure session is started
                         echo "<th style='width:5em;'>Staff ID</th>";
                         echo "<th>Staff Name</th>";
                         echo "<th style='width:7em;'>Role</th>";
+                        echo "<th>Account ID</th>";
                         //echo "<th>Email</th>";
                         //echo "<th>Phone Number</th>";
                         echo "<th style='width:5em;'>Delete</th>";
@@ -90,6 +91,7 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['staff_id'] . "</td>";
                             echo "<td>" . $row['staff_name'] . "</td>";
                             echo "<td>" . $row['role'] . "</td>";
+                            echo "<td>" . $row['account_id'] . "</td>";
                             //echo "<td>" . $row['email'] . "</td>";
                             //echo "<td>" . $row['phone_number'] . "</td>";
                             echo "<td>";
