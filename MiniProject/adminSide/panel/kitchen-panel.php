@@ -18,7 +18,7 @@ $result = mysqli_query($link, $query);
         <h2>Kitchen Panel</h2>
         <table class="table table-bordered ">
             <thead>
-                <a href="../posBackend/kitchenBackend/undo.php?UndoUnshow=true" class="btn btn-warning">Undo</a>
+                <a href="../posBackend/kitchenBackend/undo.php?UndoUnshow=true" class="btn btn-warning mt-1 mb-2">Undo</a>
                 <tr>
                     <th>Kitchen ID</th>
                     <th>Table ID</th>
