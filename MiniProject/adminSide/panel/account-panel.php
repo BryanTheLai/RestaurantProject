@@ -12,7 +12,8 @@ session_start(); // Ensure session is started
             <div class="m-50">
                 <div class="mt-5 mb-3">
                     <h2 class="pull-left">Account Details</h2>
-                    <a href="../accountCrud/createAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Account</a>
+                    <a href="../staffCrud/createStaff.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Staff</a>
+                    <a href="../customerCrud/createCust.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Memberships</a>
                     <!--
                     <a href="../accountCrud/createMemberAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Member Account</a>
                     -->

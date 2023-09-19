@@ -79,6 +79,7 @@ session_start(); // Ensure session is started
                         echo "<th style='width:7em;'>Member Id</th>";
                         echo "<th>Member Name</th>";
                         echo "<th style='width:7em;'>Points</th>";
+                        echo "<th>Account ID</th>";
                         //echo "<th>Email</th>";
                         //echo "<th>Phone Number</th>";
                         echo "<th style='width:5em;'>Delete</th>";
@@ -90,6 +91,7 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['member_id'] . "</td>";
                             echo "<td>" . $row['member_name'] . "</td>";
                             echo "<td>" . $row['points'] . "</td>";
+                            echo "<td>" . $row['account_id'] . "</td>";
                             //echo "<td>" . $row['email'] . "</td>";
                             //echo "<td>" . $row['phone_number'] . "</td>";
                             echo "<td>";
