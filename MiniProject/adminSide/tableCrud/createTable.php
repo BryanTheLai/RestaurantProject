@@ -26,16 +26,14 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <title>Create New Table</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 80px  }
     </style>
 </head>
 
  <div class="wrapper" >
-    <h1>Johnny's Dining & Bar</h1>
     <h3>Create New Table</h1>
-    <p>Please fill in Table Information Properly </p>
+    <p>Please fill in the Table Information  </p>
     
 <form method="POST" action="succ_create_table.php" class="ht-600 w-50">
     

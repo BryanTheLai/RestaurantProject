@@ -7,6 +7,10 @@ if (isset($_GET['id'])) {
     // Get the staff_id from the URL and sanitize it
     $staff_id = intval($_GET['id']);
 
+    // Disable foreign key checks
+    $disableForeignKeySQL = "SET FOREIGN_KEY_CHECKS=0;";
+    mysqli_query($link, $disableForeignKeySQL);
+
     // Construct the DELETE query
     $deleteSQL = "DELETE FROM Staffs WHERE staff_id = ?";
 
@@ -23,14 +27,17 @@ if (isset($_GET['id'])) {
         exit();
     } else {
         // Error occurred during execution, display an error message
-        echo "Have to delete account who using this staff_id in Account first!";
         echo "Error: " . $stmt->error;
     }
+
+    // Enable foreign key checks
+    $enableForeignKeySQL = "SET FOREIGN_KEY_CHECKS=1;";
+    mysqli_query($link, $enableForeignKeySQL);
 
     // Close the statements
     $stmt->close();
 
     // Close the connection
-    $link->close();
+    mysqli_close($link);
 }
 ?>

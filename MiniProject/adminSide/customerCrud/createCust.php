@@ -57,7 +57,6 @@ $next_account_id = getNextAvailableAccountID($conn);
         /* Style the select input */
         #account_id {
             width: 100%;
-            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
@@ -90,9 +89,8 @@ $next_account_id = getNextAvailableAccountID($conn);
 </head>
 
 <div class="wrapper">
-    <h1>Johnny's Dining & Bar</h1>
     <h3>Create New Membership</h3>
-    <p>Please fill in Membership Information Properly</p>
+    <p>Please fill in Membership Information</p>
 
     <form method="POST" action="success_createMembership.php" class="ht-600 w-50">
         
@@ -160,7 +158,7 @@ $next_account_id = getNextAvailableAccountID($conn);
             </div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group mb-5">
             <input type="submit" name="submit" class="btn btn-primary" value="Create Membership">
         </div>
     </form>
