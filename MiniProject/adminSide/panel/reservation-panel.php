@@ -73,7 +73,7 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['head_count'] . "</td>";
                             echo "<td>" . $row['special_request'] . "</td>";
                             echo "<td>";
-                            echo '<a href="../reservationsCrud/deleteReservation.php?id='. $row['reservation_id'] .'" title="Delete Record" data-toggle="tooltip" '
+                            echo '<a href="../reservationsCrud/deleteReservationVerify.php?id='. $row['reservation_id'] .'" title="Delete Record" data-toggle="tooltip" '
                                     . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Reservation?\n\nThis will alter other modules related to this Reservation!\n\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";

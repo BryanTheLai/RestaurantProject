@@ -5,7 +5,7 @@ require_once "../config.php";
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $table_id = intval($_GET['id']);
 } else {
-    header("Location: ../panel/table-panel.php");
+    header("Location: ../panel/account-panel.php");
     exit(); // Make sure to exit after redirect
 }
 
@@ -15,10 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $provided_password = $_POST['password']; // 12345
     $uniqueString = $provided_account_id . $provided_password;
 
-
     if ($uniqueString == "9999912345") {
         echo ' Correct';
-        header("Location: ../tableCrud/deleteTable.php?id=".$table_id ."");
+        header("Location: ../accountCrud/deleteAccount.php?id=".$table_id ."");
     } else {
         echo '<script>alert("Incorrect ID or Password!")</script>';
     }
