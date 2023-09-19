@@ -3,7 +3,25 @@
 // Include config file
 require_once "../config.php";
 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "restaurantdb";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 $input_staff_id = $staff_id_err = $staff_id = "";
+$input_account_id = $account_iderr = $account_id = "";
+$input_email = $email_err = $email = "";
+$input_register_date = $register_date_err = $register_date = "";
+$input_phone_number = $phone_number_err = $phone_number = "";
+$input_password = $password_err = $password = "";
 
 // Processing form data when form is submitted
 if (isset($_POST['submit'])) {
@@ -17,6 +35,30 @@ if (isset($_POST['submit'])) {
         );
     }
 }
+
+// Function to get the next available account ID
+function getNextAvailableAccountID($conn) {
+    $sql = "SELECT MAX(account_id) as max_account_id FROM Accounts";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $next_account_id = $row['max_account_id'] + 1;
+    return $next_account_id;
+}
+
+// Function to get the next available Staff ID
+function getNextAvailableStaffID($conn) {
+    $sql = "SELECT MAX(staff_id) as max_staff_id FROM Staffs";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $next_staff_id = $row['max_staff_id'] + 1;
+    return $next_staff_id;
+}
+
+// Get the next available Staff ID
+$next_staff_id = getNextAvailableStaffID($conn);
+
+// Get the next available account ID
+$next_account_id = getNextAvailableAccountID($conn);
 ?>
 <head>
     <meta charset="UTF-8">
@@ -67,8 +109,8 @@ if (isset($_POST['submit'])) {
 
         <div class="form-group">
             <label for="staff_id" class="form-label">Staff ID:</label>
-            <input min=1 type="number" name="staff_id" placeholder="1" class="form-control <?php echo !$staff_idErr ?: 'is-invalid'; ?>" id="staff_id" required value="<?php echo $staff_id; ?>"><br>
-            <div id="validationServerFeedback" class="invalid-feedback">
+            <input min="1" type="number" name="staff_id" placeholder="1" class="form-control <?php echo $staff_id_err ? 'is-invalid' : ''; ?>" id="staff_id" required value="<?php echo $next_account_id; ?>" readonly><br>
+            <div class="invalid-feedback">
                 Please provide a valid staff_id.
             </div>
         </div>
@@ -86,39 +128,44 @@ if (isset($_POST['submit'])) {
         </div>
         
         <div class="form-group">
-        <label for="account_id" class="form-label">Account ID:</label>
-        <select id="account_id" name="account_id" required>
-            <option value="">Select an account</option>
-            <?php
-            // Assuming you have a database connection established
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "restaurantdb";
+            <label for="account_id" class="form-label">Account ID:</label>
+            <input min="1" type="number" name="account_id" placeholder="99" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $next_account_id; ?>" readonly><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid account_id.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email" class="form-label">Email :</label>
+            <input type="text" name="email" placeholder="johnny12@dining.bar.com" class="form-control <?php echo !$emailErr ?: 'is-invalid'; ?>" id="email" required value="<?php echo $email; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid email.
+            </div>
+        </div>
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
+        <div class="form-group">
+            <label for="register_date">Register Date :</label>
+            <input type="date" name="register_date" id="register_date" required class="form-control <?php echo !$register_date_err ?: 'is-invalid';?>" value="<?php echo $register_date; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid register date.
+            </div>
+        </div>
 
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+        <div class="form-group">
+            <label for="phone_number" class="form-label">Phone Number:</label>
+            <input type="text" name="phone_number" placeholder="+60101231234" class="form-control <?php echo !$phone_numberErr ?: 'is-invalid'; ?>" id="phone_number" required value="<?php echo $phone_number; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid phone number.
+            </div>
+        </div>
 
-            // Query to retrieve accounts that don't exist in Staffs and Memberships tables
-            $query = "SELECT A.account_id
-                      FROM Accounts A
-                      LEFT JOIN Staffs S ON A.account_id = S.account_id
-                      LEFT JOIN Memberships M ON A.account_id = M.account_id
-                      WHERE S.account_id IS NULL AND M.account_id IS NULL";
-
-            $result = $conn->query($query);
-
-            while ($row = $result->fetch_assoc()) {
-                echo "<option value='" . $row['account_id'] . "'>" . $row['account_id'] . "</option>";
-            }
-
-            $conn->close();
-            ?>
-        </select>
-        </div><br>
+        <div class="form-group">
+            <label for="password">Password :</label>
+            <input type="password" name="password" placeholder="johnny1234@" id="password" required class="form-control <?php echo !$password_err ?: 'is-invalid' ; ?>" value="<?php echo $password; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid password.
+            </div>
+        </div>
         
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Create Staff">
