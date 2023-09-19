@@ -85,7 +85,8 @@ session_start(); // Ensure session is started
                             //echo "<td>" . ucfirst($row['account_type']) . "</td>"; // Display account type
                             echo "<td>";
                             $deleteSQL = "DELETE FROM Accounts WHERE account_id = '" . $row['account_id'] . "';";
-                            echo '<a href="../accountCrud/deleteAccount.php?id=' . $row['account_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this account?\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo '<a href="../accountCrud/deleteAccount.php?id=' . $row['account_id'] . '" title="Delete Record" data-toggle="tooltip" '
+                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Account?\n\nThis will alter other modules related to this Account!\n\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
                         }

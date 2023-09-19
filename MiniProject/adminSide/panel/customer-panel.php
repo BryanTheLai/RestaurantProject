@@ -96,7 +96,8 @@ session_start(); // Ensure session is started
                             //echo "<td>" . $row['phone_number'] . "</td>";
                             echo "<td>";
                             $deleteSQL = "DELETE FROM Memberships WHERE member_id = '" . $row['member_id'] . "';";
-                            echo '<a href="../customerCrud/deleteCustomer.php?id=' . $row['member_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this membership?\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo '<a href="../customerCrud/deleteCustomer.php?id=' . $row['member_id'] . '" title="Delete Record" data-toggle="tooltip" '
+                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Member?\n\nThis will alter other modules related to this Member!\n\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
                         }

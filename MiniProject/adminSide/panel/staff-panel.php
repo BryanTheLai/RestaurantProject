@@ -95,7 +95,7 @@ session_start(); // Ensure session is started
                             //echo "<td>" . $row['email'] . "</td>";
                             //echo "<td>" . $row['phone_number'] . "</td>";
                             echo "<td>";
-                            echo '<a href="../staffCrud/delete_staff.php?id=' . $row['staff_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this staff?\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo '<a href="../staffCrud/delete_staff.php?id=' . $row['staff_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Staff?\n\nThis will alter other modules related to this Staff!\n\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
                         }

@@ -80,7 +80,8 @@ session_start(); // Ensure session is started
                                       
                                         echo "<td>";
                                         $deleteSQL = "DELETE FROM Reservations WHERE reservation_id = '" . $row['table_id'] . "';";
-                                            echo '<a href="../tableCrud/deleteTableVerify.php?id='. $row['table_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Admin Permissions Required!\nAre you sure you want to delete this table?\nThis will alter other modules related to tables.\')"><span class="fa fa-trash text-black"></span></a>';
+                                            echo '<a href="../tableCrud/deleteTableVerify.php?id='. $row['table_id'] .'" title="Delete Record" data-toggle="tooltip" '
+                                                    . 'onclick="return confirm(\'Admin Permissions Required!\n\nAre you sure you want to delete this Table?\n\nThis will alter other modules related to this Table!\')"><span class="fa fa-trash text-black"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
