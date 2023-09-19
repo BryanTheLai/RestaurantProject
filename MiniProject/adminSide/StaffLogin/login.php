@@ -27,7 +27,7 @@
         }
         
         button, select {
-            background-color: #5A5A5A;
+            background-color: black;
             color: white;
             border: 2px solid black;
             padding: 3px 10px;
@@ -63,11 +63,9 @@
     <section id="signup">
     <div class="container my-6 ">
     <a class="nav-link" href="../../customerSide/home/home.php"> <h1 class="text-center" style="font-family:Copperplate; color:white;"> JOHNNY'S</h1><span class="sr-only"></span></a>
-    <p>&nbsp;&nbsp;&nbsp;</p>
-    <div class="wrapper">
-    <h2 class="text-center" style="font-family: serif; color:white;">Staff Login</h2>
-    <p class="text-center" style="font-family: serif; color:white;">Please fill in your credentials to login.</p>
 
+    
+    <div class="wrapper">
         <?php 
         if(!empty($login_err)){
             echo '<div class="alert alert-danger">' . $login_err . '</div>';
@@ -76,7 +74,7 @@
 
     <form action="login_process.php" method="post" style=" font-family: serif;">
         <div class="form-group">
-            <label for="account_id">Account ID :</label>
+            <label for="account_id">Staff Account ID :</label>
             <input type="number" id="account_id" name="account_id" placeholder="Enter Account ID" required class="form-control <?php echo (!empty($account_id)) ? 'is-invalid' : ''; ?>" value="<?php echo $account_id; ?>">
             <span class="invalid-feedback"><?php echo $account_id; ?></span>
         </div>
