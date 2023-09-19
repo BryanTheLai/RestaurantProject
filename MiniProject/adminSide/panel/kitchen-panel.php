@@ -44,7 +44,7 @@ $result = mysqli_query($link, $query);
                         $itemQuery = "SELECT item_name FROM Menu WHERE item_id = '$item_id'";
                         $itemResult = mysqli_query($link, $itemQuery);
                         $itemRow = mysqli_fetch_assoc($itemResult);
-                        $item_name = $itemRow['item_name'];
+                        $item_name = $itemRow['item_name']??"Deleted";
 
                         echo '<tr>';
                         echo '<td>' . $kitchen_id . '</td>';
