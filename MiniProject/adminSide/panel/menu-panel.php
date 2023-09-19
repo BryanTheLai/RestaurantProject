@@ -72,7 +72,7 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['item_description'] . "</td>";
                             echo "<td>";
                             $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
-                            echo '<a href="../menuCrud/delete.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Admin permission Required!\nAre you sure you want to delete this item?\nThis will alter other modules related to this item.\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo '<a href="../menuCrud/delete.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Admin permission Required!\nAre you sure you want to delete this item?\nThis will alter other modules related to this item.\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
                         }
