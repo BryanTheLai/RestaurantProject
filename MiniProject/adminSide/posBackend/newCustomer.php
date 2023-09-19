@@ -20,7 +20,7 @@
 
         if ($link->query($insertQuery) === TRUE) {
             $bill_id = $link->insert_id;
-            echo "<h2>Welcome to our restaurant!</h2>";
+            echo "<h2>Johnny's Restaurant</h2>";
             echo "<p>You're now seated at Table ID: $table_id</p>";
             echo "<p>Your bill has been created with Bill ID: $bill_id</p>";
             echo '<a href="orderItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '" class="btn btn-primary">Back</a>';
