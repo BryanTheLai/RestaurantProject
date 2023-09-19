@@ -3,7 +3,7 @@ session_start(); // Ensure session is started
 ?>
 <?php include '../inc/dashHeader.php'; ?>
     <style>
-        .wrapper{ width: 50%; padding-left: 200px; padding-top: 20px  }
+        .wrapper{ width: 70%; padding-left: 200px; padding-top: 20px  }
     </style>
 
 <div class="wrapper">
@@ -12,7 +12,7 @@ session_start(); // Ensure session is started
             <div class="m-50">
                 <div class="mt-5 mb-3">
                     <h2 class="pull-left">Account Details</h2>
-                    <a href="../accountCrud/createStaffAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Account</a>
+                    <a href="../accountCrud/createAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Account</a>
                     <!--
                     <a href="../accountCrud/createMemberAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Member Account</a>
                     -->
@@ -68,6 +68,7 @@ session_start(); // Ensure session is started
                         echo "<th>Email</th>";
                         echo "<th>Register Date</th>";
                         echo "<th>Phone Number</th>";
+                        echo "<th>Password</th>";
                         //echo "<th>Account Type</th>"; // Display account type
                         echo "<th>Delete</th>";
                         echo "</tr>";
@@ -79,6 +80,7 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>" . $row['register_date'] . "</td>";
                             echo "<td>" . $row['phone_number'] . "</td>";
+                            echo "<td>" . $row['password'] . "</td>";
                             //echo "<td>" . ucfirst($row['account_type']) . "</td>"; // Display account type
                             echo "<td>";
                             $deleteSQL = "DELETE FROM Accounts WHERE account_id = '" . $row['account_id'] . "';";
