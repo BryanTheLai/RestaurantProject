@@ -16,78 +16,61 @@ if ($conn->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form
-    $staff_id = $_POST["staff_id"];
+    $account_id = $_POST["account_id"];
+    $email = $_POST["email"];
+    $register_date = $_POST["register_date"];
+    $phone_number = $_POST["phone_number"];
+    $password = $_POST["password"];
     $staff_name = $_POST["staff_name"];
     $role = $_POST["role"];
-    $account_id = $_POST["account_id"];
-    
-    // Prepare the SQL query to check if the staff_id already exists
-    $check_staff_query = "SELECT staff_id FROM Staffs WHERE staff_id = ?";
-    $check_staff_stmt = $conn->prepare($check_staff_query);
-    $check_staff_stmt->bind_param("i", $staff_id);
-    $check_staff_stmt->execute();
-    $check_staff_result = $check_staff_stmt->get_result();
 
-    // Prepare the SQL query to check if the account_id already exists
-    $check_accountid_query = "SELECT account_id FROM Staffs WHERE account_id = ? UNION SELECT account_id FROM Memberships WHERE account_id = ?";
-    $check_accountid_stmt = $conn->prepare($check_accountid_query);
-    $check_accountid_stmt->bind_param("ii", $account_id, $account_id);
-    $check_accountid_stmt->execute();
-    $check_accountid_result = $check_accountid_stmt->get_result();
+    // Start a transaction to ensure consistency across multiple table inserts
+    $conn->begin_transaction();
 
-    // Prepare the SQL query to check if the account_id not exists in Accounts
-    $check_account_query = "SELECT account_id FROM Accounts WHERE account_id = ?";
-    $check_account_stmt = $conn->prepare($check_account_query);
-    $check_account_stmt->bind_param("i", $account_id);
-    $check_account_stmt->execute();
-    $check_account_result = $check_account_stmt->get_result();
-   
-    // Check if the staff_id or account_id already exists
-    if ($check_staff_result->num_rows > 0) {
-        $message = "Staff ID already exists. Please choose another staff ID.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } elseif ($check_accountid_result->num_rows > 0) {
-        $message = "Account ID already exists for another staff member or membership. Please choose another account ID.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } elseif ($check_account_result->num_rows == 0) {
-        // Account ID doesn't exist in Accounts table
-        $message = "Account ID doesn't exist in the Accounts table. Please choose an existing account ID that not own by anyone.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } else {
-        // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Staffs (staff_id, staff_name, role, account_id) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
+    try {
+        // Insert Data into Accounts Table
+        $insert_account_query = "INSERT INTO Accounts (account_id, email, register_date, phone_number, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt_account = $conn->prepare($insert_account_query);
+        $stmt_account->bind_param("issss", $account_id, $email, $register_date, $phone_number, $password);
 
-        // Bind the parameters
-        $stmt->bind_param("isss", $staff_id, $staff_name, $role, $account_id); // Corrected parameter types
-
-        // Execute the query
-        if ($stmt->execute()) {
-            $message = "Staff created successfully. Welcome to Join Us.";
-            $iconClass = "fa-check-circle";
-            $cardClass = "alert-success";
-            $bgColor = "#D4F4DD"; // Custom background color for success
-        } else {
-            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-            $iconClass = "fa-times-circle";
-            $cardClass = "alert-danger";
-            $bgColor = "#FFA7A7"; // Custom background color for error
+        // Execute the query to insert data into Accounts table
+        if (!$stmt_account->execute()) {
+            throw new Exception("Error creating account: " . $stmt_account->error);
         }
 
-        // Close the prepared statement
-        $stmt->close();
-    }
+        // Insert Data into Staffs Table
+        $insert_staff_query = "INSERT INTO Staffs (staff_id, staff_name, role, account_id) VALUES (?, ?, ?, ?)";
+        $stmt_staff = $conn->prepare($insert_staff_query);
+        $stmt_staff->bind_param("issi", $account_id, $staff_name, $role, $account_id);
 
-    // Close the check statements and the connection
-    $check_staff_stmt->close();
-    $check_account_stmt->close();
-    $conn->close();
+        // Execute the query to insert data into Staffs table
+        if (!$stmt_staff->execute()) {
+            throw new Exception("Error creating staff: " . $stmt_staff->error);
+        }
+
+        // Commit the transaction if everything is successful
+        $conn->commit();
+
+        $message = "Account and Staff created successfully.";
+        $iconClass = "fa-check-circle";
+        $cardClass = "alert-success";
+        $bgColor = "#D4F4DD"; // Custom background color for success
+    } catch (Exception $e) {
+        // Rollback the transaction in case of any errors
+        $conn->rollback();
+
+        $message = "Error: " . $e->getMessage();
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
+    } finally {
+        // Close the prepared statements
+        $stmt_account->close();
+        $stmt_staff->close();
+
+        // Close the connection
+        $conn->close();
+    }
 }
 ?>
 
@@ -188,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 countdownElement.textContent = i;
                 if (i <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "createStaff.php";
+                    window.location.href = "../panel/staff-panel.php";
                 }
             }, 1000); // 1000 milliseconds = 1 second
         }
@@ -202,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createStaff.php"; // Replace with your desired URL
+                window.location.href = "../panel/staff-panel.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 
