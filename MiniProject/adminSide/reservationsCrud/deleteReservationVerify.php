@@ -5,7 +5,7 @@ require_once "../config.php";
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $table_id = intval($_GET['id']);
 } else {
-    header("Location: ../panel/table-panel.php");
+    header("Location: ../panel/reservation-panel.php");
     exit(); // Make sure to exit after redirect
 }
 
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($uniqueString == "9999912345") {
         echo ' Correct';
-        header("Location: ../tableCrud/deleteTable.php?id=".$table_id ."");
+        header("Location: ../reservationsCrud/deleteReservation.php?id=".$table_id ."");
     } else {
         echo '<script>alert("Incorrect ID or Password!")</script>';
     }

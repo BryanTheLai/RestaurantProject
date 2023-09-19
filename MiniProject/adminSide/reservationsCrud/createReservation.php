@@ -19,11 +19,6 @@ $head_count = $_GET['head_count'] ?? 1;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Admin - Reservation </title>    
     <style>
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 80px  }
@@ -31,7 +26,6 @@ $head_count = $_GET['head_count'] ?? 1;
 </head>
 <body>
     <div class="wrapper">
-        <h1>Johnny's Dining & Bar</h1>
         <h3>Search Available Time Slot</h3>
         
         <div id="Search Table">
@@ -67,7 +61,7 @@ $head_count = $_GET['head_count'] ?? 1;
             </div>
              <input type="number" id="head_count" name="head_count" value=1 hidden required>
             
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <input type="submit" name="submit" class="btn btn-primary" value="Search Available">
             </div> 
         </form>
@@ -128,7 +122,7 @@ $head_count = $_GET['head_count'] ?? 1;
                             <input type="text" id="special_request" name="special_request" class="ht-600 w-50" placeholder="One baby chair"><br>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <input type="submit" name="submit" class="btn btn-primary" value="Make Reservation">
                         </div>                        
                         

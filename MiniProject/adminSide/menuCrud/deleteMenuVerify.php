@@ -14,13 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $provided_account_id = $_POST['admin_id']; // 99999
     $provided_password = $_POST['password']; // 12345
     $uniqueString = $provided_account_id . $provided_password;
-    echo 'uniqueString: ' . $uniqueString;
 
     if ($uniqueString == "9999912345") {
         echo ' Correct';
         header("Location: ../menuCrud/deleteItem.php?id=".$menu_id ."");
     } else {
-        echo ' WRONG';
+        echo '<script>alert("Incorrect ID or Password!")</script>';
     }
 }
 ?>
