@@ -20,74 +20,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $member_name = $_POST["member_name"];
     $points = $_POST["points"];
     $account_id = $_POST["account_id"];
-    
-    // Prepare the SQL query to check if the member_id already exists
-    $check_member_query = "SELECT member_id FROM Memberships WHERE member_id = ?";
-    $check_member_stmt = $conn->prepare($check_member_query);
-    $check_member_stmt->bind_param("i", $member_id);
-    $check_member_stmt->execute();
-    $check_member_result = $check_member_stmt->get_result();
+    $email = $_POST["email"];
+    $register_date = $_POST["register_date"];
+    $phone_number = $_POST["phone_number"];
+    $password = $_POST["password"];
 
-    // Prepare the SQL query to check if the account_id already exists
-    $check_accountid_query = "SELECT account_id FROM Staffs WHERE account_id = ? UNION SELECT account_id FROM Memberships WHERE account_id = ?";
-    $check_accountid_stmt = $conn->prepare($check_accountid_query);
-    $check_accountid_stmt->bind_param("ii", $account_id, $account_id);
-    $check_accountid_stmt->execute();
-    $check_accountid_result = $check_accountid_stmt->get_result();
+    // Start a transaction to ensure consistency across multiple table inserts
+    $conn->begin_transaction();
 
-    // Prepare the SQL query to check if the account_id not exists in Accounts
-    $check_account_query = "SELECT account_id FROM Accounts WHERE account_id = ?";
-    $check_account_stmt = $conn->prepare($check_account_query);
-    $check_account_stmt->bind_param("i", $account_id);
-    $check_account_stmt->execute();
-    $check_account_result = $check_account_stmt->get_result();
+    try {
+        // Insert Data into Accounts Table
+        $insert_account_query = "INSERT INTO Accounts (account_id, email, register_date, phone_number, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt_account = $conn->prepare($insert_account_query);
+        $stmt_account->bind_param("issss", $account_id, $email, $register_date, $phone_number, $password);
 
-    // Check if the member_id already exists or if account_id doesn't exist
-    if ($check_member_result->num_rows > 0) {
-        $message = "Member ID already exists. Please choose another Member ID.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } elseif ($check_accountid_result->num_rows > 0) {
-        $message = "Account ID already exists for another staff member or membership. Please choose another account ID.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } elseif ($check_account_result->num_rows == 0) {
-        // Account ID doesn't exist in Accounts table
-        $message = "Account ID doesn't exist in the Accounts table. Please choose an existing account ID that not own by anyone.";
-        $iconClass = "fa-times-circle";
-        $cardClass = "alert-danger";
-        $bgColor = "#FFA7A7"; // Custom background color for error
-    } else {
-        // Prepare the SQL query for insertion
-        $insert_query = "INSERT INTO Memberships (member_id, member_name, points, account_id) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-
-        // Bind the parameters
-        $stmt->bind_param("isii", $member_id, $member_name, $points, $account_id);
-
-        // Execute the query
-        if ($stmt->execute()) {
-            $message = "Membership created successfully.";
-            $iconClass = "fa-check-circle";
-            $cardClass = "alert-success";
-            $bgColor = "#D4F4DD"; // Custom background color for success
-        } else {
-            $message = "Error: " . $stmt->error . " (Error code: " . $stmt->errno . ")";
-            $iconClass = "fa-times-circle";
-            $cardClass = "alert-danger";
-            $bgColor = "#FFA7A7"; // Custom background color for error
+        // Execute the query to insert data into Accounts table
+        if (!$stmt_account->execute()) {
+            throw new Exception("Error creating account: " . $stmt_account->error);
         }
 
-        // Close the prepared statement
-        $stmt->close();
-    }
+        // Insert Data into Memberships Table
+        $insert_membership_query = "INSERT INTO Memberships (member_id, member_name, points, account_id) VALUES (?, ?, ?, ?)";
+        $stmt_membership = $conn->prepare($insert_membership_query);
+        $stmt_membership->bind_param("issi", $member_id, $member_name, $points, $account_id);
 
-    // Close the check statements and the connection
-    $check_member_stmt->close();
-    $check_account_stmt->close();
-    $conn->close();
+        // Execute the query to insert data into Memberships table
+        if (!$stmt_membership->execute()) {
+            throw new Exception("Error creating membership: " . $stmt_membership->error);
+        }
+
+        // Commit the transaction if everything is successful
+        $conn->commit();
+
+        $message = "Membership created successfully.";
+        $iconClass = "fa-check-circle";
+        $cardClass = "alert-success";
+        $bgColor = "#D4F4DD"; // Custom background color for success
+    } catch (Exception $e) {
+        // Rollback the transaction in case of any errors
+        $conn->rollback();
+
+        $message = "Error: " . $e->getMessage();
+        $iconClass = "fa-times-circle";
+        $cardClass = "alert-danger";
+        $bgColor = "#FFA7A7"; // Custom background color for error
+    } finally {
+        // Close the prepared statements
+        $stmt_account->close();
+        $stmt_membership->close();
+
+        // Close the connection
+        $conn->close();
+    }
 }
 ?>
 
@@ -188,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 countdownElement.textContent = i;
                 if (i <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "createCust.php";
+                    window.location.href = "../panel/customer-panel.php";
                 }
             }, 1000); // 1000 milliseconds = 1 second
         }
@@ -202,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             messageCard.style.display = "none";
             // Redirect to another page after hiding the pop-up (adjust the delay as needed)
             setTimeout(function () {
-                window.location.href = "createCust.php"; // Replace with your desired URL
+                window.location.href = "../panel/customer-panel.php"; // Replace with your desired URL
             }, 3000); // 3000 milliseconds = 3 seconds
         }
 
