@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
         <div class="form-group">
             <label for="table_id" class="form-label">Table ID :</label>
             <input type="number" name="table_id" class="form-control <?php echo !$$table_id ?:
-                'is-invalid'; ?>" id="table_id" required table_id="table_id" placeholder="1" value="<?php echo $table_id; ?>"><br>
+                    'is-invalid'; ?>" id="table_id" required table_id="table_id" placeholder="1" min=1 value="<?php echo $table_id; ?>"><br>
             <div id="validationServerFeedback" class="invalid-feedback">
             Please provide a valid table id.
             </div>
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
     
         <div class="form-group"> 
             <label for="capacity">Capacity :</label>
-            <input placeholder="8" type="number" name="capacity" id="capacity" required class="form-control <?php echo (!empty($capacity)) ? 'is-invalid' : ''; ?>" ><br>
+            <input placeholder="8" type="number" name="capacity" min=1 id="capacity" required class="form-control <?php echo (!empty($capacity)) ? 'is-invalid' : ''; ?>" ><br>
             <span class="invalid-feedback"></span>
         </div>
 
