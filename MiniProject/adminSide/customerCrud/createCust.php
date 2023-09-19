@@ -3,10 +3,51 @@
 // Include config file
 require_once "../config.php";
 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "restaurantdb";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // Define variables and initialize them
 $member_id = $member_name = $points = $account_id = "";
 $member_id_err = $member_name_err = $points_err = "";
+$input_account_id = $account_iderr = $account_id = "";
+$input_email = $email_err = $email = "";
+$input_register_date = $register_date_err = $register_date = "";
+$input_phone_number = $phone_number_err = $phone_number = "";
+$input_password = $password_err = $password = "";
 
+// Function to get the next available account ID
+function getNextAvailableAccountID($conn) {
+    $sql = "SELECT MAX(account_id) as max_account_id FROM Accounts";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $next_account_id = $row['max_account_id'] + 1;
+    return $next_account_id;
+}
+
+// Function to get the next available Member ID
+function getNextAvailableMemberID($conn) {
+    $sql = "SELECT MAX(member_id) as max_member_id FROM Memberships";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $next_member_id = $row['max_member_id'] + 1;
+    return $next_member_id;
+}
+
+// Get the next available Member ID
+$next_member_id = getNextAvailableMemberID($conn);
+
+// Get the next available account ID
+$next_account_id = getNextAvailableAccountID($conn);
 ?>
 <head>
     <meta charset="UTF-8">
@@ -57,7 +98,7 @@ $member_id_err = $member_name_err = $points_err = "";
         
         <div class="form-group">
             <label for="member_id" class="form-label">Member ID:</label>
-            <input min=1 type="number" name="member_id" placeholder="1" class="form-control <?php echo $member_id_err ? 'is-invalid' : ''; ?>" id="member_id" required value="<?php echo $member_id; ?>"><br>
+            <input min="1" type="number" name="member_id" placeholder="1" class="form-control <?php echo $member_id_err ? 'is-invalid' : ''; ?>" id="member_id" required value="<?php echo $next_member_id; ?>" readonly><br>
             <div class="invalid-feedback">
                 Please provide a valid member_id.
             </div>
@@ -81,38 +122,43 @@ $member_id_err = $member_name_err = $points_err = "";
 
         <div class="form-group">
             <label for="account_id" class="form-label">Account ID:</label>
-            <select id="account_id" name="account_id" required>
-                <option value="">Select an account</option>
-                <?php
-                // Assuming you have a database connection established
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "restaurantdb";
+            <input min="1" type="number" name="account_id" placeholder="99" class="form-control <?php echo !$account_idErr ?: 'is-invalid'; ?>" id="account_id" required value="<?php echo $next_account_id; ?>" readonly><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid account_id.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email" class="form-label">Email :</label>
+            <input type="text" name="email" placeholder="johnny12@dining.bar.com" class="form-control <?php echo !$emailErr ?: 'is-invalid'; ?>" id="email" required value="<?php echo $email; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid email.
+            </div>
+        </div>
 
-                $conn = new mysqli($servername, $username, $password, $dbname);
+        <div class="form-group">
+            <label for="register_date">Register Date :</label>
+            <input type="date" name="register_date" id="register_date" required class="form-control <?php echo !$register_date_err ?: 'is-invalid';?>" value="<?php echo $register_date; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid register date.
+            </div>
+        </div>
 
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+        <div class="form-group">
+            <label for="phone_number" class="form-label">Phone Number:</label>
+            <input type="text" name="phone_number" placeholder="+60101231234" class="form-control <?php echo !$phone_numberErr ?: 'is-invalid'; ?>" id="phone_number" required value="<?php echo $phone_number; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid phone number.
+            </div>
+        </div>
 
-                // Query to retrieve accounts that don't exist in Staffs and Memberships tables
-                $query = "SELECT A.account_id
-                          FROM Accounts A
-                          LEFT JOIN Staffs S ON A.account_id = S.account_id
-                          LEFT JOIN Memberships M ON A.account_id = M.account_id
-                          WHERE S.account_id IS NULL AND M.account_id IS NULL";
-
-                $result = $conn->query($query);
-
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['account_id'] . "'>" . $row['account_id'] . "</option>";
-                }
-
-                $conn->close();
-                ?>
-            </select>
-        </div><br>
+        <div class="form-group">
+            <label for="password">Password :</label>
+            <input type="password" name="password" placeholder="johnny1234@" id="password" required class="form-control <?php echo !$password_err ?: 'is-invalid' ; ?>" value="<?php echo $password; ?>"><br>
+            <div id="validationServerFeedback" class="invalid-feedback">
+                Please provide a valid password.
+            </div>
+        </div>
         
         <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Create Membership">
