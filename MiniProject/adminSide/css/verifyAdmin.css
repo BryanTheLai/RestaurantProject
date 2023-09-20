@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+}
+
+.login-container {
+    padding: 50px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Add rounded corners */
+    margin: 100px auto; /* Center the container horizontally */
+    max-width: 500px; /* Set a maximum width for the container */
+}
+
+
+
+
+
