@@ -20,10 +20,10 @@ session_start(); // Ensure session is started
                                 <input type="text" id="search" name="search" class="form-control" placeholder="Enter Table ID, Capacity">
                             </div>
                             <div class="col-md-3">
-                                <button type="submit" class="btn btn-light">Search</button>
+                                <button type="submit" class="btn btn-dark">Search</button>
                             </div>
                             <div class="col-md-3">
-                                <a href="table-panel.php" class="btn btn-info">Show All</a>
+                                <a href="table-panel.php" class="btn btn-light">Show All</a>
                             </div>
                         </div>
                     </form>

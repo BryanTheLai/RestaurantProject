@@ -18,10 +18,10 @@ session_start(); // Ensure session is started
                                 <input type="text" id="search" name="search" class="form-control" placeholder="Enter Bill ID, Table ID, Card ID, Payment Method">
                             </div>
                             <div class="col-md-3">
-                                <button type="submit" class="btn btn-light">Search</button>
+                                <button type="submit" class="btn btn-dark">Search</button>
                             </div>
                             <div class="col-md-3">
-                                <a href="bill-panel.php" class="btn btn-info">Show All</a>
+                                <a href="bill-panel.php" class="btn btn-light">Show All</a>
                             </div>
                         </div>
                     </form>
