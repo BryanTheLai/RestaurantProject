@@ -106,8 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<div class="alert alert-warning" role="alert">';
             echo "Bill has already been paid for.</div>";
             
-            echo '<br><a href="posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
-            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-info"><span class="fa fa-receipt text-black"></span></a>';
+            echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
+            echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
         } else {
             $currentTime = date('Y-m-d H:i:s'); // Current time
 
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt = $link->prepare($update_points_sql);
                     $stmt->bind_param("ii", $points, $member_id);
                     if ($stmt->execute()) {
-                        echo "Points updated successfully!";
+                        //echo "Points updated successfully!";
                     } else {
                         echo "Error updating points: " . $stmt->error;
                     }
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt->execute()) {
                     echo '<div class="alert alert-success" role="alert">
                     Payment successful!</div>';
-                    echo '<br><a href="posTable.php" class="btn btn-primary">Back to Order Item Page</a>';
+                    echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
                     echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
                 } else {
                     echo "Error updating Bills table: " . $stmt->error;

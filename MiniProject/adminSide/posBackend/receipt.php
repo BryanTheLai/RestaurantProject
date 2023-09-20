@@ -96,7 +96,7 @@ $after_tax = $before_tax + $tax_amount;
 // Totals
 $pdf->Cell(150, 10, 'Summary:', 0);
 $pdf->Ln();
-$pdf->Cell(150, 10, 'Before Tax', 1);
+$pdf->Cell(150, 10, 'Total', 1);
 $pdf->Cell(40, 10, 'RM ' . number_format($before_tax,2), 1);
 $pdf->Ln();
 

@@ -34,7 +34,7 @@ function createNewBillRecord($table_id) {
             <div class="col-md-6 order-md-1" id="item-select-section ">
                 <div class="container-fluid pt-4 pl-500 row" style=" margin-left: 10rem;max-width: 40rem;">
                     <div class="mt-5 mb-2">
-                        <h3 class="pull-left">Food & Drinks</h3>
+                    <h3 class="pull-left">Food & Drinks</h3>
                         
                     </div>
                     <div class="mb-3">
@@ -44,15 +44,15 @@ function createNewBillRecord($table_id) {
                                     <input type="text" id="search" name="search" class="form-control" placeholder="Search Food & Drinks">
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="submit" class="btn btn-light">Search</button>
+                                    <button type="submit" class="btn btn-dark">Search</button>
                                 </div>
                                 <div class="col-md-3">
-                                    <a href="orderItem.php?bill_id=<?php echo $bill_id; ?>&table_id=<?php echo $table_id; ?>" class="btn btn-dark">Show All</a>
+                                    <a href="orderItem.php?bill_id=<?php echo $bill_id; ?>&table_id=<?php echo $table_id; ?>" class="btn btn-light">Show All</a>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div style="max-height: 40rem;overflow-y: auto;">
+                    <div style="max-height: 45rem;overflow-y: auto;">
                         <?php
                         // Include config file
                         
@@ -114,7 +114,7 @@ function createNewBillRecord($table_id) {
                                             . '<input type="text" hidden name= "table_id" value="' . $table_id . '">'
                                             . '<input type="text" name= "item_id" value=' . $row['item_id'] . ' hidden>'
                                             . '<input type="number" name= "bill_id" value=' . $bill_id . ' hidden>'
-                                            . '<input type="number" name="quantity" style="width:120px" placeholder="Enter Quantity" required min="1" max="100">'
+                                            . '<input type="number" name="quantity" style="width:120px" placeholder="Enter Quantity" required min="1" max="1000">'
                                             . '<input type="hidden" name="addToCart" value="1">'
                                             . '<button type="submit" class="btn btn-primary">Add to Cart</button>';
                                         echo "</form></td>";
@@ -143,7 +143,7 @@ function createNewBillRecord($table_id) {
                 </div>
             </div>
             <div class="col-md-4 order-md-2" id="cart-section" >
-                <div class="container-fluid pt-5 pl-600 pr-6 row mt-4" style="width:50rem;">
+                <div class="container-fluid pt-5 pl-600 pr-6 row mt-3" style="width:50rem;">
                     <div class="cart-section" >
                         <h3>Cart</h3>
                         <table class="table table-bordered">
@@ -198,7 +198,7 @@ function createNewBillRecord($table_id) {
 
                                         // Display the "Delete" button if the bill hasn't been paid
                                         if (!$has_payment_time) {
-                                            echo '<td><a href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '&item_id=' . $item_id .'">Delete</a></td>';
+                                            echo '<td><a class="btn btn-dark" href="deleteItem.php?bill_id=' . $bill_id . '&table_id=' . $table_id . '&bill_item_id=' . $bill_item_id . '&item_id=' . $item_id .'">Delete</a></td>';
                                         } else {
                                             echo '<td>Bill Paid</td>';
                                         }
@@ -270,7 +270,7 @@ function createNewBillRecord($table_id) {
                         ?>
                     </div>
                     <?php 
-                       echo '<form action="newCustomer.php" method="get">'; // Add this form element
+                       echo '<form class="mt-3" action="newCustomer.php" method="get">'; // Add this form element
                         echo '<input type="hidden" name="table_id" value="' . $table_id . '">';
                         echo '<button type="submit" name="new_customer" value="true" class="btn btn-warning">Proceed as New Customer</button>';
                         echo '</form>';
