@@ -43,7 +43,7 @@ $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
     <div class="row">
         <div class="col-md-10 order-md-1 col" style="margin-top: 3rem; margin-left: 13rem;">
             <div class="container pt-5 pl-600 row">
-                <a href="../report/generate_report.php" class="btn btn-primary">Print Report</a>
+                
 
                 <?php
                 require_once '../config.php';
@@ -55,6 +55,7 @@ $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
                 $totalRevenueRow = mysqli_fetch_assoc($totalRevenueResult);
                 $totalRevenue = $totalRevenueRow['total_revenue'];
                 ?>
+                <h2 style="text-align: center;">Revenue</h2>
                 <table class="table">
                     <thead>
                         <tr>
@@ -82,7 +83,7 @@ $totalRevenueThisMonth = $totalRevenueThisMonthRow['total_revenue'];
                         </tr>
                     </tbody>
                 </table>
-                
+                <a href="../report/generate_report.php" style="width: 10em;" class="btn btn-dark">Print Report</a>
                 <div class="container pt-5 pl-600 row">
                     <div class="container pt-5 pl-600 ">
                         <!-- Bar Chart Payment Method -->
