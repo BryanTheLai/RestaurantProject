@@ -19,13 +19,13 @@ require_once '../config.php'; // Include your database configuration
             <h2  style="margin-top: 3rem;">TABLE STATUS</h2>
             <div class="row d-flex justify-content-around" >
                 <div class="col-md-3">
-                    <div class="alert alert-success" role="alert" style="color:white;background-color: green;" data-toggle="tooltip" data-placement="top" title="Tables That are Free">
+                    <div class="alert alert-success" role="alert" style="color:white;background-color: rgb(23, 89, 74);" data-toggle="tooltip" data-placement="top" title="Tables That are Free">
                         Available
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="alert alert-danger" role="alert" style="color:white;background-color: red;" data-toggle="tooltip" data-placement="top" title="Tables That are Used">
-                        Unavailable
+                    <div class="alert alert-danger" role="alert" style="color:white;background-color: rgb(216, 0, 50);" data-toggle="tooltip" data-placement="top" title="Tables That are Used">
+                        Has Customer
                     </div>
                 </div>
                 <!--
@@ -36,7 +36,7 @@ require_once '../config.php'; // Include your database configuration
                 </div>
                 -->
                 <div class="col-md-3">
-                    <div class="alert alert-warning" style="color:black;background-color: yellow;" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Reserved">
+                    <div class="alert alert-warning" style="color:black;background-color: rgb(248, 222, 34);" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Reserved">
                         Reserved
                     </div>
                 </div>
@@ -86,9 +86,9 @@ require_once '../config.php'; // Include your database configuration
                             $sqlBillItems = "SELECT * FROM bill_items WHERE bill_id = $latestBillID";
                             $result2 = $link->query($sqlBillItems);
                             if ($result2 && mysqli_num_rows($result2) > 0) {
-                                $billItemColor = 'red'; // Bill has associated bill items (red)
+                                $billItemColor = 'rgb(216, 0, 50)'; // Bill has associated bill items (red)
                             } else {
-                                $billItemColor = 'green'; // Bill has no associated bill items (green)
+                                $billItemColor = 'rgb(23, 89, 74)'; // Bill has no associated bill items (rgb(23, 89, 74))
                             }
 
                             $paymentTimeQuery = "SELECT payment_time FROM Bills WHERE bill_id = $latestBillID";
@@ -102,7 +102,7 @@ require_once '../config.php'; // Include your database configuration
                                 }
                             }
 
-                            $box_color = $hasPaymentTime ? 'green' : $billItemColor;
+                            $box_color = $hasPaymentTime ? 'rgb(23, 89, 74)' : $billItemColor;
                         } else {
                             $latestBillID = null;
                             $box_color = 'gray'; // No bill for the table (gray)
@@ -111,7 +111,7 @@ require_once '../config.php'; // Include your database configuration
                         echo '<div class="col-md-4 mb-4">';
                         if ($reservationResult && mysqli_num_rows($reservationResult) > 0) {
                                 // The table is reserved for the selected time, so set the color accordingly
-                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="color:black; background-color: yellow;justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Bill ID: ' . $latestBillID . '<br>Capacity: ' . $capacity;
+                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="color:black; background-color: rgb(248, 222, 34);justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Bill ID: ' . $latestBillID . '<br>Capacity: ' . $capacity;
                         } else{
                             echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Bill ID: ' . $latestBillID . '<br>Capacity: ' . $capacity;
                         }

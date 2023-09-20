@@ -13,7 +13,7 @@ $reservation_id = $_GET['reservation_id'];
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mt-4">
                 <div class="card-header">
                     <h3 class="card-title">Bill (Cash Payment)</h3>
                 </div>
@@ -67,8 +67,8 @@ $reservation_id = $_GET['reservation_id'];
                     <hr>
                     <div class="text-right">
                         <?php 
-                        echo "<strong>Cart Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
-                        echo "<strong>Cart Taxed:</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
+                        echo "<strong>Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
+                        echo "<strong>Tax (10%):</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
                         $GRANDTOTAL = $tax * $cart_total + $cart_total;
                         echo "<strong>Grand Total:</strong> RM " . number_format($GRANDTOTAL, 2);
                         ?>
@@ -79,14 +79,14 @@ $reservation_id = $_GET['reservation_id'];
             
             
 
-<div id="cash-payment" class="container-fluid mt-5 pt-5 pl-5 pr-5">
+<div id="cash-payment" class="container-fluid mt-5 pt-5 pl-5 pr-5 mb-5">
     <div class="row">
         <div class="col-md-6">
             <h1>Cash Payment</h1>
             <form action="" method="get">
                 <div class="form-group">
                     <label for="payment_amount">Payment Amount</label>
-                    <input type="number" id="payment_amount" name="payment_amount" class="form-control" required>
+                    <input type="number" min="0" id="payment_amount" name="payment_amount" class="form-control" required>
                 </div>
 
                 <!-- Add hidden input fields for bill_id, staff_id, member_id, and reservation_id -->
@@ -96,7 +96,7 @@ $reservation_id = $_GET['reservation_id'];
                 <input type="hidden" name="reservation_id" value="<?php echo $reservation_id; ?>">
                 <input type="hidden" name="GRANDTOTAL" value="<?php echo $tax * $cart_total + $cart_total; ?>">
 
-                <button type="submit" id="cardSubmit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="cardSubmit" class="btn btn-dark mt-2">Submit</button>
             </form>
         </div>
         <div class="col-md-6">
@@ -150,8 +150,8 @@ $reservation_id = $_GET['reservation_id'];
                     echo '<div class="alert alert-success" role="alert">
                             Bill successfully Paid!
                           </div>';
-                    echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
-                    echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
+                    echo '<a href="posTable.php" class="btn btn-dark ">Back to Order Item Page</a>';
+                    echo '<a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
                 } else {
                     echo "Error updating bill: " . $link->error;
                 }

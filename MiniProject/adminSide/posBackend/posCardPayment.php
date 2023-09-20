@@ -68,8 +68,8 @@ $reservation_id = $_GET['reservation_id'];
                     <hr>
                     <div class="text-right">
                         <?php 
-                        echo "<strong>Cart Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
-                        echo "<strong>Cart Taxed:</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
+                        echo "<strong>Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
+                        echo "<strong>Tax (10%):</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
                         $GRANDTOTAL = $tax * $cart_total + $cart_total;
                         echo "<strong>Grand Total:</strong> RM " . number_format($GRANDTOTAL, 2);
                         ?>
@@ -114,7 +114,7 @@ $reservation_id = $_GET['reservation_id'];
                 <label class="form-check-label" for="privacyCheckbox">I agree to the Private Data Terms and Conditions</label><br>
                 <small id="privacyHelp" class="form-text text-muted">By checking the box you understand we will save your credit card information.</small>
             </div>
-            <button type="submit" id="cardSubmit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="cardSubmit" class="btn btn-dark">Submit</button>
         </form>
     </div>
 </div>
