@@ -98,20 +98,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
      <style>
-        /* Add your custom styles here */
         body {
-            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0; /* Remove default margin */
             background-color: black;
-            background-image: url('../image/loginBackground.jpg'); /* Set the background image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
             color: white;
         }
 
@@ -119,57 +110,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 50px; /* Adjust the padding as needed */
             border-radius: 10px; /* Add rounded corners */
             margin: 100px auto; /* Center the container horizontally */
-            max-width: 600px; /* Set a maximum width for the container */
+            max-width: 500px; /* Set a maximum width for the container */
         }
 
-        .login_wrapper {
-            width: 600px; /* Adjust the container width as needed */
-            padding: 20px;
-        }
+      
 
-        h2 {
-            text-align: center; /* Center-align the title */
-            font-family: 'Georgia', serif;
-        }
+    
 
-        p {
-            font-family: 'Georgia', serif;
-        }
 
-        .form-group {
-            margin-bottom: 15px; /* Add space between form elements */
-            width:600px;
-        }
 
-        ::placeholder {
-            font-size: 12px; /* Adjust the font size as needed */
-        }
-
-        button, select {
-           
-          
-            border-radius: 5px;
-            cursor: pointer;
-            touch-action: manipulation;
-            border-color: #41403e;
-            height: 40px;
-            
-            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-            transition: background-color 0.3s, color 0.3s, border 0.3s;
-        }
-
-        /* Style buttons and selects on hover */
-        button:hover, select:hover {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-            transform: translate3d(0, 2px, 0);
-        }
-
-        .button:focus {
-            box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-        }
     </style>
 </head>
 <body>
@@ -177,23 +126,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login_wrapper">
    
     <div class="wrapper">
-    <h2>Update Item</h2>
-    <form action="" method="post" class="ht-600 w-50">
+    <h2 style="text-align: center;">Update Item</h2>
+    <h5>Admin Credentials needed to Edit Item</h5>
+    <form action="" method="post" >
         <div class="form-group">
             <label for="item_name"  class="form-label" >Item Name:</label>
-            <input type="text" name="item_name" id="item_name" class="form-control"  placeholder="Enter Item Name" value="<?php echo htmlspecialchars($item_name); ?>" required>
+            <input type="text" name="item_name" id="item_name" class="form-control"  placeholder="Spaghetti" value="<?php echo htmlspecialchars($item_name); ?>" required>
         </div>
         <div class="form-group">
             <label for="item_type"  class="form-label">Item Type:</label>
-            <input type="text" name="item_type" id="item_type" class="form-control"placeholder="Enter Item Type" value="<?php echo htmlspecialchars($item_type); ?>" required>
+            <input type="text" name="item_type" id="item_type" class="form-control"placeholder="Beer, Cocktail, etc .." value="<?php echo htmlspecialchars($item_type); ?>" required>
         </div>
         <div class="form-group"  class="form-label">
             <label for="item_category" >Item Category:</label>
-            <input type="text" name="item_category" id="item_category" class="form-control" placeholder="Enter Item Category" value="<?php echo htmlspecialchars($item_category); ?>" required>
+            <input type="text" name="item_category" id="item_category" class="form-control" placeholder="Main Dish/ Side Dish/ Drinks" value="<?php echo htmlspecialchars($item_category); ?>" required>
         </div>
         <div class="form-group" class="form-label">
             <label for="item_price">Item Price:</label>
-            <input type="number" min=0.01 step="0.01" name="item_price" id="item_price" placeholder="Enter Price"class="form-control" value="<?php echo htmlspecialchars($item_price);?>" required>
+            <input type="number" min=0.01 step="0.01" name="item_price" id="item_price" placeholder="Enter Item Price"class="form-control" value="<?php echo htmlspecialchars($item_price);?>" required>
         </div>
         <div class="form-group" >
             <label for="item_description" class="form-label" >Item Description:</label>
@@ -203,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
         <input type="hidden" name="item_id" value="   class="form-control">
         <button class="btn btn-light" type="submit" name="submit" value="submit">Update</button>
-        <button class="btn btn-danger" href="../panel/menu-panel.php" >Cancel</button>
+        <a class="btn btn-danger" href="../panel/menu-panel.php" >Cancel</a>
     </form>
     </div>
         </div>

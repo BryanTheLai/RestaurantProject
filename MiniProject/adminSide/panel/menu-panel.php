@@ -74,14 +74,15 @@ session_start(); // Ensure session is started
                             echo "<td>";
                             // Modify link with the pencil icon
                              $update_sql = "UPDATE Menu SET item_name=?, item_type=?, item_category=?, item_price=?, item_description=? WHERE item_id=?";
-                            echo '<a href="../menuCrud/updateItemVerify.php?id='. $row['item_id'] .'" title="Modify Record" data-toggle="tooltip">'
+                            echo '<a href="../menuCrud/updateItemVerify.php?id='. $row['item_id'] .'" title="Modify Record" data-toggle="tooltip"'
+                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to Edit this Item?\')">'
                              . '<i class="fa fa-pencil" aria-hidden="true"></i></a>';
                             echo "</td>";
 
                             echo "<td>";
                             $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
                             echo '<a href="../menuCrud/deleteMenuVerify.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" '
-                                    . 'onclick="return confirm(\'Admin permission Required!\nAre you sure you want to delete this Item?\nThis will alter other modules related to this Item!\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
+                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Item?\n\nThis will alter other modules related to this Item!\n\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
                         }
