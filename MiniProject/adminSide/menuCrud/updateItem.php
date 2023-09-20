@@ -1,7 +1,6 @@
 <?php
 session_start(); // Ensure session is started
 ?>
-<?php  //include '../inc/dashHeader.php'?>
 <?php
 // Include config file
 require_once "../config.php";
@@ -147,18 +146,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         button, select {
-            background-color: black;
-            color: white;
-            border: 2px solid black;
-            padding: 3px 10px;
+           
+          
             border-radius: 5px;
             cursor: pointer;
-            display: inline-block;
             touch-action: manipulation;
-            font-family: serif;
             border-color: #41403e;
             height: 40px;
-            width: 66px;
+            
             box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
             transition: background-color 0.3s, color 0.3s, border 0.3s;
         }
@@ -206,9 +201,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
         </div>
         <br>
-        <input type="hidden" name="item_id" value="   class="form-control <?php echo $item_id; ?>">
-        <button type="submit" name="submit" value="submit">Update</button>
-        <button ><a href="../panel/menu-panel.php">Cancel</a></button>
+        <input type="hidden" name="item_id" value="   class="form-control">
+        <button class="btn btn-light" type="submit" name="submit" value="submit">Update</button>
+        <button class="btn btn-danger" href="../panel/menu-panel.php" >Cancel</button>
     </form>
     </div>
         </div>
