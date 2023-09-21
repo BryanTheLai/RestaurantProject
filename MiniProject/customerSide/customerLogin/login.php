@@ -159,7 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .button:focus {
           box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
         }
-        
+        .text-danger{
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -173,13 +175,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter User Email" required>
+                <span class="text-danger"><?php echo $email_err; ?></span>
             </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter User Password" required>
-            </div>
-            
+           <div class="form-group">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" placeholder="Enter User Password" required>
+    <span class="text-danger"><?php echo $password_err; ?></span>
+</div>
             <button type="submit" name="submit" value="Login">Login</button>
             
         </form>

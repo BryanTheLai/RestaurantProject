@@ -213,21 +213,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                                <span class="text-danger"><?php echo $email_err; ?></span>
             </div>
 
             <div class="form-group">
                 <label>Member Name</label>
                 <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" required>
+                                <span class="text-danger"><?php echo $member_name_err; ?></span>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                                <span class="text-danger"><?php echo $password_err; ?></span>
             </div>
 
             <div class="form-group">
                 <label>Phone Number</label>
                 <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
+                                <span class="text-danger"><?php echo $phone_number_err; ?></span>
             </div>
 
             <button type="submit" name="register" value="Register">Register</button>
