@@ -186,10 +186,7 @@ VALUES
 ('S8', 'Cheesy Meat Fries', 'Bar Bites', 'Side Snacks', 22, 'delicious cheesy meat fries'),
 ('S9', 'Grilled Chicken Caesar Salad', 'Salad', 'Side Snacks', 24, 'delicious salad'),
 ('S10', 'Shoney Salad', 'Salad', 'Side Snacks', 20, 'delicious salad'),
-('S11', 'Soup of the day', 'Soup', 'Side Snacks', 14, 'delicious soup'),
-('S12', 'Classic Cream of Mushroom', 'Soup', 'Side Snacks', 17, 'delicious mushroom soup'),
-('S13', 'Seafood Tomato', 'Soup', 'Side Snacks', 24, 'fresh seafood soup'),
-('S14', 'Seafood Chowder', 'Soup', 'Side Snacks', 24, 'fresh seafood chowder'),
+
 ('L1', 'Blended Scotch (Black Label)', 'Liquor', 'Drinks', 310, 'Johnny Walker Black Label Sherry 700ml'),
 ('L2', 'Blended Scotch (Gold Label)', 'Liquor', 'Drinks', 390, 'Johnny Walker Gold Label 750ml'),
 ('L3', 'American Whisky (Jack Daniel)', 'Liquor', 'Drinks', 290, '700ml'),
@@ -206,13 +203,8 @@ VALUES
 ('C5', 'Margarita', 'Classic Cocktails', 'Drinks', 29, 'cocktails'),
 ('C6', 'Pina Colada', 'Classic Cocktails', 'Drinks', 26, 'cocktails'),
 ('C7', 'Mojito', 'Classic Cocktails', 'Drinks', 29, 'cocktails'),
-('C8', 'Blue Lagoon', 'Classic Cocktails', 'Drinks', 28, 'cocktails'),
-('C9', 'Cosmopolitan', 'Classic Cocktails', 'Drinks', 28, 'cocktails'),
-('C10', 'Tequila Pop', 'Classic Cocktails', 'Drinks', 26, 'cocktails'),
-('C11', 'Tequila Sunrise', 'Classic Cocktails', 'Drinks', 26, 'cocktails'),
-('C12', 'Black Russian', 'Classic Cocktails', 'Drinks', 28, 'cocktails'),
-('C13', 'White Russian', 'Classic Cocktails', 'Drinks', 28, 'cocktails'),
-('C14', 'Daiquiri', 'Classic Cocktails', 'Drinks', 28, 'Strawberry, Lychee, Mango, Lemon'),
+
+
 ('HC1', 'Shoney Iced Tea', 'House Cocktails', 'Drinks', 32, 'Gin.Rum'),
 ('HC2', 'Blue Lady', 'House Cocktails', 'Drinks', 30, 'Vodka'),
 ('HC3', 'Black Mambaa', 'House Cocktails', 'Drinks', 30, 'Vodka'),
@@ -224,7 +216,6 @@ VALUES
 ('HD3', 'Pie of the Day', 'House Dessert', 'Side Snacks', 13, 'delicious served with vanilla ice cream'),
 ('HD4', 'Coated Ice Cream', 'House Dessert', 'Side Snacks', 12, 'delicious ice cream'),
 ('HD5', 'Messy Sundae', 'House Dessert', 'Side Snacks', 14, 'delicious brownies'),
-('HD6', 'Ice Cream', 'House Dessert', 'Side Snacks', 5, 'per scoop choco,vanilla'),
 ('SK1', 'Chicken Tenders', 'Shoney Kid', 'Side Snacks', 12, 'delicious chicken tenders'),
 ('SK2', 'Chicken Wings', 'Shoney Kid', 'Side Snacks', 12, 'delicious chicken wings'),
 ('SK3', 'Fish Fingers', 'Shoney Kid', 'Side Snacks', 15, 'served with fries & corn'),
@@ -247,8 +238,7 @@ VALUES
 ('M4', 'Purple Rain', 'Mocktails', 'Drinks', 16, 'Blackcurrant, strawberry'),
 ('M5', 'Silly Rose', 'Mocktails', 'Drinks', 16, 'Green Tea, lychee, rose'),
 ('M6', 'Incredible Green', 'Mocktails', 'Drinks', 16, 'Green apple, lemon, lime, soda'),
-('M7', 'Charlie & The Chocolate Factory', 'Mocktails', 'Drinks', 18, 'Chocolate, cookies, peppermint'),
-('M8', 'Blue Graciea', 'Mocktails', 'Drinks', 16, 'Passion fruit, blue lagoon');
+
 
 
 -- Accounts table
