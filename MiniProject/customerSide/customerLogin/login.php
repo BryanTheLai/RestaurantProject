@@ -45,17 +45,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Fetch the result row
                     $row = mysqli_fetch_assoc($result);
 
-                    // Verify the password
-                    if (password_verify($password, $row["password"])) {
-                        // Password is correct, start a new session and redirect the user to a dashboard or home page.
-                        $_SESSION["loggedin"] = true;
-                        $_SESSION["email"] = $email;
-                        header("location: ../home/home.php"); // Redirect to the home page
-                        exit;
-                    } else {
-                        // Password is incorrect
-                        $password_err = "Invalid password. Please try again.";
-                    }
+                    
+                   // Verify the password
+if ($password === $row["password"]) {
+    // Password is correct, start a new session and redirect the user to a dashboard or home page.
+    $_SESSION["loggedin"] = true;
+    $_SESSION["email"] = $email;
+    header("location: ../home/home.php"); // Redirect to the home page
+    exit;
+} else {
+    // Password is incorrect
+    $password_err = "Invalid password. Please try again.";
+}
+
                 } else {
                     // No matching records found
                     $email_err = "No account found with this email.";
