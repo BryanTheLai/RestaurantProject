@@ -202,8 +202,8 @@ session_start();
 
     <div class="dropdown-content">
         
-     <?php
- 
+  <?php
+
 // Get the member_id from the query parameters
 $member_id = $_GET['member_id'] ?? 1; // Change this to the way you obtain the member ID
 
@@ -213,44 +213,53 @@ $query = "SELECT member_name, points FROM memberships WHERE member_id = $member_
 // Execute the query
 $result = mysqli_query($link, $query);
 
-
-    // Check if the user is logged in
-    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-      // If logged in, show "Logout" link
-        // Check if the query was successful
-if ($result) {
-    // Fetch the member's information
-    $row = mysqli_fetch_assoc($result);
-    
-    if ($row) {
-        $member_name = $row['member_name'];
-        $points = $row['points'];
+// Check if the user is logged in
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    // If logged in, show "Logout" link
+    // Check if the query was successful
+    if ($result) {
+        // Fetch the member's information
+        $row = mysqli_fetch_assoc($result);
         
-        // Calculate VIP status
-        $vip_status = ($points >= 1000) ? 'VIP' : 'Regular';
-        
-        // Output the member's information
-       
-        echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; font-weight: 900;'>$member_name</p>";
-        echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; font-weight: 900;'>$points Points </p>";
-        echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; font-weight: 900;'>$vip_status</p>";
+        if ($row) {
+            $member_name = $row['member_name'];
+            $points = $row['points'];
+            
+            // Calculate VIP status
+            $vip_status = ($points >= 1000) ? 'VIP' : 'Regular';
+            
+            // Define the VIP tooltip text
+            $vip_tooltip = ($vip_status === 'Regular') ? ($points < 1000 ? (1000 - $points) . ' points to VIP ' : 'You are eligible for VIP') : '';
+            
+            // Output the member's information
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; font-weight: 900;'>$member_name</p>";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; font-weight: 900;'>$points Points </p>";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; font-weight: 900;'>$vip_status";
+            
+            // Add the tooltip only for Regular status
+            if ($vip_status === 'Regular') {
+                echo " <span class='tooltip'>$vip_tooltip</span>";
+            }
+            
+            echo "</p>";
+        } else {
+            echo "Member not found.";
+        }
     } else {
-        echo "Member not found.";
+        echo "Error: " . mysqli_error($link);
     }
+
+    echo '<a class="logout-link" style="color: white; font-size:1.3em;" href="../customerLogin/logout.php">Logout</a>';
 } else {
-    echo "Error: " . mysqli_error($link);
+    // If not logged in, show "Login" link
+    echo '<a class="signin-link" style="color: white; font-size:15px;" href="../customerLogin/register.php">Sign Up </a> ';
+    echo '<a class="login-link" style="color: white; font-size:15px; " href="../customerLogin/login.php">Log In</a>';
 }
 
-      echo '<a class="logout-link" style="color: white; font-size:1.3em;" href="../customerLogin/logout.php">Logout</a>';
-    } else {
-      // If not logged in, show "Login" link
-        echo '<a class=signin-link" style="color: white; font-size:15px;" href="../customerLogin/register.php">Sign Up </a> ';
-      echo '<a class="login-link" style="color: white; font-size:15px; " href="../customerLogin/login.php">Log In</a>';
-    }
-    
 // Close the database connection
 mysqli_close($link);
 ?>
+
      
     </div>
   </div> 
@@ -695,6 +704,20 @@ mysqli_close($link);
   display: block;
 }
 
+ .tooltip {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    margin-top: 50px; /* Add margin to move the tooltip below the element */
+    left: 0; /* Set left to 0 to align with the element */
+    width: 100%; /* Make the tooltip span the width of the element */
+    text-align: center; /* Center the text within the tooltip */
+  }
+
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
@@ -754,6 +777,20 @@ $(document).ready(function() {
 
 <!-- Bootstrap JS (including Popper.js) -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.logout-link').hover(function () {
+      var $tooltip = $(this).find('.tooltip');
+      var elementHeight = $(this).height();
+      $tooltip.css('top', elementHeight + 10 + 'px'); // Position the tooltip below the element
+      $tooltip.css('display', 'block');
+    }, function () {
+      $(this).find('.tooltip').css('display', 'none');
+    });
+  });
+</script>
+
 
 </body>
 
