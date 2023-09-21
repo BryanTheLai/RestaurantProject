@@ -8,7 +8,9 @@ $reservationStatus = $_GET['reservation'] ?? null;
 $message = '';
 if ($reservationStatus === 'success') {
     $message = "Reservation successful";
-    echo '<script>alert("Table Successfully Reserved")</script>';
+    $reservation_id = $_GET['reservation_id'] ?? null;
+    echo '<script>alert("Table Successfully Reserved. Click OK to view your reservation receipt."); window.location.href = "reservationReceipt.php?reservation_id=' . $reservation_id . '";</script>';
+    
 }
 $head_count = $_GET['head_count'] ?? 1;
 ?>
