@@ -34,12 +34,12 @@ $head_count = $_GET['head_count'] ?? 1;
             height: 100vh; /* Ensure the container takes up the full viewport height */
         }
         .reserve-container {
-            max-width: 1000px;
+            max-width: 36.4em;
         }
         .column {
             padding: 10px;
             text-align: left;
-            width: 900px;
+            width: 36.4em;
             flex-basis: 50%; /* Adjust the width of the columns as needed */
            
         }
@@ -56,16 +56,16 @@ $head_count = $_GET['head_count'] ?? 1;
         </a>
 
         <div class="row">
-            <div class="column left-column">
+            <div class="column">
                 <div id="Search Table">
                     <h2 style=" color:white;">Time Slot</h2>
                     <form id="reservation-form" method="GET" action="availability.php"><br>
                         <div class="form-group">
                         <label for="reservation_date" style="">Select Date:</label><br>
-                        <input type="date" id="reservation_date" name="reservation_date" required><br>
+                        <input class="form-control" type="date" id="reservation_date" name="reservation_date" required>
                         </div>
-                        
-                        <br><label for="reservation_time" style="">Available Reservation Times:</label>
+                        <div class="form-group">
+                        <label for="reservation_time" style="">Available Reservation Times:</label>
                         <div id="availability-table">
                             <?php
                             $availableTimes = array();
@@ -87,7 +87,8 @@ $head_count = $_GET['head_count'] ?? 1;
                             }
                             ?>
                         </div>
-                        <br>
+                        </div>
+              
                         <input type="number" id="head_count" name="head_count" value=1 hidden required>
                         <button type="submit" class="btn btn-dark" name="submit" >Search</button>
                     </form>
@@ -101,21 +102,21 @@ $head_count = $_GET['head_count'] ?? 1;
                         <br>
                         <div class="form-group">
                             <label for="customer_name" style="">Customer Name:</label><br>
-                            <input type="text" id="customer_name" name="customer_name" required>
+                            <input class="form-control" type="text" id="customer_name" name="customer_name" required>
                         </div>
                         <?php
                         $defaultReservationDate = $_GET['reservation_date'] ?? date("Y-m-d");
                         $defaultReservationTime = $_GET['reservation_time'] ?? "13:00:00";
                         ?>
-                        <br>
-                        <div class="form-group">
+                   
+                        <div class="form-group " >
                             <label for="reservation_date" style="">Reservation Date:</label><br>
                             <input type="date" id="reservation_date" name="reservation_date"
                                    value="<?= $defaultReservationDate ?>" readonly required>
                             <input type="time" id="reservation_time" name="reservation_time"
                                    value="<?= $defaultReservationTime ?>" readonly required>
                         </div>
-                        <br>
+                 
                         <div class="form-group">
                             <label for="table_id_reserve" style="">Pick a Table:</label>
                             <select class="form-control" name="table_id" id="table_id_reserve" style="width:10em;" required>
@@ -143,10 +144,10 @@ $head_count = $_GET['head_count'] ?? 1;
                             </select>
                             <input type="number" id="head_count" name="head_count" value="<?= $head_count ?>" required hidden>
                         </div>
-                        <br>
+                 
                         <div class="form-group mb-3">
                             <label for="special_request">Special request:</label><br>
-                            <input  type="text" id="special_request" name="special_request"><br><br>
+                            <textarea class="form-control"  id="special_request" name="special_request"> </textarea><br>
                             <button class="btn btn-dark" type="submit" name="submit">Make Reservation</button>
                         </div>
                     </form>
