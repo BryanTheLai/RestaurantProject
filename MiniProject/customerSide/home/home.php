@@ -303,12 +303,11 @@ mysqli_close($link);
      
         
        <select id="menu-category" class="menu-category">
-      <option>CHOOSE MENU CATEGORY</option>
-      <option value="yellow">MAIN DISHES</option>
-      <option value="red">SIDE DISHES</option>
-      <option value="green">DRINKS</option>
-       <option value="blue">ALL CATEGORY</option>
-    </select>
+        <option value="blue">ALL CATEGORY</option>
+        <option value="yellow">MAIN DISHES</option>
+        <option value="red">SIDE DISHES</option>
+        <option value="green">DRINKS</option>
+      </select>
         
     <div class="yellow msg"> 
      
