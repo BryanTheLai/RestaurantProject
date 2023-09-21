@@ -237,7 +237,7 @@ VALUES
 ('M3', 'Shirley Temple', 'Mocktails', 'Drinks', 16, 'Lemonade, grenadine'),
 ('M4', 'Purple Rain', 'Mocktails', 'Drinks', 16, 'Blackcurrant, strawberry'),
 ('M5', 'Silly Rose', 'Mocktails', 'Drinks', 16, 'Green Tea, lychee, rose'),
-('M6', 'Incredible Green', 'Mocktails', 'Drinks', 16, 'Green apple, lemon, lime, soda'),
+('M6', 'Incredible Green', 'Mocktails', 'Drinks', 16, 'Green apple, lemon, lime, soda');
 
 
 
