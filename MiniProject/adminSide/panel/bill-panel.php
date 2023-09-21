@@ -20,7 +20,7 @@ session_start(); // Ensure session is started
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-dark">Search</button>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col" style="text-align: right;" >
                                 <a href="bill-panel.php" class="btn btn-light">Show All</a>
                             </div>
                         </div>
