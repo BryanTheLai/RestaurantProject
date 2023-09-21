@@ -8,6 +8,7 @@ $reservationStatus = $_GET['reservation'] ?? null;
 $message = '';
 if ($reservationStatus === 'success') {
     $message = "Reservation successful";
+    echo '<script>alert("Table Successfully Reserved")</script>';
 }
 $head_count = $_GET['head_count'] ?? 1;
 ?>
@@ -18,90 +19,32 @@ $head_count = $_GET['head_count'] ?? 1;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <title>Reservation Page</title>
     <style>
         /* Apply background image to the body */
         body {
             font-family: 'Montserrat', sans-serif;
-            font-size: 17px;
-            background-color: black;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            margin: 0; /* Remove default body margin */
+            background-color: black;    
             display: flex;
+            color: white;
             justify-content: center; /* Center the container horizontally */
             align-items: center; /* Center the container vertically */
             height: 100vh; /* Ensure the container takes up the full viewport height */
         }
-
         .reserve-container {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 50px;
-            border-radius: 10px;
             max-width: 1000px;
-            color: white;
-            text-align: left; /* Center text inside the container */
         }
-
-        /* Style all buttons with the color #007bff */
-        button, select {
-            background-color: #5A5A5A;
-            color: white;
-            border: 2px solid black;
-            padding: 3px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: inline-block;
-            touch-action: manipulation;
-            font-family: serif;
-            border-color: #41403e;
-            height:40px;
-            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-            transition: background-color 0.3s, color 0.3s, border 0.3s;
-        }
-
-        /* Style buttons and selects on hover */
-        button:hover, select:hover {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-            transform: translate3d(0, 2px, 0);
-        }
-        
-        .button:focus {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-        }
-
-        .reserve-container h2 {
-            color: white; /* Set text color to white */
-        }
-
-        a.nav-link {
-            text-decoration: none; /* Remove underline */
-            color: whitesmoke; /* Set link color */
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-between;
-        }
-
         .column {
-            flex-basis: 48%; /* Adjust the width of the columns as needed */
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            color: white;
             text-align: left;
             width: 900px;
+            flex-basis: 50%; /* Adjust the width of the columns as needed */
+           
         }
+
+            
     </style>
 </head>
 <body>
@@ -115,11 +58,14 @@ $head_count = $_GET['head_count'] ?? 1;
         <div class="row">
             <div class="column left-column">
                 <div id="Search Table">
-                    <h2 style="font-family: serif; color:white;">Time Slot</h2>
+                    <h2 style=" color:white;">Time Slot</h2>
                     <form id="reservation-form" method="GET" action="availability.php"><br>
-                        <label for="reservation_date" style=" font-family: serif;">Select Date:</label><br>
+                        <div class="form-group">
+                        <label for="reservation_date" style="">Select Date:</label><br>
                         <input type="date" id="reservation_date" name="reservation_date" required><br>
-                        <br><label for="reservation_time" style=" font-family: serif;">Available Reservation Times:</label>
+                        </div>
+                        
+                        <br><label for="reservation_time" style="">Available Reservation Times:</label>
                         <div id="availability-table">
                             <?php
                             $availableTimes = array();
@@ -129,7 +75,7 @@ $head_count = $_GET['head_count'] ?? 1;
                                     $availableTimes[] = $time;
                                 }
                             }
-                            echo '<select name="reservation_time" id="reservation_time" class="form-control" >';
+                            echo '<select name="reservation_time" id="reservation_time" style="width:10em;" class="form-control" >';
                             echo '<option value="" selected disabled>Select a Time</option>';
                             foreach ($availableTimes as $time) {
                                 echo "<option  value='$time'>$time</option>";
@@ -143,18 +89,18 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         <br>
                         <input type="number" id="head_count" name="head_count" value=1 hidden required>
-                        <button type="submit" name="submit" style=" font-family: serif;">Search</button>
+                        <button type="submit" class="btn btn-dark" name="submit" >Search</button>
                     </form>
                 </div>
             </div>
 
             <div class="column right-column">
                 <div id="insert-reservation-into-table">
-                    <h2 style="font-family: serif; color:white;">Make a Reservation</h2>
+                    <h2 style=" color:white;">Make a Reservation</h2>
                     <form id="reservation-form" method="POST" action="insertReservation.php">
                         <br>
                         <div class="form-group">
-                            <label for="customer_name" style=" font-family: serif;">Customer Name:</label><br>
+                            <label for="customer_name" style="">Customer Name:</label><br>
                             <input type="text" id="customer_name" name="customer_name" required>
                         </div>
                         <?php
@@ -163,7 +109,7 @@ $head_count = $_GET['head_count'] ?? 1;
                         ?>
                         <br>
                         <div class="form-group">
-                            <label for="reservation_date" style=" font-family: serif;">Reservation Date:</label><br>
+                            <label for="reservation_date" style="">Reservation Date:</label><br>
                             <input type="date" id="reservation_date" name="reservation_date"
                                    value="<?= $defaultReservationDate ?>" readonly required>
                             <input type="time" id="reservation_time" name="reservation_time"
@@ -171,8 +117,8 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="table_id_reserve" style=" font-family: serif;">Pick a Table:</label>
-                            <select class="form-control" name="table_id" id="table_id_reserve" required>
+                            <label for="table_id_reserve" style="">Pick a Table:</label>
+                            <select class="form-control" name="table_id" id="table_id_reserve" style="width:10em;" required>
                                 <option value="" selected disabled>Select a table</option>
                                 <?php
                                 $table_id_list = $_GET['reserved_table_id'];
@@ -200,8 +146,8 @@ $head_count = $_GET['head_count'] ?? 1;
                         <br>
                         <div class="form-group mb-3">
                             <label for="special_request">Special request:</label><br>
-                            <input type="text" id="special_request" name="special_request"><br><br>
-                            <button type="submit" name="submit">Make Reservation</button>
+                            <input  type="text" id="special_request" name="special_request"><br><br>
+                            <button class="btn btn-dark" type="submit" name="submit">Make Reservation</button>
                         </div>
                     </form>
                 </div>
