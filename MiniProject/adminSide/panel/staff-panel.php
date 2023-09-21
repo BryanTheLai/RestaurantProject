@@ -3,7 +3,7 @@ session_start(); // Ensure session is started
 ?>
 <?php include '../inc/dashHeader.php'; ?>
     <style>
-        .wrapper{ width: 50%; padding-left: 200px; padding-top: 20px  }
+        .wrapper{ width: 60%; padding-left: 200px; padding-top: 20px  }
     </style>
 
 <div class="wrapper">
@@ -23,7 +23,7 @@ session_start(); // Ensure session is started
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-dark">Search</button>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col" style="text-align: right;" >
                                 <a href="staff-panel.php" class="btn btn-light">Show All</a>
                             </div>
                         </div>

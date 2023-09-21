@@ -3,7 +3,7 @@ session_start(); // Ensure session is started
 ?>
 <?php include '../inc/dashHeader.php'; ?>
     <style>
-        .wrapper{ width: 70%; padding-left: 200px; padding-top: 20px  }
+        .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
     </style>
 
 <div class="wrapper">
@@ -14,9 +14,6 @@ session_start(); // Ensure session is started
                     <h2 class="pull-left">Account Details</h2>
                     <a href="../staffCrud/createStaff.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Staff</a>
                     <a href="../customerCrud/createCust.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Memberships</a>
-                    <!--
-                    <a href="../accountCrud/createMemberAccount.php" class="btn btn-outline-dark"><i class="fa fa-plus"></i> Add Member Account</a>
-                    -->
                 </div>
                 
                 <div class="mb-3">
@@ -28,7 +25,7 @@ session_start(); // Ensure session is started
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-dark">Search</button>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col" style="text-align: right;" >
                                 <a href="account-panel.php" class="btn btn-light">Show All</a>
                             </div>
                         </div>
