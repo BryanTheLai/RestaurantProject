@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($link, $insert_query2);
 
         $_SESSION['customer_name'] = $customer_name;
-        header("Location: reservePage.php?reservation=success");
+        header("Location: reservePage.php?reservation=success&reservation_id=$reservation_id");
     } else {
         // Handle the case where the query failed
         echo "Error fetching table capacity: " . mysqli_error($link);
