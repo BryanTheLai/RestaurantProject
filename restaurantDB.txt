@@ -371,7 +371,7 @@ VALUES
 
 INSERT INTO Bill_Items (bill_id, item_id, quantity)
 VALUES 
-(1, 'B1', 9),
+(1, 'MD1', 9),
 (1, 'MD15', 9),
 (1, 'MD12', 6),
 (1, 'MD14', 4),
