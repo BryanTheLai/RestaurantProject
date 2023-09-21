@@ -45,15 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_begin_transaction($link);
 
         // Prepare an insert statement for Accounts table
-        $sql_accounts = "INSERT INTO Accounts (email, password, phone_number, register_date) VALUES (?, ?, ?, NOW())";
-        if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt_accounts, "sss", $param_email, $param_password, $param_phone_number);
+      // Prepare an insert statement for Accounts table
+$sql_accounts = "INSERT INTO Accounts (email, password, phone_number, register_date) VALUES (?, ?, ?, NOW())";
+if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt_accounts, "sss", $param_email, $param_password, $param_phone_number);
 
-            // Set parameters
-            $param_email = $email;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-            $param_phone_number = $phone_number;
+    // Set parameters
+    $param_email = $email;
+    // Store the password as plain text (not recommended for production)
+    $param_password = $password;
+    $param_phone_number = $phone_number;
+
+    // ...
+}
 
             // Attempt to execute the prepared statement for Accounts table
             if (mysqli_stmt_execute($stmt_accounts)) {
@@ -97,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_close($stmt_accounts);
         }
     }
-}
+
 
 ?>
 <!DOCTYPE html>
