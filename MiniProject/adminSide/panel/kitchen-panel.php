@@ -8,17 +8,21 @@ $query = "SELECT * FROM Kitchen WHERE time_ended IS NULL";
 $result = mysqli_query($link, $query);
 ?>
 
-
-
     <link href="../css/pos.css" rel="stylesheet" />
     <meta http-equiv="refresh" content="5">
 
 <div class="wrapper" style="width: 1300px; padding-left: 200px; padding-top: 20px">
     <div class="container-fluid pt-5 pl-600 mt-5">
-        <h2>Kitchen Panel</h2>
+          <div class="">
+            <div class="col" style="text-align: left; display: flex; justify-content: space-between;">
+                <h2 class="">Kitchen Orders</h2>
+                <a href="../posBackend/kitchenBackend/undo.php?UndoUnshow=true" class="btn btn-warning mb-2">Undo</a>
+            </div>
+          </div>
+
         <table class="table table-bordered ">
             <thead>
-                <a href="../posBackend/kitchenBackend/undo.php?UndoUnshow=true" class="btn btn-warning mt-1 mb-2">Undo</a>
+                
                 <tr>
                     <th>Kitchen ID</th>
                     <th>Table ID</th>
