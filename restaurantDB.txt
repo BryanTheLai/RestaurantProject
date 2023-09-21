@@ -231,7 +231,6 @@ VALUES
 ('CP4', 'Watermelon', 'Cold Pressed Juice', 'Drinks', 13, 'fresh pressed juice'),
 ('CP5', 'Pineapple', 'Cold Pressed Juice', 'Drinks', 13, 'fresh pressed juice'),
 ('CP6', 'Lime', 'Cold Pressed Juice', 'Drinks', 10, 'fresh pressed juice'),
-('CP7', 'Lemon', 'Cold Pressed Juice', 'Drinks', 10, 'fresh pressed juice'),
 ('M1', 'Cool & Refreshing', 'Mocktails', 'Drinks', 16, 'Cucumber,peppermint,lemon'),
 ('M2', 'Virgin Apple Mojito', 'Mocktails', 'Drinks', 16, 'Green apple, mint leaf'),
 ('M3', 'Shirley Temple', 'Mocktails', 'Drinks', 16, 'Lemonade, grenadine'),
