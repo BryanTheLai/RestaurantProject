@@ -10,7 +10,7 @@
 
 # Example account
 ## Customer
-1. CustomerEmail: john@example.com
+1. CustomerEmail: john@gmail.com
 2. CustomerPassword: password123
 
 ## Staff
