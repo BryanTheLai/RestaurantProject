@@ -10,14 +10,14 @@
 
 # Example account
 ## Customer
-CustomerEmail: john@example.com
-CustomerPassword: password123
+1. CustomerEmail: john@example.com
+2. CustomerPassword: password123
 
 ## Staff
-StaffAccountId: 1
-Password: password123
+1. StaffAccountId: 1
+2. Password: password123
 
 ## Password for deleting and updating menu and table
-AdminId: 99999
-Password: 12345
+1. AdminId: 99999
+2. Password: 12345
 
