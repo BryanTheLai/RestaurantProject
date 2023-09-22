@@ -17,7 +17,7 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Table ID, Capacity">
+                                <input required type="text" id="search" name="search" class="form-control" placeholder="Enter Table ID, Capacity">
                             </div>
                             <div class="col-md-3" >
                                 <button type="submit" class="btn btn-dark">Search</button>
