@@ -185,5 +185,5 @@ $pdf->CustomTable(array('Category', 'Revenue (RM)'), $categoryMonthData);
 
 $pdf->Ln();
 
-$pdf->Output('restaurant_report.pdf', 'D');
+$pdf->Output('RevenueReport.pdf', 'D');
 ?>
