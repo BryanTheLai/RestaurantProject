@@ -119,7 +119,7 @@ $reservation_id = $_GET['reservation_id'];
                     if ($billRow['payment_time'] !== null) {
                         echo '<div class="alert alert-warning" role="alert">';
                         echo "Bill with ID $bill_id has already been paid.</div>";
-                        echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
+                        echo '<br><a href="posTable.php" class="btn btn-dark">Back to Tables</a>';
                         echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
                         exit; // Stop further execution
                     }
@@ -150,7 +150,7 @@ $reservation_id = $_GET['reservation_id'];
                     echo '<div class="alert alert-success" role="alert">
                             Bill successfully Paid!
                           </div>';
-                    echo '<a href="posTable.php" class="btn btn-dark ">Back to Order Item Page</a>';
+                    echo '<a href="posTable.php" class="btn btn-dark ">Back to Tables</a>';
                     echo '<a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
                 } else {
                     echo "Error updating bill: " . $link->error;
@@ -159,7 +159,7 @@ $reservation_id = $_GET['reservation_id'];
                 echo '<div class="alert alert-warning" role="alert">
                         Payment amount is not sufficient
                       </div>';
-                echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
+                echo '<br><a href="posTable.php" class="btn btn-dark">Back to Tables</a>';
             }
         }
         ?>

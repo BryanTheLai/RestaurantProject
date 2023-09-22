@@ -64,8 +64,8 @@ $bill_id = $_GET['bill_id'];
                     <hr>
                     <div class="text-right">
                         <?php 
-                        echo "<strong>Cart Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
-                        echo "<strong>Cart Taxed:</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
+                        echo "<strong>Total:</strong> RM " . number_format($cart_total, 2) . "<br>";
+                        echo "<strong>Tax (10%):</strong> RM " . number_format($cart_total * $tax, 2) . "<br>";
                         $GRANDTOTAL = $tax * $cart_total + $cart_total;
                         echo "<strong>Grand Total:</strong> RM " . number_format($GRANDTOTAL, 2);
                         ?>
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<div class="alert alert-warning" role="alert">';
             echo "Bill has already been paid for.</div>";
             
-            echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
+            echo '<br><a href="posTable.php" class="btn btn-dark">Back to Tables</a>';
             echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
         } else {
             $currentTime = date('Y-m-d H:i:s'); // Current time
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt->execute()) {
                     echo '<div class="alert alert-success" role="alert">
                     Payment successful!</div>';
-                    echo '<br><a href="posTable.php" class="btn btn-dark">Back to Order Item Page</a>';
+                    echo '<br><a href="posTable.php" class="btn btn-dark">Back to Tables</a>';
                     echo '<br><a href="receipt.php?bill_id=' . $bill_id . '" class="btn btn-light">Print Receipt <span class="fa fa-receipt text-black"></span></a>';
                 } else {
                     echo "Error updating Bills table: " . $stmt->error;
