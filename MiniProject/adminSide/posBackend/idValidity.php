@@ -29,7 +29,11 @@ session_start(); // Ensure session is started
                 <label for="reservationId">Reservation ID:</label>
                 <input type="text" id="reservationId" name="reservationId" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Check Validity</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-dark">Check Validity</button>
+                <a class="btn btn-danger" href="javascript:window.history.back();">Cancel</a>
+                <a class="btn btn-link" href="posTable.php">Tables Page</a>
+            </div>
         </form>
     </div>
 
@@ -80,7 +84,7 @@ session_start(); // Ensure session is started
                 echo "Staff, member, and reservation are valid.";
                 echo '</div>';
                 echo '<div class="mt-3">';
-                echo '<a href="posCashPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-primary">Cash</a>';
+                echo '<a href="posCashPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-success">Cash</a>';
                 echo '<a href="posCardPayment.php?bill_id=' . $bill_id . '&staff_id=' . $staffId . '&member_id=' . $memberId . '&reservation_id=' . $reservationId . '" class="btn btn-primary ml-2">Credit Card</a>';
                 echo '</div>';
             } else {

@@ -13,8 +13,8 @@ require_once '../config.php'; // Include your database configuration
 </head>
 <body>
 
-<div class="container">
-    <div id="POS-Content" class="row">
+<div class="container" style="margin-left: 8em; width:100%">
+    <div id="POS-Content" class="row" >
         <div class="row center-middle">
             <h2  style="margin-top: 3rem;">TABLE STATUS</h2>
             <div class="row d-flex justify-content-around" >
