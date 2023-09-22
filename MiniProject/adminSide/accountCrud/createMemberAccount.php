@@ -139,7 +139,7 @@ $stmt->bind_param("ssssss", $email, $register_date, $phone_number, $password, $m
         </div>
 
         <div class="form-group">
-            <input type="submit" name="submit" class="btn btn-primary" value="Create Account">
+            <input type="submit" name="submit" class="btn btn-dark" value="Create Account">
         </div>
     </form>
 </div>
