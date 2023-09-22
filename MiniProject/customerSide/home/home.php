@@ -24,6 +24,121 @@ $sqlsides = "SELECT * FROM menu WHERE item_category = 'Side Snacks' ORDER BY ite
 $resultsides = mysqli_query($link, $sqlsides);
 $sides = mysqli_fetch_all($resultsides, MYSQLI_ASSOC);
 
+$sqlPasta = "SELECT * FROM menu WHERE item_type = 'Pasta' ORDER BY item_type; ";
+$resultPasta = mysqli_query($link, $sqlPasta);
+$Pasta = mysqli_fetch_all($resultPasta, MYSQLI_ASSOC);
+
+$sqlBurgers = "SELECT * FROM menu WHERE item_type = 'Burgers & Sandwiches' ORDER BY item_type; ";
+$resultBurgers = mysqli_query($link, $sqlBurgers);
+$Burgers = mysqli_fetch_all($resultBurgers , MYSQLI_ASSOC);
+
+$sqlLamb = "SELECT * FROM menu WHERE item_type = 'Lamb' ORDER BY item_type; ";
+$resultLamb = mysqli_query($link, $sqlLamb);
+$Lamb = mysqli_fetch_all($resultLamb , MYSQLI_ASSOC);
+
+$sqlSeafood = "SELECT * FROM menu WHERE item_type = 'Seafood' ORDER BY item_type; ";
+$resultSeafood = mysqli_query($link, $sqlSeafood);
+$Seafood = mysqli_fetch_all($resultSeafood , MYSQLI_ASSOC);
+
+$sqlChicken = "SELECT * FROM menu WHERE item_type = 'Chicken' ORDER BY item_type; ";
+$resultChicken = mysqli_query($link, $sqlChicken);
+$Chicken= mysqli_fetch_all($resultChicken , MYSQLI_ASSOC);
+
+$sqlSoup = "SELECT * FROM menu WHERE item_type = 'Soup' ORDER BY item_type; ";
+$resultSoup = mysqli_query($link, $sqlSoup);
+$Soup= mysqli_fetch_all($resultSoup , MYSQLI_ASSOC);
+
+$sqlSalad = "SELECT * FROM menu WHERE item_type = 'Salad ' ORDER BY item_type; ";
+$resultSalad  = mysqli_query($link, $sqlSalad );
+$Salad = mysqli_fetch_all($resultSalad  , MYSQLI_ASSOC);
+
+$sqlBites = "SELECT * FROM menu WHERE item_type = 'Bar Bites' ORDER BY item_type; ";
+$resultBites  = mysqli_query($link, $sqlBites );
+$Bites = mysqli_fetch_all($resultBites  , MYSQLI_ASSOC);
+
+$sqlSteak = "SELECT * FROM menu WHERE item_type = 'Steak & Ribs' ORDER BY item_type; ";
+$resultSteak  = mysqli_query($link, $sqlSteak );
+$Steak = mysqli_fetch_all($resultSteak  , MYSQLI_ASSOC);
+
+$sqlSides = "SELECT * FROM menu WHERE item_type = 'Side Dishes' ORDER BY item_type; ";
+$resultSides  = mysqli_query($link, $sqlSides);
+$Sides = mysqli_fetch_all($resultSides , MYSQLI_ASSOC);
+
+$sqlDesert = "SELECT * FROM menu WHERE item_type = 'House Dessert' ORDER BY item_type; ";
+$resultDesert  = mysqli_query($link, $sqlDesert);
+$Desert = mysqli_fetch_all($resultDesert , MYSQLI_ASSOC);
+
+$sqlKids = "SELECT * FROM menu WHERE item_type = 'Shoney Kid' ORDER BY item_type; ";
+$resultKids  = mysqli_query($link, $sqlKids);
+$Kids = mysqli_fetch_all($resultKids , MYSQLI_ASSOC);
+
+$sqlJuice = "SELECT * FROM menu WHERE item_type = 'Chilled Juice' ORDER BY item_type; ";
+$resultJuice  = mysqli_query($link, $sqlJuice);
+$Juice= mysqli_fetch_all($resultJuice , MYSQLI_ASSOC);
+
+$sqlSoda = "SELECT * FROM menu WHERE item_type = 'Canned Soda' ORDER BY item_type; ";
+$resultSoda  = mysqli_query($link, $sqlSoda);
+$Soda= mysqli_fetch_all($resultSoda , MYSQLI_ASSOC);
+
+$sqlColdPressedJuice = "SELECT * FROM menu WHERE item_type = 'Cold Pressed Juice' ORDER BY item_type; ";
+$resultColdPressedJuice  = mysqli_query($link, $sqlColdPressedJuice );
+$ColdPressedJuice = mysqli_fetch_all($resultColdPressedJuice  , MYSQLI_ASSOC);
+
+$sqlIceBlended = "SELECT * FROM menu WHERE item_type = 'Fruity Ice Blended' ORDER BY item_type; ";
+$resultIceBlended  = mysqli_query($link, $sqlIceBlended);
+$IceBlended= mysqli_fetch_all($resultIceBlended , MYSQLI_ASSOC);
+
+$sqlCoffee = "SELECT * FROM menu WHERE item_type = 'Coffee & Chocolate' ORDER BY item_type; ";
+$resultCoffee  = mysqli_query($link, $sqlCoffee);
+$Coffee= mysqli_fetch_all($resultCoffee , MYSQLI_ASSOC);
+
+$sqlTea = "SELECT * FROM menu WHERE item_type = 'Tea' ORDER BY item_type; ";
+$resultTea  = mysqli_query($link, $sqlTea);
+$Tea= mysqli_fetch_all($resultTea , MYSQLI_ASSOC);
+
+$sqlFlowerTea = "SELECT * FROM menu WHERE item_type = 'Flower Tea' ORDER BY item_type; ";
+$resultFlowerTea  = mysqli_query($link, $sqlFlowerTea);
+$FlowerTea= mysqli_fetch_all($resultFlowerTea , MYSQLI_ASSOC);
+
+$sqlFlavoredIceTea = "SELECT * FROM menu WHERE item_type = 'Flavored Ice Tea' ORDER BY item_type; ";
+$resultFlavoredIceTea  = mysqli_query($link, $sqlFlavoredIceTea);
+$FlavoredIceTea= mysqli_fetch_all($resultFlavoredIceTea , MYSQLI_ASSOC);
+
+$sqlFrozenFruitYogurt = "SELECT * FROM menu WHERE item_type = 'Frozen Fruit Yogurt' ORDER BY item_type; ";
+$resultFrozenFruitYogurt  = mysqli_query($link, $sqlFrozenFruitYogurt);
+$FrozenFruitYogurt= mysqli_fetch_all($resultFrozenFruitYogurt , MYSQLI_ASSOC);
+
+$sqlMilkshakes = "SELECT * FROM menu WHERE item_type = 'Milkshakes' ORDER BY item_type; ";
+$resultMilkshakes  = mysqli_query($link, $sqlMilkshakes);
+$Milkshakes= mysqli_fetch_all($resultMilkshakes , MYSQLI_ASSOC);
+
+$sqlMocktails = "SELECT * FROM menu WHERE item_type = 'Mocktails' ORDER BY item_type; ";
+$resultMocktails  = mysqli_query($link, $sqlMocktails);
+$Mocktails= mysqli_fetch_all($resultMocktails , MYSQLI_ASSOC);
+
+$sqlHouseWines = "SELECT * FROM menu WHERE item_type = 'House Wines' ORDER BY item_type; ";
+$resultHouseWines = mysqli_query($link, $sqlHouseWines);
+$HouseWines= mysqli_fetch_all($resultHouseWines, MYSQLI_ASSOC);
+
+$sqlHousePour = "SELECT * FROM menu WHERE item_type = 'House Pour' ORDER BY item_type; ";
+$resultHousePour  = mysqli_query($link, $sqlHousePour);
+$HousePour= mysqli_fetch_all($resultHousePour , MYSQLI_ASSOC);
+
+$sqlBeer = "SELECT * FROM menu WHERE item_type = 'Beer' ORDER BY item_type; ";
+$resultBeer  = mysqli_query($link, $sqlBeer);
+$Beer= mysqli_fetch_all($resultBeer , MYSQLI_ASSOC);
+
+$sqlLiquor= "SELECT * FROM menu WHERE item_type = 'Liquor' ORDER BY item_type; ";
+$resultLiquor  = mysqli_query($link, $sqlLiquor);
+$Liquor= mysqli_fetch_all($resultLiquor , MYSQLI_ASSOC);
+
+$sqlClassicCocktails = "SELECT * FROM menu WHERE item_type = 'Classic Cocktails' ORDER BY item_type; ";
+$resultClassicCocktails  = mysqli_query($link, $sqlClassicCocktails);
+$ClassicCocktails= mysqli_fetch_all($resultClassicCocktails , MYSQLI_ASSOC);
+
+$sqlHouseCocktails = "SELECT * FROM menu WHERE item_type = 'House Cocktails' ORDER BY item_type; ";
+$resultHouseCocktails  = mysqli_query($link, $sqlHouseCocktails);
+$HouseCocktails= mysqli_fetch_all($resultHouseCocktails , MYSQLI_ASSOC);
 
 
 // Check if the user is logged in
@@ -80,12 +195,12 @@ session_start();
           <li><a href="#contact" data-after="Contact">Contact</a></li>
           <li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
           
-          
    
 
-        <div class="dropdown">
-            <button class="dropbtn">ACCOUNT <i class="fa fa-caret-down" aria-hidden="true"></i> </button>
-        <div class="dropdown-content">
+ <div class="dropdown">
+ <button class="dropbtn">ACCOUNT <i class="fa fa-caret-down" aria-hidden="true"></i> </button>
+
+    <div class="dropdown-content">
         
   <?php
 
@@ -117,9 +232,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             $vip_tooltip = ($vip_status === 'Regular') ? ($points < 1000 ? (1000 - $points) . ' points to VIP ' : 'You are eligible for VIP') : '';
             
             // Output the member's information
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; font-weight: 900;'>$member_name</p>";
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; font-weight: 900;'>$points Points </p>";
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; font-weight: 900;'>$vip_status";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; '>$member_name</p>";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; '>$points Points </p>";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; '>$vip_status";
             
             // Add the tooltip only for Regular status
             if ($vip_status === 'Regular') {
@@ -187,8 +302,8 @@ mysqli_close($link);
       </div>
      
         
-       <select style="text-align:center;" id="menu-category" class="menu-category">
-        <option  value="blue">ALL ITEMS</option>
+       <select id="menu-category" class="menu-category">
+        <option value="blue">ALL CATEGORY</option>
         <option value="yellow">MAIN DISHES</option>
         <option value="red">SIDE DISHES</option>
         <option value="green">DRINKS</option>
@@ -198,7 +313,7 @@ mysqli_close($link);
      
         <div></div>
       <div class="mainDish">
-           <h1 style="text-align:center;">MAIN DISHES</h1>
+           <h1 style="text-align:center">MAIN DISHES</h1>
           <?php foreach ($mainDishes as $item): ?>
       <p>
         <span class="item-name"> <strong><?php echo $item['item_name']; ?></strong></span>
@@ -336,7 +451,7 @@ mysqli_close($link);
         <div class="contact-info">
           <div class='icon'><img src="../image/icons8-email-100.png" alt=""/></div>
           <h1>Email</h1>
-          <h2>JohnnysDining@gmail.com</h2> 
+          <h2>johnny's_Bar&Grill@gmail.com</h2> 
         </div>
       </div>
       
@@ -344,7 +459,7 @@ mysqli_close($link);
         <div class="contact-info">
           <div class='icon'> <img src="../image/icons8-home-address-100.png" alt=""/></div>
           <h1>Address</h1>
-          <h2>Lot 62, Third Floor, Jalan Newton, No.345, Lorong Kluang, Kota Kinabalu, Malaysia, 88000</h2>
+          <h2>Lot 52, Ground Floor, Jalan Gaya, No.1, Lorong Ewan, Kota Kinabalu, Malaysia, 88000</h2>
         </div>
       </div>
     </div>
@@ -362,29 +477,19 @@ mysqli_close($link);
   <!-- Footer -->
   <section id="footer">
     <div class="footer container">
-        <h2>Follow our Socials</h2>
+      <div class="brand">
+          <h1>JOHNNY'S DINING & BAR</h1>
+      </div>
+      <h2>Your Complete Web Solution</h2>
       <div class="social-icon">
         <div class="social-item">
-          <a href="www.facebook.com"><img src="https://img.icons8.com/color/48/facebook.png" alt="facebook"/></a>
+          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
         </div>
         <div class="social-item">
-          <a href="www.instagram.com"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="instagram-new"/></a>
+          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
         </div>
-          <div class="social-item">
-          <a href="www.pinterest.com"><img src="https://img.icons8.com/color/48/pinterest.png" alt="pinterest-new"/></a>
-        </div>
-          <div class="social-item">
-          <a href="www.tiktok.com"><img src="https://img.icons8.com/color/48/tiktok.png" alt="tiktok-new"/></a>
-        </div>
-          <div class="social-item">
-          <a href="www.youtube.com"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="youtube-new"/></a>
-        </div>
-          
-        
       </div>
-      <p>© 2023 Johnny's Dining & Bar</p>
-      
-      
+      <p>Copyright © 2023 JOHNNY's. All rights reserved</p>
     </div>
   </section>
   <!-- End Footer -->
@@ -540,11 +645,11 @@ mysqli_close($link);
 }
 
 .dropdown .dropbtn {
-  font-size: 17px;  
+  font-size: 1.75em;  
   border: none;
   outline: none;
   color: white;
-  padding: 13.9px 16px;
+  padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
