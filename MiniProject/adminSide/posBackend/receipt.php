@@ -108,5 +108,5 @@ $pdf->Cell(150, 10, 'Grand Total', 1);
 $pdf->Cell(40, 10, 'RM ' . number_format($after_tax,2), 1);
 $pdf->Ln();
 
-$pdf->Output();
+$pdf->Output('Receipt-Bill_ID-' . $bill_id . '.pdf', 'D');
 ?>
