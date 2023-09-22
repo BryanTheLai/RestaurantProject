@@ -9,15 +9,15 @@
   > StackEdit - Markdown Editor: https://stackedit.io/app#
 
 # Example account
-====Customer====
+## Customer
 CustomerEmail: john@example.com
 CustomerPassword: password123
 
-====Staff====
+## Staff
 StaffAccountId: 1
 Password: password123
 
-====Password for deleting and updating menu and table=====
+## Password for deleting and updating menu and table
 AdminId: 99999
 Password: 12345
 
