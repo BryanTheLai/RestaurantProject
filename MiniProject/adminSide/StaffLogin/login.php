@@ -11,7 +11,7 @@
          body {
             font-family: 'Montserrat', sans-serif;
             color: white;
-            background-color: black;
+            background-color: #1C1427;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,35 +26,6 @@
             text-align: center;
         }
         
-        button, select {
-            background-color: black;
-            color: white;
-            border: 2px solid black;
-            padding: 3px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: inline-block;
-            touch-action: manipulation;
-            font-family: serif;
-            border-color: #41403e;
-            height:40px;
-            width:66px;
-            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-            transition: background-color 0.3s, color 0.3s, border 0.3s;
-        }
-
-        /* Style buttons and selects on hover */
-        button:hover, select:hover {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-            transform: translate3d(0, 2px, 0);
-        }
-        
-        .button:focus {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-        }
         
     </style>
 </head>
@@ -72,20 +43,20 @@
         }        
         ?>
 
-    <form action="login_process.php" method="post" style=" font-family: serif;">
+    <form action="login_process.php" method="post" >
         <div class="form-group">
-            <label for="account_id">Staff Account ID :</label>
+            <label for="account_id">Staff Account ID</label>
             <input type="number" id="account_id" name="account_id" placeholder="Enter Account ID" required class="form-control <?php echo (!empty($account_id)) ? 'is-invalid' : ''; ?>" value="<?php echo $account_id; ?>">
             <span class="invalid-feedback"><?php echo $account_id; ?></span>
         </div>
         
         <div class="form-group">
-            <label for="password">Password :</label>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter Password" required class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
         </div>
             
             <div class="form-group">
-                <button type="submit" name="submit" value="Login">Login</button>
+                <button class="btn btn-light" type="submit" name="submit" value="Login">Login</button>
             </div>
     </form>
     </div>
