@@ -146,11 +146,11 @@ if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
 
         h2 {
             text-align: center;
-            font-family: 'Georgia', serif;
+            font-family: 'Montserrat', serif;
         }
 
         p {
-            font-family: 'Georgia', serif;
+            font-family: 'Montserrat', serif;
         }
 
         .form-group {
@@ -179,34 +179,6 @@ if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
             }
         }
         
-        button, select {
-            background-color: black;
-            color: white;
-            border: 2px solid black;
-            padding: 3px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: inline-block;
-            touch-action: manipulation;
-            font-family: serif;
-            height:40px;
-            border-color: #41403e;
-            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-            transition: background-color 0.3s, color 0.3s, border 0.3s;
-        }
-
-        /* Style buttons and selects on hover */
-        button:hover, select:hover {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-            transform: translate3d(0, 2px, 0);
-        }
-        
-        .button:focus {
-          box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-        }
     </style>
 </head>
 <body>
@@ -239,11 +211,11 @@ if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
                                 <span class="text-danger"><?php echo $phone_number_err; ?></span>
             </div>
 
-            <button type="submit" name="register" value="Register">Register</button>
+            <button style="background-color:black;" class="btn btn-dark" type="submit" name="register" value="Register">Register</button>
            
         </form>
 
-        <p style="font-family: serif; color:white;">Already have an account? <a href="../customerLogin/login.php" >Proceed to login page</a></p>
+        <p style="margin-top:1em; color:white;">Already have an account? <a href="../customerLogin/login.php" >Proceed to Login</a></p>
     </div>
     </div>
 </body>
