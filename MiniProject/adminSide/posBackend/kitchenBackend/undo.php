@@ -22,5 +22,6 @@ if ($result && $result->num_rows > 0) {
 } else {
     // No records with time_ended set
     echo "No records available to undo.";
+    echo '<a class="btn btn-danger" href="javascript:window.history.back();">Back</a>';
 }
 ?>
