@@ -167,7 +167,7 @@ $next_account_id = getNextAvailableAccountID($conn);
         </div>
         
         <div class="form-group mb-5">
-            <input type="submit" class="btn btn-primary" value="Create Staff">
+            <input type="submit" class="btn btn-dark" value="Create Staff">
         </div>
 
     </form>
