@@ -120,9 +120,9 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                  
                         <div class="form-group">
-                            <label for="table_id_reserve" style="">Pick a Table</label>
+                            <label for="table_id_reserve" style="">Available Tables</label>
                             <select class="form-control" name="table_id" id="table_id_reserve" style="width:10em;" required>
-                                <option value="" selected disabled>Select a table</option>
+                                <option value="" selected disabled>Select a Table</option>
                                 <?php
                                 $table_id_list = $_GET['reserved_table_id'];
                                 $head_count = $_GET['head_count'] ?? 1;
