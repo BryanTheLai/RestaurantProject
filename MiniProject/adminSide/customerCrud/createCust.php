@@ -159,7 +159,7 @@ $next_account_id = getNextAvailableAccountID($conn);
         </div>
         
         <div class="form-group mb-5">
-            <input type="submit" name="submit" class="btn btn-primary" value="Create Membership">
+            <input type="submit" name="submit" class="btn btn-dark" value="Create Membership">
         </div>
     </form>
 </div>
