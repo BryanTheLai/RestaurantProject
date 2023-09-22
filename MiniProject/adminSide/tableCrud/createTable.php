@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
         
         
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Create table">
+            <input type="submit" class="btn btn-dark" value="Create table">
         </div>    
         
     

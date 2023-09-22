@@ -62,7 +62,7 @@ $head_count = $_GET['head_count'] ?? 1;
              <input type="number" id="head_count" name="head_count" value=1 hidden required>
             
             <div class="form-group mt-2">
-                <input type="submit" name="submit" class="btn btn-primary" value="Search Available">
+                <input type="submit" name="submit" class="btn btn-dark" value="Search Available">
             </div> 
         </form>
         </div>
@@ -123,7 +123,7 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         
                         <div class="form-group mt-2">
-                            <input type="submit" name="submit" class="btn btn-primary" value="Make Reservation">
+                            <input type="submit" name="submit" class="btn btn-dark" value="Make Reservation">
                         </div>                        
                         
                     </form>
