@@ -23,7 +23,7 @@ $head_count = $_GET['head_count'] ?? 1;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
-    <title>Reservation Page</title>
+    <title>Customer Reservation </title>
     <style>
         /* Apply background image to the body */
         body {
@@ -60,7 +60,8 @@ $head_count = $_GET['head_count'] ?? 1;
         <div class="row">
             <div class="column">
                 <div id="Search Table">
-                    <h2 style=" color:white;">Time Slot</h2>
+                    <h2 style=" color:white;">Search for Time</h2>
+                 
                     <form id="reservation-form" method="GET" action="availability.php"><br>
                         <div class="form-group">
                         <label for="reservation_date" style="">Select Date</label><br>
@@ -99,7 +100,7 @@ $head_count = $_GET['head_count'] ?? 1;
 
             <div class="column right-column">
                 <div id="insert-reservation-into-table">
-                    <h2 style=" color:white;">Make a Reservation</h2>
+                    <h2 style=" color:white;">Make the Reservation</h2>
                     <form id="reservation-form" method="POST" action="insertReservation.php">
                         <br>
                         <div class="form-group">
