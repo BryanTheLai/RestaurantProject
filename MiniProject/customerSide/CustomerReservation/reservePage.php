@@ -100,7 +100,7 @@ $head_count = $_GET['head_count'] ?? 1;
 
             <div class="column right-column">
                 <div id="insert-reservation-into-table">
-                    <h2 style=" color:white;">Make the Reservation</h2>
+                    <h2 style=" color:white;">Make Reservation</h2>
                     <form id="reservation-form" method="POST" action="insertReservation.php">
                         <br>
                         <div class="form-group">
