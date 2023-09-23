@@ -135,14 +135,14 @@ VALUES
 
 INSERT INTO Menu (item_id, item_name, item_type, item_category, item_price, item_description)
 VALUES
-  ('MD1', 'Prime Rib Steak', 'Steak & Ribs', 'Main Dishes', 96,'Delicious prime rib steak 300g'),
+  ('MD1', 'Prime Rib Steak', 'Steak & Ribs', 'Main Dishes', 96,'300g'),
   ('MD2', 'Sirloin Steak', 'Steak & Ribs', 'Main Dishes', 79, '230g'),
   ('MD3', 'Ribeye Steak', 'Steak & Ribs', 'Main Dishes', 96, '230g'),
-  ('MD4', 'BBQ Ribs', 'Steak & Ribs', 'Main Dishes', 59, ' delicious bbq ribs'),
+  ('MD4', 'BBQ Ribs', 'Steak & Ribs', 'Main Dishes', 59, '400g'),
   ('MD5', 'Grilled Chicken ½ Bird', 'Chicken', 'Main Dishes', 33, '½ Bird'),
   ('MD6', 'Southern Fried Chicken ½ Bird', 'Chicken', 'Main Dishes', 33, '½ Bird'),
-  ('MD7', 'Pan Seared Chicken' , 'Chicken', 'Main Dishes', 28, 'delicious pan seared chicken'),
-  ('MD8', 'Chicken Chop', 'Chicken', 'Main Dishes', 28, 'delicious chicken chop'),
+  ('MD7', 'Pan Seared Chicken' , 'Chicken', 'Main Dishes', 28, '300g'),
+  ('MD8', 'Chicken Chop', 'Chicken', 'Main Dishes', 28, '300g'),
   ('MD9', 'Grilled Lamb Chops', 'Lamb', 'Main Dishes', 48, 'delicious grilled lamb chop'),
   ('MD10', 'Braised Lamb Shank', 'Lamb', 'Main Dishes', 52, 'delicious braised lamb shank'),
   ('MD11', 'Catch of the day', 'Seafood', 'Main Dishes',  46, 'fresh seafood'),
@@ -206,7 +206,7 @@ VALUES
 ('C7', 'Mojito', 'Classic Cocktails', 'Drinks', 29, 'cocktails'),
 
 
-('HC1', 'Shoney Iced Tea', 'House Cocktails', 'Drinks', 32, 'Gin.Rum'),
+('HC1', 'Shoney Iced Tea', 'House Cocktails', 'Drinks', 32, 'Gin, Rum'),
 ('HC2', 'Blue Lady', 'House Cocktails', 'Drinks', 30, 'Vodka'),
 ('HC3', 'Black Mambaa', 'House Cocktails', 'Drinks', 30, 'Vodka'),
 ('HC4', 'Lycheetini', 'House Cocktails', 'Drinks', 25, 'Vodka'),
