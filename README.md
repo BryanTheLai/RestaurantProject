@@ -9,8 +9,8 @@
   > StackEdit - Markdown Editor: https://stackedit.io/app#
 # Steps
 1. Open Xampp and start Apache and MySQL
-2. Create Database Named "restaurantDB"
-3. Copy paste restaurantDB.txt into database
+2. Copy all File in MiniProject (adminSide, customerSide, index.php, restaurantDB.txt) into Source Files
+3. Run the project
 4. DONE
 
 
