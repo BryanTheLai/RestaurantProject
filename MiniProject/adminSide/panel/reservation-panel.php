@@ -17,7 +17,7 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input required type="text" id="search" name="search" class="form-control" placeholder="Enter Reservation ID, Customer Name">
+                                <input required type="text" id="search" name="search" class="form-control" placeholder="Enter Reservation ID, Customer Name, Reservation Date (2023-09)">
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-dark">Search</button>
@@ -38,13 +38,14 @@ session_start(); // Ensure session is started
                     if (!empty($_POST['search'])) {
                         $search = $_POST['search'];
 
-                        $sql = "SELECT * FROM reservations WHERE reservation_id LIKE '%$search%' OR customer_name LIKE '%$search%'";
+                        $sql = "SELECT * FROM reservations WHERE reservation_date LIKE '%$search%' OR reservation_id LIKE '%$search%' OR customer_name LIKE '%$search%'";
                     } else {
                         // Default query to fetch all reservations
-                        $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
+                        $sql = "SELECT * FROM reservations ORDER BY reservation_date DESC, reservation_time DESC;";
                     }
                 } else{
-                    $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
+                    $sql = "SELECT * FROM reservations ORDER BY reservation_date DESC, reservation_time DESC;";
+
                 }
                 
                 if ($result = mysqli_query($link, $sql)) {
@@ -60,6 +61,7 @@ session_start(); // Ensure session is started
                         echo "<th>Head Count</th>";
                         echo "<th>Special Request</th>";
                         echo "<th>Delete</th>";
+                        echo "<th>Copy</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -75,6 +77,9 @@ session_start(); // Ensure session is started
                             echo "<td>";
                             echo '<a href="../reservationsCrud/deleteReservationVerify.php?id='. $row['reservation_id'] .'" title="Delete Record" data-toggle="tooltip" '
                                     . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Reservation?\n\nThis will alter other modules related to this Reservation!\n\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo "</td>";
+                            echo "<td>";
+                            echo '<a href="../reservationsCrud/reservationReceipt.php?reservation_id='. $row['reservation_id'] .'" title="Receipt" data-toggle="tooltip"><span class="fa fa-receipt text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
                         }
