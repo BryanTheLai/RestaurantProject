@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($results_capacity);
         $head_count = $row['capacity'];
 
-        $reservation_id = $customer_name . "_" . $reservation_date . "_" . $head_count;
+        $reservation_id = intval($reservation_time)  . intval($reservation_date)  . intval($table_id);
 
         // Prepare the SQL query for insertion
         $insert_query1 = "INSERT INTO Reservations (reservation_id, customer_name, table_id, reservation_time, reservation_date, head_count, special_request) 

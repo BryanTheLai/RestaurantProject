@@ -24,14 +24,27 @@ if ($reservationInfo) {
     // Create a PDF using FPDF
     class PDF extends FPDF {
         function Header() {
+            // Set font and size for the logo text
             $this->SetFont('Arial', 'B', 20);
-            $this->Cell(0, 10, "Johnny's Restaurant", 0, 1, 'C');
-            $this->SetFont('Arial', 'B', 16);
-            $this->Ln();
-            $this->Cell(0, 10, 'Reservation Information', 1, 1, 'C');
+
+            // Create the logo text
+            $logoText = "JOHNNY'S DINING & BAR";
             
+            // Add a link-like style (you cannot create actual HTML links in PDF)
+            $this->SetTextColor(0, 0, 0); // Set the text color to blue
+            $this->Cell(0, 10, $logoText, 0, 1, 'C', false, '../home./home.php');
+
+            $this->SetTextColor(0); // Reset text color to default
+
+            // Add space
+            $this->Ln(10);
+
+            // Set font and size for "Reservation Information" text
+            $this->SetFont('Arial', 'B', 16);
+            $this->Cell(0, 10, 'Reservation Information', 1, 1, 'C');
         }
     }
+
 
     $pdf = new PDF();
     $pdf->AddPage();
