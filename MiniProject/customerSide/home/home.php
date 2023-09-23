@@ -362,6 +362,9 @@ mysqli_close($link);
   <!-- Footer -->
   <section id="footer">
     <div class="footer container">
+        <div class="brand">
+          <h1>Want Drinks on Us?</h1>
+      </div>
         <h2>Follow our Socials</h2>
       <div class="social-icon">
         <div class="social-item">
