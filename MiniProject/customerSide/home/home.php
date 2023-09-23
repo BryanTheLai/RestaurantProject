@@ -370,19 +370,19 @@ mysqli_close($link);
         <h2>Follow our Socials</h2>
       <div class="social-icon">
         <div class="social-item">
-          <a href="www.facebook.com"><img src="https://img.icons8.com/color/48/facebook.png" alt="facebook"/></a>
+          <a href="https://www.facebook.com"><img src="https://img.icons8.com/color/48/facebook.png" alt="facebook"/></a>
         </div>
         <div class="social-item">
-          <a href="www.instagram.com"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="instagram-new"/></a>
+          <a href="https://www.instagram.com"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="instagram-new"/></a>
         </div>
           <div class="social-item">
-          <a href="www.pinterest.com"><img src="https://img.icons8.com/color/48/pinterest.png" alt="pinterest-new"/></a>
+          <a href="https://www.pinterest.com"><img src="https://img.icons8.com/color/48/pinterest.png" alt="pinterest-new"/></a>
         </div>
           <div class="social-item">
-          <a href="www.tiktok.com"><img src="https://img.icons8.com/color/48/tiktok.png" alt="tiktok-new"/></a>
+          <a href="https://www.tiktok.com"><img src="https://img.icons8.com/color/48/tiktok.png" alt="tiktok-new"/></a>
         </div>
           <div class="social-item">
-          <a href="www.youtube.com"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="youtube-new"/></a>
+          <a href="https://www.youtube.com"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="youtube-new"/></a>
         </div>
           
         
