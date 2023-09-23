@@ -47,3 +47,5 @@ if (file_exists('setup_completed.flag')) {
     $link->close();
 }
 ?>
+
+<a href="customerSide/home/home.php">Home</a>
