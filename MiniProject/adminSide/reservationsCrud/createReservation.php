@@ -26,17 +26,17 @@ $head_count = $_GET['head_count'] ?? 1;
 </head>
 <body>
     <div class="wrapper">
-        <h3>Search Available Time Slot</h3>
+        <h3>Search for Available Time</h3>
         
         <div id="Search Table">
         <form id="reservation-form" method="GET" action="availability.php" class="ht-600 w-50">
             <div class="form-group">
-                <label for="reservation_date" >Select Date:</label><br>
-                <input type="date" id="reservation_date" name="reservation_date" required><br>
-            </div><br>
+                <label for="reservation_date" >Select Date</label><br>
+                <input class="form-control" type="date" id="reservation_date" name="reservation_date" required><br>
+            </div>
             
             <div class="form-group"> 
-                <label for="reservation_time" >Available Reservation Times:</label>
+                <label for="reservation_time" >Available Reservation Times</label>
                     <div id="availability-table">
                                 <?php
                                 $availableTimes = array();
@@ -68,12 +68,12 @@ $head_count = $_GET['head_count'] ?? 1;
         </div>
         <!-- AFTER SEARCH -->
         <div id="insert-reservation-into-table"><br>
-                    <h3>Make a Reservation</h3>
+                    <h3>Make the Reservation</h3>
                     
                     <form id="reservation-form" method="POST" action="insertReservation.php" class="ht-600 w-50">
                         
                         <div class="form-group">
-                            <label for="customer_name">Customer Name:</label><br>
+                            <label for="customer_name">Customer Name</label><br>
                             <input type="text" id="customer_name" name="customer_name" class="form-control" required placeholder="Johnny Hatsoff"><br>
                         </div>
                         <?php
@@ -82,7 +82,7 @@ $head_count = $_GET['head_count'] ?? 1;
                         ?>
                         
                         <div class="form-group">
-                            <label for="reservation_date">Reservation Date:</label><br>
+                            <label for="reservation_date">Reservation Date</label><br>
                             <input type="date" id="reservation_date" name="reservation_date"
                                    value="<?= $defaultReservationDate ?>" readonly required>
                             <input type="time" id="reservation_time" name="reservation_time"
@@ -90,9 +90,9 @@ $head_count = $_GET['head_count'] ?? 1;
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="table_id_reserve">Pick a Table:</label>
+                            <label for="table_id_reserve">Pick a Table</label>
                             <select class="form-control" name="table_id" id="table_id_reserve" required>
-                                <option value="" selected disabled>Select a table</option>
+                                <option value="" selected disabled>Select a Table</option>
                                 <?php
                                 $table_id_list = $_GET['reserved_table_id'];
                                 $head_count = $_GET['head_count'] ?? 1;
