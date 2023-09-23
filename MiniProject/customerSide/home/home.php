@@ -59,11 +59,9 @@ session_start();
   <div class="header container">
     <div class="nav-bar">
       <div class="brand">
-        <a href="#hero">
           <a class="nav-link" href="../home/home.php#hero">
             <h1 class="text-center" style="font-family:Copperplate; color:whitesmoke;"> JOHNNY'S</h1><span class="sr-only"></span>
           </a>
-        </a>
       </div>
       <div class="nav-list">
         <div class="hamburger">
@@ -74,10 +72,11 @@ session_start();
               <div class="navbar">
         <ul>
           <li><a href="#hero" data-after="Home">Home</a></li>
-          <li><a href="../CustomerReservation/reservePage.php" data-after="Service">Reservation</a></li>
+          
           <li><a href="#projects" data-after="Projects">Menu</a></li>
           <li><a href="#about" data-after="About">About</a></li>
           <li><a href="#contact" data-after="Contact">Contact</a></li>
+          <li><a href="../CustomerReservation/reservePage.php" data-after="Service">Reservation</a></li>
           <li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
           
           
@@ -164,11 +163,10 @@ mysqli_close($link);
 <!-- Hero Section with Video Background and Text Overlay -->
 <section id="hero" style="position: relative;">
     <video autoplay loop muted playsinline poster="your-poster-image.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-        <source src="../image/blackwhite.mp4" type="video/mp4">
+        <source src="../image/SteakOnGrillCloseup.mp4" type="video/mp4">
         <!-- Add additional source elements for 
         1.  SteakOnGrillCloseup
-        2.  blackwhite
-        3.  fartongsgrill
+
         other video formats if needed -->
     </video>
     <div class="hero container" style="position: relative; z-index: 1;">
