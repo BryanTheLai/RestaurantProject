@@ -117,9 +117,9 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             $vip_tooltip = ($vip_status === 'Regular') ? ($points < 1000 ? (1000 - $points) . ' points to VIP ' : 'You are eligible for VIP') : '';
             
             // Output the member's information
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; font-weight: 900;'>$member_name</p>";
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; font-weight: 900;'>$points Points </p>";
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; font-weight: 900;'>$vip_status";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; '>$member_name</p>";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; '>$points Points </p>";
+            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; '>$vip_status";
             
             // Add the tooltip only for Regular status
             if ($vip_status === 'Regular') {
