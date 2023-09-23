@@ -1,7 +1,17 @@
 # RestaurantProjectPHP
-- Website
-- POS
-- View User Preferences
+- Customer Website
+  - Make Reservation
+  - Register
+  - View Profile Points
+- Staff Website
+  - Take order
+  - Send to Kitchen
+  - Pay Order
+  - Print Receipt
+  - Crud
+  - View User Preferences
+  - Download Report
+
 
 # Steps
 1. Open Xampp and start Apache and MySQL
