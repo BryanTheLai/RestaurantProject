@@ -47,16 +47,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     
                    // Verify the password
-if ($password === $row["password"]) {
-    // Password is correct, start a new session and redirect the user to a dashboard or home page.
-    $_SESSION["loggedin"] = true;
-    $_SESSION["email"] = $email;
-    header("location: ../home/home.php"); // Redirect to the home page
-    exit;
-} else {
-    // Password is incorrect
-    $password_err = "Invalid password. Please try again.";
-}
+                    if ($password === $row["password"]) {
+                        // Password is correct, start a new session and redirect the user to a dashboard or home page.
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["email"] = $email;
+
+                        // Query to get membership details
+                        $sql_member = "SELECT * FROM Memberships WHERE account_id = " . $row['account_id'];
+                        $result_member = mysqli_query($link, $sql_member);
+
+                        if ($result_member) {
+                            $membership_row = mysqli_fetch_assoc($result_member);
+
+                            if ($membership_row) {
+                                $_SESSION["account_id"] = $membership_row["account_id"];
+                                header("location: ../home/home.php"); // Redirect to the home page
+                                exit;
+                            } else {
+                                // No membership details found
+                                $password_err = "No membership details found for this account.";
+                            }
+                        } else {
+                            // Error in membership query
+                            $password_err = "Error fetching membership details: " . mysqli_error($link);
+                        }
+                    } else {
+                        // Password is incorrect
+                        $password_err = "Invalid password. Please try again.";
+                    }
+
 
                 } else {
                     // No matching records found

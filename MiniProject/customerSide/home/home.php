@@ -89,16 +89,20 @@ session_start();
   <?php
 
 // Get the member_id from the query parameters
-$member_id = $_GET['member_id'] ?? 1; // Change this to the way you obtain the member ID
+$account_id = $_SESSION['account_id'] ?? null; // Change this to the way you obtain the member ID
 
 // Create a query to retrieve the member's information
-$query = "SELECT member_name, points FROM memberships WHERE member_id = $member_id";
+//$query = "SELECT member_name, points FROM memberships WHERE account_id = $account_id";
+
+// Execute the query
+//$result = mysqli_query($link, $query);
+
+// Check if the user is logged in
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $account_id != null) {
+    $query = "SELECT member_name, points FROM memberships WHERE account_id = $account_id";
 
 // Execute the query
 $result = mysqli_query($link, $query);
-
-// Check if the user is logged in
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     // If logged in, show "Logout" link
     // Check if the query was successful
     if ($result) {
