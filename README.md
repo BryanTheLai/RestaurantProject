@@ -21,12 +21,20 @@
 
 # Example Accounts
 ## Customer
-1. CustomerEmail: john@gmail.com
-2. CustomerPassword: password123
+1. CustomerEmail: dadsvawvid@gmail.com
+   CustomerPassword: david4pass
+2. CustomerEmail: zoe@gmail.com
+   CustomerPassword: passworddef
+3. CustomerEmail: Jamie@gmail.com
+   CustomerPassword: password123
 
 ## Staff
 1. StaffAccountId: 1
-2. Password: password123
+   Password: password123
+1. StaffAccountId: 31
+   Password: password123
+1. StaffAccountId: 7
+   Password: robertpass
 
 ## Admin
 1. AdminId: 99999
