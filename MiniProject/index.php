@@ -1,7 +1,7 @@
 <?php
 // Check if setup has already been completed
 if (file_exists('setup_completed.flag')) {
-    echo "Setup has already been completed. The SQL setup won't run again.";
+    echo "Setup has already been completed. The SQL setup won't run again.If not created,open this project in the file explorer and delete setup_completed.flag.It should be next to the index.php file.";
 } else {
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
