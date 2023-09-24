@@ -32,7 +32,7 @@ if ($reservationInfo) {
             
             // Add a link-like style (you cannot create actual HTML links in PDF)
             $this->SetTextColor(0, 0, 0); // Set the text color to blue
-            $this->Cell(0, 10, $logoText, 0, 1, 'C', false, '../home./home.php');
+            $this->Cell(0, 10, $logoText, 0, 1, 'C', false, 'http://localhost/RestaurantProject/customerSide/home/home.php#hero');
 
             $this->SetTextColor(0); // Reset text color to default
 
