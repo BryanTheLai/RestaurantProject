@@ -3,17 +3,8 @@ require_once 'config.php';
 
 // Start the session
 session_start();
-
-$reservationStatus = $_GET['reservation'] ?? null;
-$message = '';
-if ($reservationStatus === 'success') {
-    $message = "Reservation successful";
-    $reservation_id = $_GET['reservation_id'] ?? null;
-    echo '<script>alert("Table Successfully Reserved. Click OK to view your reservation receipt."); window.location.href = "reservationReceipt.php?reservation_id=' . $reservation_id . '";</script>';
-    
-}
-$head_count = $_GET['head_count'] ?? 1;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +41,20 @@ $head_count = $_GET['head_count'] ?? 1;
     </style>
 </head>
 <body>
+    <?php
+        $reservationStatus = $_GET['reservation'] ?? null;
+        $message = '';
+        if ($reservationStatus === 'success') {
+            $message = "Reservation successful";
+            $reservation_id = $_GET['reservation_id'] ?? null;
+            echo '<a class="nav-link" href="../home/home.php#hero">' .
+            '<h1 class="text-center" style="font-family: Copperplate; color: whitesmoke;">JOHNNY\'S</h1>' .
+            '<span class="sr-only"></span></a>';
+            echo '<script>alert("Table Successfully Reserved. Click OK to view your reservation receipt."); window.location.href = "reservationReceipt.php?reservation_id=' . $reservation_id . '";</script>';
+
+        }
+        $head_count = $_GET['head_count'] ?? 1;
+    ?>
     <div class="member-info"></div>
     <div class="reserve-container">
         <a class="nav-link" href="../home/home.php#hero">
