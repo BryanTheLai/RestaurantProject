@@ -51,11 +51,11 @@
                                 Reservations
                             </a>
                             <a class="nav-link" href="../panel/customer-panel.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-eye"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-person-shelter"></i></div>
                                 Members
                             </a>
                             <a class="nav-link" href="../panel/staff-panel.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-people-group"></i></div>
                                 Staff
                             </a>
                             <a class="nav-link" href="../panel/account-panel.php">
