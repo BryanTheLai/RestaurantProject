@@ -23,20 +23,25 @@
 ## Customer
 1. CustomerEmail: dadsvawvid@gmail.com
    CustomerPassword: david4pass
+
 2. CustomerEmail: zoe@gmail.com
    CustomerPassword: passworddef
-3. CustomerEmail: Jamie@gmail.com
-   CustomerPassword: password123
+
+3. CustomerEmail: jackie@gmail.com
+   CustomerPassword: passwordstu
 
 ## Staff
 1. StaffAccountId: 1
    Password: password123
-1. StaffAccountId: 31
-   Password: password123
-1. StaffAccountId: 7
+
+2. StaffAccountId: 10
+   Password: davidpa2ss
+
+3. StaffAccountId: 7
    Password: robertpass
 
 ## Admin
 1. AdminId: 99999
+
 2. Password: 12345
 
