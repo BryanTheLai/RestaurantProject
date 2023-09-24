@@ -16,10 +16,11 @@
 # Steps
 1. Open Xampp and start Apache and MySQL
 2. Create new project named RestaurantProject
-3. Copy all File in MiniProject (adminSide, customerSide, index.php, restaurantDB.txt) into Source Files
-4. Make sure there is no restaurantdb in the database.
-5. Run the project
-6. DONE
+3. Delete index.php
+4. Copy all the folder and files in MiniProject (adminSide, customerSide, index.php, restaurantDB.txt) into Source Files
+5. Make sure there is no restaurantdb in the database.
+6. Run the project
+7. DONE
 
 # Example Accounts
 ## Customer
