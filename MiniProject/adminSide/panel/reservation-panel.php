@@ -61,7 +61,7 @@ session_start(); // Ensure session is started
                         echo "<th>Head Count</th>";
                         echo "<th>Special Request</th>";
                         echo "<th>Delete</th>";
-                        echo "<th>Copy</th>";
+                        echo "<th>Receipt</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";

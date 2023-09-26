@@ -58,7 +58,7 @@ session_start(); // Ensure session is started
                         echo "<th>Payment Method</th>";
                         echo "<th style='width:13em'>Bill Time</th>";
                         echo "<th style='width:13em'>Payment Time</th>";
-                        echo "<th>Delete</th>";
+                       // echo "<th>Delete</th>";
                         echo "<th>Receipt</th>";
                         echo "</tr>";
                         echo "</thead>";
@@ -74,10 +74,10 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['payment_method'] . "</td>";
                             echo "<td>" . $row['bill_time'] . "</td>";
                             echo "<td>" . $row['payment_time'] . "</td>";
+                           // echo "<td>";
+                           // echo '<a href="../billsCrud/deleteBill.php?id='. $row['bill_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this bill? This action is unrecoverable. \')"><span class="fa fa-trash text-black"></span></a>';
+                           // echo "</td>";
                             echo "<td>";
-                            echo '<a href="../billsCrud/deleteBill.php?id='. $row['bill_id'] .'" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Are you sure you want to delete this bill? This action is unrecoverable. \')"><span class="fa fa-trash text-black"></span></a>';
-                            echo "</td>";
-                             echo "<td>";
                             echo '<a href="../posBackend/receipt.php?bill_id='. $row['bill_id'] .'" title="Receipt" data-toggle="tooltip"><span class="fa fa-receipt text-black"></span></a>';
                             echo "</td>";
                             echo "</tr>";
