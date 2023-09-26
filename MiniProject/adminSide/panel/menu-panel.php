@@ -18,7 +18,27 @@ session_start(); // Ensure session is started
                     <form method="POST" action="#">
                         <div class="row">
                             <div class="col-md-6">
-                                <input required type="text" id="search" name="search" class="form-control" placeholder="Enter Item ID, Name, Type, Category">
+                                <select name="search" id="search" class="form-control">
+                                    <option value="">Select Item Type or Item Category</option>      
+                                    <option value="Main Dishes">Main Dishes</option>
+                                    <option value="Side Snacks">Side Snacks</option>
+                                    <option value="Drinks">Drinks</option>                                    
+                                    <option value="Steak & Ribs">Steak & Ribs</option>
+                                    <option value="Seafood">Seafood</option>
+                                    <option value="Pasta">Pasta</option>
+                                    <option value="Lamb">Lamb</option>
+                                    <option value="Chicken">Chicken</option>
+                                    <option value="Burgers & Sandwiches">Burgers & Sandwiches</option>
+                                    <option value="Bar Bites">Bar Bites</option>
+                                    <option value="House Dessert">House Dessert</option>
+                                    <option value="Salad">Salad</option>
+                                    <option value="Shoney Kid">Shoney Kid</option>
+                                    <option value="Side Dishes">Side Dishes</option>
+                                    <option value="Classic Cocktails">Classic Cocktails</option>
+                                    <option value="Cold Pressed Juice">Cold Pressed Juice</option>
+                                    <option value="House Cocktails">House Cocktails</option>
+                                    <option value="Mocktails">Mocktails</option>
+                                </select>
                             </div>
                             <div class="col-md-3">
                                 <button type="submit" class="btn btn-dark">Search</button>
@@ -59,7 +79,7 @@ session_start(); // Ensure session is started
                         echo "<th>Price</th>";
                         echo "<th>Description</th>";
                         echo "<th>Edit</th>";
-                       // echo "<th>Delete</th>";
+                        //echo "<th>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -79,11 +99,12 @@ session_start(); // Ensure session is started
                              . '<i class="fa fa-pencil" aria-hidden="true"></i></a>';
                             echo "</td>";
 
-                         //   echo "<td>";
-                          //  $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
-                          //  echo '<a href="../menuCrud/deleteMenuVerify.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" '
-                           //         . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Item?\n\nThis will alter other modules related to this Item!\n\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
-                          //  echo "</td>";
+                            /*echo "<td>";
+                            $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
+                            echo '<a href="../menuCrud/deleteMenuVerify.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" '
+                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Item?\n\nThis will alter other modules related to this Item!\n\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo "</td>";
+                             */
                             echo "</tr>";
                         }
                         echo "</tbody>";
