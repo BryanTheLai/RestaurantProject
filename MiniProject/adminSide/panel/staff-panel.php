@@ -82,7 +82,7 @@ session_start(); // Ensure session is started
                         echo "<th>Account ID</th>";
                         //echo "<th>Email</th>";
                         //echo "<th>Phone Number</th>";
-                        echo "<th style='width:5em;'>Delete</th>";
+                       // echo "<th style='width:5em;'>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -94,9 +94,9 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['account_id'] . "</td>";
                             //echo "<td>" . $row['email'] . "</td>";
                             //echo "<td>" . $row['phone_number'] . "</td>";
-                            echo "<td>";
-                            echo '<a href="../staffCrud/delete_staffVerify.php?id=' . $row['staff_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Staff?\n\nThis will alter other modules related to this Staff!\n\')"><span class="fa fa-trash text-black"></span></a>';
-                            echo "</td>";
+                           // echo "<td>";
+                        //    echo '<a href="../staffCrud/delete_staffVerify.php?id=' . $row['staff_id'] . '" title="Delete Record" data-toggle="tooltip" onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Staff?\n\nThis will alter other modules related to this Staff!\n\')"><span class="fa fa-trash text-black"></span></a>';
+                         //   echo "</td>";
                             echo "</tr>";
                         }
                         echo "</tbody>";

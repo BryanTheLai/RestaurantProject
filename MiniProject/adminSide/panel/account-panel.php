@@ -68,7 +68,7 @@ session_start(); // Ensure session is started
                         echo "<th>Phone Number</th>";
                         echo "<th>Password</th>";
                         //echo "<th>Account Type</th>"; // Display account type
-                        echo "<th>Delete</th>";
+                       // echo "<th>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -80,11 +80,11 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['phone_number'] . "</td>";
                             echo "<td>" . $row['password'] . "</td>";
                             //echo "<td>" . ucfirst($row['account_type']) . "</td>"; // Display account type
-                            echo "<td>";
-                            $deleteSQL = "DELETE FROM Accounts WHERE account_id = '" . $row['account_id'] . "';";
-                            echo '<a href="../accountCrud/deleteAccountVerify.php?id=' . $row['account_id'] . '" title="Delete Record" data-toggle="tooltip" '
-                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Account?\n\nThis will alter other modules related to this Account!\n\')"><span class="fa fa-trash text-black"></span></a>';
-                            echo "</td>";
+                          //  echo "<td>";
+                          //  $deleteSQL = "DELETE FROM Accounts WHERE account_id = '" . $row['account_id'] . "';";
+                           // echo '<a href="../accountCrud/deleteAccountVerify.php?id=' . $row['account_id'] . '" title="Delete Record" data-toggle="tooltip" '
+                           //         . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Account?\n\nThis will alter other modules related to this Account!\n\')"><span class="fa fa-trash text-black"></span></a>';
+                           // echo "</td>";
                             echo "</tr>";
                         }
                         echo "</tbody>";
