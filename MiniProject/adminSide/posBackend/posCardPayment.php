@@ -114,7 +114,7 @@ $reservation_id = $_GET['reservation_id'];
                 <label class="form-check-label" for="privacyCheckbox">I agree to the Private Data Terms and Conditions</label><br>
                 <small id="privacyHelp" class="form-text text-muted">By checking the box you understand we will save your credit card information.</small>
             </div>
-            <button type="submit" id="cardSubmit" class="btn btn-dark">Submit</button>
+            <button type="submit" id="cardSubmit" class="btn btn-dark">Pay</button>
         </form>
     </div>
 </div>

@@ -96,7 +96,7 @@ $reservation_id = $_GET['reservation_id'];
                 <input type="hidden" name="reservation_id" value="<?php echo $reservation_id; ?>">
                 <input type="hidden" name="GRANDTOTAL" value="<?php echo $tax * $cart_total + $cart_total; ?>">
 
-                <button type="submit" id="cardSubmit" class="btn btn-dark mt-2">Submit</button>
+                <button type="submit" id="cardSubmit" class="btn btn-dark mt-2">Pay</button>
             </form>
         </div>
         <div class="col-md-6">
