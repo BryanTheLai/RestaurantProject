@@ -5,23 +5,34 @@ session_start(); // Ensure session is started
 <?php
 // Include config file
 require_once "../config.php";
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "restaurantdb";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
  
 $input_table_id = $table_id_err = $table_id = "";
- 
-// Processing form data when form is submitted
-if(isset($_POST['submit'])){
-    if (empty($_POST['table_id'])) {
-    $$table_id = 'ID is required';
-  } else {
-    // $table_id = filter_var($_POST['table_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $table_id = filter_input(
-      INPUT_POST,
-      'table_id',
-      FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-  }
-    
+
+// Function to get the next available table id
+function getNextAvailableTableID($conn) {
+    $sql = "SELECT MAX(table_id) as max_table_id FROM Restaurant_Tables";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $next_table_id = $row['max_table_id'] + 1;
+    return $next_table_id;
 }
+
+// Get the next available table id
+$next_table_id = getNextAvailableTableID($conn);
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -39,8 +50,7 @@ if(isset($_POST['submit'])){
     
         <div class="form-group">
             <label for="table_id" class="form-label">Table ID :</label>
-            <input type="number" name="table_id" class="form-control <?php echo !$$table_id ?:
-                    'is-invalid'; ?>" id="table_id" required table_id="table_id" placeholder="1" min=1 value="<?php echo $table_id; ?>"><br>
+            <input min="1" type="number" name="table_id" placeholder="1" class="form-control <?php echo $next_tab_idle ? 'is-invalid' : ''; ?>" id="next_tab_idle" required value="<?php echo $next_table_id; ?>" readonly><br>
             <div id="validationServerFeedback" class="invalid-feedback">
             Please provide a valid table id.
             </div>
