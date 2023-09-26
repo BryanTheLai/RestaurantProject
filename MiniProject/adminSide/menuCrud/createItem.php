@@ -53,16 +53,38 @@ if(isset($_POST['submit'])){
         </div>
         
         <div class="form-group">
-            <label for="item_type">Item Type :</label>
-            <input type="text" name="item_type" id="item_type" placeholder="Beer, Cocktail, etc .." required class="form-control <?php echo (!empty($itemtype_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <label for="item_type">Item Type:</label>
+            <select name="item_type" id="item_type" class="form-control placeholder="Select Item Type" <?php echo (!empty($itemtype_err)) ? 'is-invalid' : ''; ?>" required>
+                <option value="">Select Item Type</option>
+                <option value="Steak & Ribs">Steak & Ribs</option>
+                <option value="Seafood">Seafood</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Lamb">Lamb</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Burgers & Sandwiches">Burgers & Sandwiches</option>
+                <option value="Bar Bites">Bar Bites</option>
+                <option value="House Dessert">House Dessert</option>
+                <option value="Salad">Salad</option>
+                <option value="Shoney Kid">Shoney Kid</option>
+                <option value="Side Dishes">Side Dishes</option>
+                <option value="Classic Cocktails">Classic Cocktails</option>
+                <option value="Cold Pressed Juice">Cold Pressed Juice</option>
+                <option value="House Cocktails">House Cocktails</option>
+                <option value="Mocktails">Mocktails</option>
+            </select>
             <span class="invalid-feedback"></span>
-        </div>
+        </div><br>
         
         <div class="form-group">
-            <label for="item_category">Item Category :</label>
-            <input type="text" name="item_category" id="item_category" placeholder="Main Dish/ Side Dish/ Drinks" required class="form-control <?php echo (!empty($itemcategory_err)) ? 'is-invalid' : ''; ?>" ><br>
+            <label for="item_category">Item Category:</label>
+            <select name="item_category" id="item_category" class="form-control <?php echo (!empty($itemcategory_err)) ? 'is-invalid' : ''; ?>" required>
+                <option value="">Select Item Category</option>
+                <option value="Main Dishes">Main Dishes</option>
+                <option value="Side Snacks">Side Snacks</option>
+                <option value="Drinks">Drinks</option>
+            </select>
             <span class="invalid-feedback"></span>
-        </div>
+        </div><br>
         
         <div class="form-group">
             <label for="item_price">Item Price :</label>
