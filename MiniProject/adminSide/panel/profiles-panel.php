@@ -31,6 +31,11 @@ require_once '../config.php';
             
             <?php
             require_once '../config.php';
+            $currentMonthStart = date('Y-m-01');
+            $currentMonthEnd = date('Y-m-t');
+
+            // Get the current month and year in the format 'YYYY-MM'
+            $currentMonth = date('Y-m');
 
             $memberId = isset($_GET['member_id']) ? $_GET['member_id'] : 1;
             // Get member's most ordered items
@@ -48,7 +53,8 @@ require_once '../config.php';
             }
             else {
             ?>          
-            <h3>Most Ordered Items List</h3>
+            <h3>Showing Member ID - <?php echo $memberId; ?></h3>
+            <h3>Most Ordered Items - <?php echo date('F Y'); ?></h3>
             <table class="table ">
                 <thead>
                     <tr>
@@ -72,7 +78,7 @@ require_once '../config.php';
 <div class="row">
     <div class="col-md-10 order-md-2" style="margin-top: 3rem; margin-left: -10rem;">
         <div class="container-fluid pt-5  row">
-            <h3>Top 5 Most Ordered Items</h3>
+            <h3>Top 5 Favourites - <?php echo date('F Y'); ?></h3>
             <div style="width: 800px; height: 800px;">
                 <canvas id="mostOrderedItemsChart"></canvas>
             </div>

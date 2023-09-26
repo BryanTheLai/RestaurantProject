@@ -4,13 +4,20 @@ session_start(); // Ensure session is started
 <?php 
 include '../inc/dashHeader.php'; 
 require_once '../config.php';
+$currentMonthStart = date('Y-m-01');
+$currentMonthEnd = date('Y-m-t');
+
+// Get the current month and year in the format 'YYYY-MM'
+$currentMonth = date('Y-m');
+
 
 ?>
 
 <div class="row">
         <div class="col-md-10 order-md-2" style="margin-top: 3rem; margin-left: 14rem;">
             <div class="container-fluid pt-5  row">
-            <h3>List of Most Purchased Items</h3>
+            <h3>Most Purchased Items</h3>
+            <h3>(<?php echo $currentMonth; ?>)</h3>
 
             <!-- Sorting form and button -->
              <div class="col d-flex justify-content-end">
@@ -26,11 +33,17 @@ require_once '../config.php';
                 // Get the sorting order from the form or use default (ascending)
                 $sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'desc';
 
+                // Get the first and last day of the current month
+                
+
+                // Modify the SQL query for menu item sales to consider the current month
                 $menuItemSalesQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
                                        FROM Bill_Items
                                        INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                                       INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                                       WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
                                        GROUP BY Menu.item_name
-                                       ORDER BY total_quantity $sortOrder"; // Modify query here
+                                       ORDER BY total_quantity $sortOrder";
 
                 $menuItemSalesResult = mysqli_query($link, $menuItemSalesQuery);
 
@@ -97,11 +110,13 @@ require_once '../config.php';
             ['Item Name', 'Total Quantity'],
             <?php
             $topPurchasedItemsQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
-                                       FROM Bill_Items
-                                       INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
-                                       GROUP BY Menu.item_name
-                                       ORDER BY total_quantity DESC
-                                       LIMIT 10";
+                                        FROM Bill_Items
+                                        INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                                        INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                                        WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
+                                        GROUP BY Menu.item_name
+                                        ORDER BY total_quantity DESC
+                                        LIMIT 10";
             $topPurchasedItemsResult = mysqli_query($link, $topPurchasedItemsQuery);
 
             while ($row = mysqli_fetch_assoc($topPurchasedItemsResult)) {
@@ -115,7 +130,7 @@ require_once '../config.php';
                 fontSize: 20, // 12, 18 whatever you want (don't specify px)
                 bold: true    // true or false
             },
-            title: 'Top 10 Most Purchased Items',
+            title: 'Top 10 Most Purchased Items - <?php echo date('F Y'); ?>',
             is3D: true
         };
 
@@ -126,13 +141,15 @@ require_once '../config.php';
         const data = google.visualization.arrayToDataTable([
             ['Item Name', 'Total Quantity'],
             <?php
-            $topPurchasedItemsQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
-                                       FROM Bill_Items
-                                       INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
-                                       WHERE item_category = 'Drinks'
-                                       GROUP BY Menu.item_name
-                                       ORDER BY total_quantity DESC
-                                       LIMIT 10";
+            $topPurchasedDrinksQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
+                                        FROM Bill_Items
+                                        INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                                        INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                                        WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
+                                        AND Menu.item_category = 'Drinks'
+                                        GROUP BY Menu.item_name
+                                        ORDER BY total_quantity DESC
+                                        LIMIT 10";
             $topPurchasedItemsResult = mysqli_query($link, $topPurchasedItemsQuery);
 
             while ($row = mysqli_fetch_assoc($topPurchasedItemsResult)) {
@@ -146,7 +163,7 @@ require_once '../config.php';
                 fontSize: 20, // 12, 18 whatever you want (don't specify px)
                 bold: true    // true or false
             },
-            title: 'Top 10 Most Purchased Drinks',
+            title: 'Top 10 Most Purchased Drinks - <?php echo date('F Y'); ?>',
             is3D: true
         };
 
@@ -157,13 +174,15 @@ require_once '../config.php';
         const data = google.visualization.arrayToDataTable([
             ['Item Name', 'Total Quantity'],
             <?php
-            $topPurchasedItemsQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
-                                       FROM Bill_Items
-                                       INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
-                                       WHERE item_category = 'Main Dishes'
-                                       GROUP BY Menu.item_name
-                                       ORDER BY total_quantity DESC
-                                       LIMIT 10";
+            $topPurchasedMainDishesQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
+                                            FROM Bill_Items
+                                            INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                                            INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                                            WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
+                                            AND Menu.item_category = 'Main Dishes'
+                                            GROUP BY Menu.item_name
+                                            ORDER BY total_quantity DESC
+                                            LIMIT 10";
             $topPurchasedItemsResult = mysqli_query($link, $topPurchasedItemsQuery);
 
             while ($row = mysqli_fetch_assoc($topPurchasedItemsResult)) {
@@ -177,7 +196,7 @@ require_once '../config.php';
                 fontSize: 20, // 12, 18 whatever you want (don't specify px)
                 bold: true    // true or false
             },
-            title: 'Top 10 Most Purchased Main Dishes',
+            title: 'Top 10 Most Purchased Main Dishes - <?php echo date('F Y'); ?>',
             is3D: true
         };
 
@@ -188,13 +207,15 @@ require_once '../config.php';
         const data = google.visualization.arrayToDataTable([
             ['Item Name', 'Total Quantity'],
             <?php
-            $topPurchasedItemsQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
-                                       FROM Bill_Items
-                                       INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
-                                       WHERE item_category = 'Side Snacks'
-                                       GROUP BY Menu.item_name
-                                       ORDER BY total_quantity DESC
-                                       LIMIT 10";
+            $topPurchasedSideSnacksQuery = "SELECT Menu.item_name, SUM(Bill_Items.quantity) AS total_quantity
+                                            FROM Bill_Items
+                                            INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                                            INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                                            WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
+                                            AND Menu.item_category = 'Side Snacks'
+                                            GROUP BY Menu.item_name
+                                            ORDER BY total_quantity DESC
+                                            LIMIT 10";
             $topPurchasedItemsResult = mysqli_query($link, $topPurchasedItemsQuery);
 
             while ($row = mysqli_fetch_assoc($topPurchasedItemsResult)) {
@@ -208,7 +229,7 @@ require_once '../config.php';
                 fontSize: 20, // 12, 18 whatever you want (don't specify px)
                 bold: true    // true or false
             },
-            title: 'Top 10 Most Purchased Side Snacks',
+            title: 'Top 10 Most Purchased Side Snacks - <?php echo date('F Y'); ?>',
             is3D: true
         };
 
