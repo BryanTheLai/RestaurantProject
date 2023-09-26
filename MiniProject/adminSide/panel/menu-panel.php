@@ -59,7 +59,7 @@ session_start(); // Ensure session is started
                         echo "<th>Price</th>";
                         echo "<th>Description</th>";
                         echo "<th>Edit</th>";
-                        echo "<th>Delete</th>";
+                       // echo "<th>Delete</th>";
                         echo "</tr>";
                         echo "</thead>";
                         echo "<tbody>";
@@ -79,11 +79,11 @@ session_start(); // Ensure session is started
                              . '<i class="fa fa-pencil" aria-hidden="true"></i></a>';
                             echo "</td>";
 
-                            echo "<td>";
-                            $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
-                            echo '<a href="../menuCrud/deleteMenuVerify.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" '
-                                    . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Item?\n\nThis will alter other modules related to this Item!\n\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
-                            echo "</td>";
+                         //   echo "<td>";
+                          //  $deleteSQL = "DELETE FROM items WHERE item_id = '" . $row['item_id'] . "';";
+                          //  echo '<a href="../menuCrud/deleteMenuVerify.php?id='. $row['item_id'] .'" title="Delete Record" data-toggle="tooltip" '
+                           //         . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Item?\n\nThis will alter other modules related to this Item!\n\nYou see unwanted changes in bills.\')"><span class="fa fa-trash text-black"></span></a>';
+                          //  echo "</td>";
                             echo "</tr>";
                         }
                         echo "</tbody>";
