@@ -1,14 +1,23 @@
 ## Restaurant POS and Website
 
-**Built with:** HTML, CSS, JavaScript, and PHP
+**Built with:** 
+<p align="left">
+   <a href="#">
+      <img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+      <img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
+      <img alt="MySQL" src="https://img.shields.io/badge/mysql-%2300f.svg?&style=for-the-badge&logo=mysql&logoColor=white"/>
+      <img alt="Php" src="https://img.shields.io/badge/php-474a8a?style=for-the-badge&logo=php&logoColor=white" />
+   </a>
+</p>
+
 **Using:** XAMPP and NetBeans
 
 **Features:**
-* **Customer Side:** Stores the website and allows customers to:
+* **Customer Side (customerSide Folder):** Stores the website and allows customers to:
     * Make reservations
     * Register for accounts
     * View profile points
-* **Admin Side:** Allows staff to:
+* **Staff Side (adminSide Folder):** Stores the panels and allows staff to:
     * Take orders
     * Send orders to the kitchen
     * Process payments
@@ -29,31 +38,14 @@
 5. Make sure there is no database named `restaurantdb`.
 6. Run the project.
 
-**Example accounts:**
+## Example accounts
 
-**Customer:**
-
-* Email: dadsvawvid@gmail.com
-* Password: david4pass
-
-* Email: zoe@gmail.com
-* Password: passworddef
-
-* Email: jackie@gmail.com
-* Password: passwordstu
-
-**Staff:**
-
-* Account ID: 1
-* Password: password123
-
-* Account ID: 10
-* Password: davidpa2ss
-
-* Account ID: 7
-* Password: robertpass
-
-**Admin:**
-
-* ID: 99999
-* Password: 12345
+| Role | Email | Password |
+|---|---|---|
+| Customer | dadsvawvid@gmail.com | david4pass |
+| Customer | zoe@gmail.com | passworddef |
+| Customer | jackie@gmail.com | passwordstu |
+| Staff | 1 | password123 |
+| Staff | 10 | davidpa2ss |
+| Staff | 7 | robertpass |
+| Admin | 99999 | 12345 |
