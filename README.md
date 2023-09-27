@@ -49,3 +49,12 @@
 | Staff | 10 | davidpa2ss |
 | Staff | 7 | robertpass |
 | Admin | 99999 | 12345 |
+
+
+## Contributors
+
+| Name | Github |
+|---|---|
+| Bryan | https://github.com/BryanTheLai |
+| Yong | https://github.com/ahhyang |
+| Kevin | https://github.com/kevin07212004 |
