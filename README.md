@@ -1,3 +1,8 @@
+# Restaurant Pos and Website
+- Made with Html, Css, Javascript, Php
+- Admin Side stores all POS,Crud and Charts
+- Customer Side stores the website
+
 # RestaurantProjectPHP
 - Customer Website
   - Make Reservation
