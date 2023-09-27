@@ -51,6 +51,29 @@
 | Staff | 7 | robertpass |
 | Admin | 99999 | 12345 |
 
+## Screenshots
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/homehomepage.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/register.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/login.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/homepageloggedin.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/reservation.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/reservationreceipt.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/staff.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/postable.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/orderitembeforepay.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/addmemberidandreservationid.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/cashpayment.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/cashpaid.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/cashorderreceipt.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/cardpayment.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/billpanel.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/tablepanel.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/kitchenpanel.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/salespanel.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/statisticspanel.png?raw=true)
+![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/profilespanel.png?raw=true)
+
+
 
 ## Contributors
 
