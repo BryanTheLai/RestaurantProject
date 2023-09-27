@@ -1,55 +1,59 @@
-# Restaurant Pos and Website
-- Made with Html, Css, Javascript, Php
-- Admin Side stores all POS,Crud and Charts
-- Customer Side stores the website
+## Restaurant POS and Website
 
-# RestaurantProjectPHP
-- Customer Website
-  - Make Reservation
-  - Register
-  - View Profile Points
-- Staff Website
-  - Take order
-  - Send to Kitchen
-  - Pay Order
-  - Print Receipt
-  - Crud
-  - View User Preferences
-  - Download Report
+**Built with:** HTML, CSS, JavaScript, and PHP
+**Using:** XAMPP and NetBeans
+
+**Features:**
+* **Customer Side:** Stores the website and allows customers to:
+    * Make reservations
+    * Register for accounts
+    * View profile points
+* **Admin Side:** Allows staff to:
+    * Take orders
+    * Send orders to the kitchen
+    * Process payments
+    * Print receipts
+    * Manage CRUD operations
+    * View user preferences
+    * Download reports
+    * View charts and graph
 
 
-# Steps
-1. Open Xampp and start Apache and MySQL
-2. Create new project named RestaurantProject
-3. Delete index.php
-4. Copy all the folder and files in MiniProject (adminSide, customerSide, index.php, restaurantDB.txt) into Source Files
-5. Make sure there is no restaurantdb in the database.
-6. Run the project
-7. DONE
 
-# Example Accounts
-## Customer
-1. CustomerEmail: dadsvawvid@gmail.com
-   CustomerPassword: david4pass
+**Steps to run the project:**
 
-2. CustomerEmail: zoe@gmail.com
-   CustomerPassword: passworddef
+1. Open XAMPP and start Apache and MySQL.
+2. Create a new project named `RestaurantProject`.
+3. Delete the `index.php` file.
+4. Copy all the folders and files in `MiniProject` (adminSide, customerSide, index.php, and restaurantDB.txt) into the `Source Files` directory.
+5. Make sure there is no database named `restaurantdb`.
+6. Run the project.
 
-3. CustomerEmail: jackie@gmail.com
-   CustomerPassword: passwordstu
+**Example accounts:**
 
-## Staff
-1. StaffAccountId: 1
-   Password: password123
+**Customer:**
 
-2. StaffAccountId: 10
-   Password: davidpa2ss
+* Email: dadsvawvid@gmail.com
+* Password: david4pass
 
-3. StaffAccountId: 7
-   Password: robertpass
+* Email: zoe@gmail.com
+* Password: passworddef
 
-## Admin
-1. AdminId: 99999
+* Email: jackie@gmail.com
+* Password: passwordstu
 
-2. Password: 12345
+**Staff:**
 
+* Account ID: 1
+* Password: password123
+
+* Account ID: 10
+* Password: davidpa2ss
+
+* Account ID: 7
+* Password: robertpass
+
+**Admin:**
+
+* ID: 99999
+* Password: 12345
