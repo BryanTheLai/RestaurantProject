@@ -54,7 +54,7 @@ require_once '../config.php';
             else {
             ?>          
             <h3>Showing Member ID - <?php echo $memberId; ?></h3>
-            <h3>Most Ordered Items - <?php echo date('F Y'); ?></h3>
+            <h3>Most Ordered Items - (All Time)</h3>
             <table class="table ">
                 <thead>
                     <tr>
@@ -78,7 +78,7 @@ require_once '../config.php';
 <div class="row">
     <div class="col-md-10 order-md-2" style="margin-top: 3rem; margin-left: -10rem;">
         <div class="container-fluid pt-5  row">
-            <h3>Top 5 Favourites - <?php echo date('F Y'); ?></h3>
+            <h3>Top 5 Favourites - (All Time)</h3>
             <div style="width: 800px; height: 800px;">
                 <canvas id="mostOrderedItemsChart"></canvas>
             </div>
