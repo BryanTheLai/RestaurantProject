@@ -13,36 +13,12 @@ require_once '../config.php'; // Include your database configuration
 </head>
 <body>
 
-<div class="container" style="text-align: center; width:100%">
+<div class="container" style="text-align: center; width:100%; margin-top:3rem; margin-left: 2rem;  ">
     <div id="POS-Content" class="row" >
         <div class="row center-middle">
-            <h2  style="margin-top: 3rem;">TABLE STATUS</h2>
-            <div class="row d-flex justify-content-around" >
-                <div class="col-md-3">
-                    <div class="alert alert-success" role="alert" style="color:white;background-color: rgb(23, 89, 74);" data-toggle="tooltip" data-placement="top" title="Tables That are Free">
-                        Available
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="alert alert-danger" role="alert" style="color:white;background-color: rgb(216, 0, 50);" data-toggle="tooltip" data-placement="top" title="Tables That are Used">
-                        Has Customer
-                    </div>
-                </div>
-                <!--
-                <div class="col-md-3">
-                    <div class="alert alert-dark" role="alert">
-                        No Bill Id
-                    </div>
-                </div>
-                -->
-                <div class="col-md-3">
-                    <div class="alert alert-warning" style="color:black;background-color: rgb(248, 222, 34);" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Reserved">
-                        Reserved
-                    </div>
-                </div>
-            </div>
+          
 
-            <div class="col-md-12" style="margin-left: 17rem; margin-top: 0rem;max-height: 700px; overflow-y: auto;">
+            <div class="col-md-15" style="margin-left: 17rem; margin-top: 0rem;max-height: 700px; overflow-y: auto;">
                 <div class="row justify-content-center">
                     <?php
                     // Fetch all tables from the database
@@ -53,7 +29,7 @@ require_once '../config.php'; // Include your database configuration
                         $table_count = 0;
                     // ...
                     while ($row = mysqli_fetch_assoc($result)) {
-                        if ($table_count % 3 == 0) {
+                        if ($table_count % 5 == 0) {
                             echo '</div><div class="row justify-content-center">';
                         }
                         $table_id = $row['table_id'];
@@ -108,12 +84,16 @@ require_once '../config.php'; // Include your database configuration
                             $box_color = 'gray'; // No bill for the table (gray)
                         }
 
-                        echo '<div class="col-md-4 mb-4">';
+                        echo '<div class="col-md-2 mb-3">';
                         if ($reservationResult && mysqli_num_rows($reservationResult) > 0) {
                                 // The table is reserved for the selected time, so set the color accordingly
-                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="color:black; background-color: rgb(248, 222, 34);justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Bill ID: ' . $latestBillID . '<br>Capacity: ' . $capacity;
+                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="color:black; '
+                                    . 'background-color: rgb(248, 222, 34);justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">'
+                                    . 'Table: ' . $table_id /* . '<br>Bill ID: ' . $latestBillID */. '<br>Capacity: ' . $capacity;
                         } else{
-                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table: ' . $table_id . '<br>Bill ID: ' . $latestBillID . '<br>Capacity: ' . $capacity;
+                            echo '<a href="orderItem.php?bill_id=' . $latestBillID . '&table_id=' . $table_id . '"class="btn btn-primary btn-block btn-lg" '
+                                    . 'style="background-color: ' . $box_color . ';justify-content: center; align-items: center; display: flex; width: 9rem; height: 9rem;">Table:'
+                                    . ' ' . $table_id /*. '<br>Bill ID: ' . $latestBillID */. '<br>Capacity: ' . $capacity;
                         }
                         echo '</a></div>';
                         $table_count++;
@@ -123,6 +103,31 @@ require_once '../config.php'; // Include your database configuration
                         echo "Error fetching tables: " . mysqli_error($link);
                     }
                     ?>
+                </div>
+           
+              <div class="row d-flex justify-content-around"style="margin-top: 2rem;" >
+                <div class="col-md-3">
+                    <div class="alert alert-success" role="alert" style="color:white;background-color: rgb(23, 89, 74);" data-toggle="tooltip" data-placement="top" title="Tables That are Free">
+                        Available
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="alert alert-danger" role="alert" style="color:white;background-color: rgb(216, 0, 50);" data-toggle="tooltip" data-placement="top" title="Tables That are Used">
+                        Occupied
+                    </div>
+                </div>
+                <!--
+                <div class="col-md-3">
+                    <div class="alert alert-dark" role="alert">
+                        No Bill Id
+                    </div>
+                </div>
+                -->
+                <div class="col-md-3">
+                    <div class="alert alert-warning" style="color:black;background-color: rgb(248, 222, 34);" role="alert" data-toggle="tooltip" data-placement="top" title="Tables That are Reserved">
+                        Reserved
+                    </div>
+                     </div>
                 </div>
             </div>
         </div>
