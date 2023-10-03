@@ -315,14 +315,14 @@ VALUES
 -- Reservations table
 INSERT INTO Reservations (reservation_id, customer_name, table_id, reservation_time, reservation_date, head_count, special_request)
 VALUES 
-(1, 'Abbel Tu Far Behind', 1, '22:00:34', '2023-08-29', 1, 'Prepare Panadol for me'),
-(2, 'Abignaile Lin Downney Jr', 2, '22:00:34', '2023-08-29', 1, 'Default Special Request'),
-(3, 'Jamie Mustafa', 3, '19:30:00', '2023-08-30', 2, 'Vegan options needed'),
-(4, 'Luke Gun Slinger', 4, '20:00:00', '2023-08-31', 3, 'Birthday celebration'),
-(5, 'Johny Rings', 5, '19:45:00', '2023-09-01', 2, 'Quiet corner, please'),
-(6, 'Jean Ng', 7, '18:30:00', '2023-09-03', 2, 'Allergies: peanuts'),
-(7, 'Taylor Swift', 9, '19:15:00', '2023-09-05', 2, 'Surprise dessert for anniversary'),
-(8, 'Bruce Lee', 10, '18:45:00', '2023-09-06', 3, 'Window seat, if available');
+(2220231, 'Abbel Tu Far Behind', 1, '22:00:34', '2023-08-29', 1, 'Prepare Panadol for me'),
+(2220232, 'Abignaile Lin Downney Jr', 2, '22:00:34', '2023-08-29', 1, 'Default Special Request'),
+(1920233, 'Jamie Mustafa', 3, '19:30:00', '2023-08-30', 2, 'Vegan options needed'),
+(2020234, 'Luke Gun Slinger', 4, '20:00:00', '2023-08-31', 3, 'Birthday celebration'),
+(1920235, 'Johny Rings', 5, '19:45:00', '2023-09-01', 2, 'Quiet corner, please'),
+(1820237, 'Jean Ng', 7, '18:30:00', '2023-09-03', 2, 'Allergies: peanuts'),
+(1920239, 'Taylor Swift', 9, '19:15:00', '2023-09-05', 2, 'Surprise dessert for anniversary'),
+(18202310, 'Bruce Lee', 10, '18:45:00', '2023-09-06', 3, 'Window seat, if available');
 
 INSERT INTO card_payments (card_id, account_holder_name, card_number, expiry_date, security_code)
 VALUES
@@ -339,25 +339,25 @@ VALUES
 
 INSERT INTO Bills (staff_id, member_id, reservation_id, table_id, card_id, payment_method, bill_time, payment_time)
 VALUES
-(1, 1, 1, 1, 1, 'Card', '2023-08-29 23:45:00', '2023-08-29 23:50:00'),
-(1, 2, 2, 2, 2, 'Card', '2023-08-29 23:45:00', '2023-08-29 23:50:00'),
-(2, 3, 3, 3, NULL, 'Cash', '2023-08-30 20:15:00', '2023-08-30 20:20:00'), 
-(2, 4, 4, 4, 3, 'Card', '2023-08-31 20:30:00', '2023-08-31 20:35:00'),
-(3, 5, 5, 5, NULL, 'Cash', '2023-09-01 20:15:00', '2023-09-01 20:20:00'), 
+(1, 1, 2220231, 1, 1, 'Card', '2023-08-29 23:45:00', '2023-08-29 23:50:00'),
+(1, 2, 2220232, 2, 2, 'Card', '2023-08-29 23:45:00', '2023-08-29 23:50:00'),
+(2, 3, 1920233, 3, NULL, 'Cash', '2023-08-30 20:15:00', '2023-08-30 20:20:00'), 
+(2, 4, 2020234, 4, 3, 'Card', '2023-08-31 20:30:00', '2023-08-31 20:35:00'),
+(3, 5, 1920235, 5, NULL, 'Cash', '2023-09-01 20:15:00', '2023-09-01 20:20:00'), 
 (3, 6, NULL, 7, NULL, 'Cash', '2023-09-03 19:00:00', '2023-09-03 19:05:00'),
 (4, 7, NULL, 9, NULL, 'Cash', '2023-09-05 19:30:00', '2023-09-05 19:35:00'), 
 (4, 8, NULL, 10, 4, 'Card', '2023-09-06 19:00:00', '2023-09-06 19:05:00'),
 (5, 9, NULL, 6, 5, 'Card', '2023-09-07 18:45:00', '2023-09-07 18:50:00'),
 (5, 10, NULL, 5, NULL, 'Cash', '2023-09-08 20:00:00', '2023-09-08 20:05:00'), 
 (6, 11, NULL, 4, 6, 'Card', '2023-09-09 20:15:00', '2023-09-09 20:20:00'),
-(6, 12, 6, 3, 7, 'Card', '2023-09-10 19:30:00', '2023-09-10 19:35:00'),
+(6, 12, 1820237, 3, 7, 'Card', '2023-09-10 19:30:00', '2023-09-10 19:35:00'),
 (7, 13, NULL, 2, NULL, 'Cash', '2023-09-11 19:15:00', '2023-09-11 19:20:00'), 
 (7, 14, NULL, 1, NULL, 'Cash', '2023-09-12 20:30:00', '2023-09-12 20:35:00'),
 (8, 15, NULL, 8, 8, 'Card', '2023-09-13 20:45:00', '2023-09-13 20:50:00'),
 (8, 16, NULL, 7, NULL, 'Cash', '2023-09-14 20:00:00', '2023-09-14 20:05:00'), 
-(9, 17, 7, 9, 9, 'Card', '2023-09-15 21:00:00', '2023-09-15 21:05:00'),
+(9, 17, 1920239, 9, 9, 'Card', '2023-09-15 21:00:00', '2023-09-15 21:05:00'),
 (9, 18, NULL, 10, 10, 'Card', '2023-09-16 21:15:00', '2023-09-16 21:20:00'),
-(9, 19, 8, 8, NULL, 'Cash', '2023-09-17 21:30:00', '2023-09-17 21:35:00'), 
+(9, 19, 18202310, 8, NULL, 'Cash', '2023-09-17 21:30:00', '2023-09-17 21:35:00'), 
 (10, 20, NULL, 6, NULL, 'Cash', '2023-09-18 21:45:00', '2023-09-18 21:50:00');
 
 
