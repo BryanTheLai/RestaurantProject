@@ -36,7 +36,7 @@ class PDF extends FPDF
     function CustomTable($header, $data)
     {
         // Column widths
-        $w = array(60, 60);
+        $w = array(90, 90);
         
         // Header
         $this->SetFillColor(200, 200, 200);
@@ -184,6 +184,75 @@ $pdf->ChapterBody("\nTotal Revenue by Category This Month:\n");
 $pdf->CustomTable(array('Category', 'Revenue (RM)'), $categoryMonthData);
 
 $pdf->Ln();
+$currentMonthEnd = date('Y-m-t');  // Last day of the current month
+$sortOrder = 'DESC';  // Default sort order
+
+// Modify the SQL query for menu item sales to consider the current month
+$menuItemSalesQuery = "SELECT Menu.item_name AS item_name, SUM(Bill_Items.quantity) AS total_quantity
+                       FROM Bill_Items
+                       INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                       INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                       WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
+                       GROUP BY item_name
+                       ORDER BY total_quantity $sortOrder
+                       LIMIT 10";
+
+
+$menuItemSalesResult = mysqli_query($link, $menuItemSalesQuery);
+
+$menuItemSalesResultData = array();
+while ($row = mysqli_fetch_assoc($menuItemSalesResult)) {
+    $menuItemSalesResultData[] = array($row['item_name'], $row['total_quantity']);
+}
+$pdf->ChapterBody("10 Most Ordered Items this Month:\n");
+$pdf->CustomTable(array('Category', 'Revenue (RM)'), $menuItemSalesResultData);
+$sortOrder = 'ASC';  // Default sort order
+// Modify the SQL query for menu item sales to consider the current month
+$menuItemSalesLeastQuery = "SELECT Menu.item_name AS item_name, SUM(Bill_Items.quantity) AS total_quantity
+                       FROM Bill_Items
+                       INNER JOIN Menu ON Bill_Items.item_id = Menu.item_id
+                       INNER JOIN Bills ON Bill_Items.bill_id = Bills.bill_id
+                       WHERE Bills.bill_time BETWEEN '$currentMonthStart 00:00:00' AND '$currentMonthEnd 23:59:59'
+                       GROUP BY item_name
+                       ORDER BY total_quantity $sortOrder
+                       LIMIT 10";
+
+
+$menuItemSalesLeastResult = mysqli_query($link, $menuItemSalesLeastQuery);
+
+$menuItemSalesLeastResultData = array();
+while ($row = mysqli_fetch_assoc($menuItemSalesLeastResult)) {
+    $menuItemSalesLeastResultData[] = array($row['item_name'], $row['total_quantity']);
+}
+$pdf->Ln();
+$pdf->ChapterBody("10 Least Ordered Items this Month:\n");
+$pdf->CustomTable(array('Category', 'Revenue (RM)'), $menuItemSalesLeastResultData);
+
+//not ordered
+$menuItemNoOrdersQuery = "SELECT
+    Menu.item_name,
+    0 AS total_quantity
+FROM
+    Menu
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Bill_Items
+    WHERE Menu.item_id = Bill_Items.item_id
+);
+
+";
+
+
+$menuItemNoOrdersResult = mysqli_query($link, $menuItemNoOrdersQuery);
+
+$menuItemNoOrdersResultData = array();
+while ($row = mysqli_fetch_assoc($menuItemNoOrdersResult)) {
+    $menuItemNoOrdersResultData[] = array($row['item_name'], $row['total_quantity']);
+}
+$pdf->Ln();
+$pdf->ChapterBody("All Items with no Orders this Month:\n");
+$pdf->CustomTable(array('Category', 'Revenue (RM)'), $menuItemNoOrdersResultData);
+
 
 $pdf->Output('RevenueReport.pdf', 'D');
 ?>
