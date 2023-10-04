@@ -88,7 +88,7 @@ class PDF extends FPDF
     
     function CustomTableFourColumn($header, $data)
 {
-    $columnWidths = array(30, 20, 50, 70); // Adjust the column widths as needed
+    $columnWidths = array(30, 40, 50, 70); // Adjust the column widths as needed
 
     $this->SetFont('Arial', 'B', 12);
     for ($i = 0; $i < count($header); $i++) {
@@ -108,12 +108,43 @@ class PDF extends FPDF
 }
 
 $pdf = new PDF();
+
+
 $pdf->AddPage();
 
+// Get monthly revenue breakdown 
+$kitchenQuery = "SELECT 
+    CONCAT(YEAR(time_ended), '-', LPAD(MONTH(time_ended), 2, '0')) AS year_and_month,
+    COUNT(*) AS total_items_cooked,
+    SUM(quantity) AS total_quantity,
+    AVG(TIMESTAMPDIFF(MINUTE, time_submitted, time_ended)) AS average_cook_time
+    
+FROM 
+    Kitchen
+WHERE 
+    YEAR(time_ended) = YEAR(NOW()) AND MONTH(time_ended) BETWEEN 1 AND 12
+GROUP BY 
+    YEAR(time_ended), MONTH(time_ended);
+";
+
+$kitchenResult = getCategoryRevenue($link, $kitchenQuery);
+// Display the revenue breakdown by item category in a tabular format
+$pdf->ChapterTitle('Kitchen Data Monthly');
+$header = array('Month','Items Cooked' , 'Total Quantity', 'Average Cook Time in Minutes');
+$data = array();
+while ($row = mysqli_fetch_assoc($kitchenResult)) {
+    $data[] = array($row['year_and_month'],$row['total_items_cooked'] , $row['total_quantity'], $row['average_cook_time']);
+}
+$pdf->CustomTableFourColumn($header, $data);
+
+
+$pdf->Ln();
 
 
 
 
+
+$pdf->Ln();
 
 // Set the current date
 $currentDate = date('Y-m-d');
