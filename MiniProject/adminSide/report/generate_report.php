@@ -2,7 +2,20 @@
 require('../posBackend/fpdf186/fpdf.php'); // Include the FPDF library
 // Include your database configuration
 require_once '../config.php';
+function executeQuery($link, $sql) {
+    $result = $link->query($sql);
+    if ($result === false) {
+        echo "Error: " . $link->error;
+        return null;
+    }
+    return $result;
+}
 
+// Function to retrieve revenue breakdown by item category
+// Function to retrieve revenue breakdown by item category
+function getCategoryRevenue($link, $sql) {
+    return executeQuery($link, $sql);
+}
 class PDF extends FPDF
 {
     function Header()
@@ -97,6 +110,11 @@ class PDF extends FPDF
 $pdf = new PDF();
 $pdf->AddPage();
 
+
+
+
+
+
 // Set the current date
 $currentDate = date('Y-m-d');
 
@@ -187,24 +205,70 @@ $pdf->ChapterBody("Total Revenue This Year: RM " . number_format($totalRevenueTh
 $pdf->Ln();
 
 
+$pdf->AddPage();
+// Get daily revenue breakdown 
+$dailySQL = "SELECT DATE(Bills.bill_time) AS date,DAY(Bills.bill_time) AS day, SUM(Bill_Items.quantity * Menu.item_price) AS daily_category_revenue
+             FROM Bills
+             JOIN Bill_Items ON Bills.bill_id = Bill_Items.bill_id
+             JOIN Menu ON Bill_Items.item_id = Menu.item_id
+             GROUP BY DATE(Bills.bill_time),DAY(Bills.bill_time)
+             ORDER BY date DESC
+             LIMIT 30";
+$dailyCategoryRevenue = getCategoryRevenue($link, $dailySQL);
+// Display the revenue breakdown by item category in a tabular format
+$pdf->ChapterTitle('Daily Revenue Breakdown');
+$header = array('Date','Day' , 'Revenue (RM)');
+$data = array();
+while ($row = mysqli_fetch_assoc($dailyCategoryRevenue)) {
+    $data[] = array($row['date'], $row['day'], $row['daily_category_revenue']);
+}
+$pdf->CustomTableThreeColumn($header, $data);
+
+$pdf->AddPage();
+// Get weekly revenue breakdown 
+$weeklySQL = "SELECT CONCAT(YEAR(Bills.bill_time), '-', MONTH(Bills.bill_time)) AS year, WEEK(Bills.bill_time) AS week, SUM(Bill_Items.quantity * Menu.item_price) AS weekly_category_revenue
+              FROM Bills
+              JOIN Bill_Items ON Bills.bill_id = Bill_Items.bill_id
+              JOIN Menu ON Bill_Items.item_id = Menu.item_id
+              GROUP BY YEAR(Bills.bill_time), WEEK(Bills.bill_time)
+              ORDER BY year ASC
+              LIMIT 15";
+$weeklyCategoryRevenue = getCategoryRevenue($link, $weeklySQL);
+// Display the revenue breakdown by item category in a tabular format
+$pdf->ChapterTitle('Weekly Revenue Breakdown');
+$header = array('Date','Week' , 'Revenue (RM)');
+$data = array();
+while ($row = mysqli_fetch_assoc($weeklyCategoryRevenue)) {
+    $data[] = array($row['year'], $row['week'], $row['weekly_category_revenue']);
+}
+$pdf->CustomTableThreeColumn($header, $data);
+
+
+$pdf->AddPage();
+// Get monthly revenue breakdown 
+$monthlySQL = "SELECT CONCAT(YEAR(Bills.bill_time), '-', MONTH(Bills.bill_time)) AS year, MONTH(Bills.bill_time) AS month, SUM(Bill_Items.quantity * Menu.item_price) AS monthly_category_revenue
+               FROM Bills
+               JOIN Bill_Items ON Bills.bill_id = Bill_Items.bill_id
+               JOIN Menu ON Bill_Items.item_id = Menu.item_id
+               GROUP BY YEAR(Bills.bill_time), MONTH(Bills.bill_time)
+               ORDER BY year ASC
+                LIMIT 15";
+$monthlyCategoryRevenue = getCategoryRevenue($link, $monthlySQL);
+// Display the revenue breakdown by item category in a tabular format
+$pdf->ChapterTitle('Monthly Revenue Breakdown');
+$header = array('Date','Month' , 'Revenue (RM)');
+$data = array();
+while ($row = mysqli_fetch_assoc($monthlyCategoryRevenue)) {
+    $data[] = array($row['year'], $row['month'], $row['monthly_category_revenue']);
+}
+$pdf->CustomTableThreeColumn($header, $data);
+
+
 
 
 $pdf->AddPage();
 //CATEGORY
-function executeQuery($link, $sql) {
-    $result = $link->query($sql);
-    if ($result === false) {
-        echo "Error: " . $link->error;
-        return null;
-    }
-    return $result;
-}
 
-// Function to retrieve revenue breakdown by item category
-// Function to retrieve revenue breakdown by item category
-function getCategoryRevenue($link, $sql) {
-    return executeQuery($link, $sql);
-}
 
 
 // Get daily revenue breakdown by item category
@@ -218,7 +282,7 @@ $dailySQL = "SELECT DATE(Bills.bill_time) AS date,DAY(Bills.bill_time) AS day ,M
 
 
 // Get weekly revenue breakdown by item category
-$weeklySQL = "SELECT DATE(Bills.bill_time) AS year, WEEK(Bills.bill_time) AS week, Menu.item_category, SUM(Bill_Items.quantity * Menu.item_price) AS weekly_category_revenue
+$weeklySQL = "SELECT CONCAT(YEAR(Bills.bill_time), '-', MONTH(Bills.bill_time)) AS year, WEEK(Bills.bill_time) AS week, Menu.item_category, SUM(Bill_Items.quantity * Menu.item_price) AS weekly_category_revenue
               FROM Bills
               JOIN Bill_Items ON Bills.bill_id = Bill_Items.bill_id
               JOIN Menu ON Bill_Items.item_id = Menu.item_id
@@ -228,7 +292,7 @@ $weeklySQL = "SELECT DATE(Bills.bill_time) AS year, WEEK(Bills.bill_time) AS wee
 
 
 // Get monthly revenue breakdown by item category
-$monthlySQL = "SELECT DATE(Bills.bill_time) AS year, MONTH(Bills.bill_time) AS month, Menu.item_category, SUM(Bill_Items.quantity * Menu.item_price) AS monthly_category_revenue
+$monthlySQL = "SELECT CONCAT(YEAR(Bills.bill_time), '-', MONTH(Bills.bill_time)) AS year, MONTH(Bills.bill_time) AS month, Menu.item_category, SUM(Bill_Items.quantity * Menu.item_price) AS monthly_category_revenue
                FROM Bills
                JOIN Bill_Items ON Bills.bill_id = Bill_Items.bill_id
                JOIN Menu ON Bill_Items.item_id = Menu.item_id
@@ -238,7 +302,7 @@ $monthlySQL = "SELECT DATE(Bills.bill_time) AS year, MONTH(Bills.bill_time) AS m
 
 
 // Get yearly revenue breakdown by item category
-$yearlySQL = "SELECT DATE(Bills.bill_time) AS year, Menu.item_category, SUM(Bill_Items.quantity * Menu.item_price) AS yearly_category_revenue
+$yearlySQL = "SELECT YEAR(Bills.bill_time) AS year, Menu.item_category, SUM(Bill_Items.quantity * Menu.item_price) AS yearly_category_revenue
               FROM Bills
               JOIN Bill_Items ON Bills.bill_id = Bill_Items.bill_id
               JOIN Menu ON Bill_Items.item_id = Menu.item_id
@@ -257,7 +321,7 @@ $yearlyCategoryRevenue = getCategoryRevenue($link, $yearlySQL);
 
 // Display the revenue breakdown by item category in a tabular format
 $pdf->ChapterTitle('Daily Revenue Breakdown by Item Category');
-$header = array('Date','Day' , 'Item Category', 'Daily Revenue');
+$header = array('Date','Day' , 'Item Category', 'Revenue (RM)');
 $data = array();
 while ($row = mysqli_fetch_assoc($dailyCategoryRevenue)) {
     $data[] = array($row['date'], $row['day'], $row['item_category'], $row['daily_category_revenue']);
@@ -269,7 +333,7 @@ $pdf->AddPage();
 $pdf->Ln();
 // Display the revenue breakdown by item category in a tabular format
 $pdf->ChapterTitle('Weekly Revenue Breakdown by Item Category');
-$header = array('Date','Week' , 'Item Category', 'Weekly Revenue');
+$header = array('Date','Week' , 'Item Category', 'Revenue (RM)');
 $data = array();
 while ($row = mysqli_fetch_assoc($weeklyCategoryRevenue)) {
     $data[] = array($row['year'], $row['week'], $row['item_category'], $row['weekly_category_revenue']);
@@ -280,7 +344,7 @@ $pdf->Ln();
 $pdf->AddPage();
 // Display the revenue breakdown by item category in a tabular format
 $pdf->ChapterTitle('Monthly Revenue Breakdown by Item Category');
-$header = array('Date','Month' , 'Item Category', 'Weekly Revenue');
+$header = array('Date','Month' , 'Item Category', 'Revenue (RM)');
 $data = array();
 while ($row = mysqli_fetch_assoc($monthlyCategoryRevenue)) {
     $data[] = array($row['year'], $row['month'], $row['item_category'], $row['monthly_category_revenue']);
@@ -290,7 +354,7 @@ $pdf->CustomTableFourColumn($header, $data);
 $pdf->AddPage();
 // Display the revenue breakdown by item category in a tabular format
 $pdf->ChapterTitle('Yearly Revenue Breakdown by Item Category');
-$header = array('Date', 'Item Category', 'Yearly Revenue');
+$header = array('Date', 'Item Category', 'Revenue (RM)');
 $data = array();
 while ($row = mysqli_fetch_assoc($yearlyCategoryRevenue)) {
     $data[] = array($row['year'], $row['item_category'], $row['yearly_category_revenue']);
@@ -331,7 +395,7 @@ $menuItemSalesResultData = array();
 while ($row = mysqli_fetch_assoc($menuItemSalesResult)) {
     $menuItemSalesResultData[] = array($row['item_name'], $row['total_quantity']);
 }
-$pdf->ChapterBody("10 Most Ordered Items this Month:\n");
+$pdf->ChapterBody("10 Most Ordered Items this Month ( "  . $currentMonthStart . " - " . $currentMonthEnd . " ) :\n");
 $pdf->CustomTable(array('Category', 'Quantity'), $menuItemSalesResultData);
 $sortOrder = 'ASC';  // Default sort order
 // Modify the SQL query for menu item sales to consider the current month
@@ -352,7 +416,7 @@ while ($row = mysqli_fetch_assoc($menuItemSalesLeastResult)) {
     $menuItemSalesLeastResultData[] = array($row['item_name'], $row['total_quantity']);
 }
 $pdf->Ln();
-$pdf->ChapterBody("10 Least Ordered Items this Month:\n");
+$pdf->ChapterBody("10 Least Ordered Items this Month ( "  . $currentMonthStart . " - " . $currentMonthEnd . " ) :\n");
 $pdf->CustomTable(array('Category', 'Quantity'), $menuItemSalesLeastResultData);
 $pdf->AddPage();
 //not ordered
@@ -377,7 +441,7 @@ while ($row = mysqli_fetch_assoc($menuItemNoOrdersResult)) {
     $menuItemNoOrdersResultData[] = array($row['item_name'], $row['total_quantity']);
 }
 $pdf->Ln();
-$pdf->ChapterBody("All Items with no Orders this Month:\n");
+$pdf->ChapterBody("All Items with no Orders this Month ( "  . $currentMonthStart . " - " . $currentMonthEnd . " ) :\n");
 $pdf->CustomTable(array('Category', 'Quantity'), $menuItemNoOrdersResultData);
 
 
