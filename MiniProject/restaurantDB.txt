@@ -322,6 +322,7 @@ VALUES
 (1920235, 'Johny Rings', 5, '19:45:00', '2023-10-01', 2, 'Quiet corner, please'),
 (1820237, 'Jean Ng', 7, '18:30:00', '2023-10-03', 2, 'Allergies: peanuts'),
 (1920239, 'Taylor Swift', 9, '19:15:00', '2023-10-05', 2, 'Surprise dessert for anniversary'),
+(1111111, 'Default', 9, '19:15:00', '2023-10-05', 2, 'Description'),
 (14202310, 'Bruce Lee', 10, '14:45:00', '2023-10-06', 3, 'Window seat, if available');
 
 INSERT INTO card_payments (card_id, account_holder_name, card_number, expiry_date, security_code)
