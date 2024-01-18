@@ -40,7 +40,7 @@ Feel free to fix these issues.
 1. Open XAMPP, start Apache and MySQL.
 2. Create a new project named `RestaurantProject`.
 3. Delete the `index.php` file.
-4. Copy all the folders and files in `MiniProject` (adminSide, customerSide, index.php, and restaurantDB.txt) into the `Source Files` directory.
+4. Copy all the folders and files (adminSide, customerSide, index.php, and restaurantDB.txt) into the `Source Files` directory.
 5. Make sure there is no database named `restaurantdb`.
 6. Run the project.
 
