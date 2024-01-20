@@ -1,6 +1,6 @@
 <?php
 // Include your database connection code here (not shown in this example).
-require_once "config.php"; // Make sure to replace "config.php" with your actual database connection file.
+require_once '../config.php';
 session_start();
 
 // Define variables and initialize them to empty values

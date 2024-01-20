@@ -2,21 +2,8 @@
 session_start(); // Ensure session is started
 ?>
 <?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "restaurantdb";
-
 require_once "../config.php";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Query to fetch staff record based on provided account_id
     $query = "SELECT * FROM Accounts WHERE account_id = '$provided_account_id'";
-    $result = $conn->query($query);
+    $result = $link->query($query);
 
     if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
@@ -37,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Check if the account_id exists in the Staffs table
         $staff_query = "SELECT * FROM Staffs WHERE account_id = '$provided_account_id'";
-        $staff_result = $conn->query($staff_query);
+        $staff_result = $link->query($staff_query);
 
         if ($staff_result->num_rows === 1) {
             $staff_row = $staff_result->fetch_assoc();
@@ -82,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the database connection
-$conn->close();
+$link->close();
 ?>
 
 <!DOCTYPE html>

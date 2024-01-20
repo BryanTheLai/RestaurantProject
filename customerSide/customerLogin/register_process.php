@@ -2,21 +2,8 @@
 session_start(); // Ensure session is started
 ?>
 <?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "restaurantdb";
+require_once '../config.php';
 
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
             //success login pattern
             $message = "Register successful.<br>Welcome to Johnny's Bar & Dining.<br>Please Login with your Account.";
             $iconClass = "fa-check-circle";

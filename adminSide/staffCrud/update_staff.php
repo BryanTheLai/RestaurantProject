@@ -1,14 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "restaurantdb";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once "../config.php";
 
 $iconClass = 'fa-check-circle'; // This value indicates success; you can adjust it as needed
 $cardClass = 'alert-success';   // This value indicates a success message card; adjust as needed

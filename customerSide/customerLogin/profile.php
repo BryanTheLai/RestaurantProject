@@ -1,6 +1,6 @@
 <?php
 // Include your database connection code here
-include('config.php'); // Replace with the actual file that connects to your database
+require_once '../config.php';
 
 // Check if the user is logged in
 session_start();

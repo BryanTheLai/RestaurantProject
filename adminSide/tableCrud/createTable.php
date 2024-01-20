@@ -6,18 +6,7 @@ session_start(); // Ensure session is started
 // Include config file
 require_once "../config.php";
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "restaurantdb";
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
  
 $input_table_id = $table_id_err = $table_id = "";
 

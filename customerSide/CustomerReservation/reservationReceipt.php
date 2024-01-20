@@ -1,6 +1,6 @@
 <?php
 require('../../adminSide/posBackend/fpdf186/fpdf.php');
-require_once '../../adminSide/config.php';
+require_once '../config.php';
 
 $reservation_id = $_GET['reservation_id'] ?? 1;
 

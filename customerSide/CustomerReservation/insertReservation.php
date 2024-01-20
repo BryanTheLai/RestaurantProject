@@ -1,6 +1,6 @@
 <?php
 // reservation.php
-require_once 'config.php';
+require_once '../config.php';
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the values from the form

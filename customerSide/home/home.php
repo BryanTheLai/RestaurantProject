@@ -1,16 +1,6 @@
 <?php
-define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
-define('DB_NAME','restaurantdb');
+require_once '../config.php';
 
-//Create Connection
-$link = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-
-//Check COnnection
-if($link->connect_error){ //if not Connection
-die('Connection Failed'.$link->connect_error);//kills the Connection OR terminate execution
-}
 
 $sqlmainDishes = "SELECT * FROM menu WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
 $resultmainDishes = mysqli_query($link, $sqlmainDishes);

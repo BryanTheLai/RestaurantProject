@@ -25,17 +25,8 @@
         <select id="account_id" name="account_id" required>
             <option value="">Select an account</option>
             <?php
-            // Assuming you have a database connection established
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "restaurantdb";
+            require_once "../config.php";
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
 
             // Query to retrieve accounts without staff assigned
             $accountQuery = "SELECT account_id FROM Accounts WHERE staff_id IS NULL";

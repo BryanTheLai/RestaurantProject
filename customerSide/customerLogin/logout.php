@@ -1,6 +1,6 @@
 <?php
 // Initialize the session
-require_once "config.php";
+require_once '../config.php';
 session_start();
 
 // Check if the user is already logged out
