@@ -5,7 +5,7 @@ if (file_exists('setup_completed.flag')) {
 } else {
     require_once 'customerSide/config.php';
     // Create the 'restaurantdb' database if it doesn't exist
-    $sqlCreateDB = "CREATE DATABASE IF NOT EXISTS restaurantdb";
+    $sqlCreateDB = "CREATE DATABASE IF NOT EXISTS restaurantdb";    // Change 'restaurantdb' to your actual database name 
     if ($link->query($sqlCreateDB) === TRUE) {
         echo "Database 'restaurantdb' created successfully.<br>";
     } else {
@@ -13,7 +13,7 @@ if (file_exists('setup_completed.flag')) {
     }
 
     // Switch to using the 'restaurantdb' database
-    $link->select_db('restaurantdb');
+    $link->select_db('restaurantdb'); // Change 'restaurantdb' to your actual database name 
 
     // Execute SQL statements from "restaurantdb.txt"
     function executeSQLFromFile($filename, $link) {
