@@ -16,7 +16,7 @@ Feel free to fix these issues.
    </a>
 </p>
 
-**Using:** Php 7.4, XAMPP and NetBeans
+**Using:** Php 7.4
 
 **Features:**
 * **Customer Side (customerSide Folder):** Stores the website and allows customers to:
