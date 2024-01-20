@@ -16,7 +16,7 @@ Feel free to fix these issues.
    </a>
 </p>
 
-**Using:** XAMPP and NetBeans
+**Using:** Php 7.4
 
 **Features:**
 * **Customer Side (customerSide Folder):** Stores the website and allows customers to:
@@ -35,7 +35,7 @@ Feel free to fix these issues.
 
 
 
-**Steps to run the project:**
+**Steps to run the project locally:**
 
 1. Open XAMPP, start Apache and MySQL.
 2. Create a new project named `RestaurantProject`.
