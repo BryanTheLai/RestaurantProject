@@ -2,15 +2,15 @@
 require_once '../config.php';
 
 
-$sqlmainDishes = "SELECT * FROM menu WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
+$sqlmainDishes = "SELECT * FROM Menu WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
 $resultmainDishes = mysqli_query($link, $sqlmainDishes);
 $mainDishes = mysqli_fetch_all($resultmainDishes, MYSQLI_ASSOC);
 
-$sqldrinks = "SELECT * FROM menu WHERE item_category = 'Drinks' ORDER BY item_type; ";
+$sqldrinks = "SELECT * FROM Menu WHERE item_category = 'Drinks' ORDER BY item_type; ";
 $resultdrinks = mysqli_query($link, $sqldrinks);
 $drinks = mysqli_fetch_all($resultdrinks, MYSQLI_ASSOC);
 
-$sqlsides = "SELECT * FROM menu WHERE item_category = 'Side Snacks' ORDER BY item_type; ";
+$sqlsides = "SELECT * FROM Menu WHERE item_category = 'Side Snacks' ORDER BY item_type; ";
 $resultsides = mysqli_query($link, $sqlsides);
 $sides = mysqli_fetch_all($resultsides, MYSQLI_ASSOC);
 
