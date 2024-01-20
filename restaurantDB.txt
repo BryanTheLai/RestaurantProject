@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS restaurantdb;
+CREATE DATABASE IF NOT EXISTS restaurantdb; -- Change to your database name
 
 CREATE TABLE IF NOT EXISTS Menu (
   item_id VARCHAR(6) PRIMARY KEY,
