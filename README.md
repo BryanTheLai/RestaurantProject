@@ -35,7 +35,7 @@ Feel free to fix these issues.
 
 
 
-**Steps to run the project locally:**
+**Steps to run the project locally for Netbeans Manually:**
 
 1. Open XAMPP, start Apache and MySQL.
 2. Create a new project named `RestaurantProject`.
