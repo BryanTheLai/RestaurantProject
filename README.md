@@ -1,7 +1,4 @@
 ## Restaurant POS and Website
-This is a school diploma project.
-In this project, some requests are using the POST method instead of the appropriate GET method and vice versa. 
-Feel free to fix these issues.
 
 ![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/homehomepage.png?raw=true)
 
