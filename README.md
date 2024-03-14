@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/homehomepage.png?raw=true)
 
-**Built with:** 
+**Built with these:** 
 <p align="left">
    <a href="#">
       <img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
