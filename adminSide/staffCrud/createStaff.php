@@ -47,10 +47,10 @@ function getNextAvailableStaffID($conn) {
 }
 
 // Get the next available Staff ID
-$next_staff_id = getNextAvailableStaffID($conn);
+$next_staff_id = getNextAvailableStaffID($link);
 
 // Get the next available account ID
-$next_account_id = getNextAvailableAccountID($conn);
+$next_account_id = getNextAvailableAccountID($link);
 ?>
 <head>
     <meta charset="UTF-8">

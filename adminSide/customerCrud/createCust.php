@@ -35,10 +35,10 @@ function getNextAvailableMemberID($conn) {
 }
 
 // Get the next available Member ID
-$next_member_id = getNextAvailableMemberID($conn);
+$next_member_id = getNextAvailableMemberID($link);
 
 // Get the next available account ID
-$next_account_id = getNextAvailableAccountID($conn);
+$next_account_id = getNextAvailableAccountID($link);
 ?>
 <head>
     <meta charset="UTF-8">
