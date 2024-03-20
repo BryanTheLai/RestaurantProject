@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $item_category = $_POST["item_category"];
     $item_price = $_POST["item_price"];
     $item_description = $_POST["item_description"];
+    $conn = $link;
 
     // Prepare the SQL query to check if the item_id already exists
     $check_query = "SELECT item_id FROM Menu WHERE item_id = ?";

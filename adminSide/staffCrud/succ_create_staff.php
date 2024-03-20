@@ -11,9 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $staff_name = $_POST["staff_name"];
     $role = $_POST["role"];
-
+    $conn = $link;
     // Start a transaction to ensure consistency across multiple table inserts
     $conn->begin_transaction();
+    
 
     try {
         // Insert Data into Accounts Table

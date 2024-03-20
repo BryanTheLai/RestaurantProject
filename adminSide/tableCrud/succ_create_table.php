@@ -1,7 +1,7 @@
 <?php
 // Assuming you have already established a database connection
 require_once "../config.php";
-
+$conn = $link;
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

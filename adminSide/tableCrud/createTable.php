@@ -6,6 +6,7 @@ session_start(); // Ensure session is started
 // Include config file
 require_once "../config.php";
 
+$conn = $link;
 
  
 $input_table_id = $table_id_err = $table_id = "";
