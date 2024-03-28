@@ -60,7 +60,7 @@ session_start(); // Ensure session is started
                         echo "<th>Reservation Date</th>";
                         echo "<th>Head Count</th>";
                         echo "<th>Special Request</th>";
-                        //echo "<th>Delete</th>";
+                        echo "<th>Delete</th>";
                         echo "<th>Receipt</th>";
                         echo "</tr>";
                         echo "</thead>";
@@ -74,10 +74,10 @@ session_start(); // Ensure session is started
                             echo "<td>" . $row['reservation_date'] . "</td>";
                             echo "<td>" . $row['head_count'] . "</td>";
                             echo "<td>" . $row['special_request'] . "</td>";
-                           // echo "<td>";
-                           // echo '<a href="../reservationsCrud/deleteReservationVerify.php?id='. $row['reservation_id'] .'" title="Delete Record" data-toggle="tooltip" '
-                          //          . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Reservation?\n\nThis will alter other modules related to this Reservation!\n\')"><span class="fa fa-trash text-black"></span></a>';
-                           // echo "</td>";
+                            echo "<td>";
+                            echo '<a href="../reservationsCrud/deleteReservationVerify.php?id='. $row['reservation_id'] .'" title="Delete Record" data-toggle="tooltip" '
+                                   . 'onclick="return confirm(\'Admin permission Required!\n\nAre you sure you want to delete this Reservation?\n\nThis will alter other modules related to this Reservation!\n\')"><span class="fa fa-trash text-black"></span></a>';
+                            echo "</td>";
                             echo "<td>";
                             echo '<a href="../reservationsCrud/reservationReceipt.php?reservation_id='. $row['reservation_id'] .'" title="Receipt" data-toggle="tooltip"><span class="fa fa-receipt text-black"></span></a>';
                             echo "</td>";
