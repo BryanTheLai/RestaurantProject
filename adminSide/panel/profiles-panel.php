@@ -1,7 +1,6 @@
 <?php
 session_start(); // Ensure session is started
-?>
-<?php 
+require_once '../posBackend/checkIfLoggedIn.php';
 include '../inc/dashHeader.php'; 
 require_once '../config.php';
 
