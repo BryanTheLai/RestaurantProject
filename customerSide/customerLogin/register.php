@@ -12,28 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate email
     if (empty(trim($_POST["email"]))) {
         $email_err = "Please enter your email.";
-    } else if (!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
-        $email_err = "Please enter a valid email. Ex: johndoe@email.com";
     } else {
         $email = trim($_POST["email"]);
-    }
-
-    $selectCreatedEmail = "SELECT email from Accounts WHERE email = ?";
-
-    if($stmt = $link->prepare($selectCreatedEmail)){
-        $stmt->bind_param("s", $_POST['email']);
-
-        $stmt->execute();
-
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            // Email already exists
-            $email_err = "This email is already registered.";
-        } else {
-            $email = trim($_POST["email"]);
-        }
-        $stmt->close();
     }
 
     // Validate member name
@@ -209,25 +189,25 @@ if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
         <form action="register.php" method="post">
             <div class="form-group">
                 <label>Email</label>
-                <input type="text" name="email" class="form-control" placeholder="Enter Email">
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
                                 <span class="text-danger"><?php echo $email_err; ?></span>
             </div>
 
             <div class="form-group">
                 <label>Member Name</label>
-                <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name">
+                <input type="text" name="member_name" class="form-control" placeholder="Enter Member Name" required>
                                 <span class="text-danger"><?php echo $member_name_err; ?></span>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
                                 <span class="text-danger"><?php echo $password_err; ?></span>
             </div>
 
             <div class="form-group">
                 <label>Phone Number</label>
-                <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number">
+                <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
                                 <span class="text-danger"><?php echo $phone_number_err; ?></span>
             </div>
 
@@ -240,3 +220,6 @@ if ($stmt_accounts = mysqli_prepare($link, $sql_accounts)) {
     </div>
 </body>
 </html>
+
+
+
