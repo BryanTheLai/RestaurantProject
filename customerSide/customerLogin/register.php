@@ -55,6 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate phone number
     if (empty(trim($_POST["phone_number"]))) {
         $phone_number_err = "Please enter your phone number.";
+    } else if(!is_numeric(trim($_POST['phone_number']))){
+        $phone_number_err = "Only enter numeric values!";
     } else {
         $phone_number = trim($_POST["phone_number"]);
     }
