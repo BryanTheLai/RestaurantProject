@@ -74,13 +74,13 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
                                 <li><a href="#projects" data-after="Projects">Menu</a></li>
                                 <li><a href="#about" data-after="About">About</a></li>
                                 <li><a href="#contact" data-after="Contact">Contact</a></li>
-                                <?php
+<?php
 } else {
 ?>
                                 <li><a href="../CustomerReservation/reservePage.php"
                                         data-after="Service">Reservation</a></li>
                                 <li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
-                                <?php
+<?php
 }
 ?>
 
@@ -92,7 +92,7 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
                                     </button>
                                     <div class="dropdown-content">
 
-                                        <?php
+<?php
 
 // Get the member_id from the query parameters
 $account_id = $_SESSION['account_id'] ?? null; // Change this to the way you obtain the member ID
