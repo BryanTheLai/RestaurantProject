@@ -73,7 +73,6 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
 ?>
                                 <li><a href="#projects" data-after="Projects">Menu</a></li>
                                 <li><a href="#about" data-after="About">About</a></li>
-                                <li><a href="/customerSide/home/reviews.php" data-after="Reviews">Reviews</a></li>
                                 <li><a href="#contact" data-after="Contact">Contact</a></li>
                                 <?php
 } else {
