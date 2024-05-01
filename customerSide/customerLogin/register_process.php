@@ -13,7 +13,7 @@ require_once '../config.php';
       
 
 // Close the database connection
-$conn->close();
+$link->close();
 ?>
 
 <!DOCTYPE html>
