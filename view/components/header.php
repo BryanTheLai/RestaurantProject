@@ -54,7 +54,7 @@ session_start();
         <div class="header container">
             <div class="nav-bar">
                 <div class="brand">
-                    <a class="nav-link" href="../home/home.php#hero">
+                    <a class="nav-link" href="/">
                         <h1 class="text-center" style="font-family:Copperplate; color:whitesmoke;"> JOHNNY'S</h1><span
                             class="sr-only"></span>
                     </a>
@@ -67,9 +67,9 @@ session_start();
 
                         <div class="navbar">
                             <ul>
-                                <li><a href="<?= strpos($current_url, "localhost/customerSide/home/home.php") !== false ? "#hero" : "/customerSide/home/home.php" ?>" data-after="Home">Home</a></li>
+                                <li><a href="<?= strpos($current_url, "localhost/") !== false ? "#hero" : "localhost/" ?>" data-after="Home">Home</a></li>
 <?php
-if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
+if (strpos($current_url, "localhost/") !== false || strpos($current_url, "localhost") !== false || strpos($current_url, "localhost/home") !== false) {
 ?>
                                 <li><a href="#projects" data-after="Projects">Menu</a></li>
                                 <li><a href="#about" data-after="About">About</a></li>
@@ -77,10 +77,10 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
 <?php
 }
 ?>
-                                <li><a href="/customerSide/home/reviews.php" data-after="Reviews">Reviews</a></li>
-                                <li><a href="../CustomerReservation/reservePage.php"
+                                <li><a href="/reviews" data-after="Reviews">Reviews</a></li>
+                                <li><a href="/reservation"
                                         data-after="Service">Reservation</a></li>
-                                <li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
+                                <li><a href="/staff-login" data-after="Staff">Staff</a></li>
 
 
 
@@ -139,11 +139,11 @@ $result = mysqli_query($link, $query);
         echo "Error: " . mysqli_error($link);
     }
 
-    echo '<a class="logout-link" style="color: white; font-size:1.3em;" href="../customerLogin/logout.php">Logout</a>';
+    echo '<a class="logout-link" style="color: white; font-size:1.3em;" href="/logout">Logout</a>';
 } else {
     // If not logged in, show "Login" link
-    echo '<a class="signin-link" style="color: white; font-size:15px;" href="../customerLogin/register.php">Sign Up </a> ';
-    echo '<a class="login-link" style="color: white; font-size:15px; " href="../customerLogin/login.php">Log In</a>';
+    echo '<a class="signin-link" style="color: white; font-size:15px;" href="/register">Sign Up </a> ';
+    echo '<a class="login-link" style="color: white; font-size:15px; " href="/login">Log In</a>';
 }
 
 // Close the database connection
