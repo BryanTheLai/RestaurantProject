@@ -2,5 +2,4 @@ php_value display_errors 1
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)＄ index.php
-
+RewriteRule ^(.*)$ index.php [L]
