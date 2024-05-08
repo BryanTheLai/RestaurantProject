@@ -1,0 +1,15 @@
+.star-rating {
+    margin: 10px 0;
+    display: inline-block;
+}
+.star-rating li {
+    padding: 0;
+}
+.star-rating i {
+    font-size: 3em;
+    color: #ffc000;
+}
+.list-inline-item {
+    display: inline-block;
+    list-style-type: none;
+}
