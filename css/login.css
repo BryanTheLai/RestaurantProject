@@ -1,0 +1,54 @@
+.login-container {
+    padding: 50px; /* Adjust the padding as needed */
+    border-radius: 10px; /* Add rounded corners */
+    margin: 100px auto; /* Center the container horizontally */
+    max-width: 500px; /* Set a maximum width for the container */
+  }
+  
+          body {
+              font-family: 'Montserrat', sans-serif;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              margin: 0; /* Remove default margin */
+              background-color:black;
+               background-image: url('/assets/image/loginBackground.jpg'); /* Set the background image path */
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              color: white;
+          }
+  
+          .login_wrapper {
+              width: 400px; /* Adjust the container width as needed */
+              padding: 20px;
+          }
+  
+          h2 {
+              text-align: center;
+              font-family: 'Montserrat', serif;
+          }
+  
+          p {
+              font-family: 'Montserrat', serif;
+          }
+
+          #registration-link {
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top:1em; 
+            color:white;
+          }
+  
+          .form-group {
+              margin-bottom: 15px; /* Add space between form elements */
+          }
+  
+          ::placeholder {
+              font-size: 12px; /* Adjust the font size as needed */
+          }
+          
+          .text-danger{
+              font-size: 13px;
+          }
