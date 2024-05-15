@@ -17,15 +17,42 @@ if ($connection->connect_errno)
 
 //SELECT - used when expecting single OR multiple results
 //returns an array that contains one or more associative arrays
-function fetch_all($query)
-{
+function fetch_all($query, $params = array()) {
   $data = array();
   global $connection;
-  $result = $connection->query($query);
-  while($row = mysqli_fetch_assoc($result)) 
-  {
+
+  // Prepare the statement
+  $statement = $connection->prepare($query);
+
+  if (!$statement) {
+    die("Error in preparing statement: " . $connection->error);
+  }
+
+  // Bind the parameters if there are any
+  if (!empty($params)) {
+    $types = str_repeat('s', count($params)); // Assuming all parameters are strings
+    $statement->bind_param($types, ...$params);
+  }
+
+  // Execute the query
+  $result = $statement->execute();
+
+  // Check if execution succeeded
+  if (!$result) {
+    die("Error in executing statement: " . $statement->error);
+  }
+
+  // Get the result set
+  $result = $statement->get_result();
+
+  // Fetch all rows as an associative array
+  while ($row = $result->fetch_assoc()) {
     $data[] = $row;
   }
+
+  // Close the statement
+  $statement->close();
+
   return $data;
 }
 
