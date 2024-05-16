@@ -1,30 +1,26 @@
 <?php
-require_once 'config.php';
+require_once 'processes/database-connection.php';
 
-$current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$current_url = "$_SERVER[REQUEST_URI]";
 
 $sqlmainDishes = "SELECT * FROM Menu WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
-$resultmainDishes = mysqli_query($link, $sqlmainDishes);
-$mainDishes = mysqli_fetch_all($resultmainDishes, MYSQLI_ASSOC);
+$mainDishes = fetch_all($sqlmainDishes);
 
-$sqldrinks = "SELECT * FROM Menu WHERE item_category = 'Drinks' ORDER BY item_type; ";
-$resultdrinks = mysqli_query($link, $sqldrinks);
-$drinks = mysqli_fetch_all($resultdrinks, MYSQLI_ASSOC);
+$sqldrinks = "SELECT * FROM Menu WHERE item_category = 'Drinks' ORDER BY item_type;";
+$drinks = fetch_all($sqldrinks);
 
 $sqlsides = "SELECT * FROM Menu WHERE item_category = 'Side Snacks' ORDER BY item_type; ";
-$resultsides = mysqli_query($link, $sqlsides);
-$sides = mysqli_fetch_all($resultsides, MYSQLI_ASSOC);
-
-
+$sides = fetch_all($sqlsides);
 
 // Check if the user is logged in
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    echo '<div class="user-profile">';
-    echo 'Welcome, ' . $_SESSION["member_name"] . '!';
-    echo '<a href="../customerProfile/profile.php">Profile</a>';
-    echo '</div>';
-    
-}
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//     echo '<div class="user-profile">';
+//     echo 'Welcome, ' . $_SESSION["member_name"] . '!';
+//     echo '<a href="../customerProfile/profile.php">Profile</a>';
+//     echo '</div>';
+// }
+
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -44,7 +40,7 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
     
-    <title>Home</title>
+    <title><?=( $current_url === '/home' || $current_url === '/' )? 'Home' : 'Reviews'?></title> 
 </head>
 
 <body>
@@ -67,9 +63,9 @@ session_start();
 
                         <div class="navbar">
                             <ul>
-                                <li><a href="<?= strpos($current_url, "localhost/") !== false ? "#hero" : "localhost/" ?>" data-after="Home">Home</a></li>
+                                <li><a href="<?= ($current_url === '/home' || $current_url === '/') ? "#hero" : "/" ?>" data-after="Home">Home</a></li>
 <?php
-if (strpos($current_url, "localhost/") !== false || strpos($current_url, "localhost") !== false || strpos($current_url, "localhost/home") !== false) {
+if ($current_url === '/home' || $current_url === '/') {
 ?>
                                 <li><a href="#projects" data-after="Projects">Menu</a></li>
                                 <li><a href="#about" data-after="About">About</a></li>
@@ -104,12 +100,10 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $account_i
     $query = "SELECT member_name, points FROM memberships WHERE account_id = $account_id";
 
 // Execute the query
-$result = mysqli_query($link, $query);
     // If logged in, show "Logout" link
     // Check if the query was successful
-    if ($result) {
         // Fetch the member's information
-        $row = mysqli_fetch_assoc($result);
+        $row = fetch_record($query);
         
         if ($row) {
             $member_name = $row['member_name'];
@@ -120,37 +114,38 @@ $result = mysqli_query($link, $query);
             
             // Define the VIP tooltip text
             $vip_tooltip = ($vip_status === 'Regular') ? ($points < 1000 ? (1000 - $points) . ' points to VIP ' : 'You are eligible for VIP') : '';
-            
-            // Output the member's information
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; '>$member_name</p>";
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; '>$points Points </p>";
-            echo "<p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; '>$vip_status";
-            
+?>          
+            <!-- Output the member's information -->
+            <p class='logout-link' style='font-size:1.3em; margin-left:15px; padding:5px; color:white; '><?= $member_name ?></p>
+            <p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px;color:white; '><?= $points ?> Points </p>
+            <p class='logout-link' style='font-size:1.3em; margin-left:15px;padding:5px; color:white; '><?= $vip_status ?>
+<?php            
             // Add the tooltip only for Regular status
             if ($vip_status === 'Regular') {
+?>
+<?php                
                 echo " <span class='tooltip'>$vip_tooltip</span>";
             }
-            
-            echo "</p>";
+?>
+
+            </p>;
+<?php
         } else {
             echo "Member not found.";
         }
-    } else {
-        echo "Error: " . mysqli_error($link);
-    }
-
-    echo '<a class="logout-link" style="color: white; font-size:1.3em;" href="/logout">Logout</a>';
-} else {
-    // If not logged in, show "Login" link
-    echo '<a class="signin-link" style="color: white; font-size:15px;" href="/register">Sign Up </a> ';
-    echo '<a class="login-link" style="color: white; font-size:15px; " href="/login">Log In</a>';
-}
-
-// Close the database connection
-mysqli_close($link);
 ?>
 
+            <a class="logout-link" style="color: white; font-size:1.3em;" href="/logout">Logout</a>
+<?php
+} else {
+    // If not logged in, show "Login" link
+?>
+           <a class="signin-link" style="color: white; font-size:15px;" href="/register">Sign Up </a>
+           <a class="login-link" style="color: white; font-size:15px; " href="/login">Log In</a>
 
+<?php
+}
+?>
                                     </div>
                                 </div>
                             </ul>
