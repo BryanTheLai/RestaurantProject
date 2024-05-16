@@ -620,6 +620,113 @@ p {
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
 
+
+#review-btn:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+#review-btn:hover {
+  background-color: #2c974b;
+}
+
+#review-btn:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+#review-btn:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+#review-btn:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+
+#login_btn {
+	appearance: none;
+	background-color: #2ea44f;
+	border: 1px solid rgba(27, 31, 35, .15);
+	border-radius: 6px;
+	box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+	box-sizing: border-box;
+	color: #fff;
+	cursor: pointer;
+	display: flex;
+	font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+	font-size: 3em;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 20px;
+	margin-top: 20px;
+	padding: 20px 16px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+  }
+  
+  #login_btn:focus:not(:focus-visible):not(.focus-visible) {
+	box-shadow: none;
+	outline: none;
+  }
+  
+  #login_btn:hover {
+	background-color: #2c974b;
+  }
+  
+  #login_btn:focus {
+	box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+	outline: none;
+  }
+  
+  #login_btn:disabled {
+	background-color: #94d3a2;
+	border-color: rgba(27, 31, 35, .1);
+	color: rgba(255, 255, 255, .8);
+	cursor: default;
+  }
+  
+  #login_btn:active {
+	background-color: #298e46;
+	box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+  
+  
+  #login_btn:focus:not(:focus-visible):not(.focus-visible) {
+	box-shadow: none;
+	outline: none;
+  }
+  
+  #login_btn:hover {
+	background-color: #2c974b;
+  }
+  
+  #login_btn:focus {
+	box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+	outline: none;
+  }
+  
+  #login_btn:disabled {
+	background-color: #94d3a2;
+	border-color: rgba(27, 31, 35, .1);
+	color: rgba(255, 255, 255, .8);
+	cursor: default;
+  }
+  
+  #login_btn:active {
+	background-color: #298e46;
+	box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+
 /* Writing Reviews */
 #review-writing label, input {
 	display: block;
