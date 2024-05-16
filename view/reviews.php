@@ -54,9 +54,18 @@ include_once('components/header.php');
                 <p>Content bla bla blah</p>
             </div>
     </div>
+<?php 
+if(isset($_SESSION['loggedin'])) {
+?>
         <button id="review-btn">WRITE YOUR REVIEW HERE!</button>
     </div>
-
+<?php 
+} else {
+?>
+        <button id="login_btn">Login to write a review</button>
+<?php
+}
+?>
 
 </section>
 
