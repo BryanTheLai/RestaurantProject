@@ -81,3 +81,4 @@
 | Bryan | https://github.com/BryanTheLai |
 | Yong | https://github.com/ahhyang |
 | Kevin | https://github.com/kevin07212004 |
+| Edzer | https://github.com/edsaur |
