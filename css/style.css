@@ -752,6 +752,64 @@ p {
 	margin-bottom: 15px;
 }
 
+/* Basic button style */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+	border-radius: 5px;
+    padding: 1rem 2rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    line-height: 1.5;
+    border-radius: 0.3rem; /* Increased border radius */
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Primary button style */
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #004085;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-primary:disabled, .btn-primary.disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    opacity: 0.65;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #004085;
+    border-color: #003566;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+
 /* Keyframes */
 @keyframes hamburger_puls {
 	0% {
