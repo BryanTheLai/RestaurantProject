@@ -48,4 +48,4 @@ if (file_exists('setup_completed.flag')) {
 }
 ?>
 
-<a href="customerSide/home/home.php">Home</a>
+<a href="/">Home</a>
