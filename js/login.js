@@ -20,8 +20,12 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response.status === 'success') {
-                    console.log("success!");
-                    window.location.href = '/home'; // This should head back to home
+                    let previousPage = document.referrer;
+                    if (document.referrer) {
+                        window.location.href =  previousPage;
+                    } else {
+                        window.location.href = '/home';
+                    }
                 } else if (response.status === 'failed'){
                     // console.error(response);
                     handleValidation(response.message);
