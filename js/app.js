@@ -1,8 +1,8 @@
+document.addEventListener('DOMContentLoaded', () => {
 const hamburger = document.querySelector('.header .nav-bar .nav-list .hamburger');
 const mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
 const menu_item = document.querySelectorAll('.header .nav-bar .nav-list ul li a');
 const header = document.querySelector('.header.container');
-const review_btn = document.querySelector('#review-btn');
 
 hamburger.addEventListener('click', () => {
 	hamburger.classList.toggle('active');
@@ -25,6 +25,21 @@ menu_item.forEach((item) => {
 	});
 });
 
-review_btn.addEventListener('click', () => {
-	location.href = "/customerSide/reviews/write-reviews.php";
+
+// FOR REVIEW PAGE
+const login_btn = document.querySelector('#login_btn');
+const review_btn = document.querySelector('#review-btn');
+if (login_btn) {
+	login_btn.addEventListener('click', () => {
+		console.log("Hello world!");
+		location.href = "/login";
+	});
+}
+
+if (review_btn) {
+	review_btn.addEventListener('click', () => {
+		location.href = "/write-reviews";
+	});
+}
+
 });
