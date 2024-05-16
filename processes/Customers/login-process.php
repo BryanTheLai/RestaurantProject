@@ -15,32 +15,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    
     if(empty($email)){
         $error['email'] = "Email field is empty!";
+    } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $error['email'] = "Item typed is not an email!";
+    } else {  
+        $query = "SELECT account_id, email, password from accounts WHERE email = ?";
+        $user = fetch_all($query, [$email]);
+        if(!empty($user)){
+            if($password !== $user[0]['password'] || $email !== $user[0]['email'] ) {
+                $error['login_credentials'] = "Login Credentials are wrong! Try Again";
+            } else {
+                $_SESSION["loggedin"] = true;
+                $_SESSION["email"] = $email;
+                $_SESSION['account_id'] = $user[0]['account_id'];
+            }
+        } else {
+            $error['login_credentials'] = "Login Credentials are wrong! Try Again";
+        }
     }
-
     if(empty($password)){
         $error['password'] = "Password field is empty!";
     }
 
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $error['email'] = "Item typed is not an email!";
-    }
 
-    $query = "SELECT email, password from accounts WHERE email = ?";
-    $user = fetch_all($query, [$email]);
 
-    if(!empty($user)){
-        if($password !== $user[0]['password'] || $email !== $user[0]['email'] ) {
-            $error['login_credentials'] = "Login Credentials are wrong! Try Again";
-        } else {
-            $message = "Logged in!";
-            // $_SESSION["loggedin"] = true;
-            // $_SESSION["email"] = $email;
-        }
-    } else {
-        $error['login_credentials'] = "Login Credentials are wrong! Try Again";
-    }
 
 }
 
