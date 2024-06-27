@@ -81,3 +81,15 @@
 | Bryan | https://github.com/BryanTheLai |
 | Yong | https://github.com/ahhyang |
 | Kevin | https://github.com/kevin07212004 |
+<<<<<<< Updated upstream
+=======
+| Edzer | https://github.com/edsaur |
+
+
+## If you want to put a password for the database, youll need to change the following code:
+1. view/components/config.php
+3. processes/config.php
+4. importDB.php
+5. adminSide/config.php
+
+>>>>>>> Stashed changes

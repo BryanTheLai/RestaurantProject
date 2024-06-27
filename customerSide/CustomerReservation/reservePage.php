@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once 'processes/config.php';
 
 // Start the session
 session_start();
@@ -67,7 +67,7 @@ session_start();
                 <div id="Search Table">
                     <h2 style=" color:white;">Search for Time</h2>
                  
-                    <form id="reservation-form" method="GET" action="availability.php"><br>
+                    <form id="reservation-form" method="GET" action="/availability.php"><br>
                         <div class="form-group">
                         <label for="reservation_date" style="">Select Date</label><br>
                         <input class="form-control" type="date" id="reservation_date" name="reservation_date" required>
