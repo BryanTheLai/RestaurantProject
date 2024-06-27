@@ -7,8 +7,18 @@ if (file_exists('setup_completed.flag')) {
     define('DB_USER', 'root');
     define('DB_PASS', '');
 
+<<<<<<< Updated upstream
     // Create Connection
     $link = new mysqli(DB_HOST, DB_USER, DB_PASS);
+=======
+
+switch($request){
+    case '':
+        case '/':
+            case '/home':
+                require __DIR__ . '/view/home.php';
+                break;
+>>>>>>> Stashed changes
 
     // Check Connection
     if ($link->connect_error) {
@@ -23,6 +33,7 @@ if (file_exists('setup_completed.flag')) {
         echo "Error creating database: " . $link->error . "<br>";
     }
 
+<<<<<<< Updated upstream
     // Switch to using the 'restaurantdb' database
     $link->select_db('restaurantdb');
 
@@ -45,6 +56,24 @@ if (file_exists('setup_completed.flag')) {
 
     // Close the database connection
     $link->close();
+=======
+    // FOR WRITING REVIEWS
+    case '/reviews':
+        require __DIR__ . '/view/reviews.php';
+        break;
+    case '/write-reviews':
+        require __DIR__ . '/view/Customers/write-reviews.php';
+        break;
+
+    // For Reservations
+    case '/reservation':
+        require __DIR__ . '/customerSide/CustomerReservation/reservePage.php';
+        break;
+
+    case '/availability':
+        require __DIR__ . '/customerSide/CustomerReservation/availability.php';
+        break;
+>>>>>>> Stashed changes
 }
 ?>
 
