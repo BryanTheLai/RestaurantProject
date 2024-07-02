@@ -1,5 +1,9 @@
 <?php 
 include_once('view/components/header.php');
+
+if(!isset($_SESSION['loggedin'])){
+    header('Location: /login');
+}
 ?>
 <section id="hero" style="position: relative;">
     <div class="hero container" style="position: relative; z-index: 1;">
