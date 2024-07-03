@@ -2,6 +2,7 @@
 session_start(); // Ensure session is started
 require_once './view/Admins/checkIfLoggedIn.php';
 include './view/Admins/inc/dashHeader.php'; 
+require_once './view/Admins/config.php'; // Include your database configuration
 ?>
     <style>
         .wrapper{ width: 1300px; padding-left: 200px; padding-top: 20px  }
@@ -31,8 +32,6 @@ include './view/Admins/inc/dashHeader.php';
                 </div>
                 
                 <?php
-                // Include config file
-                require_once "../config.php";
                 $sql = "SELECT * FROM reservations ORDER BY reservation_id;";
 
                 if (isset($_POST['search'])) {
@@ -101,4 +100,4 @@ include './view/Admins/inc/dashHeader.php';
     </div>
 </div>
 
-<?php include '../inc/dashFooter.php'; ?>
+<?php include './view/Admins/inc/dashFooter.php' ?>

@@ -23,7 +23,6 @@ require_once './view/Admins/config.php'; // Include your database configuration
             </form><br>
             
             <?php
-            require_once '../config.php';
             $currentMonthStart = date('Y-m-01');
             $currentMonthEnd = date('Y-m-t');
 
@@ -134,4 +133,4 @@ require_once './view/Admins/config.php'; // Include your database configuration
 
 
 
-<?php include '../inc/dashFooter.php';  // Include your footer file here ?>
+<?php include './view/Admins/inc/dashFooter.php' ?>
