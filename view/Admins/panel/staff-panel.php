@@ -1,8 +1,8 @@
 <?php
 session_start(); // Ensure session is started
-require_once '../posBackend/checkIfLoggedIn.php';
+require_once './view/Admins/checkIfLoggedIn.php';
+include './view/Admins/inc/dashHeader.php';
 ?>
-<?php include '../inc/dashHeader.php'; ?>
     <style>
         .wrapper{ width: 60%; padding-left: 200px; padding-top: 20px  }
     </style>
@@ -119,4 +119,4 @@ require_once '../posBackend/checkIfLoggedIn.php';
     </div>
 </div>
 
-<?php include '../inc/dashFooter.php'; ?>
+<?php include './view/Admins/inc/dashFooter.php' ?>

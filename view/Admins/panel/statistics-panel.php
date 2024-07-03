@@ -1,9 +1,8 @@
 <?php
 session_start(); // Ensure session is started
-require_once '../posBackend/checkIfLoggedIn.php';
-?>
-<?php include '../inc/dashHeader.php'; 
-require_once '../config.php';
+require_once './view/Admins/checkIfLoggedIn.php';
+include './view/Admins/inc/dashHeader.php';
+require_once './view/Admins/config.php'; // Include your database configuration
 
 // Get current date
 $currentDate = date('Y-m-d');
