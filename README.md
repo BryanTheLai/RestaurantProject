@@ -36,7 +36,7 @@
 
 1. Open XAMPP, start Apache and MySQL.
 2. Create a new project named `RestaurantProject`.
-3. Delete the `index.php` file.
+3. Delete the `setup_completed.flag` file.
 4. Copy all the folders and files (adminSide, customerSide, index.php, and restaurantDB.txt) into the `Source Files` directory.
 5. Make sure there is no database named `restaurantdb`.
 6. Run the project.
